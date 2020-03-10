@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="cn.storm.mapper.StudentMapper">
+  		<insert id="saveStudent" parameterType="Student">
+  			insert into student(sid,sname,sex,score) 
+  			values (#{sid},#{sname},#{sex},#{score})
+  		</insert>
+  		<select id="selectAllStudent" resultType="Student">
+  			select * from student
+  		</select>
+  		<select id="selectStudentBySid" parameterType="_int" resultType="Student">
+  			select * from student where sid = #{id}
+  		</select>
+  		<delete id="deleteStudentBySid" parameterType="_int">
+  			delete from student where  sid = #{id}
+  		</delete>
+  </mapper>
