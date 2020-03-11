@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.storm.pojo.Student;
+import cn.storm.pojo.Student1;
 import cn.storm.pojo.Users;
 import cn.storm.service.StudentService;
 import cn.storm.service.UsersService;
