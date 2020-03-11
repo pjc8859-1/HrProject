@@ -35,12 +35,13 @@
   			delete from engage_answer where  ans_id = #{id}
   		</delete>
   		<update id="updateEngageAnswer" parameterType="EngageAnswer">
-  			update engage_answer answer_number=#{answerNumber},
-  			exam_number=#{examNumber},resume_id=#{resumeId},interview_id=#{interviewId},
-  			human_name=#{humanName},human_idcard=#{humanIdcard},
-  			major_kind_id=#{majorKindId},major_kind_name=#{majorKindName},
-  			major_id =#{majorId} ,major_name =#{majorName},
-  			test_time = #{testTime},use_time = #{useTime},total_point =#{totalPoint}
+  			update engage_answer set 
+	  			answer_number=#{answerNumber},
+	  			exam_number=#{examNumber},resume_id=#{resumeId},interview_id=#{interviewId},
+	  			human_name=#{humanName},human_idcard=#{humanIdcard},
+	  			major_kind_id=#{majorKindId},major_kind_name=#{majorKindName},
+	  			major_id =#{majorId} ,major_name =#{majorName},
+	  			test_time = #{testTime},use_time = #{useTime},total_point =#{totalPoint}
   			where ans_id=#{ansId}
 >>>>>>> branch 'master' of https://github.com/pjc8859-1/HrProject.git
   		</update>
