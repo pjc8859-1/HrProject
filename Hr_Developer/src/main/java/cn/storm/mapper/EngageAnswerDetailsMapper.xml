@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="cn.storm.mapper.EngageAnswerDetailsMapper">
+  
+  <resultMap type="EngageAnswerDetails" id="myEngageAnswerDetails">
+  		<result property="andId" column="and_id"/>
+  		<result property="answerNumber" column="answer_number"/>
+  		<result property="subjectId" column="subject_id"/>
+  		<result property="answer" column="answer"/>
+  </resultMap>
+  
+  		<insert id="saveEngageAnswerDetails" parameterType="EngageAnswerDetails">
+  			insert into engage_answer_details(and_id,answer_number,subject_id,answer) 
+  			values (#{andId},#{answerNumber},#{subjectId},#{answer})
+  		</insert>
+  		<select id="selectAllEngageAnswerDetails" resultMap="myEngageAnswerDetails">
+  			select * from engage_answer_details
+  		</select>
+  		<select id="selectEngageAnswerDetailsByAnsId" parameterType="_int" resultMap="myEngageAnswerDetails">
+  			select * from engage_answer_details where and_id = #{id}
+  		</select>
+  		<delete id="deleteEngageAnswerDetailsByAnsId" parameterType="_int">
+  			delete from engage_answer_details where  and_id = #{id}
+  		</delete>
+  		<update id="updateEngageAnswerDetails" parameterType="EngageAnswerDetails">
+  			update engage_answer set
+  			and_id=#{answerNumber}, subject_id =#{subjectId}, answer =#{answer}
+  			where and_id=#{andId}
+  		</update>
+  </mapper>

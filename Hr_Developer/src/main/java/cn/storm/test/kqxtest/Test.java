@@ -20,10 +20,10 @@ public class Test {
 		c.setPrkId((short) 999);
 		c.setPrimaryKey("a");
 		ss.addConfigPrimaryKey(c);
+		ss.removeConfigPrimaryKeyByprkId(999);
 		List<ConfigPrimaryKey> list = ss.queryAllConfigPrimaryKey();
 		for (ConfigPrimaryKey ccc : list) {
 			System.out.println(ccc);
 		}
-		ss.removeConfigPrimaryKeyByprkId(999);
 	}
 }
