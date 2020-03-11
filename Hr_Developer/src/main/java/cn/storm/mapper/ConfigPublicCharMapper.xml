@@ -13,10 +13,10 @@
   			insert into config_public_char(pbc_id,attribute_kind,attribute_name)
   			values (#{pbcId},#{attributeKind},#{attributeName})
   		</insert>
-  		<select id="selectAllConfigPublicChar" resultType="ConfigPublicChar" resultMap="MyConfigPublicChar">
+  		<select id="selectAllConfigPublicChar"  resultMap="MyConfigPublicChar">
   			select * from config_public_char
   		</select>
-  		<select id="selectConfigPublicCharBypbcId" parameterType="_int" resultType="ConfigPrimaryKey">
+  		<select id="selectConfigPublicCharBypbcId" parameterType="_int"  resultMap="MyConfigPublicChar">
   			select * from config_public_char where pbc_id = #{pbcId}
   		</select>
   		<delete id="deleteConfigPublicCharBypbcId" parameterType="_int">

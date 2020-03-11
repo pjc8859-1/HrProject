@@ -23,10 +23,10 @@
   			values (#{ftkId},#{firstKindId},#{firstKindName},#{secondKindId},#{secondKindName}
   			,#{thirdKindId},#{thirdKindName},#{thirdKindSaleId},#{thirdKindIsRetail})
   		</insert>
-  		<select id="selectAllConfigFileThirdKind" resultType="ConfigFileThirdKind" resultMap="MyConfigFileThirdKind">
+  		<select id="selectAllConfigFileThirdKind"  resultMap="MyConfigFileThirdKind">
   			select * from config_file_third_kind
   		</select>
-  		<select id="selectConfigFileThirdKindByftkId" parameterType="_int" resultType="ConfigFileThirdKind">
+  		<select id="selectConfigFileThirdKindByftkId" parameterType="_int"  resultMap="MyConfigFileThirdKind">
   			select * from config_file_third_kind where ftk_id = #{ftkId}
   		</select>
   		<delete id="deleteConfigFileThirdKindByftkId" parameterType="_int">

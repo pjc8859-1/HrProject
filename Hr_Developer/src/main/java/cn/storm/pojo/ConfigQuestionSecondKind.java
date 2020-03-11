@@ -14,8 +14,6 @@ public class ConfigQuestionSecondKind implements java.io.Serializable {
 	private String secondKindId;
 	private String secondKindName;
 
-	 
-
 	// Property accessors
 
 	public Short getQskId() {
@@ -66,5 +64,4 @@ public class ConfigQuestionSecondKind implements java.io.Serializable {
 				+ secondKindName + "]";
 	}
 
- 
 }
