@@ -11,7 +11,7 @@ import cn.storm.pojo.Bonus;
 public interface BonusMapper {
 	public boolean saveBonus(Bonus Bonus);
 	public List<Bonus> selectAllBonus();
-	public Bonus selectBonusByBon_id(int sid);
-	public boolean deleteBonusByBon_id(int sid);
+	public Bonus selectBonusBybonId(int bonid);
+	public boolean deleteBonusBybonId(int bonid);
 	public int updateBonus(Bonus bonus);
 }
