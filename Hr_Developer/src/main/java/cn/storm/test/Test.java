@@ -7,13 +7,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.storm.pojo.Student;
 import cn.storm.service.StudentService;
+import cn.storm.service.UsersService;
 
 public class Test {
 
 	public static void main(String[] args) {
 		
 		ApplicationContext ac = new ClassPathXmlApplicationContext("/applicationContext.xml");
-		StudentService ss = (StudentService)ac.getBean("studentServiceImpl");
+//		StudentService ss = (StudentService)ac.getBean("studentServiceImpl");
 //		
 //		Student s = new Student();
 //		s.setSid(5);
@@ -25,16 +26,19 @@ public class Test {
 //		System.out.println("保存!");
 		
 		
-		Student s = ss.queryStudentBySid(1);
-		s.setScore(85);
-		
-		int updateResult = ss.modifyStudent(s);
-		System.out.println(updateResult);
+//		Student s = ss.queryStudentBySid(1);
+//		s.setScore(85);
+//		
+//		int updateResult = ss.modifyStudent(s);
+//		System.out.println(updateResult);
 //		List<Student> list = ss.queryAllStudent();
 //		for (Student student : list) {
 //			System.out.println(student.getSname());
 //			
 //		}
+		UsersService userservice=(UsersService) ac.getBean("usersServiceImpl");
+		System.out.println(userservice);
+		
 	}
 
 }

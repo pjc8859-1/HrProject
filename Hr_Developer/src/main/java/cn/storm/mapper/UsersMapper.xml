@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="cn.storm.mapper.UsersMapper">
+  
+  <resultMap type="Users" id="myUsers">
+  <result property="UId" column="u_id"/>
+  <result property="UName" column="u_name" />
+  <result property="UTrueName" column="u_true_name"/>
+  <result property="UPassword" column="u_password"/>
+  <result property="UPosition" column="u_position"/>
+  </resultMap>
+  
+  		<insert id="saveUsers" parameterType="Users">
+  			insert into users(u_id,u_name,u_true_name,u_password,u_position) 
+  			values (#{UId},#{UName},#{UTrueName},#{UPassword},#{UPosition})
+  		</insert>
+  		<select id="selectAllUsers" resultMap="myUsers">
+  			select * from users
+  		</select>
+  		<select id="selectUsersByUid" parameterType="_int" resultMap="myUsers">
+  			select * from users where sid = #{id}
+  		</select>
+  		<delete id="deleteUsersByUid" parameterType="_int">
+  			delete from users where  sid = #{id}
+  		</delete>
+  		<update id="updateUsers" parameterType="Users">
+  			update users set u_password = #{UPassword},u_position=#{UPosition},u_name=#{UName}
+  			where u_id=#{UId}
+  		</update>
+  </mapper>
