@@ -1,3 +1,4 @@
+
 package cn.storm.test;
 
 import java.util.List;
@@ -6,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.storm.pojo.Student;
+import cn.storm.pojo.Users;
 import cn.storm.service.StudentService;
 import cn.storm.service.UsersService;
 
@@ -37,8 +39,17 @@ public class Test {
 //			
 //		}
 		UsersService userservice=(UsersService) ac.getBean("usersServiceImpl");
-		System.out.println(userservice);
+		Users user =new Users();
+		user.setUId((short) 2);
+		user.setUName("张三");
+		user.setUPassword("45678945");
+		user.setUTrueName("张英俊");
+		System.out.println(userservice.removeUsersByUid(2));
 		
 	}
 
 }
+
+
+
+
