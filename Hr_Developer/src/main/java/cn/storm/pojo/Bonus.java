@@ -10,6 +10,7 @@ public class Bonus implements java.io.Serializable {
 
 	// Fields
 	//111   3位 最大 2^3-1 =7
+	
 	private Short bonId;//因为用的是short所以最大值是65535
 	private String majorKindId;
 	private String majorKindName;

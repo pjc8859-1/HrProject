@@ -1,4 +1,4 @@
-package cn.storm.service;
+package cn.storm.service.impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import cn.storm.mapper.StudentMapper;
 import cn.storm.pojo.Student;
+import cn.storm.service.StudentService;
 
 @Service
 public class StudentServiceImpl implements StudentService{
@@ -16,6 +17,7 @@ public class StudentServiceImpl implements StudentService{
 	
 	@Override
 	public boolean addStudent(Student student) {
+		
 		return studentMapper.saveStudent(student);
 	}
 

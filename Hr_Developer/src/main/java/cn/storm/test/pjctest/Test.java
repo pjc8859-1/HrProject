@@ -6,18 +6,17 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.storm.pojo.Student;
-import cn.storm.pojo.Users;
-import cn.storm.service.StudentService;
-import cn.storm.service.UsersService;
+import cn.storm.pojo.MajorChange;
+import cn.storm.service.MajorChangeService;
 
 public class Test {
 
 	public static void main(String[] args) {
 		
 		ApplicationContext ac = new ClassPathXmlApplicationContext("/applicationContext.xml");
-//		StudentService ss = (StudentService)ac.getBean("studentServiceImpl");
-//		
+		MajorChangeService ss = (MajorChangeService)ac.getBean("majorChangeServiceImpl");
+		List<MajorChange> list = ss.queryAllMajorChange();
+		
 //		Student s = new Student();
 //		s.setSid(5);
 //		s.setSname("张三");
@@ -35,16 +34,12 @@ public class Test {
 //		System.out.println(updateResult);
 //		List<Student> list = ss.queryAllStudent();
 //		for (Student student : list) {
-//			System.out.println(student.getSname());
-//			
+//			System.out.println(student.getSName());
 //		}
-		UsersService userservice=(UsersService) ac.getBean("usersServiceImpl");
-		Users user =new Users();
-		user.setUId((short) 2);
-		user.setUName("张三");
-		user.setUPassword("45678945");
-		user.setUTrueName("张英俊");
-		System.out.println(userservice.removeUsersByUid(2));
+
+//		
+//		System.out.println(ac.getBean("studentMapper"));
+		
 		
 	}
 
