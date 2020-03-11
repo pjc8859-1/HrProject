@@ -15,7 +15,7 @@ public class SalaryStandardDetails implements java.io.Serializable {
 	private String itemName;
 	private Double salary;
 	// Property accessors
-
+	
 	public Short getSdtId() {
 		return this.sdtId;
 	}
