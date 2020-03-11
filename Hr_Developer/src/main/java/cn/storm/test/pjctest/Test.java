@@ -6,16 +6,17 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.storm.pojo.MajorChange;
-import cn.storm.service.MajorChangeService;
+import cn.storm.pojo.EngageAnswer;
+import cn.storm.service.EngageAnswerService;
 
 public class Test {
 
 	public static void main(String[] args) {
 		
 		ApplicationContext ac = new ClassPathXmlApplicationContext("/applicationContext.xml");
-		MajorChangeService ss = (MajorChangeService)ac.getBean("majorChangeServiceImpl");
-		List<MajorChange> list = ss.queryAllMajorChange();
+		EngageAnswerService ss = (EngageAnswerService)ac.getBean("engageAnswerServiceImpl");
+		List<EngageAnswer> list = ss.queryAllEngageAnswer();
+		System.out.println(list.size());
 		
 //		Student s = new Student();
 //		s.setSid(5);
