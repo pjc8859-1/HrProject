@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="cn.storm.mapper.ConfigPrimaryKeyMapper">
+  <resultMap type="ConfigPrimaryKey" id="MyConfigPrimaryKey">
+  		<result property="prkId" column="prk_id"/>
+  		<result property="primaryKeyTable" column="primary_key_table"/>
+  		<result property="primaryKey" column="primary_key"/>
+  		<result property="keyName" column="key_name"/>
+  		<result property="primaryKeyStatus" column="primary_key_status"/>
+  </resultMap>
+  
+  		<insert id="saveConfigPrimaryKey" parameterType="ConfigPrimaryKey" >
+  			insert into config_primary_key(prk_id,primary_key_table,primary_key,key_name,primary_key_status)
+  			values (#{prkId},#{primaryKeyTable},#{primaryKey},#{keyName},#{primaryKeyStatus})
+  		</insert>
+  		<select id="selectAllConfigPrimaryKey" resultType="ConfigPrimaryKey" resultMap="MyConfigPrimaryKey">
+  			select * from config_primary_key
+  		</select>
+  		<select id="selectConfigPrimaryKeyByftkId" parameterType="_int" resultType="ConfigPrimaryKey">
+  			select * from config_primary_key where prk_id = #{prkId}
+  		</select>
+  		<delete id="deleteConfigPrimaryKeyByftkId" parameterType="_int">
+  			delete from config_primary_key where  prk_id = #{prkId}
+  		</delete>
+  		<update id="updateConfigPrimaryKey" parameterType="ConfigPrimaryKey">
+  			update config_primary_key set 
+	  			primary_key_table = #{primaryKeyTable},
+	  			primary_key = #{primaryKey},
+	  			key_name = #{keyName},
+	  			primary_key_status = #{primaryKeyStatus},
+  			where prk_id = #{prkId}
+  		</update>
+  </mapper>
