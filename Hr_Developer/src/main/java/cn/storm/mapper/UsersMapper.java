@@ -13,5 +13,5 @@ public interface UsersMapper {
 	public List<Users> selectAllUsers();
 	public Users selectUsersByUid(int uid);
 	public boolean deleteUsersByUid(int uid);
-	public int updateUsers(Users users);
+	public int updateUsers(Users users); 
 }
