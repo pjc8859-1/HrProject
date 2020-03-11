@@ -2,16 +2,25 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
   <mapper namespace="cn.storm.mapper.ConfigFileFirstKindMapper">
+  
   		<resultMap type="ConfigFileFirstKind" id="myConfigFileFirstKind">
+  		
   			<result property="ffkId" column="ffk_id"/>
+  			
   			<result property="firstKindId" column="first_kind_id"/>
+  			
   			<result property="firstKindName" column="first_kind_name"/>
+  			
   			<result property="firstKindSalaryId" column="first_kind_salary_id"/>
+  			
   			<result property="firstKindSaleId" column="first_kind_sala_id"/>
+  			
   		</resultMap>
   
   		<insert id="saveConfigFileFirstKind" parameterType="ConfigFileFirstKind" >
+  		
   			insert into config_file_first_kind(ffk_id,first_kind_id,first_kind_name,
   			first_kind_salary_id,first_kind_sala_id)
   			values (#{bonId},#{firstKindId},#{firstKindName},#{firstKindSalaryId},#{firstKindSaleId})

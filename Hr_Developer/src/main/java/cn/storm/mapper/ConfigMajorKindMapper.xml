@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="cn.storm.mapper.ConfigMajorKindKindMapper">
+  <mapper namespace="cn.storm.mapper.ConfigMajorKindMapper">
   		<resultMap type="ConfigMajorKind" id="myConfigMajorKind">
   			<result property="mfkId" column="mak_id"/>
   			<result property="majorKindId" column="major_kind_id"/>

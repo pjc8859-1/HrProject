@@ -38,7 +38,7 @@ public class Test {
 //			System.out.println(student.getSname());
 //			
 //		}
-		System.out.println(ac.getBean("configFileFirstKindMapper"));
+		System.out.println(ac.getBean("configMajorMapper"));
 		
 	}
 
