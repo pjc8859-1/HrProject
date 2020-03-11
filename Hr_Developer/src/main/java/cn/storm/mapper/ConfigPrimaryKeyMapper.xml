@@ -15,10 +15,10 @@
   			insert into config_primary_key(prk_id,primary_key_table,primary_key,key_name,primary_key_status)
   			values (#{prkId},#{primaryKeyTable},#{primaryKey},#{keyName},#{primaryKeyStatus})
   		</insert>
-  		<select id="selectAllConfigPrimaryKey" resultType="ConfigPrimaryKey" resultMap="MyConfigPrimaryKey">
+  		<select id="selectAllConfigPrimaryKey"  resultMap="MyConfigPrimaryKey">
   			select * from config_primary_key
   		</select>
-  		<select id="selectConfigPrimaryKeyByftkId" parameterType="_int" resultType="ConfigPrimaryKey">
+  		<select id="selectConfigPrimaryKeyByftkId" parameterType="_int"  resultMap="MyConfigPrimaryKey">
   			select * from config_primary_key where prk_id = #{prkId}
   		</select>
   		<delete id="deleteConfigPrimaryKeyByftkId" parameterType="_int">

@@ -10,8 +10,12 @@ import cn.storm.pojo.Users;
 @Repository
 public interface EngageAnswerMapper {
 	public boolean saveEngageAnswer(EngageAnswer engageanswer);
+
 	public List<EngageAnswer> selectAllEngageAnswer();
+
 	public Users selectEngageAnswerByAnsId(int ansid);
+
 	public boolean deleteEngageAnswerByAnsId(int ansid);
+
 	public int updateEngageAnswer(Users users);
 }
