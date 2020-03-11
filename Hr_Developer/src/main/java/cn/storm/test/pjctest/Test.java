@@ -17,7 +17,7 @@ public class Test {
 		EngageAnswerDetailsService ss = (EngageAnswerDetailsService)ac.getBean("engageAnswerDetailsServiceImpl");
 		List<EngageAnswerDetails> list = ss.queryAllEngageAnswerDetails();
 		System.out.println(list.size());
-		
+		 
 //		Student s = new Student();
 //		s.setSid(5);
 //		s.setSname("张三");
