@@ -52,7 +52,7 @@ public class Test {
 		human.setAttachmentName("1");
 		human.setHufId((short) 2);
 		human.setHumanId("4");
-		System.out.println(service.removeHumanFileByhufid(2));
+		System.out.println();
 		
 	}
 
