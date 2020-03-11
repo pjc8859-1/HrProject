@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="cn.storm.mapper.SalaryStandardDetailsMapper">
+  <resultMap type="SalaryStandardDetails" id="mySalaryStandardDetails">
+  <result property="sdtId" column="sdt_id"/>
+  <result property="standardId" column="standard_id"/>
+  <result property="standardName" column="standard_name"/>
+  <result property="itemId" column="item_id"/>
+  <result property="itemName" column="item_name"/>
+  <result property="salary" column="salary"/>
+  
+  
+  </resultMap>
+  
+  
+  		<insert id="saveSalaryStandardDetails" parameterType="SalaryStandardDetails">
+  			insert into salary_standard_details(sdt_id,standard_id,standard_name,item_id,item_name,salary) 
+  			values (#{sdtId},#{standardId},#{standardName},#{itemId},#{itemName},#{salary})
+  		</insert>
+  		<select id="selectAllSalaryStandardDetails" resultMap="mySalaryStandardDetails">
+  			select * from salary_standard_details
+  		</select>
+  		<select id="selectSalaryStandardDetailsByStd" parameterType="_int" resultMap="mySalaryStandardDetails">
+  			select * from salary_standard_details where sdt_id = #{id}
+  		</select>
+  		<delete id="deleteSalaryStandardDetailsByStd" parameterType="_int">
+  			delete from salary_standard_details where  sdt_id= #{id}
+  		</delete>
+  		<update id="updateSalaryStandardDetails" parameterType="SalaryStandardDetails">
+  			update salary_standard_details set standard_id=#{standardId},standard_name=#{standardName},item_id=#{itemId},item_name=#{itemName},salary=#{salary}
+  			where sdt_id= #{sdtId}  
+  		</update>
+  </mapper>

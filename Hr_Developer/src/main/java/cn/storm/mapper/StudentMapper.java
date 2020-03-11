@@ -2,6 +2,7 @@ package cn.storm.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.ResultMap;
 import org.springframework.stereotype.Repository;
 
 import cn.storm.pojo.Student;
@@ -9,6 +10,8 @@ import cn.storm.pojo.Student;
 
 @Repository
 public interface StudentMapper {
+	
+	
 	public boolean saveStudent(Student student);
 	public List<Student> selectAllStudent();
 	public Student selectStudentBySid(int sid);
