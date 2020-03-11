@@ -24,17 +24,17 @@ public class Test {
 //		ss.addStudent(s);
 //		System.out.println("保存!");
 		
+		//updatestudent
+//		Student s = ss.queryStudentBySid(1);
+//		s.setScore(85);
 		
-		Student s = ss.queryStudentBySid(1);
-		s.setScore(85);
-		
-		int updateResult = ss.modifyStudent(s);
-		System.out.println(updateResult);
-//		List<Student> list = ss.queryAllStudent();
-//		for (Student student : list) {
-//			System.out.println(student.getSname());
-//			
-//		}
+//		int updateResult = ss.modifyStudent(s);
+//		System.out.println(updateResult);
+		List<Student> list = ss.queryAllStudent();
+		for (Student student : list) {
+			System.out.println(student.getSname());
+			
+		}
 	}
 
 }
