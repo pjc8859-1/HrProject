@@ -38,13 +38,7 @@ public class Test {
 //			System.out.println(student.getSname());
 //			
 //		}
-		UsersService userservice=(UsersService) ac.getBean("usersServiceImpl");
-		Users user =new Users();
-		user.setUId((short) 2);
-		user.setUName("张三");
-		user.setUPassword("45678945");
-		user.setUTrueName("张英俊");
-		System.out.println(userservice.removeUsersByUid(2));
+		System.out.println(ac.getBean("configFileFirstKindMapper"));
 		
 	}
 
