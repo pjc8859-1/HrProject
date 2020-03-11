@@ -48,11 +48,11 @@ public class Test {
 //		user.setUName("张三");
 //		user.setUPassword("45678945");
 //		user.setUTrueName("张英俊");
-		HumanFile human=new HumanFile();
-		human.setAttachmentName("1");
-		human.setHufId((short) 2);
-		human.setHumanId("4");
-		System.out.println();
+//		HumanFile human=new HumanFile();
+//		human.setAttachmentName("1");
+//		human.setHufId((short) 2);
+//		human.setHumanId("4");
+//		System.out.println();
 		
 	}
 

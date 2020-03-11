@@ -25,10 +25,10 @@
   			first_kind_salary_id,first_kind_sala_id)
   			values (#{bonId},#{firstKindId},#{firstKindName},#{firstKindSalaryId},#{firstKindSaleId})
   		</insert>
-  		<select id="selectAllConfigFileFirstKind" resultType="ConfigFileFirstKind">
+  		<select id="selectAllConfigFileFirstKind" resultType="myConfigFileFirstKind">
   			select * from config_file_first_kind
   		</select>
-  		<select id="selectConfigFileFirstKindByffk_id" parameterType="_int" resultType="ConfigFileFirstKind">
+  		<select id="selectConfigFileFirstKindByffk_id" parameterType="_int" resultType="myConfigFileFirstKind">
   			select * from config_file_first_kind where ffk_id = #{id}
   		</select>
   		<delete id="deleteConfigFileFirstKindByffk_id" parameterType="_int">
