@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="cn.storm.mapper.BonusMapper">
+  		<insert id="saveBonus" parameterType="Bonus">
+  			insert into bonus(bon_id,major_kind_id,major_kind_name,major_id,major_name
+  			,human_id,human_name,bonus_item,bonus_worth,bonus_degree,remark,register,checker
+  			,regist_time,check_time,check_status)
+  			 
+  			values (#{bon_id},#{major_kind_id},#{major_kind_name},#{major_id},#{major_name}
+  			,#{human_id},#{human_name},#{bonus_item},#{bonus_worth},#{bonus_degree},#{remark},#{register},
+  			#{checker},#{regist_time},#{check_time},#{check_status})
+  		</insert>
+  		<select id="selectAllBonus" resultType="Bonus">
+  			select * from bonus
+  		</select>
+  		<select id="selectBonusByBon_id" parameterType="_int" resultType="Bonus">
+  			select * from bonus where bon_id = #{id}
+  		</select>
+  		<delete id="deleteBonusByBon_id" parameterType="_int">
+  			delete from bonus where  bon_id = #{id}
+  		</delete>
+  		<update id="updateBonus" parameterType="Bouns">
+  			update bonus set 
+	  			major_kind_id = #{major_kind_id},major_kind_name =#{major_kind_name},
+	  			major_id = #{major_id},major_name = #{major_name},human_id = #{human_id},
+	  			human_name = #{human_name},bonus_item = #{bonus_item},
+	  			bonus_worth = #{bonus_worth},bonus_degree = #{bonus_degree},
+	  			remark = #{remark},register = #{register},
+	  			checker = #{checker},regist_time = #{regist_time},
+	  			check_time = #{check_time},check_status = #{check_status}
+  			where bon_id = #{bon_id}
+  		</update>
+  </mapper>
