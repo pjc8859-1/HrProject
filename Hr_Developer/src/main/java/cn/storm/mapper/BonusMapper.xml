@@ -3,14 +3,32 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="cn.storm.mapper.BonusMapper">
+  		<resultMap type="Bonus" id="myBonus">
+  			<result property="bonId" column="bon_id"/>
+  			<result property="majorKindId" column="major_kind_id"/>
+  			<result property="majorKindName" column="major_kind_name"/>
+  			<result property="majorId" column="major_id"/>
+  			<result property="majorName" column="major_name"/>
+  			<result property="humanId" column="human_id"/>
+  			<result property="humanId" column="human_name"/>
+  			<result property="bonusItems" column="bonus_item"/>
+  			<result property="bonusWorth" column="bonus_worth"/>
+  			<result property="bonusDegree" column="bonus_degree"/>
+  			<result property="remark" column="remark"/>
+  			<result property="register" column="register"/>
+  			<result property="checker" column="checker"/>
+  			<result property="registTime" column="regist_time"/>
+  			<result property="checkTime" column="check_time"/>
+  			<result property="checkStatus" column="check_status"/>
+  			
+  		</resultMap>
+  
   		<insert id="saveBonus" parameterType="Bonus" >
   			insert into bonus(bon_id,major_kind_id,major_kind_name,major_id,major_name
   			,human_id,human_name,bonus_item,bonus_worth,bonus_degree,remark,register,checker
   			,regist_time,check_time,check_status)
   			 
-  			values (#{bon_id},#{major_kind_id},#{major_kind_name},#{major_id},#{major_name}
-  			,#{human_id},#{human_name},#{bonus_item},#{bonus_worth},#{bonus_degree},#{remark},#{register},
-  			#{checker},#{regist_time},#{check_time},#{check_status})
+  			values (#{bonId},#{majorKindId},#{majorKindName},#{majorId})
   		</insert>
   		<select id="selectAllBonus" resultType="Bonus">
   			select * from bonus

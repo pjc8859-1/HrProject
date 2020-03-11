@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.storm.mapper.UsersMapper;
-import cn.storm.pojo.Student;
+import cn.storm.pojo.Student1;
 import cn.storm.pojo.Users;
 import cn.storm.service.UsersService;
 @Service

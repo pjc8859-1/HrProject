@@ -20,6 +20,7 @@
 			都会自动添加到spring的bean中-->
 	<context:component-scan base-package="cn.storm"/>
 	<!-- 加载外部数据库连接信息文件 -->
+	
 	<context:property-placeholder location="classpath:jdbc.properties"/>
 
 	<!-- 首先应该配置一个数据源 -->
