@@ -37,4 +37,9 @@ public class StudentServiceImpl implements StudentService{
 		return studentMapper.deleteStudentBySid(sid);
 	}
 
+	@Override
+	public int modifyStudent(Student student) {
+		return studentMapper.updateStudent(student);
+	}
+
 }

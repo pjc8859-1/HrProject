@@ -9,4 +9,5 @@ public interface StudentService {
 	public List<Student> queryAllStudent();
 	public Student queryStudentBySid(int sid);
 	public boolean removeStudentBySid(int sid);
+	public int modifyStudent(Student student);
 }

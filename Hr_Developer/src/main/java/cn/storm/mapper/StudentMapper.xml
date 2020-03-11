@@ -16,4 +16,8 @@
   		<delete id="deleteStudentBySid" parameterType="_int">
   			delete from student where  sid = #{id}
   		</delete>
+  		<update id="updateStudent" parameterType="Student">
+  			update student set score = #{score}
+  			where sid &lt;= 2  
+  		</update>
   </mapper>
