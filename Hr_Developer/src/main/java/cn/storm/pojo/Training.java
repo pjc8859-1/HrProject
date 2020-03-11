@@ -154,8 +154,8 @@ public class Training implements java.io.Serializable {
 		return this.checkstatus;
 	}
 
-	public void setCheckstatus(Short checkstatus) {
-		this.checkstatus = checkstatus;
+	public void setCheckstatus(Short i) {
+		this.checkstatus = i;
 	}
 
 	public String getRemark() {
