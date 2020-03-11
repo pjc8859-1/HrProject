@@ -239,7 +239,7 @@ BR {
 									<p style="line-height: 200%">
 										<input type="button" value="登录"  class="BUTTON_STYLE1" onclick="javascript:login();">
 										<input type="button" class="BUTTON_STYLE1" value="注册"
-											onClick="window.location.href='register.html'">
+											onClick="window.location.href='register.jsp'">
 										<input type="button" class="BUTTON_STYLE1" value="修改密码"
 											onClick="javascript:toEditPwd();">
 								</td>

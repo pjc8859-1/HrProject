@@ -114,7 +114,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</td>
 						<td>
 							<a
-								href="salarystandard_check.html">复核</a>
+								href="salarystandard_check.jsp">复核</a>
 						</td>
 					</tr>
 				
