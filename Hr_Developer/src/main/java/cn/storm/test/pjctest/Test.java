@@ -1,5 +1,5 @@
 
-package cn.storm.test;
+package cn.storm.test.pjctest;
 
 import java.util.List;
 
