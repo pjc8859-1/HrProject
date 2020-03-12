@@ -1,12 +1,16 @@
+
 package cn.storm.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import cn.storm.mapper.ConfigMajorMapper;
 import cn.storm.pojo.ConfigMajor;
 import cn.storm.service.ConfigMajorService;
+
+@Service
 
 public class ConfigMajorServiceImpl implements ConfigMajorService {
 
@@ -44,3 +48,4 @@ public class ConfigMajorServiceImpl implements ConfigMajorService {
 	}
 
 }
+

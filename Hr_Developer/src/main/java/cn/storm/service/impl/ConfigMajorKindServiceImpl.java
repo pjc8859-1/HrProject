@@ -3,10 +3,13 @@ package cn.storm.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import cn.storm.mapper.ConfigMajorKindMapper;
 import cn.storm.pojo.ConfigMajorKind;
 import cn.storm.service.ConfigMajorKindService;
+
+@Service
 
 public class ConfigMajorKindServiceImpl implements ConfigMajorKindService {
 
