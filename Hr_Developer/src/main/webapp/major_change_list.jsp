@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -27,22 +28,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="javascript/comm/comm.js"></script>
 		<script type="text/javascript" src="javascript/comm/list.js"></script>
 		<script type="text/javascript">
-		var subcat = new Array(2);
+		console.log(JSON.stringify(${firstlist}));
 		
-subcat[0] = ["1", "集团/软件公司","集团","集团/软件公司"];
-subcat[1] = ["2", "集团/生物科技有限公司","集团","集团/生物科技有限公司"];
-var subcat1 = new Array(2);
-subcat1[0] = ["1", "外包组", "集团/软件公司/外包组","集团/软件公司"];
-subcat1[1] = ["2", "药店", "集团/生物科技有限公司/药店","集团/生物科技有限公司"];
-var subcat2 = new Array(8);
-subcat2[0] = ["1", "区域经理", "销售/区域经理", "销售"];
-subcat2[1] = ["2", "总经理", "销售/总经理", "销售"];
-subcat2[2] = ["3", "项目经理", "软件开发/项目经理", "软件开发"];
-subcat2[3] = ["4", "程序员", "软件开发/程序员", "软件开发"];
-subcat2[4] = ["5", "人事经理", "人力资源/人事经理", "人力资源"];
-subcat2[5] = ["6", "专员", "人力资源/专员", "人力资源"];
-subcat2[6] = ["7", "主任", "生产部/主任", "生产部"];
-subcat2[7] = ["8", "技术工人", "生产部/技术工人", "生产部"];
 
  		function list()
 		{
@@ -62,6 +49,8 @@ subcat2[7] = ["8", "技术工人", "生产部/技术工人", "生产部"];
   </head>
   
   <body>
+  
+  
   <form name="humanfileForm" method="post" action="aa/bb.do">
 			<table width="100%">
 				<tr>
