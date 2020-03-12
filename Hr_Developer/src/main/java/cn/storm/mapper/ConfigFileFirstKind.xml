@@ -39,4 +39,5 @@
 	  			first_kind_id = #{firstKindId},first_kind_name=#{firstKindName},first_kind_salary_id=#{firstKindSalaryId},first_kind_sala_id=#{firstKindSaleId}
   			where ffk_id = #{ffkId}
   		</update>
+
   </mapper>

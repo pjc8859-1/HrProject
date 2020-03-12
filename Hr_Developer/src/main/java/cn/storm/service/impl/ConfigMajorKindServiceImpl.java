@@ -10,6 +10,7 @@ import cn.storm.pojo.ConfigMajorKind;
 import cn.storm.service.ConfigMajorKindService;
 
 @Service
+
 public class ConfigMajorKindServiceImpl implements ConfigMajorKindService {
 
 	@Autowired

@@ -14,6 +14,8 @@ public class ConfigFileFirstKindServiceImpl implements ConfigFileFirstKindServic
 	
 	@Autowired
 	private ConfigFileFirstKindMapper mapper=null;
+	
+	
 	@Override
 	public boolean addConfigFileFirstKind(
 			ConfigFileFirstKind configFileFirstKind) {

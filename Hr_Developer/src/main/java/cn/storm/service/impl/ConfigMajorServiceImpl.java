@@ -1,3 +1,4 @@
+
 package cn.storm.service.impl;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import cn.storm.pojo.ConfigMajor;
 import cn.storm.service.ConfigMajorService;
 
 @Service
+
 public class ConfigMajorServiceImpl implements ConfigMajorService {
 
 	@Autowired
@@ -46,3 +48,4 @@ public class ConfigMajorServiceImpl implements ConfigMajorService {
 	}
 
 }
+

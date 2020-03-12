@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import cn.storm.pojo.Student;
 import cn.storm.pojo.Training;
 @Repository
 public interface TrainingMapper {
