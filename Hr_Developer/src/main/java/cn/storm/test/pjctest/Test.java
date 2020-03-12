@@ -6,16 +6,15 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.storm.pojo.Bonus;
-import cn.storm.service.BonusService;
+import cn.storm.pojo.EngageMajorRelease;
+import cn.storm.service.EngageMajorReleaseService;
 
 public class Test {
-
 	public static void main(String[] args) {
 		
 		ApplicationContext ac = new ClassPathXmlApplicationContext("/applicationContext.xml");
-		BonusService ss = (BonusService)ac.getBean("bonusServiceImpl");
-		List<Bonus> list = ss.queryAllBonus();
+		EngageMajorReleaseService ss = (EngageMajorReleaseService)ac.getBean("engageMajorReleaseServiceImpl");
+		List<EngageMajorRelease> list = ss.queryAllEngageMajorRelease();
 		System.out.println(list.size());
 		 
 //		Student s = new Student();
