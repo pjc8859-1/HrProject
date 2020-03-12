@@ -20,10 +20,10 @@
   			major_id,major_name,register,regist_time,limite_time)
   			values (#{exaId},#{examNumber},#{majorKindId},#{majorKindName},#{majorId},#{majorName},#{register},#{registTime},#{limiteTime})
   		</insert>
-  		<select id="selectAllEngageExam" resultType="myEngageExam">
+  		<select id="selectAllEngageExam" resultMap="myEngageExam">
   			select * from engage_exam
   		</select>
-  		<select id="selectEngageExamByexa_id" parameterType="_int" resultType="myEngageExam">
+  		<select id="selectEngageExamByexa_id" parameterType="_int" resultMap="myEngageExam">
   			select * from engage_exam where exa_id = #{id}
   		</select>
   		<delete id="deleteEngageExamByexa_id" parameterType="_int">

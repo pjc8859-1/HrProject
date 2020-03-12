@@ -17,10 +17,10 @@
   			insert into engage_exam_details(exd_id,exam_number,first_kind_id,first_kind_name,second_kind_id,second_kind_name,question_amount)
   			values (#{exdId},#{examNumber},#{firstKindId},#{firstKindName},#{secondKindId},#{secondKindName},#{questionAmount})
   		</insert>
-  		<select id="selectAllEngageExamDetails" resultType="myEngageExamDetails">
+  		<select id="selectAllEngageExamDetails" resultMap="myEngageExamDetails">
   			select * from engage_exam_details
   		</select>
-  		<select id="selectEngageExamDetailsByexa_id" parameterType="_int" resultType="myEngageExamDetails">
+  		<select id="selectEngageExamDetailsByexa_id" parameterType="_int" resultMap="myEngageExamDetails">
   			select * from engage_exam_details where exd_id = #{id}
   		</select>
   		<delete id="deleteEngageExamDetailsByexa_id" parameterType="_int">
