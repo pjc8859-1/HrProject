@@ -5,8 +5,7 @@ import java.util.List;
 import cn.storm.pojo.ConfigFileThirdKind;
 
 public interface ConfigFileThirdKindService {
-	public boolean addConfigFileThirdKind(
-			ConfigFileThirdKind configfilethirdkind);
+	public boolean addConfigFileThirdKind(ConfigFileThirdKind configfilethirdkind);
 
 	public List<ConfigFileThirdKind> queryAllConfigFileThirdKind();
 

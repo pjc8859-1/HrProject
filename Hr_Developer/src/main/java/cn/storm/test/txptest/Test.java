@@ -50,12 +50,20 @@ public class Test {
 //		user.setUName("张三");
 //		user.setUPassword("45678945");
 //		user.setUTrueName("张英俊");
+
 		HumanFileDig dig=new HumanFileDig();
 		dig.setHfdId((short) 1);
 		dig.setFirstKindId("a");
 		dig.setHumanBirthplace("aaaaaaaaaaaaaaaaaaaaaaaaabbbbb");
 		dig.setChecker("aaaaaaaaaaaaaaaaaaaaaaaaa");
 		System.out.println(service.queryHumanFileDigByHfdid(1));
+
+//		HumanFile human=new HumanFile();
+//		human.setAttachmentName("1");
+//		human.setHufId((short) 2);
+//		human.setHumanId("4");
+//		System.out.println();
+
 		
 	}
 

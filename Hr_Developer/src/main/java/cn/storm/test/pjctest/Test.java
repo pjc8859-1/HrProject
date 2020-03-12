@@ -6,16 +6,16 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.storm.pojo.EngageAnswerDetails;
-import cn.storm.service.EngageAnswerDetailsService;
+import cn.storm.pojo.Bonus;
+import cn.storm.service.BonusService;
 
 public class Test {
 
 	public static void main(String[] args) {
 		
 		ApplicationContext ac = new ClassPathXmlApplicationContext("/applicationContext.xml");
-		EngageAnswerDetailsService ss = (EngageAnswerDetailsService)ac.getBean("engageAnswerDetailsServiceImpl");
-		List<EngageAnswerDetails> list = ss.queryAllEngageAnswerDetails();
+		BonusService ss = (BonusService)ac.getBean("bonusServiceImpl");
+		List<Bonus> list = ss.queryAllBonus();
 		System.out.println(list.size());
 		 
 //		Student s = new Student();
