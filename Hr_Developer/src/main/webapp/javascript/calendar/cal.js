@@ -1531,7 +1531,7 @@ Calendar.prototype.hideShowCovered = function () {
 					if (!cc.__msh_save_visibility) {
 						cc.__msh_save_visibility = getVisib(cc);
 					}
-					cc.style.visibility = "hidden";
+					//cc.style.visibility = "hidden";
 				}
 			}
 		}
