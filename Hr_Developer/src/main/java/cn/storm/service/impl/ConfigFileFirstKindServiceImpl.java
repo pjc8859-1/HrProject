@@ -3,17 +3,17 @@ package cn.storm.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import cn.storm.mapper.ConfigFileFirstKindMapper;
 import cn.storm.pojo.ConfigFileFirstKind;
 import cn.storm.service.ConfigFileFirstKindService;
 
+@Service
 public class ConfigFileFirstKindServiceImpl implements ConfigFileFirstKindService {
 	
 	@Autowired
 	private ConfigFileFirstKindMapper mapper=null;
-	
-	
 	@Override
 	public boolean addConfigFileFirstKind(
 			ConfigFileFirstKind configFileFirstKind) {

@@ -17,10 +17,10 @@
   			major_name,test_amount)
   			values (#{makId},#{majorKindId},#{majorKindName},#{majorId},#{majorName},#{testAmount})
   		</insert>
-  		<select id="selectAllConfigMajor" resultType="ConfigMajor">
+  		<select id="selectAllConfigMajor" resultMap="myConfigMajor">
   			select * from config_major
   		</select>
-  		<select id="selectConfigMajorByffk_id" parameterType="_int" resultType="ConfigMajor">
+  		<select id="selectConfigMajorByffk_id" parameterType="_int" resultMap="myConfigMajor">
   			select * from config_major where mak_id = #{id}
   		</select>
   		<delete id="deleteConfigMajorByffk_id" parameterType="_int">

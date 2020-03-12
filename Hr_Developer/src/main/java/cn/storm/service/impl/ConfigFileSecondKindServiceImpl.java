@@ -3,11 +3,12 @@ package cn.storm.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import cn.storm.mapper.ConfigFileSecondKindMapper;
 import cn.storm.pojo.ConfigFileSecondKind;
 import cn.storm.service.ConfigFileSecondKindService;
-
+@Service
 public class ConfigFileSecondKindServiceImpl implements ConfigFileSecondKindService {
  
 	@Autowired

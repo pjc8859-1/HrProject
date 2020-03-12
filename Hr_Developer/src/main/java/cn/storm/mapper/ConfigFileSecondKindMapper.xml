@@ -18,10 +18,10 @@
   			second_kind_name,second_kind_salary_id,second_kind_sala_id)
   			values (#{fskId},#{firstKindId},#{firstKindName},#{secondKindId},#{secondKindName},#{secondSalaryId},#{secondSaleId})
   		</insert>
-  		<select id="selectAllConfigFileSecondKind" resultType="ConfigFileSecondKind">
+  		<select id="selectAllConfigFileSecondKind" resultMap="myConfigFileSecondKind">
   			select * from config_file_second_kind
   		</select>
-  		<select id="selectConfigFileSecondKindByffk_id" parameterType="_int" resultType="ConfigFileSecondKind">
+  		<select id="selectConfigFileSecondKindByffk_id" parameterType="_int" resultMap="myConfigFileSecondKind">
   			select * from config_file_second_kind where fsk_id = #{id}
   		</select>
   		<delete id="deleteConfigFileSecondKindByffk_id" parameterType="_int">
