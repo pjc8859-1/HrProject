@@ -16,25 +16,6 @@ public class ConfigFileSecondKind implements java.io.Serializable {
 	private String secondSalaryId;
 	private String secondSaleId;
 
-	// Constructors
-
-	/** default constructor */
-	public ConfigFileSecondKind() {
-	}
-
-	/** full constructor */
-	public ConfigFileSecondKind(Short fskId, String firstKindId,
-			String firstKindName, String secondKindId, String secondKindName,
-			String secondSalaryId, String secondSaleId) {
-		this.fskId = fskId;
-		this.firstKindId = firstKindId;
-		this.firstKindName = firstKindName;
-		this.secondKindId = secondKindId;
-		this.secondKindName = secondKindName;
-		this.secondSalaryId = secondSalaryId;
-		this.secondSaleId = secondSaleId;
-	}
-
 	// Property accessors
 
 	public Short getFskId() {

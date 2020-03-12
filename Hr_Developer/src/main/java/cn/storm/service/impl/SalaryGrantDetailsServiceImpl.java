@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import cn.storm.mapper.SalaryGrantDetailsMapper;
 import cn.storm.pojo.SalaryGrantDetails;
-import cn.storm.pojo.SalaryStandard;
 import cn.storm.service.SalaryGrantDetailsService;
 @Service
 public class SalaryGrantDetailsServiceImpl implements SalaryGrantDetailsService{

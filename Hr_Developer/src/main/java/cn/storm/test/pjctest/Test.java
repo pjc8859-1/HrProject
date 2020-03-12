@@ -6,18 +6,17 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.storm.pojo.EngageAnswer;
-import cn.storm.service.EngageAnswerService;
+import cn.storm.pojo.EngageMajorRelease;
+import cn.storm.service.EngageMajorReleaseService;
 
 public class Test {
-
 	public static void main(String[] args) {
 		
 		ApplicationContext ac = new ClassPathXmlApplicationContext("/applicationContext.xml");
-		EngageAnswerService ss = (EngageAnswerService)ac.getBean("engageAnswerServiceImpl");
-		List<EngageAnswer> list = ss.queryAllEngageAnswer();
+		EngageMajorReleaseService ss = (EngageMajorReleaseService)ac.getBean("engageMajorReleaseServiceImpl");
+		List<EngageMajorRelease> list = ss.queryAllEngageMajorRelease();
 		System.out.println(list.size());
-		
+		 
 //		Student s = new Student();
 //		s.setSid(5);
 //		s.setSname("张三");

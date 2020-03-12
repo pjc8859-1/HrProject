@@ -1,21 +1,13 @@
 
 package cn.storm.test.mygtest;
 
-import java.util.List;
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import cn.storm.pojo.Student1;
-import cn.storm.pojo.Users;
-import cn.storm.service.StudentService;
-import cn.storm.service.UsersService;
 
 public class Test {
 
 	public static void main(String[] args) {
 		
-		ApplicationContext ac = new ClassPathXmlApplicationContext("/applicationContext.xml");
+//		ApplicationContext ac = new ClassPathXmlApplicationContext("/applicationContext.xml");
+//		ConfigFileFirstKindService cffks = (ConfigFileFirstKindService)ac.getBean("configFileFirstKindServiceImpl");
 //		StudentService ss = (StudentService)ac.getBean("studentServiceImpl");
 //		
 //		Student s = new Student();
@@ -38,13 +30,9 @@ public class Test {
 //			System.out.println(student.getSname());
 //			
 //		}
-		UsersService userservice=(UsersService) ac.getBean("usersServiceImpl");
-		Users user =new Users();
-		user.setUId((short) 2);
-		user.setUName("张三");
-		user.setUPassword("45678945");
-		user.setUTrueName("张英俊");
-		System.out.println(userservice.removeUsersByUid(2));
+//		System.out.println(ac.getBean("configMajorMapper"));
+		
+		
 		
 	}
 

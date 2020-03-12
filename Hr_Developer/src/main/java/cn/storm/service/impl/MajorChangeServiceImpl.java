@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.storm.mapper.MajorChangeMapper;
-import cn.storm.mapper.SalaryGrantDetailsMapper;
 import cn.storm.pojo.MajorChange;
-import cn.storm.pojo.SalaryGrantDetails;
 import cn.storm.service.MajorChangeService;
 @Service
 public class MajorChangeServiceImpl implements MajorChangeService{

@@ -10,7 +10,7 @@
   			<result property="majorId" column="major_id"/>
   			<result property="majorName" column="major_name"/>
   			<result property="humanId" column="human_id"/>
-  			<result property="humanId" column="human_name"/>
+  			<result property="humanName" column="human_name"/>
   			<result property="bonusItems" column="bonus_item"/>
   			<result property="bonusWorth" column="bonus_worth"/>
   			<result property="bonusDegree" column="bonus_degree"/>
@@ -20,7 +20,6 @@
   			<result property="registTime" column="regist_time"/>
   			<result property="checkTime" column="check_time"/>
   			<result property="checkStatus" column="check_status"/>
-  			
   		</resultMap>
   
   		<insert id="saveBonus" parameterType="Bonus" >
@@ -28,26 +27,29 @@
   			,human_id,human_name,bonus_item,bonus_worth,bonus_degree,remark,register,checker
   			,regist_time,check_time,check_status)
   			 
-  			values (#{bonId},#{majorKindId},#{majorKindName},#{majorId})
+  			values (#{bonId},#{majorKindId},#{majorKindName},#{majorId},#{majorName},#{humanId},
+  				#{humanName},#{bonusItem},#{bonusWorth},#{bonusDegree},#{remark},#{register},#{checker},
+  				#{registTime},#{checkTime},#{checkStatus}
+  			)
   		</insert>
-  		<select id="selectAllBonus" resultType="Bonus">
+  		<select id="selectAllBonus" resultMap="myBonus">
   			select * from bonus
   		</select>
-  		<select id="selectBonusByBon_id" parameterType="_int" resultType="Bonus">
+  		<select id="selectBonusBybonId" parameterType="_int" resultMap="myBonus">
   			select * from bonus where bon_id = #{id}
   		</select>
-  		<delete id="deleteBonusByBon_id" parameterType="_int">
+  		<delete id="deleteBonusBybonId" parameterType="_int">
   			delete from bonus where  bon_id = #{id}
   		</delete>
   		<update id="updateBonus" parameterType="Bonus">
   			update bonus set 
-	  			major_kind_id = #{major_kind_id},major_kind_name =#{major_kind_name},
-	  			major_id = #{major_id},major_name = #{major_name},human_id = #{human_id},
-	  			human_name = #{human_name},bonus_item = #{bonus_item},
-	  			bonus_worth = #{bonus_worth},bonus_degree = #{bonus_degree},
+	  			major_kind_id = #{majorKindId},major_kind_name =#{majorKindName},
+	  			major_id = #{majorId},major_name = #{majorName},human_id = #{humanId},
+	  			human_name =#{humanName},bonus_item = #{bonusItem},
+	  			bonus_worth = #{bonusWorth},bonus_degree = #{bonusDegree},
 	  			remark = #{remark},register = #{register},
-	  			checker = #{checker},regist_time = #{regist_time},
-	  			check_time = #{check_time},check_status = #{check_status}
-  			where bon_id = #{bon_id}
+	  			checker = #{checker},regist_time = #{registTime},
+	  			check_time = #{checkTime},check_status = #{checkStatus}
+  			where bon_id = #{bonId}
   		</update>
   </mapper>

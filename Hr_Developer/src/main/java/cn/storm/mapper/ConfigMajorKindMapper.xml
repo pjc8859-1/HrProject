@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="cn.storm.mapper.ConfigMajorKindMapper">
+  		<resultMap type="ConfigMajorKind" id="myConfigMajorKind">
+  			<result property="mfkId" column="mak_id"/>
+  			<result property="majorKindId" column="major_kind_id"/>
+  			<result property="majorKindName" column="major_kind_name"/>
+  		</resultMap>
+  
+  		<insert id="saveConfigMajorKind" parameterType="ConfigMajorKind" >
+  			insert into config_major_kind(mak_id,major_kind_id,major_kind_name)
+  			values (#{mfkId},#{majorKindId},#{majorKindName})
+  		</insert>
+  		<select id="selectAllConfigMajorKind" resultType="ConfigMajorKind">
+  			select * from config_major_kind
+  		</select>
+  		<select id="selectConfigMajorKindByffk_id" parameterType="_int" resultType="ConfigMajorKind">
+  			select * from config_major_kind where mak_id = #{id}
+  		</select>
+  		<delete id="deleteConfigMajorKindByffk_id" parameterType="_int">
+  			delete from config_major_kind where  mak_id = #{id}
+  		</delete>
+  		<update id="updateConfigMajorKind" parameterType="ConfigMajorKind">
+  			update config_major_kind set 
+	  			major_kind_id = #{majorKindId},major_kind_name=#{majorKindName}
+  				where mak_id = #{mfkId}
+  		</update>
+  </mapper>
