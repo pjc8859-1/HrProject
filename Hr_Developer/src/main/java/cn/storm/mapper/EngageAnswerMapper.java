@@ -17,5 +17,5 @@ public interface EngageAnswerMapper {
 
 	public boolean deleteEngageAnswerByAnsId(int ansid);
 
-	public int updateEngageAnswer(Users users);
+	public int updateEngageAnswer(EngageAnswer engageanswer);
 }

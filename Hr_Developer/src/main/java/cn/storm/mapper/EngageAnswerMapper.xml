@@ -42,6 +42,5 @@
   			major_id =#{majorId} ,major_name =#{majorName},
   			test_time = #{testTime},use_time = #{useTime},total_point =#{totalPoint}
   			where ans_id=#{ansId}
->>>>>>> branch 'master' of https://github.com/pjc8859-1/HrProject.git
   		</update>
   </mapper>
