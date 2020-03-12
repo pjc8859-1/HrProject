@@ -7,8 +7,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.storm.pojo.HumanFile;
+import cn.storm.pojo.HumanFileDig;
 import cn.storm.pojo.Student1;
 import cn.storm.pojo.Users;
+import cn.storm.service.HumanFileDigService;
 import cn.storm.service.HumanFileService;
 import cn.storm.service.StudentService;
 import cn.storm.service.UsersService;
@@ -18,7 +20,7 @@ public class Test {
 	public static void main(String[] args) {
 		
 		ApplicationContext ac = new ClassPathXmlApplicationContext("/applicationContext.xml");
-		HumanFileService service=(HumanFileService) ac.getBean("humanFileServiceImpl");
+		HumanFileDigService service=(HumanFileDigService) ac.getBean("humanFileDigServiceImpl");
 		
 //		StudentService ss = (StudentService)ac.getBean("studentServiceImpl");
 //		
@@ -48,11 +50,12 @@ public class Test {
 //		user.setUName("张三");
 //		user.setUPassword("45678945");
 //		user.setUTrueName("张英俊");
-		HumanFile human=new HumanFile();
-		human.setAttachmentName("1");
-		human.setHufId((short) 2);
-		human.setHumanId("4");
-		System.out.println();
+		HumanFileDig dig=new HumanFileDig();
+		dig.setHfdId((short) 1);
+		dig.setFirstKindId("a");
+		dig.setHumanBirthplace("aaaaaaaaaaaaaaaaaaaaaaaaabbbbb");
+		dig.setChecker("aaaaaaaaaaaaaaaaaaaaaaaaa");
+		System.out.println(service.queryHumanFileDigByHfdid(1));
 		
 	}
 
