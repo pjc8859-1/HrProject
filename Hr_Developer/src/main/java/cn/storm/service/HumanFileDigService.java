@@ -2,7 +2,6 @@ package cn.storm.service;
 
 import java.util.List;
 
-import cn.storm.pojo.HumanFile;
 import cn.storm.pojo.HumanFileDig;
 
 public interface HumanFileDigService {

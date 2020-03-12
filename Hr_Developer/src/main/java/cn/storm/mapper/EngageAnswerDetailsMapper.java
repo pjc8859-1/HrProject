@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import cn.storm.pojo.EngageAnswer;
 import cn.storm.pojo.EngageAnswerDetails;
-import cn.storm.pojo.Users;
 
 @Repository
 public interface EngageAnswerDetailsMapper {

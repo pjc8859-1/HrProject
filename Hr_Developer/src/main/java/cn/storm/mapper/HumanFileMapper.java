@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import cn.storm.pojo.ConfigFileThirdKind;
 import cn.storm.pojo.HumanFile;
 @Repository
 public interface HumanFileMapper {

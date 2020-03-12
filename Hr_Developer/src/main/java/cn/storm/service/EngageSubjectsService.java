@@ -3,7 +3,6 @@ package cn.storm.service;
 import java.util.List;
 
 import cn.storm.pojo.EngageSubjects;
-import cn.storm.pojo.SalaryGrantDetails;
 
 public interface EngageSubjectsService {
 	public boolean addEngageSubjects(EngageSubjects engagesubjects);

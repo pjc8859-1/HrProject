@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import cn.storm.pojo.HumanFile;
 import cn.storm.pojo.HumanFileDig;
 @Repository
 public interface HumanFileDigMapper {

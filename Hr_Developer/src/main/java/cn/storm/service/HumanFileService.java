@@ -3,7 +3,6 @@ package cn.storm.service;
 import java.util.List;
 
 import cn.storm.pojo.HumanFile;
-import cn.storm.pojo.Student1;
 
 public interface HumanFileService {
 	public boolean addHumanFile(HumanFile humanFile);

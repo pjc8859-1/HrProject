@@ -3,7 +3,6 @@ package cn.storm.service;
 import java.util.List;
 
 import cn.storm.pojo.SalaryStandard;
-import cn.storm.pojo.SalaryStandardDetails;
 
 public interface SalaryStandardService {
 	public boolean addSalaryStandard(SalaryStandard salaryStandard);

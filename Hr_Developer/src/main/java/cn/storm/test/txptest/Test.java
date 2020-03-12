@@ -1,19 +1,11 @@
 
 package cn.storm.test.txptest;
 
-import java.util.List;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.storm.pojo.HumanFile;
 import cn.storm.pojo.HumanFileDig;
-import cn.storm.pojo.Student1;
-import cn.storm.pojo.Users;
 import cn.storm.service.HumanFileDigService;
-import cn.storm.service.HumanFileService;
-import cn.storm.service.StudentService;
-import cn.storm.service.UsersService;
 
 public class Test {
 

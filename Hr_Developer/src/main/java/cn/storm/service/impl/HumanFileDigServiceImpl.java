@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.storm.mapper.HumanFileDigMapper;
-import cn.storm.mapper.HumanFileMapper;
 import cn.storm.pojo.HumanFileDig;
 import cn.storm.service.HumanFileDigService;
 @Service

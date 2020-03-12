@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import cn.storm.pojo.SalaryGrantDetails;
-import cn.storm.pojo.SalaryStandardDetails;
 @Repository
 public interface SalaryGrantDetailsMapper {
 	public boolean saveSalaryGrantDetails(SalaryGrantDetails salaryGrantDetails);

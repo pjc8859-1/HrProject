@@ -1,23 +1,13 @@
 
 package cn.storm.test.mygtest;
 
-import java.util.List;
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import cn.storm.pojo.Student1;
-import cn.storm.pojo.Users;
-import cn.storm.service.ConfigFileFirstKindService;
-import cn.storm.service.StudentService;
-import cn.storm.service.UsersService;
 
 public class Test {
 
 	public static void main(String[] args) {
 		
-		ApplicationContext ac = new ClassPathXmlApplicationContext("/applicationContext.xml");
-		ConfigFileFirstKindService cffks = (ConfigFileFirstKindService)ac.getBean("configFileFirstKindServiceImpl");
+//		ApplicationContext ac = new ClassPathXmlApplicationContext("/applicationContext.xml");
+//		ConfigFileFirstKindService cffks = (ConfigFileFirstKindService)ac.getBean("configFileFirstKindServiceImpl");
 //		StudentService ss = (StudentService)ac.getBean("studentServiceImpl");
 //		
 //		Student s = new Student();
