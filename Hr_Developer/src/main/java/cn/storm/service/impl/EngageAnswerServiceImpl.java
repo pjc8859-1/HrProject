@@ -11,11 +11,11 @@ import cn.storm.pojo.Users;
 import cn.storm.service.EngageAnswerService;
 
 @Service
-public class EngageAnswerServiceImpl implements EngageAnswerService{
-	
+public class EngageAnswerServiceImpl implements EngageAnswerService {
+
 	@Autowired
 	private EngageAnswerMapper mapper = null;
-	
+
 	@Override
 	public boolean addEngageAnswer(EngageAnswer engageanswer) {
 		return this.mapper.saveEngageAnswer(engageanswer);
@@ -37,9 +37,8 @@ public class EngageAnswerServiceImpl implements EngageAnswerService{
 	}
 
 	@Override
-	public int modifyEngageAnswer(Users users) {
-		return this.mapper.updateEngageAnswer(users);
+	public int modifyEngageAnswer(EngageAnswer engageanswer) {
+		return this.mapper.updateEngageAnswer(engageanswer);
 	}
-	
 
 }

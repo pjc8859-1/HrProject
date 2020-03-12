@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import cn.storm.mapper.SalaryStandardDetailsMapper;
 import cn.storm.pojo.SalaryStandardDetails;
-import cn.storm.pojo.Student;
 import cn.storm.service.SalaryStandardDetailsService;
 
 @Service

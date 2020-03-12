@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="cn.storm.mapper.EngageMajorReleaseMapper">
+  
+  <resultMap type="EngageMajorRelease" id="myEngageMajorRelease">
+  	<result property="mre_id" column="mreId"/>
+<result property="first_kind_id" column="firstKindId"/>
+<result property="first_kind_name" column="firstKindName"/>
+<result property="second_kind_id" column="secondKindId"/>
+<result property="second_kind_name" column="secondKindName"/>
+<result property="third_kind_id" column="thirdKindId"/>
+<result property="third_kind_name" column="thirdKindName"/>
+<result property="major_kind_id" column="majorKindId"/>
+<result property="major_kind_name" column="majorKindName"/>
+<result property="major_id" column="majorId"/>
+<result property="major_name" column="majorName"/>
+<result property="human_amount" column="humanAmount"/>
+<result property="engage_type" column="engageType"/>
+<result property="deadline" column="deadline"/>
+<result property="register" column="register"/>
+<result property="changer" column="changer"/>
+<result property="regist_time" column="registTime"/>
+<result property="change_time" column="changeTime"/>
+<result property="major_describe" column="majorDescribe"/>
+<result property="engage_required" column="engageRequired"/>
+  	
+  	
+  </resultMap>
+  
+  		<insert id="saveEngageMajorRelease" parameterType="EngageMajorRelease">
+  			insert into engage_major_release(mre_id,first_kind_id,first_kind_name,second_kind_id,second_kind_name,third_kind_id,third_kind_name,major_kind_id,major_kind_name,major_id,major_name,human_amount,engage_type,deadline,register,changer,regist_time,change_time,major_describe,engage_required) 
+  			values (#{ mreId},#{ firstKindId},#{ firstKindName},#{ secondKindId},#{ secondKindName},#{ thirdKindId},#{ thirdKindName},#{ majorKindId},#{ majorKindName},#{ majorId},#{ majorName},#{ humanAmount},#{ engageType},#{ deadline},#{ register},#{ changer},#{ registTime},#{ changeTime},#{ majorDescribe},#{ engageRequired})
+  		</insert>
+  		<select id="selectAllEngageMajorRelease" resultMap="myEngageMajorRelease">
+  			select * from engage_major_release
+  		</select>
+  		<select id="selectEngageMajorReleaseBymreid" parameterType="_int" resultMap="myEngageMajorRelease">
+  			select * from engage_major_release where mre_id = #{id}
+  		</select>
+  		<delete id="deleteEngageMajorReleaseBymreid" parameterType="_int">
+  			delete from engage_major_release where  mre_id = #{id}
+  		</delete>
+  		<update id="updateEngageMajorRelease" parameterType="EngageMajorRelease">
+  			update engage_major_release set  
+			  first_kind_id=#{firstKindId},first_kind_name=#{firstKindName},
+			  second_kind_id=#{secondKindId},second_kind_name=#{secondKindName},
+			  third_kind_id=#{thirdKindId},third_kind_name=#{thirdKindName},
+			  major_kind_id=#{majorKindId},major_kind_name=#{majorKindName},
+			  major_id=#{majorId},major_name=#{majorName},human_amount=#{humanAmount},
+			  engage_type=#{engageType},deadline=#{deadline},register=#{register},
+			  changer=#{changer},regist_time=#{registTime},change_time=#{changeTime},
+			  major_describe=#{majorDescribe},engage_required=#{engageRequired}
+	  where   mre_id=#{mreId}
+  		</update>
+  </mapper>
