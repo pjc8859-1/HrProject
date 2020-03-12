@@ -441,6 +441,7 @@ a{ CURSOR: hand}
 				<td class="td_style">
 					薪酬发放管理
 				</td>
+				
 			</tr>
 			<tr>
 				<td width="2%"></td>
@@ -498,7 +499,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td width="98%">
-									调动登记
+									<a href="">调动登记</a>
 								</td>
 							</tr>
 							<tr>
@@ -506,7 +507,16 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td>
-									调动审核
+									<a href="">调动审核</a>
+								</td>
+								
+							</tr>
+							<tr>
+								<td>
+									<img src="images/jt0.gif">
+								</td>
+								<td>
+									<a href="testclass/selectAll.do" target="mainFrame">测试Controller</a>
 								</td>
 							</tr>
 							<tr>
@@ -514,7 +524,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td>
-									调动查询
+									<a href="">调动查询</a>
 								</td>
 							</tr>
 						</table> </span>
