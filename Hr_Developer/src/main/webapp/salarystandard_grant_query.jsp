@@ -26,17 +26,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="javascript/calendar/cal.js"></script>
 		<title>无标题文档</title>
 		<script type="text/javascript">
-			function list()
+			function Myquery()
 			{
 				//document.forms[0].action = document.forms[0].action + "?operate=list&status=1&method=query";
-				document.forms[0].action ="salarystandard_query_list.do";
+				document.forms[0].action ="testclass/selectAll.do";
 				document.forms[0].submit();
 			}
 		</script>
   </head>
   
   <body>
-  <form method="post" action="salarystandard.do">
+  <form method="post" action="salarystandard.do" name="form">
 			<table width="100%">
 				<tr>
 					<td>
@@ -46,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<td>
 						<div align="right">
-							<input type="button" value="查询" class="BUTTON_STYLE1" onclick="list();">
+							<input type="button" value="查询" class="BUTTON_STYLE1" onclick="Myquery()">
 						</div>
 					</td>
 				</tr>
