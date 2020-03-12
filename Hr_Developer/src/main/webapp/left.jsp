@@ -452,7 +452,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td width="98%">
-									薪酬发放登记
+									<a href="salarystandard_grant_register_catalog.jsp" target="mainFrame">薪酬发放登记</a>
 								</td>
 							</tr>
 							<tr>
@@ -460,7 +460,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td>
-									薪酬发放登记复核
+									<a href="salarystandard_grant_check.jsp" target="mainFrame">薪酬发放登记复核</a>
 								</td>
 							</tr>
 							<tr>
@@ -468,7 +468,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td>
-									薪酬发放查询
+									<a href="salarystandard_grant_query.jsp" target="mainFrame">薪酬发放查询</a>
 								</td>
 							</tr>
 						</table> </span>
