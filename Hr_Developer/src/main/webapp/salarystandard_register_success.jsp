@@ -22,6 +22,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link rel="stylesheet" href="table.css" type="text/css">
 <script type="text/javascript" src="javascript/comm/comm.js"></script>
+<script type="text/javascript">
+		function toAdd() {
+			window.location.href="salarystandard_register.jsp";
+		}
+</script>
   </head>
   
   <body>
