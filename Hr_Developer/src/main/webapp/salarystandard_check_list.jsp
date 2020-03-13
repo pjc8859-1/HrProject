@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -45,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<td>
 						当前等待复核的薪酬标准总数:
-						3
+						${count}
 						例
 					</td>
 				</tr>
@@ -74,74 +75,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 				</tr>
 				
+					<c:forEach items="${sslist}" var="ss">
 					<tr class="TD_STYLE2">
-						<td>
-							1000001
-						</td>
-						<td>
-							
-						</td>
-						<td>
-							
-						</td>
-						<td>
-							2010-05-29 00:00:00.0
-						</td>
-						<td>
-							0.0
-						</td>
-						<td>
-							<a
-								href="salarystandard_check.jsp">复核</a>
-						</td>
+						<td>${ss.standardId }</td>
+						<td>${ss.standardName }</td>
+						<td>${ss.designer }</td>
+						<td>${ss.registTime}</td>
+						<td>&nbsp;${ss.salarySum }</td>
+						<td><a href="">复核</a></td>
 					</tr>
-				
-					<tr class="TD_STYLE2">
-						<td>
-							1000001
-						</td>
-						<td>
-							
-						</td>
-						<td>
-							
-						</td>
-						<td>
-							2010-05-29 00:00:00.0
-						</td>
-						<td>
-							0.0
-						</td>
-						<td>
-							<a
-								href="salarystandard_check.jsp">复核</a>
-						</td>
-					</tr>
-				
-					<tr class="TD_STYLE2">
-						<td>
-							1000001
-						</td>
-						<td>
-							
-						</td>
-						<td>
-							
-						</td>
-						<td>
-							2010-05-29 00:00:00.0
-						</td>
-						<td>
-							0.0
-						</td>
-						<td>
-							<a
-								href="salarystandard.do?operate=toEdit&id=3&method=check">复核</a>
-						</td>
-					</tr>
+					</c:forEach>
 				
 			</table>
-			<p>&nbsp;&nbsp;总数：3例 &nbsp;&nbsp;&nbsp;当前第 1 页  &nbsp;&nbsp;&nbsp;共 1 页  &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1> 页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18 border=0>
+			<p>&nbsp;&nbsp;总数：${count }例 &nbsp;&nbsp;&nbsp;当前第 1 页  &nbsp;&nbsp;&nbsp;共 1 页  &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1> 页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18 border=0>
 		</form>
   </body>
 </html>

@@ -45,6 +45,8 @@ public class SalaryStandardRegisterController {
 			@RequestParam("list[5].itemId") short itemId5,
 			@RequestParam("list[5].itemName") String itemName5,
 			@RequestParam("list[5].salary") double salary5) {
+		double count = salary0 + salary1 + salary2 + salary3 + salary4
+				+ salary5;
 		Date date = new Date();
 		// SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd  hh:mm:ss");
 		// String date1 = sdf.format(date);
@@ -57,6 +59,8 @@ public class SalaryStandardRegisterController {
 		ss.setRegister(register);
 		ss.setRegistTime(nousedate);
 		ss.setRemark(remark);
+		ss.setSalarySum(count);
+		ss.setCheckStatus((short) 0);
 		sss.addSalaryStandard(ss);
 		SalaryStandardDetails ssd0 = new SalaryStandardDetails();
 		ssd0.setStandardId(id);
