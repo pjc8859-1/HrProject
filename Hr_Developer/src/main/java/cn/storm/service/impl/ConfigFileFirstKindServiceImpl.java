@@ -17,8 +17,7 @@ public class ConfigFileFirstKindServiceImpl implements ConfigFileFirstKindServic
 	
 	
 	@Override
-	public boolean addConfigFileFirstKind(
-			ConfigFileFirstKind configFileFirstKind) {
+	public boolean addConfigFileFirstKind(ConfigFileFirstKind configFileFirstKind) {
 		// TODO Auto-generated method stub
 		return mapper.saveConfigFileFirstKind(configFileFirstKind);
 	}
