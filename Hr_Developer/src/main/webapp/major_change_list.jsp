@@ -265,9 +265,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   
   
-  <form name="humanfileForm" method="post" action="aa/bb.do">
+  <form name="humanfileForm" method="post" action="majorchange/formsubmit.do">
 			<table width="100%">
-				<tr>
+				<tr> 
 					<td>
 						<font color="#0000CC">您正在做的业务是：调动管理 -- 调动登记 -- 合格档案查询
 	</font>
@@ -284,7 +284,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</table>
 			<table width="100%" border="1" cellpadding=0 cellspacing=1
 				bordercolorlight=#848284 bordercolordark=#eeeeee
-				class="TABLE_STYLE1">
+				class="TABLE_STYLE1" >
 				<tr class="TR_STYLE1">
 					<td width="16%" class="TD_STYLE1">
 						请选择员工所在I级机构

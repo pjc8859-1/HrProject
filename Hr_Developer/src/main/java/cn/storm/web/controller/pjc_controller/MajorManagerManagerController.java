@@ -83,7 +83,16 @@ public class MajorManagerManagerController {
 		return mv;
 	}
 	
-	
+	/**
+	 * 处理查询人员页面传来的数据
+	 * @return
+	 */
+	@RequestMapping("/formsubmit.do")
+	public ModelAndView handleFormSubmit(){
+		return null;
+		
+		
+	}
 	
 	
 	
