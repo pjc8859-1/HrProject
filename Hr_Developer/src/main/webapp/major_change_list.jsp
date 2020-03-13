@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var thirdselect = null;
 		var fourthselect = null;
 		var fifthselect = null;
-		var fifthhtml = null;
+		
 		$(function(){
 			aaa = 2;
 			showfirst();
@@ -56,7 +56,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				changelocation1($("#select2 option:selected").html());
 				
 			});
-			
+			$("#select3").change(function(){
+						
+						//changelocation2($("#select3 option:selected").html());
+						
+			});
 			$("#select4").change(function(){
 				
 				changelocation2($("#select4 option:selected").html());
@@ -68,13 +72,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			console.log(secondselect.children());
 		}
 		function savelist(){
-			firstselect = $("#select1")[0].outerHTML;
-			secondselect = $("#select2");
-			thirdselect = $("#select3");
-			fourthselect = $("#select4");
-			fifthselect = $("#select5")[0].outerHTML;
-			fifthhtml = fifthselect;
-			alert("fifthhtml执行"+fifthhtml);
+			firstselect = document.getElementById("select1").outerHTML;
+			secondselect = document.getElementById("select2").outerHTML;
+			thirdselect = document.getElementById("select3").outerHTML;
+			fourthselect = document.getElementById("select4").outerHTML;
+			fifthselect =document.getElementById("select5").outerHTML;
+			alert("savelist执行");
 			
 		}
 		function showfirst(firstneedshow)
@@ -172,11 +175,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var fname = fifthlist[i].majorKindName;
 					var sid = fifthlist[i].majorId;
 					var sname =fifthlist[i].majorName;
-					$(fifthhtml).append("<option value="+sid+">"+fname+"/"+sname+"</option>");
+					$("#select5").append("<option value="+sid+">"+fname+"/"+sname+"</option>");
 				}
 			}
 			else{
-				$(fifthhtml).append(fifthneedshow);
+				$("#select5").append(fifthneedshow);
 			}
 			
 		}
@@ -242,7 +245,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 			
 			 		//不是空就去比较第二个集合里面以选择的值开头的项展示出来
 			 		var list =``;
-			 		console.log($(fifthselect));
+			 		console.log("length"+fifthselect);
 			 		for(var j =0 ;j < $(fifthselect).children().length; j++)
 			 			{	
 			 				if($($(fifthselect).children()).eq(j).html().startsWith(locid)){
