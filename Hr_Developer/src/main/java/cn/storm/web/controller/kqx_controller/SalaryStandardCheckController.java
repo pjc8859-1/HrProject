@@ -29,7 +29,7 @@ public class SalaryStandardCheckController {
 
 	private Object String;
 
-	@RequestMapping("/toqueryf")
+	@RequestMapping("/toqueryf.do")
 	public String queryf(Map map) {
 		slist = sss.queryAllSalaryStandard();
 		map.put("sslist", slist);

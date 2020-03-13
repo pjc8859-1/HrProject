@@ -408,7 +408,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td>
-									<a href="salarystandard_check_list.jsp" target="mainFrame">薪酬标准登记复核</a>
+									<a href="toqueryf.do" target="mainFrame">薪酬标准登记复核</a>
 								</td>
 							</tr>
 							<tr>
@@ -416,7 +416,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td>
-									<a href="salarystandard_query_locate.jsp" target="mainFrame">薪酬标准查询</a>
+									<a href="toqueryf.do" target="mainFrame">薪酬标准查询</a>
 								</td>
 							</tr>
 							<tr>
@@ -461,7 +461,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td>
-									<a href="salarystandard_grant_check.jsp" target="mainFrame">薪酬发放登记复核</a>
+									<a href="toqueryf.do" target="mainFrame">薪酬发放登记复核</a>
 								</td>
 							</tr>
 							<tr>

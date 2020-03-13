@@ -85,7 +85,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<td><a href="">复核</a></td>
 					</tr>
 					</c:forEach>
-				
 			</table>
 			<p>&nbsp;&nbsp;总数：${count }例 &nbsp;&nbsp;&nbsp;当前第 1 页  &nbsp;&nbsp;&nbsp;共 1 页  &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1> 页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18 border=0>
 		</form>
