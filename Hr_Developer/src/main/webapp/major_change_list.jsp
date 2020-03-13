@@ -6,7 +6,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html> 
+<html>
   <head>
     <base href="<%=basePath%>">
     <title>列出所有状态为“正常”的员工</title>
@@ -265,9 +265,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   
   
-  <form name="humanfileForm" method="post" action="aa/bb.do">
+  <form name="humanfileForm" method="post" action="majorchange/formsubmit.do">
 			<table width="100%">
-				<tr>
+				<tr> 
 					<td>
 						<font color="#0000CC">您正在做的业务是：调动管理 -- 调动登记 -- 合格档案查询
 	</font>
@@ -284,7 +284,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</table>
 			<table width="100%" border="1" cellpadding=0 cellspacing=1
 				bordercolorlight=#848284 bordercolordark=#eeeeee
-				class="TABLE_STYLE1">
+				class="TABLE_STYLE1" >
 				<tr class="TR_STYLE1">
 					<td width="16%" class="TD_STYLE1">
 						请选择员工所在I级机构
@@ -345,7 +345,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 				</tr>
 			</table>
-		</form> 
+		</form>
 	</body>
 	<script type="text/javascript">
 	Calendar.setup ({inputField : "date_start", ifFormat : "%Y-%m-%d", showsTime : false, button : "date_start", singleClick : true, step : 1});
@@ -353,3 +353,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</script>
 </html>
 <script type="text/javascript" src="javascript/comm/list.js"></script>
+
