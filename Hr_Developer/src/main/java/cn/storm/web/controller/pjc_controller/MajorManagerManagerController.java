@@ -1,4 +1,3 @@
-
 package cn.storm.web.controller.pjc_controller;
 
 import java.util.List;
@@ -30,63 +29,57 @@ import cn.storm.service.ConfigMajorService;
  */
 public class MajorManagerManagerController {
 	@Autowired
-	private ConfigFileFirstKindService cffks= null;
+	private ConfigFileFirstKindService cffks = null;
 	@Autowired
-	private ConfigFileSecondKindService cfsks= null;
+	private ConfigFileSecondKindService cfsks = null;
 	@Autowired
-	private ConfigFileThirdKindService cftks= null;
+	private ConfigFileThirdKindService cftks = null;
 	@Autowired
 	private ConfigMajorKindService cmks = null;
 	@Autowired
 	private ConfigMajorService cms = null;
-	
-	
+
 	@RequestMapping("/majorchange.do")
 	/**
 	 * 展示查询可变更职位的职员的controller
 	 * 首先需要查询系统中状态为“正常”的员工。查询条件包括：员工所在机构和建档时间。
 	 * @return
 	 */
-	public ModelAndView showChangePage(){
+	public ModelAndView showChangePage() {
 		ModelAndView mv = new ModelAndView();
-		//查询出所有一级机构分类
-		List<ConfigFileFirstKind> first_list = this.cffks.queryAllConfigFileFirstKind();
-		//查询出所有二级机构分类
-		List<ConfigFileSecondKind> second_list = this.cfsks.queryAllConfigFileSecondKind();
-		//查询出所有三级机构分类
-		List<ConfigFileThirdKind> third_list = this.cftks.queryAllConfigFileThirdKind();
-		//查询出所有请选择职位分类
+		// 查询出所有一级机构分类
+		List<ConfigFileFirstKind> first_list = this.cffks
+				.queryAllConfigFileFirstKind();
+		// 查询出所有二级机构分类
+		List<ConfigFileSecondKind> second_list = this.cfsks
+				.queryAllConfigFileSecondKind();
+		// 查询出所有三级机构分类
+		List<ConfigFileThirdKind> third_list = this.cftks
+				.queryAllConfigFileThirdKind();
+		// 查询出所有请选择职位分类
 		List<ConfigMajorKind> fourth_list = this.cmks.queryAllConfigMajorKind();
-		//查询出所有请选择职位
-		List<ConfigMajor> fifth_list =this.cms.queryAllConfigMajor();
-		
-//		保存所有的集合的json字符串
-//		mv.addObject("firstlist", first_list);
-//		mv.addObject("secondlist", second_list);
-//		mv.addObject("thirdlist", third_list);
-		JSONArray  first = JSONArray.fromObject(first_list);
-		JSONArray  second = JSONArray.fromObject(second_list);
-		JSONArray  third = JSONArray.fromObject(third_list);
-		JSONArray  fourth = JSONArray.fromObject(fourth_list);
-		JSONArray  fifth = JSONArray.fromObject(fifth_list);
-		
-		
+		// 查询出所有请选择职位
+		List<ConfigMajor> fifth_list = this.cms.queryAllConfigMajor();
+
+		// 保存所有的集合的json字符串
+		// mv.addObject("firstlist", first_list);
+		// mv.addObject("secondlist", second_list);
+		// mv.addObject("thirdlist", third_list);
+		JSONArray first = JSONArray.fromObject(first_list);
+		JSONArray second = JSONArray.fromObject(second_list);
+		JSONArray third = JSONArray.fromObject(third_list);
+		JSONArray fourth = JSONArray.fromObject(fourth_list);
+		JSONArray fifth = JSONArray.fromObject(fifth_list);
+
 		mv.addObject("firstlist", first.toString());
 		mv.addObject("secondlist", second.toString());
 		mv.addObject("thirdlist", third.toString());
 		mv.addObject("fourthlist", fourth.toString());
 		mv.addObject("fifthlist", fifth.toString());
-//		System.out.println(first);
-		
-		
-		
+		// System.out.println(first);
+
 		mv.setViewName("/major_change_list");
 		return mv;
 	}
-	
-	
-	
-	
-	
+
 }
->>>>>>> branch 'master' of https://github.com/pjc8859-1/HrProject.git
