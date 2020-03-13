@@ -120,6 +120,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 			
 		}
+		function lista(){
+			var myform = document.getElementById("myform");
+			myform.submit();
+		}
 		function showthird(thirdneedshow){
 			$("#select3").empty();//清空三级机构
 		//	$("#select3").append("<option value='' selected='true' >&nbsp;</option>");
@@ -256,7 +260,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 			}
 			 		showfifth(list);
 			 		}
+			 	
 		 }
+		
+		
 		
  		</script>
  		<script type="text/javascript" src="javascript/comm/list.js"></script>
@@ -265,7 +272,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   
   
-  <form name="humanfileForm" method="post" action="majorchange/formsubmit.do">
+  <form  id="myform" name="humanfileForm" method="post" action="majorchange/formsubmit.do">
 			<table width="100%">
 				<tr> 
 					<td>
@@ -276,9 +283,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<td align="right">
 						<input type="button" value="开始"
-							class="BUTTON_STYLE1" onclick="javascript:list();">
+							class="BUTTON_STYLE1" onclick="lista()">
 						<input type="button" value="搜索"
-							class="BUTTON_STYLE1" onclick="search();">
+							class="BUTTON_STYLE1" onclick="javascript:search();">
 					</td>
 				</tr>
 			</table>
@@ -290,7 +297,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						请选择员工所在I级机构
 					</td>
 					<td width="84%" class="TD_STYLE2">
-						<select id="select1" name="item.firstKindName" size="5" class="SELECT_STYLE2">
+						<select id="select1" name="item.firstKindId" size="5" class="SELECT_STYLE2">
 							
 						</select>	
 					</td>
@@ -300,7 +307,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						请选择员工所在II级机构
 					</td>
 					<td width="84%" class="TD_STYLE2">
-						<select id="select2" name="item.secondKindName" size="5" onchange="changelocation1(document.forms[0].elements['item.secondKindName'].options[document.forms[0].elements['item.secondKindName'].selectedIndex].innerHTML)" class="SELECT_STYLE2">
+						<select id="select2" name="item.secondKindId" size="5" onchange="changelocation1(document.forms[0].elements['item.secondKindName'].options[document.forms[0].elements['item.secondKindName'].selectedIndex].innerHTML)" class="SELECT_STYLE2">
     						
     					</select>
 					</td>
@@ -310,7 +317,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						请选择员工所在III级机构
 					</td>
 					<td width="84%" class="TD_STYLE2">
-						<select id="select3" name="item.thirdKindName" size="5" class="SELECT_STYLE2"><script language="javascript">
+						<select id="select3" name="item.thirdKindId" size="5" class="SELECT_STYLE2"><script language="javascript">
 							changelocation1(document.forms[0].elements["item.secondKindName"].innerHTML)
 							</script>
 						</select>

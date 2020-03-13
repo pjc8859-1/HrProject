@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.storm.dto.MajorManagerDto;
 import cn.storm.mapper.HumanFileMapper;
 import cn.storm.pojo.HumanFile;
 import cn.storm.service.HumanFileService;
@@ -40,6 +41,12 @@ private HumanFileMapper mapper=null;
 	public int modifyHumanFile(HumanFile humanFile) {
 		// TODO Auto-generated method stub
 		return mapper.updateHumanFile(humanFile);
+	}
+
+	@Override
+	public List<HumanFile> queryByCondition(MajorManagerDto mmd) {
+		
+		return this.mapper.selectByCondition(mmd);
 	}
 
 }
