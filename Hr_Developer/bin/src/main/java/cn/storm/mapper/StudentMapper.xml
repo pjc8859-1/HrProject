@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="cn.storm.mapper.StudentMapper">
+  
+  		<resultMap type="Student" id="myResultMap">
+  			<id property="SId" column="s_id"/>
+  			<result property="SName" column="s_name"/>
+  			<result property="SEx" column="s_ex"/>
+  			<result property="SCore" column="s_core"/>
+  		</resultMap>
+  		<insert id="saveStudent" parameterType="Student">
+  			insert into student(sid,sname,sex,score) 
+  			values (#{sid},#{sname},#{sex},#{score})
+  		</insert>
+  		<select id="selectAllStudent" resultMap="myResultMap">
+  			select * from student
+  		</select>
+  		<select id="selectStudentBySid" parameterType="_int" resultType="Student">
+  			select * from student where sid = #{id}
+  		</select>
+  		<delete id="deleteStudentBySid" parameterType="_int">
+  			delete from student where  sid = #{id}
+  		</delete>
+  		<update id="updateStudent" parameterType="Student">
+  			update student set score = #{score}
+  			where sid &lt;= 2  
+  		</update>
+  </mapper>
