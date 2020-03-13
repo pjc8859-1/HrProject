@@ -23,7 +23,7 @@
 	
 	<context:property-placeholder location="classpath:jdbc.properties"/>
 
-	<!-- 首先应该配置一个数据源 -->
+	<!-- 首先应该配置一个数据源 --> 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${pjcdriver}"></property>
 		<property name="url" value="${pjcurl}"></property>
