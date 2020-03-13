@@ -12,9 +12,13 @@ import org.springframework.web.servlet.ModelAndView;
 import cn.storm.pojo.ConfigFileFirstKind;
 import cn.storm.pojo.ConfigFileSecondKind;
 import cn.storm.pojo.ConfigFileThirdKind;
+import cn.storm.pojo.ConfigMajor;
+import cn.storm.pojo.ConfigMajorKind;
 import cn.storm.service.ConfigFileFirstKindService;
 import cn.storm.service.ConfigFileSecondKindService;
 import cn.storm.service.ConfigFileThirdKindService;
+import cn.storm.service.ConfigMajorKindService;
+import cn.storm.service.ConfigMajorService;
 
 @Controller
 @RequestMapping("/majorchange")
@@ -30,6 +34,11 @@ public class MajorManagerManagerController {
 	private ConfigFileSecondKindService cfsks= null;
 	@Autowired
 	private ConfigFileThirdKindService cftks= null;
+	@Autowired
+	private ConfigMajorKindService cmks = null;
+	@Autowired
+	private ConfigMajorService cms = null;
+	
 	
 	@RequestMapping("/majorchange.do")
 	/**
@@ -45,6 +54,10 @@ public class MajorManagerManagerController {
 		List<ConfigFileSecondKind> second_list = this.cfsks.queryAllConfigFileSecondKind();
 		//查询出所有三级机构分类
 		List<ConfigFileThirdKind> third_list = this.cftks.queryAllConfigFileThirdKind();
+		//查询出所有请选择职位分类
+		List<ConfigMajorKind> fourth_list = this.cmks.queryAllConfigMajorKind();
+		//查询出所有请选择职位
+		List<ConfigMajor> fifth_list =this.cms.queryAllConfigMajor();
 		
 //		保存所有的集合的json字符串
 //		mv.addObject("firstlist", first_list);
@@ -53,9 +66,15 @@ public class MajorManagerManagerController {
 		JSONArray  first = JSONArray.fromObject(first_list);
 		JSONArray  second = JSONArray.fromObject(second_list);
 		JSONArray  third = JSONArray.fromObject(third_list);
+		JSONArray  fourth = JSONArray.fromObject(fourth_list);
+		JSONArray  fifth = JSONArray.fromObject(fifth_list);
+		
+		
 		mv.addObject("firstlist", first.toString());
 		mv.addObject("secondlist", second.toString());
 		mv.addObject("thirdlist", third.toString());
+		mv.addObject("fourthlist", fourth.toString());
+		mv.addObject("fifthlist", fifth.toString());
 //		System.out.println(first);
 		
 		

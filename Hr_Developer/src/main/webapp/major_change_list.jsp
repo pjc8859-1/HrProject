@@ -9,9 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    
     <title>列出所有状态为“正常”的员工</title>
-    
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -31,15 +29,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var firstlist = ${firstlist};//一级机构json数组
 		var secondlist = ${secondlist};//二级机构json数组
 		var thirdlist = ${thirdlist};//三级机构json数组
+		var fourthlist = ${fourthlist};//职业分类
+		var fifthlist = ${fifthlist};//职业
 		var firstselect = null;
 		var secondselect = null;
 		var thirdselect = null;
-		
+		var fourthselect = null;
+		var fifthselect = null;
+		var fifthhtml = null;
 		$(function(){
 			aaa = 2;
 			showfirst();
 			showsecond();
 			showthird();
+			showfourth();
+			showfifth();
+			
 			savelist();
 			$("#select1").change(function(){
 				
@@ -51,20 +56,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				changelocation1($("#select2 option:selected").html());
 				
 			});
-		$("#select3").change(function(){
-						
-						changelocation2($("#select3 option:selected").html());
-						
-					});
+			
+			$("#select4").change(function(){
+				
+				changelocation2($("#select4 option:selected").html());
+				
+			});
 			
 		})
 		function show(){
 			console.log(secondselect.children());
 		}
 		function savelist(){
-			firstselect = $("#select1");
-			second = $("#select2");
+			firstselect = $("#select1")[0].outerHTML;
+			secondselect = $("#select2");
 			thirdselect = $("#select3");
+			fourthselect = $("#select4");
+			fifthselect = $("#select5")[0].outerHTML;
+			fifthhtml = fifthselect;
+			alert("fifthhtml执行"+fifthhtml);
 			
 		}
 		function showfirst(firstneedshow)
@@ -108,9 +118,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 		}
 		function showthird(thirdneedshow){
-			selects= $("select");//得到所有select标签;
 			$("#select3").empty();//清空三级机构
-			$("#select3").append("<option value='' selected='true' >&nbsp;</option>");
+		//	$("#select3").append("<option value='' selected='true' >&nbsp;</option>");
 			
 			if(thirdneedshow == null || thirdneedshow =="")
 			{
@@ -134,18 +143,56 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			
 		}
+		
+		function showfourth(fourthneedshow){
+			$("#select4").empty();//清空职位分类
+				if(fourthneedshow == null || fourthneedshow =="")
+				{
+					for(var i=0; i< fourthlist.length ;i++)
+					{	
+						var fid = fourthlist[i].majorKindId;
+						var fname = fourthlist[i].majorKindName;
+						
+						$("#select4").append("<option value="+fid+">"+fname+"</option>");
+					}
+				}
+				else{
+					$("#select4").append(fourthneedshow);
+				}
+				
+		}
+		
+		function showfifth(fifthneedshow){
+			$("#select5").empty();//清空职位分类
+			if(fifthneedshow == null || fifthneedshow =="")
+			{
+				for(var i=0; i< fifthlist.length ;i++)
+				{	
+					var fid = fifthlist[i].majorKindId;
+					var fname = fifthlist[i].majorKindName;
+					var sid = fifthlist[i].majorId;
+					var sname =fifthlist[i].majorName;
+					$(fifthhtml).append("<option value="+sid+">"+fname+"/"+sname+"</option>");
+				}
+			}
+			else{
+				$(fifthhtml).append(fifthneedshow);
+			}
+			
+		}
 		function changelocation(locationid)
 		{	
 		   var locid=locationid;
 			 	if(locid==""||locid==null){
 			 		//如果选中first为空的值，则secondshow出全部值
 			 		showsecond();
+			 		showthird();
 			 	} 
 			 	else{
 			 			
 			 		//不是空就去比较第二个集合里面以选择的值开头的项展示出来
 			 		var list =``;
-			 		for(var j =1 ;j < $(secondselect).children().length; j++)
+			 		for(var j =0;j < $(secondselect).children().length; j++)
 			 			{	
 			 				if($($(secondselect).children()).eq(j).html().startsWith(locid)){
 			 					//var  txt = $(secondselect).children().eq(j).html();
@@ -169,7 +216,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 		console.log("locid"+locid);
 			 		console.log( $(thirdselect).children());
 			 		var list =``;
-			 		for(var j =1 ;j < $(thirdselect).children().length; j++)
+			 		for(var j =0 ;j < $(thirdselect).children().length; j++)
 			 			{	
 			 				if($($(thirdselect).children()).eq(j).html().startsWith(locid)){
 			 					//var  txt = $(secondselect).children().eq(j).html();
@@ -182,9 +229,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 }
 		 
 		 
-		 function changelocation2(select5,locationid)
+		 function changelocation2(locationid)
 		  {
-		 
+			 var locid=locationid;
+			 console.log("locid"+locid);
+			 	if(locid==""||locid==null){
+			 		
+			 		//如果选中first为空的值，则secondshow出全部值
+			 		showfifth();
+			 	} 
+			 	else{
+			 			
+			 		//不是空就去比较第二个集合里面以选择的值开头的项展示出来
+			 		var list =``;
+			 		console.log($(fifthselect));
+			 		for(var j =0 ;j < $(fifthselect).children().length; j++)
+			 			{	
+			 				if($($(fifthselect).children()).eq(j).html().startsWith(locid)){
+			 					//var  txt = $(secondselect).children().eq(j).html();
+			 					var  txt = ($(fifthselect).children().eq(j))[0].outerHTML;
+			 					list+=txt;
+			 					}
+			 			}
+			 		showfifth(list);
+			 		}
 		 }
 		
  		</script>
@@ -250,17 +318,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						请选择职位分类
 					</td>
 					<td width="84%" class="TD_STYLE2">
-						<select name="item.humanMajorKindName" size="5" onchange="changelocation2(document.forms[0].elements['item.hunmaMajorName'],document.forms[0].elements['item.humanMajorKindName'].options[document.forms[0].elements['item.humanMajorKindName'].selectedIndex].value)" class="SELECT_STYLE2">
+						<select id="select4" name="item.humanMajorKindName" size="5"  class="SELECT_STYLE2">
 						
-								<option value="">&nbsp;</option>
-							
-								<option value="销售">销售</option>
-							
-								<option value="软件开发">软件开发</option>
-							
-								<option value="人力资源">人力资源</option>
-							
-								<option value="生产部">生产部</option></select>
 					</td>
 				</tr>
 				<tr class="TR_STYLE1">
@@ -268,9 +327,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						请选择职位名称
 					</td>
 					<td width="84%" class="TD_STYLE2">
-						<select name="item.hunmaMajorName" size="5" class="SELECT_STYLE2"><script language="javascript">
-							changelocation2(document.forms[0].elements["item.hunmaMajorName"],document.forms[0].elements["item.humanMajorKindName"].value)
-							</script></select>
+						<select id="select5" name="item.hunmaMajorName" size="5" class="SELECT_STYLE2">
+								
+						</select>
 					</td>
 				</tr>
 				<tr>
