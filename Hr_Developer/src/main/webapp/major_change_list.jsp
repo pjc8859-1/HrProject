@@ -26,26 +26,169 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			href="javascript/calendar/calendar-win2k-cold-1.css">
 		<script type="text/javascript" src="javascript/calendar/cal.js"></script>
 		<script type="text/javascript" src="javascript/comm/comm.js"></script>
-		<script type="text/javascript" src="javascript/comm/list.js"></script>
+		<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 		<script type="text/javascript">
-		console.log(JSON.stringify(${firstlist}));
+		var firstlist = ${firstlist};//一级机构json数组
+		var secondlist = ${secondlist};//二级机构json数组
+		var thirdlist = ${thirdlist};//三级机构json数组
+		var firstselect = null;
+		var secondselect = null;
+		var thirdselect = null;
 		
-
- 		function list()
-		{
-			//document.forms[0].action = document.forms[0].action + "?operate=list&method=delete&delete_status=1";
-			document.forms[0].action ="query_list.jsp";
-			alert("aaa");
-			document.forms[0].submit();
+		$(function(){
+			aaa = 2;
+			showfirst();
+			showsecond();
+			showthird();
+			savelist();
+			$("#select1").change(function(){
+				
+				changelocation($("#select1 option:selected").html());
+				
+			});
+			$("#select2").change(function(){
+				
+				changelocation1($("#select2 option:selected").html());
+				
+			});
+		$("#select3").change(function(){
+						
+						changelocation2($("#select3 option:selected").html());
+						
+					});
+			
+		})
+		function show(){
+			console.log(secondselect.children());
+		}
+		function savelist(){
+			firstselect = $("#select1");
+			second = $("#select2");
+			thirdselect = $("#select3");
 			
 		}
-		function search()
-		{
-			//document.forms[0].action = document.forms[0].action + "?operate=toSearch&method=delete";
-			//document.forms[0].action ="query_keywords.jsp";
-			document.forms[0].submit();
+		function showfirst(firstneedshow)
+		{		
+			//得到所有select标签;
+			$("#select1").empty();//清空一级机构
+			$("#select1").append("<option value=''  selected='true'></option>");//添加一个空的选项
+			if(firstneedshow ==null || firstneedshow =="")
+			{
+				//如果没有传值,就显示全部
+				for(var i=0; i< firstlist.length ;i++)
+					{	
+						var id = firstlist[i].firstKindId;
+						var name = firstlist[i].firstKindName;
+						
+						$("#select1").append("<option value="+id+">"+name+"</option>");
+					}
+			}
 		}
+		function showsecond(secondneedshow){
+			$("#select2").empty();//清空二级机构
+			$("#select2").append("<option value='' selected='true'"+"></option>");
+			if(secondneedshow == null || secondneedshow =="")
+				{
+					
+					for(var i=0; i< secondlist.length ;i++)
+					{	
+						var fid = secondlist[i].firstKindId;
+						var fname = secondlist[i].firstKindName;
+						var sid = secondlist[i].secondKindId;
+						var sname = secondlist[i].secondKindName;
+						
+						$("#select2").append("<option value="+sid+">"+fname+"/"+sname+"</option>");
+					}
+				}else
+					{
+						//传了值
+						
+						$("#select2").append(secondneedshow);
+					}
+			
+		}
+		function showthird(thirdneedshow){
+			selects= $("select");//得到所有select标签;
+			$("#select3").empty();//清空三级机构
+			$("#select3").append("<option value='' selected='true' >&nbsp;</option>");
+			
+			if(thirdneedshow == null || thirdneedshow =="")
+			{
+				
+				for(var i=0; i< thirdlist.length ;i++)
+				{	
+					var fid = thirdlist[i].firstKindId;
+					var fname = thirdlist[i].firstKindName;
+					var sid = thirdlist[i].secondKindId;
+					var sname = thirdlist[i].secondKindName;
+					var tid = thirdlist[i].thirdKindId;
+					var tname = thirdlist[i].thirdKindName;
+					
+					$("#select3").append("<option value="+tid+">"+fname+"/"+sname+"/"+tname+"</option>");
+				}
+			}
+			else{
+				$("#select3").append(thirdneedshow);
+			}
+			
+			
+			
+		}
+		function changelocation(locationid)
+		{	
+		   var locid=locationid;
+			 	if(locid==""||locid==null){
+			 		//如果选中first为空的值，则secondshow出全部值
+			 		showsecond();
+			 	} 
+			 	else{
+			 			
+			 		//不是空就去比较第二个集合里面以选择的值开头的项展示出来
+			 		var list =``;
+			 		for(var j =1 ;j < $(secondselect).children().length; j++)
+			 			{	
+			 				if($($(secondselect).children()).eq(j).html().startsWith(locid)){
+			 					//var  txt = $(secondselect).children().eq(j).html();
+			 					var  txt = ($(secondselect).children().eq(j))[0].outerHTML;
+			 					list+=txt;
+			 					}
+			 			}
+			 		showsecond(list);
+			 		}
+		}	
+		 function changelocation1(locationid)
+		  {
+			 var locid=locationid;
+			 	if(locid==""||locid==null){
+			 		//如果选中first为空的值，则secondshow出全部值
+			 		showthird();
+			 	} 
+			 	else{
+			 			
+			 		//不是空就去比较第二个集合里面以选择的值开头的项展示出来
+			 		console.log("locid"+locid);
+			 		console.log( $(thirdselect).children());
+			 		var list =``;
+			 		for(var j =1 ;j < $(thirdselect).children().length; j++)
+			 			{	
+			 				if($($(thirdselect).children()).eq(j).html().startsWith(locid)){
+			 					//var  txt = $(secondselect).children().eq(j).html();
+			 					var  txt = ($(thirdselect).children().eq(j))[0].outerHTML;
+			 					list+=txt;
+			 					}
+			 			}
+			 		showthird(list);
+			 		}
+		 }
+		 
+		 
+		 function changelocation2(select5,locationid)
+		  {
+		 
+		 }
+		
  		</script>
+ 		<script type="text/javascript" src="javascript/comm/list.js"></script>
   </head>
   
   <body>
@@ -76,11 +219,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						请选择员工所在I级机构
 					</td>
 					<td width="84%" class="TD_STYLE2">
-						<select name="item.firstKindName" size="5" onchange="changelocation(document.forms[0].elements['item.secondKindName'],document.forms[0].elements['item.firstKindName'].options[document.forms[0].elements['item.firstKindName'].selectedIndex].value)" class="SELECT_STYLE2"><option value="">&nbsp;</option>
+						<select id="select1" name="item.firstKindName" size="5" class="SELECT_STYLE2">
 							
-								<option value="集团">集团</option>
-							
-								<option value="02">02</option></select>
+						</select>	
 					</td>
 				</tr>
 				<tr>
@@ -88,9 +229,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						请选择员工所在II级机构
 					</td>
 					<td width="84%" class="TD_STYLE2">
-						<select name="item.secondKindName" size="5" onchange="changelocation1(document.forms[0].elements['item.thirdKindName'],document.forms[0].elements['item.secondKindName'].options[document.forms[0].elements['item.secondKindName'].selectedIndex].value)" class="SELECT_STYLE2"><script language="javascript">
-								changelocation(document.forms[0].elements["item.secondKindName"],document.forms[0].elements["item.firstKindName"].value)
-    						</script></select>
+						<select id="select2" name="item.secondKindName" size="5" onchange="changelocation1(document.forms[0].elements['item.secondKindName'].options[document.forms[0].elements['item.secondKindName'].selectedIndex].innerHTML)" class="SELECT_STYLE2">
+    						
+    					</select>
 					</td>
 				</tr>
 				<tr class="TR_STYLE1">
@@ -98,9 +239,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						请选择员工所在III级机构
 					</td>
 					<td width="84%" class="TD_STYLE2">
-						<select name="item.thirdKindName" size="5" class="SELECT_STYLE2"><script language="javascript">
-							changelocation1(document.forms[0].elements["item.thirdKindName"],document.forms[0].elements["item.secondKindName"].value)
-							</script></select>
+						<select id="select3" name="item.thirdKindName" size="5" class="SELECT_STYLE2"><script language="javascript">
+							changelocation1(document.forms[0].elements["item.secondKindName"].innerHTML)
+							</script>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -108,7 +250,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						请选择职位分类
 					</td>
 					<td width="84%" class="TD_STYLE2">
-						<select name="item.humanMajorKindName" size="5" onchange="changelocation2(document.forms[0].elements['item.hunmaMajorName'],document.forms[0].elements['item.humanMajorKindName'].options[document.forms[0].elements['item.humanMajorKindName'].selectedIndex].value)" class="SELECT_STYLE2"><option value="">&nbsp;</option>
+						<select name="item.humanMajorKindName" size="5" onchange="changelocation2(document.forms[0].elements['item.hunmaMajorName'],document.forms[0].elements['item.humanMajorKindName'].options[document.forms[0].elements['item.humanMajorKindName'].selectedIndex].value)" class="SELECT_STYLE2">
+						
+								<option value="">&nbsp;</option>
 							
 								<option value="销售">销售</option>
 							
@@ -146,3 +290,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	Calendar.setup ({inputField : "date_end", ifFormat : "%Y-%m-%d", showsTime : false, button : "date_end", singleClick : true, step : 1});
 	</script>
 </html>
+<script type="text/javascript" src="javascript/comm/list.js"></script>

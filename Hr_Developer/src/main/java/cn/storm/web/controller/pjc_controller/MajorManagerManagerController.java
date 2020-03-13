@@ -51,7 +51,11 @@ public class MajorManagerManagerController {
 //		mv.addObject("secondlist", second_list);
 //		mv.addObject("thirdlist", third_list);
 		JSONArray  first = JSONArray.fromObject(first_list);
+		JSONArray  second = JSONArray.fromObject(second_list);
+		JSONArray  third = JSONArray.fromObject(third_list);
 		mv.addObject("firstlist", first.toString());
+		mv.addObject("secondlist", second.toString());
+		mv.addObject("thirdlist", third.toString());
 //		System.out.println(first);
 		
 		
