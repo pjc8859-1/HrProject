@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   	<form method="post" action="configfilefirstkind.do">
 			<table width="100%">
-				<tr>
+				<tr >
 					<td>
 						<font color="#0000CC">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--I级机构设置
 						</font>
@@ -42,7 +42,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<table width="100%" border="1" cellpadding=0 cellspacing=1
 				bordercolorlight=#848284 bordercolordark=#eeeeee
 				class="TABLE_STYLE1">
-				<tr>
+				 <!-- 
+				<tr id="show">
 					<td width="20%" class="TD_STYLE1">
 						I级机构编号
 					</td>
@@ -62,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						删除
 					</td>
 				</tr>
-				
+			   
 					<tr>
 						<td class="TD_STYLE2">
 							01
@@ -83,9 +84,75 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<a href="first_kind_delete.jsp">删除</a>
 						</td>
 					</tr>
+					
+				-->	
+					
 				
 			</table>
-			<p>&nbsp;&nbsp;总数：1例 &nbsp;&nbsp;&nbsp;当前第 1 页  &nbsp;&nbsp;&nbsp;共 1 页  &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1> 页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18 border=0>
+			<p>&nbsp;&nbsp;总数：1例 &nbsp;&nbsp;&nbsp;当前第 1 页  &nbsp;&nbsp;&nbsp;共 1 页  &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1> 页&nbsp;&nbsp;<input type="button"  width=18 height=18 value="跳转"/>
 		</form>
   </body>
 </html>
+<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
+<script type="text/javascript" >
+$(
+    function(){
+    $.ajax({
+					type:"post",
+					url:"configfirstkind/showconfigfirstkind.do",
+					//contentType:"application/json;charset=utf-8",
+					dataType:"json",
+					success:function(result){
+					
+						var str=`
+<tr id="show">
+					<td width="20%" class="TD_STYLE1">
+						I级机构编号
+					</td>
+					<td width="20%" class="TD_STYLE1">
+						I级机构名称
+					</td>
+					<td width="25%" class="TD_STYLE1">
+						薪酬发放责任人编号
+					</td>
+					<td width="25%" class="TD_STYLE1">
+						销售责任人编号
+					</td>
+					<td width="5%" class="TD_STYLE1">
+						变更
+					</td>
+					<td width="5%" class="TD_STYLE1">
+						删除
+					</td>
+				</tr>
+<tr>
+						<td class="TD_STYLE2">
+							01
+						</td>
+						<td class="TD_STYLE2">
+							集团
+						</td>
+						<td class="TD_STYLE2">
+							1
+						</td>
+						<td class="TD_STYLE2">
+							1
+						</td>
+						<td class="TD_STYLE2">
+							<a href="first_kind_change.jsp">变更</a>
+						</td>
+						<td class="TD_STYLE2">
+							<a href="first_kind_delete.jsp">删除</a>
+						</td>
+					</tr>
+`;
+$(".TABLE_STYLE1").append($(str));
+					}
+				});
+    }
+)
+
+</script>
+
+
+
