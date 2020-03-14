@@ -32,7 +32,7 @@
   			select * from config_file_first_kind where ffk_id = #{id}
   		</select>
   		<delete id="deleteConfigFileFirstKindByffk_id" parameterType="_int">
-  			delete from config_file_first_kind where  ffk_id = #{id}
+  			delete from config_file_first_kind where ffk_id = #{id}
   		</delete>
   		<update id="updateConfigFileFirstKind" parameterType="ConfigFileFirstKind">
   			update config_file_first_kind set 
