@@ -82,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<td>${ss.designer }</td>
 						<td>${ss.registTime}</td>
 						<td>&nbsp;${ss.salarySum }</td>
-						<td><a href="">复核</a></td>
+						<td><a href="queryfh.do?sstid=${ss.standardId}">复核</a></td>
 					</tr>
 					</c:forEach>
 			</table>
