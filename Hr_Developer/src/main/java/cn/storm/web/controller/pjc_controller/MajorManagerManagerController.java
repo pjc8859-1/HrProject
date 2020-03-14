@@ -108,9 +108,6 @@ public class MajorManagerManagerController {
 			@RequestParam("item.str_startTime") Date begintime,
 			@RequestParam("item.str_endTime") Date endtime
 			){
-		System.out.println(firstkindid+"==="+secondkindid+"==="+thirdkindid+"==="+majorkindid+"==="+majorid
-					+"\n"+new Timestamp(begintime.getTime())+"==="+new Timestamp(endtime.getTime())
-				);
 		MajorManagerDto mmd = new MajorManagerDto();
 		mmd.setFirstkindid(firstkindid);
 		mmd.setSecondkindid(secondkindid);
@@ -119,13 +116,60 @@ public class MajorManagerManagerController {
 		mmd.setMajorid(majorid);
 		mmd.setBegintime(begintime);
 		mmd.setEndtime(endtime);
-		List<HumanFile> list = hfs.queryByCondition(mmd);
-		for (HumanFile humanFile : list) {
-			System.out.println(humanFile.getHumanName());
-		}
+		List<HumanFile> humanfilelist = hfs.queryByCondition(mmd);
+//		for (HumanFile humanFile : list) {
+//			System.out.println(humanFile.getHumanName());
+//		}
+		//查询到信息之后存入到mav中ModelAndView中
+		ModelAndView mav = new ModelAndView();
+		//往ModelAndView中存入数据相当于request.setAtribute("","");
+		mav.addObject("humanlist", humanfilelist);
+		//ModelAndView告诉执行完之后往哪里转跳
+		mav.setViewName("forward:/showhumanfilelist.jsp");
+		return mav;
 		
-		return null;
 		
+	}
+	
+	/**
+	 * 传入id并展示调动登记页面
+	 * @param binder
+	 */
+	@RequestMapping("/showmove.do")
+	public ModelAndView showmove(@RequestParam("humanid") int humanid){
+		//查出id为humanid的人力资源档案
+		HumanFile hf = 	hfs.queryHumanFileByHufid(humanid);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("humanfile", hf);
+		mv.setViewName("forward:/major_change.jsp");
+		//===============================
+		
+		//查询出所有一级机构分类
+			List<ConfigFileFirstKind> first_list = this.cffks.queryAllConfigFileFirstKind();
+			//查询出所有二级机构分类
+			List<ConfigFileSecondKind> second_list = this.cfsks.queryAllConfigFileSecondKind();
+			//查询出所有三级机构分类
+			List<ConfigFileThirdKind> third_list = this.cftks.queryAllConfigFileThirdKind();
+			//查询出所有请选择职位分类
+			List<ConfigMajorKind> fourth_list = this.cmks.queryAllConfigMajorKind();
+			//查询出所有请选择职位
+			List<ConfigMajor> fifth_list =this.cms.queryAllConfigMajor();
+			
+//				保存所有的集合的json字符串
+			JSONArray  first = JSONArray.fromObject(first_list);
+			JSONArray  second = JSONArray.fromObject(second_list);
+			JSONArray  third = JSONArray.fromObject(third_list);
+			JSONArray  fourth = JSONArray.fromObject(fourth_list);
+			JSONArray  fifth = JSONArray.fromObject(fifth_list);
+			
+			
+			mv.addObject("firstlist", first.toString());
+			mv.addObject("secondlist", second.toString());
+			mv.addObject("thirdlist", third.toString());
+			mv.addObject("fourthlist", fourth.toString());
+			mv.addObject("fifthlist", fifth.toString());
+	
+			return mv;
 		
 	}
 	

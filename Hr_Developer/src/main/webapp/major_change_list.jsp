@@ -25,6 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="javascript/calendar/cal.js"></script>
 		<script type="text/javascript" src="javascript/comm/comm.js"></script>
 		<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
+		<script type="text/javascript" src="javascript/comm/list.js"></script>
 		<script type="text/javascript">
 		var firstlist = ${firstlist};//一级机构json数组
 		var secondlist = ${secondlist};//二级机构json数组
@@ -262,17 +263,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 		}
 			 	
 		 }
-		
-		
-		
+		 
  		</script>
- 		<script type="text/javascript" src="javascript/comm/list.js"></script>
   </head>
   
   <body>
   
   
-  <form  id="myform" name="humanfileForm" method="post" action="majorchange/formsubmit.do">
+  <form  id="myform" name="humanfileForm" method="get" action="majorchange/formsubmit.do">
 			<table width="100%">
 				<tr> 
 					<td>
@@ -359,5 +357,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	Calendar.setup ({inputField : "date_end", ifFormat : "%Y-%m-%d", showsTime : false, button : "date_end", singleClick : true, step : 1});
 	</script>
 </html>
-<script type="text/javascript" src="javascript/comm/list.js"></script>
+
 
