@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.sf.json.JSONArray;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,31 +64,31 @@ public class HumanRegisterController {
 			查询一级机构
 		 */
 		List<ConfigFileFirstKind> listconfigfirstkind = configfkfs.queryAllConfigFileFirstKind();
-		map.put("listconfigfirstkind",listconfigfirstkind);
+		JSONArray  first = JSONArray.fromObject(listconfigfirstkind);
 		
 		/**
 		 * 查询二级机构
 		 */
 		List<ConfigFileSecondKind> listconfigsecondkind = configfsks.queryAllConfigFileSecondKind();
-		map.put("listconfigsecondkind",listconfigsecondkind);
+		JSONArray  second = JSONArray.fromObject(listconfigsecondkind);
 		
 		/**
 		 * 查询三级机构
 		 */
 		List<ConfigFileThirdKind> listconfigthridkind = configftks.queryAllConfigFileThirdKind();
-		map.put("listconfigthridkind",listconfigthridkind);
+		JSONArray  third = JSONArray.fromObject(listconfigthridkind);
 		
 		/**
 		 * 查询职位分类
 		 */
 		List<ConfigMajor> listconfigmajor = configms.queryAllConfigMajor();
-		map.put("listconfigmajor",listconfigmajor);
+		JSONArray  zwfl = JSONArray.fromObject(listconfigmajor);
 		
 		/**
 		 * 查询职位
 		 */
 		List<ConfigMajorKind> listmajorkind = configmks.queryAllConfigMajorKind();
-		map.put("listmajorkind",listmajorkind);
+		JSONArray  zw = JSONArray.fromObject(listmajorkind);
 		
 		/**
 		 * 职称
@@ -158,7 +160,15 @@ public class HumanRegisterController {
 		
 		ModelAndView modelview = new ModelAndView();
 		modelview.addAllObjects(map);
+		
+		modelview.addObject("listconfigfirstkind", first.toString());
+		modelview.addObject("listconfigsecondkind", second.toString());
+		modelview.addObject("listconfigthridkind", third.toString());
+		modelview.addObject("listconfigmajor", zwfl.toString());
+		modelview.addObject("listmajorkind", zw.toString());
+		
 		modelview.setViewName("forward:/human_register.jsp");
+		
 		
 		System.out.println("进入了这个contralto。。。。。。");
 		return modelview;

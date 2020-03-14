@@ -17,4 +17,5 @@ public interface ConfigPublicCharMapper {
 	public boolean deleteConfigPublicCharBypbcId(int pbcId);
 
 	public int updateConfigPublicChar(ConfigPublicChar configpublicchar);
+
 }

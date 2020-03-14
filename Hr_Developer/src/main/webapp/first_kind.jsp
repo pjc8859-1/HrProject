@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<table width="100%" border="1" cellpadding=0 cellspacing=1
 				bordercolorlight=#848284 bordercolordark=#eeeeee
 				class="TABLE_STYLE1">
-				 <!-- 
+				
 				<tr id="show">
 					<td width="20%" class="TD_STYLE1">
 						I级机构编号
@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						删除
 					</td>
 				</tr>
-			   
+			   <!-- 
 					<tr>
 						<td class="TD_STYLE2">
 							01
@@ -85,7 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</td>
 					</tr>
 					
-				-->	
+					 -->
 					
 				
 			</table>
@@ -95,6 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </html>
 <script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 <script type="text/javascript" >
+var str;
 $(
     function(){
     $.ajax({
@@ -103,29 +104,9 @@ $(
 					//contentType:"application/json;charset=utf-8",
 					dataType:"json",
 					success:function(result){
-					
-						var str=`
-<tr id="show">
-					<td width="20%" class="TD_STYLE1">
-						I级机构编号
-					</td>
-					<td width="20%" class="TD_STYLE1">
-						I级机构名称
-					</td>
-					<td width="25%" class="TD_STYLE1">
-						薪酬发放责任人编号
-					</td>
-					<td width="25%" class="TD_STYLE1">
-						销售责任人编号
-					</td>
-					<td width="5%" class="TD_STYLE1">
-						变更
-					</td>
-					<td width="5%" class="TD_STYLE1">
-						删除
-					</td>
-				</tr>
-<tr>
+						for(var i=0;i<result.length;i++){
+						str=`
+						<tr>
 						<td class="TD_STYLE2">
 							01
 						</td>
@@ -145,11 +126,16 @@ $(
 							<a href="first_kind_delete.jsp">删除</a>
 						</td>
 					</tr>
-`;
-$(".TABLE_STYLE1").append($(str));
+						`;
+						$(".TABLE_STYLE1").append($(str));
+						}
 					}
 				});
     }
+)
+
+
+					
 )
 
 </script>

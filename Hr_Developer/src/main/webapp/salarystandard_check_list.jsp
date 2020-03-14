@@ -4,7 +4,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+ 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -82,10 +82,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<td>${ss.designer }</td>
 						<td>${ss.registTime}</td>
 						<td>&nbsp;${ss.salarySum }</td>
-						<td><a href="">复核</a></td>
+						<td><a href="queryfh.do?sstid=${ss.standardId}">复核</a></td>
 					</tr>
 					</c:forEach>
-			</table>
+			</table> 
 			<p>&nbsp;&nbsp;总数：${count }例 &nbsp;&nbsp;&nbsp;当前第 1 页  &nbsp;&nbsp;&nbsp;共 1 页  &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1> 页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18 border=0>
 		</form>
   </body>
