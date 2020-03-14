@@ -27,23 +27,242 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="javascript/calendar/cal.js"></script>
 		<script type="text/javascript" src="javascript/comm/comm.js"></script>
 		<script type="text/javascript" src="javascript/comm/select.js"></script>
+		<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
+		
 		<script type="text/javascript">
-		var subcat = new Array(2);
-subcat[0] = ["1", "01/软件公司","01/集团","01/集团/01/软件公司"];
-subcat[1] = ["2", "02/生物科技有限公司","01/集团","01/集团/02/生物科技有限公司"];
-var subcat1 = new Array(2);
-subcat1[0] = ["1", "01/外包组","01/集团/01/软件公司"];
-subcat1[1] = ["2", "01/药店","01/集团/02/生物科技有限公司"];
-var subcat2 = new Array(8);
-subcat2[0] = ["1", "01/区域经理", "01/销售"];
-subcat2[1] = ["2", "02/总经理", "01/销售"];
-subcat2[2] = ["3", "01/项目经理", "02/软件开发"];
-subcat2[3] = ["4", "02/程序员", "02/软件开发"];
-subcat2[4] = ["5", "01/人事经理", "03/人力资源"];
-subcat2[5] = ["6", "02/专员", "03/人力资源"];
-subcat2[6] = ["7", "01/主任", "04/生产部"];
-subcat2[7] = ["8", "02/技术工人", "04/生产部"];
-
+			var listconfigfirstkind = ${listconfigfirstkind};//一级机构json数组
+			var listconfigsecondkind = ${listconfigsecondkind};//二级机构json数组
+			var listconfigthridkind = ${listconfigthridkind};//三级机构json数组
+			var listconfigmajor = ${listconfigmajor};//职业分类
+			var listmajorkind = ${listmajorkind};//职业
+			var firstkindselect = null;
+			var secondkindselect = null;
+			var thirdkindselect = null;
+			var zyflselect = null;
+			var zyselect = null;
+		
+		$(function(){
+			aaa = 2;
+			showfirstkind();
+			showsecondkind();
+			showthirdkind();
+			showzyfl();
+			showzy();
+			savelist();
+			$("#selectfirst").change(function(){
+				
+				changelocation($("#selectfirst option:selected").html());
+				
+			});
+			$("#selectsecond").change(function(){
+				
+				changelocation1($("#selectsecond option:selected").html());
+				
+			});
+			$("#selectthrid").change(function(){
+						
+						//changelocation2($("#selectthrid option:selected").html());
+						
+			});
+			$("#selectmajorkind").change(function(){
+				
+				changelocation2($("#selectmajorkind option:selected").html());
+				
+			});
+			
+		})
+		function show(){
+			console.log(secondkindselect.children());
+		}
+		function savelist(){
+			firstkindselect = document.getElementById("selectfirst").outerHTML;
+			secondkindselect = document.getElementById("selectsecond").outerHTML;
+			thirdkindselect = document.getElementById("selectthrid").outerHTML;
+			zyflselect = document.getElementById("selectmajorkind").outerHTML;
+			zyselect =document.getElementById("selectmajor").outerHTML;
+			alert("savelist执行");
+			
+		}
+		function showfirstkind(firstneedshow)
+		{		
+			//得到所有select标签;
+			$("#selectfirst").empty();//清空一级机构
+			$("#selectfirst").append("<option value=''  selected='true'></option>");//添加一个空的选项
+			if(firstneedshow ==null || firstneedshow =="")
+			{
+				//如果没有传值,就显示全部
+				for(var i=0; i< listconfigfirstkind.length ;i++)
+					{	
+						var id = listconfigfirstkind[i].firstKindId;
+						var name = listconfigfirstkind[i].firstKindName;
+						
+						$("#selectfirst").append("<option value="+id+">"+name+"</option>");
+					}
+			}
+		}
+		function showsecondkind(secondneedshow){
+			$("#selectsecond").empty();//清空二级机构
+			$("#selectsecond").append("<option value='' selected='true'"+"></option>");
+			if(secondneedshow == null || secondneedshow =="")
+				{
+					
+					for(var i=0; i< listconfigsecondkind.length ;i++)
+					{	
+						var fid = listconfigsecondkind[i].firstKindId;
+						var fname = listconfigsecondkind[i].firstKindName;
+						var sid = listconfigsecondkind[i].secondKindId;
+						var sname = listconfigsecondkind[i].secondKindName;
+						
+						$("#selectsecond").append("<option value="+sid+">"+fname+"/"+sname+"</option>");
+					}
+				}else
+					{
+						//传了值
+						
+						$("#selectsecond").append(secondneedshow);
+					}
+			
+		}
+		function lista(){
+			var myform = document.getElementById("myform");
+			myform.submit();
+		}
+		function showthirdkind(thirdneedshow){
+			$("#selectthrid").empty();//清空三级机构
+			
+			if(thirdneedshow == null || thirdneedshow =="")
+			{
+				
+				for(var i=0; i< listconfigthridkind.length ;i++)
+				{	
+					var fid = listconfigthridkind[i].firstKindId;
+					var fname = listconfigthridkind[i].firstKindName;
+					var sid = listconfigthridkind[i].secondKindId;
+					var sname = listconfigthridkind[i].secondKindName;
+					var tid = listconfigthridkind[i].thirdKindId;
+					var tname = listconfigthridkind[i].thirdKindName;
+					
+					$("#selectthrid").append("<option value="+tid+">"+fname+"/"+sname+"/"+tname+"</option>");
+				}
+			}
+			else{
+				$("#selectthrid").append(thirdneedshow);
+			}
+			
+			
+			
+		}
+		
+		function showzyfl(fourthneedshow){
+			$("#selectmajorkind").empty();//清空职位分类
+				if(fourthneedshow == null || fourthneedshow =="")
+				{
+					for(var i=0; i< listconfigmajor.length ;i++)
+					{	
+						var fid = listconfigmajor[i].majorKindId;
+						var fname = listconfigmajor[i].majorKindName;
+						
+						$("#selectmajorkind").append("<option value="+fid+">"+fname+"</option>");
+					}
+				}
+				else{
+					$("#selectmajorkind").append(fourthneedshow);
+				}
+				
+		}
+		
+		function showzy(fifthneedshow){
+			$("#selectmajor").empty();//清空职位分类
+			if(fifthneedshow == null || fifthneedshow =="")
+			{
+				for(var i=0; i< listmajorkind.length ;i++)
+				{	
+					var fid = listmajorkind[i].majorKindId;
+					var fname = listmajorkind[i].majorKindName;
+					var sid = listmajorkind[i].majorId;
+					var sname =listmajorkind[i].majorName;
+					$("#selectmajor").append("<option value="+sid+">"+fname+"/"+sname+"</option>");
+				}
+			}
+			else{
+				$("#selectmajor").append(fifthneedshow);
+			}
+			
+		}
+		function changelocation(locationid)
+		{	
+		   var locid=locationid;
+			 	if(locid==""||locid==null){
+			 		//如果选中first为空的值，则secondshow出全部值
+			 		showsecondkind();
+			 		showthirdkind();
+			 	} 
+			 	else{
+			 			
+			 		//不是空就去比较第二个集合里面以选择的值开头的项展示出来
+			 		var list =``;
+			 		for(var j =0;j < $(secondkindselect).children().length; j++)
+			 			{	
+			 				if($($(secondkindselect).children()).eq(j).html().startsWith(locid)){
+			 					var  txt = ($(secondkindselect).children().eq(j))[0].outerHTML;
+			 					list+=txt;
+			 					}
+			 			}
+			 		showsecondkind(list);
+			 		}
+		}	
+		 function changelocation1(locationid)
+		  {
+			 var locid=locationid;
+			 	if(locid==""||locid==null){
+			 		//如果选中first为空的值，则secondshow出全部值
+			 		showthirdkind();
+			 	} 
+			 	else{
+			 			
+			 		//不是空就去比较第二个集合里面以选择的值开头的项展示出来
+			 		console.log("locid"+locid);
+			 		console.log( $(thirdkindselect).children());
+			 		var list =``;
+			 		for(var j =0 ;j < $(thirdkindselect).children().length; j++)
+			 			{	
+			 				if($($(thirdkindselect).children()).eq(j).html().startsWith(locid)){
+			 					var  txt = ($(thirdkindselect).children().eq(j))[0].outerHTML;
+			 					list+=txt;
+			 					}
+			 			}
+			 		showthirdkind(list);
+			 		}
+		 }
+		 
+		 
+		 function changelocation2(locationid)
+		  {
+			 var locid=locationid;
+			 console.log("locid"+locid);
+			 	if(locid==""||locid==null){
+			 		
+			 		//如果选中first为空的值，则secondshow出全部值
+			 		showzy();
+			 	} 
+			 	else{
+			 			
+			 		//不是空就去比较第二个集合里面以选择的值开头的项展示出来
+			 		var list =``;
+			 		console.log("length"+zyselect);
+			 		for(var j =0 ;j < $(zyselect).children().length; j++)
+			 			{	
+			 				if($($(zyselect).children()).eq(j).html().startsWith(locid)){
+			 					//var  txt = $(secondkindselect).children().eq(j).html();
+			 					var  txt = ($(zyselect).children().eq(j))[0].outerHTML;
+			 					list+=txt;
+			 					}
+			 			}
+			 		showzy(list);
+			 		}
+			 	
+		 }
+		 
  		</script>
   </head>
   
@@ -71,30 +290,23 @@ subcat2[7] = ["8", "02/技术工人", "04/生产部"];
 						I级机构
 					</td>
 					<td width="14%" class="TD_STYLE2">
-						<select name="item.firstKindName"
+						<select name="item.firstKindName" class="SELECT_STYLE1" id="selectfirst">
+						 <option value="请选择">--请选择--</option>
 						
-						 onchange="changelocation(document.forms[0].elements['item.secondKindName'],document.forms[0].elements['item.firstKindName'].options[document.forms[0].elements['item.firstKindName'].selectedIndex].value)" class="SELECT_STYLE1">
-						 <option value="">&nbsp;</option>
-							
-								<option value="01/集团">01/集团</option>
-							
-								<option value="03/02">03/02</option></select>
+						</select>    
 					</td>
 					<td width="11%" class="TD_STYLE1">
 						II级机构
 					</td>
 					<td width="14%" class="TD_STYLE2">
-						<select name="item.secondKindName" onchange="changelocation1(document.forms[0].elements['item.thirdKindName'],document.forms[0].elements['item.secondKindName'].options[document.forms[0].elements['item.secondKindName'].selectedIndex].value)" class="SELECT_STYLE1"><script language="javascript">
-								changelocation(document.forms[0].elements["item.secondKindName"],document.forms[0].elements["item.firstKindName"].value)
-    						</script></select>
+						<select name="item.secondKindName" class="SELECT_STYLE1" id="selectsecond">
+						</select>
 					</td>
 					<td width="11%" class="TD_STYLE1">
 						III级机构
 					</td>
 					<td class="TD_STYLE2" colspan="2">
-						<select name="item.thirdKindName" class="SELECT_STYLE1"><script language="javascript">
-							changelocation1(document.forms[0].elements["item.thirdKindName"],document.forms[0].elements["item.secondKindName"].value)
-							</script></select>
+						<select name="item.thirdKindName" class="SELECT_STYLE1" id="selectthrid"></select>
 					</td>
 					<td rowspan="5">
 						&nbsp;
@@ -105,30 +317,23 @@ subcat2[7] = ["8", "02/技术工人", "04/生产部"];
 						职位分类
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanMajorKindName" onchange="changelocation2(document.forms[0].elements['item.hunmaMajorName'],document.forms[0].elements['item.humanMajorKindName'].options[document.forms[0].elements['item.humanMajorKindName'].selectedIndex].value)" class="SELECT_STYLE1"><option value="">&nbsp;</option>
-							
-								<option value="01/销售">01/销售</option>
-							
-								<option value="02/软件开发">02/软件开发</option>
-							
-								<option value="03/人力资源">03/人力资源</option>
-							
-								<option value="04/生产部">04/生产部</option></select>
+						<select name="item.humanMajorKindName"   class="SELECT_STYLE1" id="selectmajorkind"> 
+						</select>
 					</td>
 					<td class="TD_STYLE1">
 						职位名称
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.hunmaMajorName" class="SELECT_STYLE1"><script language="javascript">
-							changelocation2(document.forms[0].elements["item.hunmaMajorName"],document.forms[0].elements["item.humanMajorKindName"].value)
-							</script></select>
+						<select name="item.hunmaMajorName" class="SELECT_STYLE1" id="selectmajor">
+						<option value="请选择">--请选择--</option>
+						</select>
 					</td>
 					<td class="TD_STYLE1">
 						职称
 					</td>
 					<td colspan="2" class="TD_STYLE2">
 						<select name="item.humanProDesignation" class="SELECT_STYLE1">
-							<option value="0">--请选择--</option>
+							<option value="请选择">--请选择--</option>
 							<c:forEach items="${listzc}" var="zc">
 								<option>${zc.attributeName}</option>
 							</c:forEach>
@@ -196,7 +401,7 @@ subcat2[7] = ["8", "02/技术工人", "04/生产部"];
 					</td>
 					<td class="TD_STYLE2">
 						<select name="item.humanNationality" class="SELECT_STYLE1">
-						<option value="请选择">请选择</option>
+						<option value="请选择">--请选择--</option>
 						<c:forEach items="${listgj }" var="gj">
 							<option>${gj.attributeName}</option>
 						</c:forEach>
@@ -219,7 +424,7 @@ subcat2[7] = ["8", "02/技术工人", "04/生产部"];
 					</td>
 					<td class="TD_STYLE2" width="14%">
 						<select name="item.humanRace" class="SELECT_STYLE1">
-						<option value="请选择">请选择</option>
+						<option value="请选择">--请选择--</option>
 						<c:forEach items="${listmz }" var="mz">
 							<option>${mz.attributeName}</option>
 						</c:forEach>
@@ -232,7 +437,7 @@ subcat2[7] = ["8", "02/技术工人", "04/生产部"];
 					</td>
 					<td class="TD_STYLE2">
 						<select name="item.humanReligion" class="SELECT_STYLE1">
-						<option value="请选择">请选择</option>
+						<option value="请选择">--请选择--</option>
 						<c:forEach items="${listzjxy }" var="zjxy">
 							<option>${zjxy.attributeName}</option>
 						</c:forEach>
@@ -243,7 +448,7 @@ subcat2[7] = ["8", "02/技术工人", "04/生产部"];
 					</td>
 					<td class="TD_STYLE2">
 						<select name="item.humanParty" class="SELECT_STYLE1">
-							<option value="请选择">请选择</option>
+							<option value="请选择">--请选择--</option>
 							<c:forEach items="${listzzmm }" var="zzmm">
 								<option>${zzmm.attributeName}</option>
 							</c:forEach>
@@ -274,7 +479,7 @@ subcat2[7] = ["8", "02/技术工人", "04/生产部"];
 					</td>
 					<td class="TD_STYLE2">
 						<select name="item.humanEducatedDegree" class="SELECT_STYLE1">
-							<option value="请选择">请选择</option>
+							<option value="请选择">--请选择--</option>
 							<c:forEach items="${listxl }" var="xl">
 								<option>${xl.attributeName}</option>
 							</c:forEach>
@@ -285,7 +490,7 @@ subcat2[7] = ["8", "02/技术工人", "04/生产部"];
 					</td>
 					<td class="TD_STYLE2">
 						<select name="item.humanEducatedYears" class="SELECT_STYLE1">
-							<option value="请选择">请选择</option>
+							<option value="请选择">--请选择--</option>
 							<c:forEach items="${listjynx }" var="jynx">
 								<option>${jynx.attributeName}</option>
 							</c:forEach>
@@ -296,7 +501,7 @@ subcat2[7] = ["8", "02/技术工人", "04/生产部"];
 					</td>
 					<td class="TD_STYLE2">
 						<select name="item.humanEducatedMajor" class="SELECT_STYLE1">
-							<option value="请选择">请选择</option>
+							<option value="请选择">--请选择--</option>
 							<c:forEach items="${listzy }" var="zy">
 								<option>${zy.attributeName}</option>
 							</c:forEach>
@@ -341,7 +546,7 @@ subcat2[7] = ["8", "02/技术工人", "04/生产部"];
 					</td>
 					<td class="TD_STYLE2">
 						<select name="item.humanSpeciality" class="SELECT_STYLE1">
-							<option value="请选择">请选择</option>
+							<option value="请选择">--请选择--</option>
 							<c:forEach items="${listtc }" var="tc">
 								<option>${tc.attributeName}</option>
 							</c:forEach>
@@ -352,7 +557,7 @@ subcat2[7] = ["8", "02/技术工人", "04/生产部"];
 					</td>
 					<td class="TD_STYLE2">
 						<select name="item.humanHobby" class="SELECT_STYLE1">
-							<option value="请选择">请选择</option>
+							<option value="请选择">--请选择--</option>
 							<c:forEach items="${listah }" var="ah">
 								<option>${ah.attributeName}</option>
 							</c:forEach>
