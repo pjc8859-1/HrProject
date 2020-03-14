@@ -22,6 +22,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="table.css" type="text/css">
 	<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 	<script type="text/javascript">
+		
+	
 		function bookin(ele){
 			//拿到人员档案id传输
 			var humanid = $(ele).parent().siblings(".humanid").html().trim();
