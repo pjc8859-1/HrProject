@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -47,7 +48,7 @@ subcat2[7] = ["8", "02/技术工人", "04/生产部"];
   </head>
   
   <body>
- <form name="humanfileForm" method="post" action="/hr/humanfile.do">
+ <form name="humanfileForm" method="post" action="hr/humanfile.do">
 			<table width="100%">
 				<tr>
 					<td>
@@ -70,7 +71,10 @@ subcat2[7] = ["8", "02/技术工人", "04/生产部"];
 						I级机构
 					</td>
 					<td width="14%" class="TD_STYLE2">
-						<select name="item.firstKindName" onchange="changelocation(document.forms[0].elements['item.secondKindName'],document.forms[0].elements['item.firstKindName'].options[document.forms[0].elements['item.firstKindName'].selectedIndex].value)" class="SELECT_STYLE1"><option value="">&nbsp;</option>
+						<select name="item.firstKindName"
+						
+						 onchange="changelocation(document.forms[0].elements['item.secondKindName'],document.forms[0].elements['item.firstKindName'].options[document.forms[0].elements['item.firstKindName'].selectedIndex].value)" class="SELECT_STYLE1">
+						 <option value="">&nbsp;</option>
 							
 								<option value="01/集团">01/集团</option>
 							
@@ -123,17 +127,12 @@ subcat2[7] = ["8", "02/技术工人", "04/生产部"];
 						职称
 					</td>
 					<td colspan="2" class="TD_STYLE2">
-						<select name="item.humanProDesignation" class="SELECT_STYLE1"><option value="工程师">工程师</option>
-							
-								<option value="经理">经理</option>
-							
-								<option value="助理">助理</option>
-							
-								<option value="教授">教授</option>
-							
-								<option value="讲师">讲师</option>
-							
-								<option value="技术支持">技术支持</option></select>
+						<select name="item.humanProDesignation" class="SELECT_STYLE1">
+							<option value="0">--请选择--</option>
+							<c:forEach items="${listzc}" var="zc">
+								<option>${zc.attributeName}</option>
+							</c:forEach>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -196,9 +195,12 @@ subcat2[7] = ["8", "02/技术工人", "04/生产部"];
 						国籍
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanNationality" class="SELECT_STYLE1"><option value="中国">中国</option>
-							
-								<option value="美国">美国</option></select>
+						<select name="item.humanNationality" class="SELECT_STYLE1">
+						<option value="请选择">请选择</option>
+						<c:forEach items="${listgj }" var="gj">
+							<option>${gj.attributeName}</option>
+						</c:forEach>
+						</select>
 					</td>
 					<td class="TD_STYLE1">
 						出生地
@@ -216,9 +218,12 @@ subcat2[7] = ["8", "02/技术工人", "04/生产部"];
 						民族
 					</td>
 					<td class="TD_STYLE2" width="14%">
-						<select name="item.humanRace" class="SELECT_STYLE1"><option value="汉族">汉族</option>
-							
-								<option value="回族">回族</option></select>
+						<select name="item.humanRace" class="SELECT_STYLE1">
+						<option value="请选择">请选择</option>
+						<c:forEach items="${listmz }" var="mz">
+							<option>${mz.attributeName}</option>
+						</c:forEach>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -226,17 +231,23 @@ subcat2[7] = ["8", "02/技术工人", "04/生产部"];
 						宗教信仰
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanReligion" class="SELECT_STYLE1"><option value="无">无</option>
-							
-								<option value="佛教">佛教</option></select>
+						<select name="item.humanReligion" class="SELECT_STYLE1">
+						<option value="请选择">请选择</option>
+						<c:forEach items="${listzjxy }" var="zjxy">
+							<option>${zjxy.attributeName}</option>
+						</c:forEach>
+						</select>
 					</td>
 					<td class="TD_STYLE1">
 						政治面貌
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanParty" class="SELECT_STYLE1"><option value="党员">党员</option>
-							
-								<option value="群众">群众</option></select>
+						<select name="item.humanParty" class="SELECT_STYLE1">
+							<option value="请选择">请选择</option>
+							<c:forEach items="${listzzmm }" var="zzmm">
+								<option>${zzmm.attributeName}</option>
+							</c:forEach>
+						</select>
 					</td>
 					<td class="TD_STYLE1">
 						身份证号码
@@ -262,25 +273,34 @@ subcat2[7] = ["8", "02/技术工人", "04/生产部"];
 						学历
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanEducatedDegree" class="SELECT_STYLE1"><option value="本科">本科</option>
-							
-								<option value="大专">大专</option></select>
+						<select name="item.humanEducatedDegree" class="SELECT_STYLE1">
+							<option value="请选择">请选择</option>
+							<c:forEach items="${listxl }" var="xl">
+								<option>${xl.attributeName}</option>
+							</c:forEach>
+						</select>
 					</td>
 					<td class="TD_STYLE1">
 						教育年限
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanEducatedYears" class="SELECT_STYLE1"><option value="12">12</option>
-							
-								<option value="16">16</option></select>
+						<select name="item.humanEducatedYears" class="SELECT_STYLE1">
+							<option value="请选择">请选择</option>
+							<c:forEach items="${listjynx }" var="jynx">
+								<option>${jynx.attributeName}</option>
+							</c:forEach>
+						</select>
 					</td>
 					<td class="TD_STYLE1">
 						学历专业
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanEducatedMajor" class="SELECT_STYLE1"><option value="生物工程">生物工程</option>
-							
-								<option value="计算机">计算机</option></select>
+						<select name="item.humanEducatedMajor" class="SELECT_STYLE1">
+							<option value="请选择">请选择</option>
+							<c:forEach items="${listzy }" var="zy">
+								<option>${zy.attributeName}</option>
+							</c:forEach>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -320,17 +340,23 @@ subcat2[7] = ["8", "02/技术工人", "04/生产部"];
 						特长
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanSpeciality" class="SELECT_STYLE1"><option value="数据库">数据库</option>
-							
-								<option value="java">java</option></select>
+						<select name="item.humanSpeciality" class="SELECT_STYLE1">
+							<option value="请选择">请选择</option>
+							<c:forEach items="${listtc }" var="tc">
+								<option>${tc.attributeName}</option>
+							</c:forEach>
+						</select>
 					</td>
 					<td class="TD_STYLE1">
 						爱好
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanHobby" class="SELECT_STYLE1"><option value="篮球">篮球</option>
-							
-								<option value="舞蹈">舞蹈</option></select>
+						<select name="item.humanHobby" class="SELECT_STYLE1">
+							<option value="请选择">请选择</option>
+							<c:forEach items="${listah }" var="ah">
+								<option>${ah.attributeName}</option>
+							</c:forEach>
+						</select>
 					</td>
 					<td class="TD_STYLE1">
 						&nbsp;
