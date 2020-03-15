@@ -416,7 +416,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td>
-									<a href="toqueryf.do" target="mainFrame">薪酬标准查询</a>
+									<a href="salarystandard_query_locate.jsp" target="mainFrame">薪酬标准查询</a>
 								</td>
 							</tr>
 							<tr>

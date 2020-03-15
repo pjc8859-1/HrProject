@@ -11,10 +11,8 @@ import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -55,6 +53,7 @@ public class MajorManagerManagerController {
 	private ConfigMajorKindService cmks = null;
 	@Autowired
 	private ConfigMajorService cms = null;
+
 	@Autowired
 	private HumanFileService hfs = null;
 	@Autowired
@@ -103,6 +102,7 @@ public class MajorManagerManagerController {
 		mv.setViewName("/major_change_list");
 		return mv;
 	}
+	
 	
 	/**
 	 * 处理查询人员页面传来的数据

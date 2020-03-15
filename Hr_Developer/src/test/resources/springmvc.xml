@@ -15,14 +15,20 @@
 						http://www.springframework.org/schema/context/spring-context-3.1.xsd
 						http://www.springframework.org/schema/mvc 
 						http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+						
+		<!-- 手动定义消息转换类型 -->
+	<bean id="jacksonMessageConverter"
+		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+	</bean>
+	
+	
 	
 	<!-- 配置找Controller的方式为注解(Mapping) -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
 	<!-- 配置找Controller中方法的方式为注解(Adapter) -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		<property name="webBindingInitializer">
-			<bean class="cn.storm.web.convert.TimeStampEditorIniter"/>
-		</property>
+	<!-- 注入消息转换器 -->
+	<property name="messageConverters" ref="jacksonMessageConverter"></property>
 	</bean>
 	
 	<!-- 配置解析的路径 -->

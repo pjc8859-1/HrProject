@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 import cn.storm.mapper.SalaryStandardMapper;
 import cn.storm.pojo.SalaryStandard;
 import cn.storm.service.SalaryStandardService;
+
 @Service
-public class SalaryStandardServiceImpl implements SalaryStandardService{
-@Autowired
-	SalaryStandardMapper mapper=null;
+public class SalaryStandardServiceImpl implements SalaryStandardService {
+	@Autowired
+	SalaryStandardMapper mapper = null;
+
 	@Override
 	public boolean addSalaryStandard(SalaryStandard salaryStandard) {
 		// TODO Auto-generated method stub
@@ -25,8 +27,7 @@ public class SalaryStandardServiceImpl implements SalaryStandardService{
 	}
 
 	@Override
-	public SalaryStandard querySalaryStandardBySsd(int ssd) {
-		// TODO Auto-generated method stub
+	public SalaryStandard querySalaryStandardBySsd(String ssd) {
 		return mapper.selectSalaryStandardBySd(ssd);
 	}
 
@@ -42,4 +43,8 @@ public class SalaryStandardServiceImpl implements SalaryStandardService{
 		return mapper.updateSalaryStandard(salaryStandard);
 	}
 
+	@Override
+	public void updatesa(SalaryStandard sast) {
+		mapper.updatesa(sast);
+	}
 }

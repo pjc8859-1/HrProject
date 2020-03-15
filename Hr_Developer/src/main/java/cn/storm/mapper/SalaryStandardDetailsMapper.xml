@@ -10,11 +10,17 @@
   <result property="itemId" column="item_id"/>
   <result property="itemName" column="item_name"/>
   <result property="salary" column="salary"/>
-  
-  
   </resultMap>
-  
-  
+    <resultMap type="cn.storm.dto.Xcxm" id="XcxmMapper">
+    <result column="item_name" property="name"/>
+    <result column="salary" property="money"/>
+    <result column="item_id" property="xcxmid"/>
+    <result column="standard_id" property="cstandardid"/>
+  </resultMap>
+	
+  <select id="querystid" parameterType="SalaryStandard" resultMap="XcxmMapper">
+  	select sd.standard_id,sd.item_id,sd.item_name,sd.salary from salary_standard_details sd join salary_standard ss on sd.standard_id = ss.standard_id where sd.standard_id=#{standardId}
+  </select>
   		<insert id="saveSalaryStandardDetails" parameterType="SalaryStandardDetails">
   			insert into salary_standard_details(sdt_id,standard_id,standard_name,item_id,item_name,salary) 
   			values (#{sdtId},#{standardId},#{standardName},#{itemId},#{itemName},#{salary})

@@ -51,7 +51,6 @@ public class SalaryStandardRegisterController {
 		// SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd  hh:mm:ss");
 		// String date1 = sdf.format(date);
 		Timestamp nousedate = new Timestamp(date.getTime());
-		System.out.println(nousedate);
 		SalaryStandard ss = new SalaryStandard();
 		ss.setStandardId(id);
 		ss.setStandardName(name);
@@ -105,11 +104,5 @@ public class SalaryStandardRegisterController {
 		ssds.addSalaryStandardDetails(ssd4);
 		ssds.addSalaryStandardDetails(ssd5);
 		return "redirect:/salarystandard_register_success.jsp";
-	}
-
-	public static void main(String[] args) {
-		Date date = new Date();
-		Timestamp nousedate = new Timestamp(date.getTime());
-		System.out.println(nousedate);
 	}
 }

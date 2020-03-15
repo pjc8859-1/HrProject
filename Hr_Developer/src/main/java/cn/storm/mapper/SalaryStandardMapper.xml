@@ -27,10 +27,10 @@
   			values (#{ssdId},#{standardId},#{standardName},#{designer},#{register},#{checker},#{changer},#{registTime},#{checkTime},#{changeTime},#{salarySum},#{checkStatus},#{changeStatus},#{checkComment},#{remark})
   		</insert>
   		<select id="selectAllSalaryStandard" resultMap="mySalaryStandard">
-  			select * from salary_standard
+  			select * from salary_standard where check_status = 0 
   		</select>
-  		<select id="selectSalaryStandardBySd" parameterType="_int" resultMap="mySalaryStandard">
-  			select * from salary_standard where ssd_id = #{id}
+  		<select id="selectSalaryStandardBySd" parameterType="String" resultMap="mySalaryStandard">
+  			select * from salary_standard where standard_id = #{id}
   		</select>
   		<delete id="deleteSalaryStandardBySd" parameterType="_int">
   			delete from salary_standard where  ssd_id = #{id}
