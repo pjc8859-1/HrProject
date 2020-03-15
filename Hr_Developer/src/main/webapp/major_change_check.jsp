@@ -76,11 +76,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<td align="right">
 						通过:<input name="checkStatus" type="radio" checked="checked" value="1"/>
-						不通过:<input name="checkStatus" type="radio" value="0"/>
+						不通过:<input name="checkStatus" type="radio" value="3"/>
 					
 						<input type="button" value="提交" class="BUTTON_STYLE1"
 							onclick="dosubmit()" />
-						<input type="reset" value="清除" class="BUTTON_STYLE1">
+						<input type="reset" value="返回" class="BUTTON_STYLE1" onclick="history.go(-1)">
 					</td>
 				</tr>
 			</table>

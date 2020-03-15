@@ -359,7 +359,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						${humanfile.humanId}
 					</td>
 				</tr>
-				
+				<input type="hidden" name="checkStatus" value="0"/>
 				<tr>
 					<td width="12.5%" class="TD_STYLE1">
 						原I级机构

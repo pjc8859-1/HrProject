@@ -222,7 +222,9 @@ public class MajorManagerManagerController {
 			@RequestParam String newMajorName,//
 			@RequestParam String register,//
 			@RequestParam String registTime,
-			@RequestParam String reason
+			@RequestParam String reason,
+			@RequestParam Short checkStatus
+			
 			){
 		ModelAndView mav = new ModelAndView();
 //		System.out.println(humanId+"=="+firstKindId+"=="+firstKindName+"=="+secondKindId+"=="+secondKindName+"=="+
@@ -260,6 +262,7 @@ public class MajorManagerManagerController {
 		mc.setRegistTime(converttime(registTime));
 		mc.setRegister(register);
 		mc.setChangeReason(reason);
+		mc.setCheckStatus(checkStatus);
 		boolean result= mcs.addMajorChange(mc);
 		if(result)
 		{	
@@ -361,7 +364,6 @@ public class MajorManagerManagerController {
 			if(mg.getCheckStatus() == 1)
 			{
 				result = mcs.modifyMajorChange(mg);
-				
 				//改变原来的人的数据
 				HumanFile old_hf = hfs.queryHumanFileByHufid(Integer.parseInt(mg.getHumanId()));
 				old_hf.setFirstKindId(mg.getNewFirstKindId());
@@ -385,33 +387,29 @@ public class MajorManagerManagerController {
 				//保存
 				hfs.modifyHumanFile(old_hf);
 				//转跳到审核成功页面
+				mav.addObject("checkresultmessage", "<center><h2>审核<bold>成功!!</bold><h2></center>");
+				mav.setViewName("forward:/submit_major_change_success.jsp");
 				
-				
-				
-				
+				return mav;
 			}else
 			{
 				//查出humanid所代表的人
 				HumanFile old_hf = hfs.queryHumanFileByHufid(Integer.parseInt(mg.getHumanId()));
-				short sh = 3;
-				old_hf.setCheckStatus(sh);
+				old_hf.setCheckStatus(mg.getCheckStatus());
+				System.out.println(old_hf.getCheckStatus());
 				//更新
+				mg.setCheckStatus(mg.getCheckStatus());//此处因改为3
+				mcs.modifyMajorChange(mg);
 				hfs.modifyHumanFile(old_hf);
-				
-				//
-				
-			}
-			
-			if(result >0 )
-			{
-				//说明更改成功
-				
+				//转跳到审核成功页面
+				mav.addObject("checkresultmessage", "<center><h2>审核<bold>未成功</bold>!!<h2></center>");
+				mav.setViewName("forward:/submit_major_change_success.jsp");
 				
 			}
 			
 			
 			
-			mav.setViewName("forward:/major_change_check.jsp");
+			
 		return mav;
 		
 	}

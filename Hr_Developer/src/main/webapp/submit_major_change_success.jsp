@@ -6,6 +6,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
+	<!--submit_major_change_success.jsp  -->
   <head>
     <base href="<%=basePath%>">
     
@@ -38,9 +39,11 @@ function locate()
     <font color="#0000CC">您正在做的业务是：人力资源 -- 调动管理 -- 提交成功</font></td>
   </tr>
   <tr>
-    <td width="49%"> 提交调动信息成功，请返回！</td>
+    <td width="49%"> ${checkresultmessage}</td>
     <td width="51%" align="right">
-    <input type="button" value="返回" class="BUTTON_STYLE1" onclick="history.go(-2)"></td></tr>
+    <input type="button" value="返回" class="BUTTON_STYLE1" onclick="history.go(-2)">
+    </td>
+  </tr>
   </table>
 
 </form>

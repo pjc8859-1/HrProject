@@ -119,8 +119,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<c:if test="${ change.checkStatus == 0}">
 						未审核
 					</c:if>
-					<c:if test="${ change.checkStatus != 0}">
-						已审核
+					<c:if test="${ change.checkStatus == 1}">
+						已通过
+					</c:if>
+					<c:if test="${ change.checkStatus == 3}">
+						未通过
 					</c:if>
 				</td>
 				<td width="7%" class="TD_STYLE2">

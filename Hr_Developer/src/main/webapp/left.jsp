@@ -511,15 +511,7 @@ a{ CURSOR: hand}
 								</td>
 								
 							</tr>
-							<tr>
-								<td>
-									<img src="images/jt0.gif">
-								</td>
-								<td>
-									<a href="testclass/selectAll.do" target="mainFrame">测试Controller</a>
-								</td>
-							</tr>
-							<tr>
+							<!-- <tr>
 								<td>
 									<img src="images/jt0.gif">
 								</td>
@@ -527,6 +519,7 @@ a{ CURSOR: hand}
 									<a href="">调动查询</a>
 								</td>
 							</tr>
+						 -->
 						</table> </span>
 				</td>
 			</tr>
