@@ -70,6 +70,6 @@
 	  			new_salary_sum =#{ newSalarySum} ,change_reason =#{ changeReason} ,check_reason =#{ checkReason} ,check_status =#{ checkStatus}	 ,register = #{ register},
 	  			checker =#{ checker} ,regist_time = #{ registTime},check_time =#{ checkTime}
   			
-  			where  mch_id = #{mch_id}
+  			where  mch_id = #{mchId}
   		</update>
   </mapper>
