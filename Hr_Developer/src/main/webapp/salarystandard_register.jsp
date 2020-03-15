@@ -25,6 +25,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<title>无标题文档</title>
 		<script type="text/javascript">
 			function tijiao(){
+				if(document.getElementById("standardId").value==""){
+					alert("薪酬编号不能为空！");
+					return ;
+				}
+				if(document.getElementById("standardName").value==""){
+					alert("薪酬名称不能为空！");
+					return ;
+				}
+				if(document.getElementById("designer").value==""){
+					alert("制定人不能为空！");
+					return ;
+				}
+				for(var i=1;i<=6;i++){
+			 		var salary=document.getElementById("salary"+i).value;
+			 		if(salary==""){
+			 			document.getElementById("salary"+i).value=0.0;
+			 		}
+				}
 				document.forms[0].submit();
 			}
 			
@@ -70,13 +88,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						薪酬标准编号
 					</td>
 					<td width="168" class="TD_STYLE2">
-						<input type="text" name="item.standardId" class="INPUT_STYLE2">
+						<input type="text" name="item.standardId" class="INPUT_STYLE2" id="standardId">
 					</td>
 					<td width="83" class="TD_STYLE1">
 						薪酬标准名称
 					</td>
 					<td width="171" class="TD_STYLE2">
-						<input type="text" name="item.standardName" value="" class="INPUT_STYLE2">
+						<input type="text" name="item.standardName" value="" class="INPUT_STYLE2" id="standardName">
 					</td>
 					<td width="170" class="TD_STYLE1">
 						薪酬总额
@@ -96,7 +114,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						制定人
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.designer" value="" class="INPUT_STYLE2">
+						<input type="text" name="item.designer" value="" class="INPUT_STYLE2" id="designer">
 					</td>
 					<td class="TD_STYLE1">
 						登记人
