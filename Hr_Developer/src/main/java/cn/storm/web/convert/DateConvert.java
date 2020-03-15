@@ -15,7 +15,7 @@ public class DateConvert  implements Converter<String, Timestamp>{
 	@Override
 	public Timestamp convert(String arg0) {
 		Date d = new Date(arg0.replace("-", "/")+" 00:00:00");
-		long time = d.getTime();
+		long time = d.getTime();//long
 		System.out.println("进入了转换");
 		return new Timestamp(time);
 	}

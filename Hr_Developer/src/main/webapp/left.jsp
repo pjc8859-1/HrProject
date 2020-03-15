@@ -507,7 +507,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td>
-									<a href="">调动审核</a>
+									<a href="majorchange/showcheckpage.do" target="mainFrame">调动审核</a>
 								</td>
 								
 							</tr>

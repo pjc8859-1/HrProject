@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import net.sf.json.JSONArray;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +62,10 @@ public class MajorManagerManagerController {
 	private SalaryStandardService sss = null;
 	@Autowired
 	private MajorChangeService mcs = null;
+	
+	
+	
+	
 	@RequestMapping("/majorchange.do")
 	/**
 	 * 展示查询可变更职位的职员的controller
@@ -114,8 +120,8 @@ public class MajorManagerManagerController {
 			@RequestParam("item.thirdKindId") String thirdkindid,
 			@RequestParam("item.humanMajorKindName") String majorkindid,
 			@RequestParam("item.hunmaMajorName") String majorid,
-			@RequestParam("item.str_startTime") Date begintime,
-			@RequestParam("item.str_endTime") Date endtime
+			@RequestParam("item.str_startTime") String begintime,
+			@RequestParam("item.str_endTime") String endtime
 			){
 		MajorManagerDto mmd = new MajorManagerDto();
 		mmd.setFirstkindid(firstkindid);
@@ -123,8 +129,8 @@ public class MajorManagerManagerController {
 		mmd.setThirdkindid(thirdkindid);
 		mmd.setMajorkindid(majorkindid);
 		mmd.setMajorid(majorid);
-		mmd.setBegintime(begintime);
-		mmd.setEndtime(endtime);
+		mmd.setBegintime(converttime(begintime));
+		mmd.setEndtime(converttime(endtime));
 		List<HumanFile> humanfilelist = hfs.queryByCondition(mmd);
 //		for (HumanFile humanFile : list) {
 //			System.out.println(humanFile.getHumanName());
@@ -215,7 +221,7 @@ public class MajorManagerManagerController {
 			@RequestParam String newMajorId,//
 			@RequestParam String newMajorName,//
 			@RequestParam String register,//
-			@RequestParam Date registTime,
+			@RequestParam String registTime,
 			@RequestParam String reason
 			){
 		ModelAndView mav = new ModelAndView();
@@ -251,7 +257,8 @@ public class MajorManagerManagerController {
 		mc.setNewMajorId(newMajorId);
 		mc.setNewMajorName(newMajorName);
 		//mc.setCheckTime(checkTime);//没有检查时间
-		mc.setRegistTime(new Timestamp(registTime.getTime()));
+		mc.setRegistTime(converttime(registTime));
+		mc.setRegister(register);
 		mc.setChangeReason(reason);
 		boolean result= mcs.addMajorChange(mc);
 		if(result)
@@ -264,12 +271,165 @@ public class MajorManagerManagerController {
 		return null;
 		
 	}
-	
-	@InitBinder 
-	 public void initBinder(WebDataBinder binder) {  
-	 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
-	 dateFormat.setLenient(false);  
-	 binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));   //true:允许输入空值，false:不能为空值 
-	 
+	//===========================调动审核===============================================
+	/**
+	 * 请求这个controller将展示所有审核信息在页面上 to  major_change_show_check.jsp
+	 * @return
+	 */
+	@RequestMapping("/showcheckpage.do")
+	public ModelAndView showcheckpage(){
+		List<MajorChange> changes = mcs.queryAllMajorChange();
+//		JSONArray  data1 = JSONArray.fromObject(changes);
+		ModelAndView mav = new ModelAndView();
+		//存入mav
+		mav.addObject("changes", changes);
+		mav.setViewName("forward:/major_change_show_check.jsp");
+		return mav;
 	}
+	/**
+	 * 查询majorchange的详情通过mchId
+	 * @param mchId
+	 * @return
+	 */
+	
+	@RequestMapping("/majorchangecheck.do")
+	public ModelAndView majorChangeCheck(@RequestParam int mchId )
+	{
+		MajorChange mc = mcs.querySMajorChangeMchId(mchId);
+		
+		System.out.println(mc);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("majorchange",mc );
+		mav.addObject("mchId", mchId);
+		mav.setViewName("forward:/major_change_check.jsp");
+		return mav;
+		
+	}
+	
+	
+	/**
+	 * 接收调动审核详情页面的数据,并update相应的majorchange
+	 * 如果radio的value是1就update,是0就只update状态属性
+	 * @return
+	 */
+	@RequestMapping("/submitcheck.do")
+	public ModelAndView majorChangeCheck1(MajorChange  mg,
+			@RequestParam String registTime1,
+			@RequestParam String checkTime1
+//			@RequestParam Short mchId,//
+//			@RequestParam String humanId,//
+//			@RequestParam String firstKindId,//
+//			@RequestParam String firstKindName,//
+//			@RequestParam String secondKindId,//
+//			@RequestParam String secondKindName,
+//			@RequestParam String thirdKindId,
+//			@RequestParam String thirdKindName,
+//			@RequestParam String humanName,
+//			@RequestParam String majorKindId,
+//			@RequestParam String humanMajorKindName,
+//			@RequestParam String humanMajorId,
+//			@RequestParam String humanMajorName,
+//			@RequestParam String salaryStandardId,
+//			@RequestParam String salaryStandardName,
+//			@RequestParam String newFirstKindId,
+//			@RequestParam String newFirstKindName,
+//			@RequestParam String newSecondKindId,
+//			@RequestParam String newSecondKindName,
+//			@RequestParam String newThirdKindId,
+//			@RequestParam String newThirdKindName,
+//			@RequestParam String newMajorKindId,
+//			@RequestParam String newMajorKindName,
+//			@RequestParam String newMajorId,
+//			@RequestParam String newMajorName,
+//			@RequestParam String register,
+//			@RequestParam Date registTime,
+//			@RequestParam Date checkTime,
+//			@RequestParam String reason,
+//			@RequestParam Short reasoncheckStatus,
+//			@RequestParam String checkReason,
+//			@RequestParam String checker
+			
+			){
+		
+//			MajorChange mg = new MajorChange();
+			ModelAndView mav = new ModelAndView();
+			mg.setRegistTime(converttime(registTime1));
+			mg.setCheckTime(converttime(checkTime1));
+			System.out.println(mg);
+			int result=-1 ;
+//			checkStatus:0:未审核,1:审核通过,3,审核未通过
+			if(mg.getCheckStatus() == 1)
+			{
+				result = mcs.modifyMajorChange(mg);
+				
+				//改变原来的人的数据
+				HumanFile old_hf = hfs.queryHumanFileByHufid(Integer.parseInt(mg.getHumanId()));
+				old_hf.setFirstKindId(mg.getNewFirstKindId());
+				old_hf.setFirstKindName(mg.getNewFirstKindName());
+				old_hf.setSecondKindId(mg.getNewSecondKindId());
+				old_hf.setSecondKindName(mg.getNewSecondKindName());
+				old_hf.setThirdKindId(mg.getNewThirdKindId());
+				old_hf.setThirdKindName(mg.getNewThirdKindName());
+				
+				//职位分类
+				old_hf.setHumanMajorKindId(mg.getNewMajorKindId());
+				old_hf.setHumanMajorKindName(mg.getNewMajorKindName());
+				
+				//职位
+				old_hf.setHumanMajorId(mg.getNewMajorId());
+				old_hf.setHunmaMajorName(mg.getNewMajorKindName());
+				
+				//更改人
+				old_hf.setChanger(mg.getRegister());
+				
+				//保存
+				hfs.modifyHumanFile(old_hf);
+				//转跳到审核成功页面
+				
+				
+				
+				
+			}else
+			{
+				//查出humanid所代表的人
+				HumanFile old_hf = hfs.queryHumanFileByHufid(Integer.parseInt(mg.getHumanId()));
+				short sh = 3;
+				old_hf.setCheckStatus(sh);
+				//更新
+				hfs.modifyHumanFile(old_hf);
+				
+				//
+				
+			}
+			
+			if(result >0 )
+			{
+				//说明更改成功
+				
+				
+			}
+			
+			
+			
+			mav.setViewName("forward:/major_change_check.jsp");
+		return mav;
+		
+	}
+	
+	public Timestamp converttime(String arg0) {
+		Date d = new Date(arg0.replace("-", "/")+" 00:00:00");
+		long time = d.getTime();//long
+		return new Timestamp(time);
+	}
+	
+	
+	
+	
+//	@InitBinder 
+//	 public void initBinder(WebDataBinder binder) {  
+//	 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
+//	 dateFormat.setLenient(false);  
+//	 binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));   //true:允许输入空值，false:不能为空值 
+//	 
+//	}
 }
