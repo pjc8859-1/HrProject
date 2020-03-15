@@ -1,15 +1,27 @@
 package cn.storm.web.controller.myg_controller;
 
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import net.sf.json.JSONArray;
+
+
+
+
+
+
+
+
+
+import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import cn.storm.service.UsersService;
 @Controller
@@ -17,19 +29,28 @@ public class UserLoginController {
 	@Autowired
 	private UsersService user = null;
 	@RequestMapping("/users.do")
-	public ModelAndView login(@RequestParam("item.UName") String uname,@RequestParam("item.UPassword") String upass ,HttpSession session)
+	public void login(HttpSession session,HttpServletRequest request,HttpServletResponse response) throws Exception
 	{
-		ModelAndView model = new ModelAndView();
-		System.out.println("到登录里面来了");
-		boolean flag = user.queryUserByNameAndPass(uname, upass);
-		JSONArray yesOrno = JSONArray.fromObject(flag);
-		model.addObject("yesOrno", yesOrno);
-		if(flag=true)
+		String uname = request.getParameter("uname");
+		String upass = request.getParameter("upass");
+		boolean flag=user.queryUserByNameAndPass(uname, upass);
+		if(flag==true)
 		{
-			session.setAttribute("unam", uname);
-			model.setViewName("forward:/index.jsp");
+			session.setAttribute("username", uname);
+			String flgs = "{flag:"+"true"+"}";
+			JSONObject flg = JSONObject.fromObject(flgs);
+			PrintWriter out = response.getWriter();
+			out.print(flg.toString());
+			System.out.println("成功！");
 		}
-		return model;
+		else if(flag==false)
+		{
+			String fl = "{flag:"+"false"+"}";
+			JSONObject fls = JSONObject.fromObject(fl);
+			PrintWriter out = response.getWriter();
+			out.print(fls.toString());
+			System.out.println("失败");
+		}
 	}
 	
 }

@@ -2,6 +2,8 @@ package cn.storm.pojo;
 
 import java.sql.Timestamp;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * MajorChangeId entity. @author MyEclipse Persistence Tools
  */

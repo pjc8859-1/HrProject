@@ -8,6 +8,7 @@
   		<result property="attributeKind" column="attribute_kind"/>
   		<result property="attributeName" column="attribute_name"/>
   </resultMap>
+
   
   		<insert id="saveConfigPublicChar" parameterType="ConfigPublicChar" >
   			insert into config_public_char(pbc_id,attribute_kind,attribute_name)

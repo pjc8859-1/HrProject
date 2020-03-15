@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<META content="Microsoft FrontPage 4.0" name=GENERATOR>
 		<link href="table.css" rel="stylesheet" />
 		<script type="text/javascript" src="javascript/comm/comm.js"></script>
-
+		<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 		<title>欢迎进入伯乐HR系统</title>
 
 		<STYLE>
@@ -79,22 +79,40 @@ BR {
 }
 </STYLE>
 <script type="text/javascript">
-
- function login()
- {
- 	var yesOrno = ${yesOrno};
+	$(function() {
+			$("#loginbutton").click(function(){
+				tologin();
+		});
+		$("html").die().live("keydown", function(event) {
+		if (event.keyCode == 13) {
+			tologin();
+		}
+	});
+	});
 	
-	if (yesOrno == "true" ) {
-		alert("恭喜登录成功！")
-		return true;
-	}
-	if(yesOrno == "false")
+	function tologin()
 	{
-		alert("登录失败！")
-		return false;
-	}
-	
-}
+		var loginName = $("#myloginname").val();
+		var loginPass = $("#myloginpass").val();
+		
+		 $.ajax({
+					type:"post",
+					url:"users.do",
+					data:{"uname":loginName,"upass":loginPass},
+					success:function(result){
+					var json = JSON.parse(result);
+					if(json.flag==true)
+					{
+						alert("成功！");
+						window.location.href="/Hr_Developer/index.jsp";
+					}
+					else if(json.flag==false)
+					{
+						alert("失败！");
+					}
+				}
+   			 });
+   	}
 </script>
   </head>
   
@@ -112,7 +130,7 @@ BR {
 			</tr>
 		</table>
 
-		<form method="post" action="users.do" >
+		<form method="post" action="users.do" id="myformlogin" >
 			<table align="center" border="1">
 				<tr>
 					<td>
@@ -130,7 +148,7 @@ BR {
 										</font>
 								</td>
 								<td>
-									<input type="text" name="item.UName" id="myloginname" value="" style="width:150px">
+									<input type="text" name="item.UName" id="myloginname" style="width:150px">
 								</td>
 							</tr>
 							<tr class="TR_STYLE1">
@@ -146,7 +164,7 @@ BR {
 							<tr class="TR_STYLE1">
 								<td colspan="2" class="TD_STYLE3" align="center">
 									<p style="line-height: 200%">
-										<input type="button" value="登录"  class="BUTTON_STYLE1" onclick="javascript:login();">
+										<input type="button" value="登录"  class="BUTTON_STYLE1" id="loginbutton">
 										<input type="button" class="BUTTON_STYLE1" value="注册"
 											onClick="window.location.href='register.jsp'">
 										<input type="button" class="BUTTON_STYLE1" value="修改密码"

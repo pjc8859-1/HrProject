@@ -19,8 +19,8 @@
   		<select id="selectAllUsers" resultMap="myUsers">
   			select * from users
   		</select>
-  		<select id="selectUserByNameAndPass">
-  			select * from users where u_name=#{UName} and u_password=#{UPssword}
+  		<select id="selectUserByNameAndPass" resultType="java.lang.Boolean">
+  			select * from users where u_name=#{UName} and u_password=#{UPassword}
   		</select>
   		<select id="selectUsersByUid" parameterType="_int" resultMap="myUsers">
   			select * from users where u_id = #{id}

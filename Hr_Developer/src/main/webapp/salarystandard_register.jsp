@@ -27,7 +27,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			function tijiao(){
 				document.forms[0].submit();
 			}
+			
+			function countMoney() {
+				var sum=0;
+			 	for(var i=1;i<=6;i++){
+			 		var salary=document.getElementById("salary"+i).value;
+			 		if(salary==""){
+			 		salary="0.00";
+			 		}
+			 		sum=Number(sum)+Number(salary);
+			 		 
+			 }
+			 document.getElementById("sumSalary").value=sum;
+			}
+				
 		</script>
+		
+		
   </head>
   
   <body>
@@ -66,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						薪酬总额
 					</td>
 					<td width="138" class="TD_STYLE2">
-						<input type="text" name="item.salaryCount" readonly="readonly" value="" class="INPUT_STYLE2">
+						<input type="text" name="item.salaryCount"  id="sumSalary"  readonly="readonly" value="" class="INPUT_STYLE2">
 					</td>
 					<td width="103" class="TD_STYLE1">
 						&nbsp;
@@ -137,11 +153,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td colspan="3">
 						出差补助
-						<input type="hidden" name="list[0].itemName" value="出差补助">
+						<input type="hidden" name="list[0].itemName" value="出差补助"> 
 					</td>
 					<td>
-						<input type="text" name="list[0].salary" value="0.0" class="INPUT_STYLE2" 
-						onkeyup="if(/^\d+(\.)?(\d+)?$/.test(this.value)==false){alert('请输入数字！');this.value='';}">
+						<input type="text" name="list[0].salary" value="0.0" class="INPUT_STYLE2" id="salary1" 
+						onkeyup="if(/^\d+(\.)?(\d+)?$/.test(this.value)==false){alert('请输入数字！');this.value='';}countMoney()">
 					</td>
 					<td colspan="3">
 						&nbsp;
@@ -158,8 +174,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<input type="hidden" name="list[1].itemName" value="交通补贴">
 					</td>
 					<td>
-						<input type="text" name="list[1].salary" value="0.0" class="INPUT_STYLE2"
-						onkeyup="if(/^\d+(\.)?(\d+)?$/.test(this.value)==false){alert('请输入数字！');this.value='';}">
+						<input type="text" name="list[1].salary" value="0.0" class="INPUT_STYLE2" id="salary2"
+						onkeyup="if(/^\d+(\.)?(\d+)?$/.test(this.value)==false){alert('请输入数字！');this.value='';}countMoney()">
 					</td>
 					<td colspan="3">
 						&nbsp;
@@ -176,8 +192,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<input type="hidden" name="list[2].itemName" value="住房补贴">
 					</td>
 					<td>
-						<input type="text" name="list[2].salary" value="0.0" class="INPUT_STYLE2"
-						onkeyup="if(/^\d+(\.)?(\d+)?$/.test(this.value)==false){alert('请输入数字！');this.value='';}">
+						<input type="text" name="list[2].salary" value="0.0" class="INPUT_STYLE2" id="salary3"
+						onkeyup="if(/^\d+(\.)?(\d+)?$/.test(this.value)==false){alert('请输入数字！');this.value='';}countMoney()">
 					</td>
 					<td colspan="3">
 						&nbsp;
@@ -194,8 +210,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<input type="hidden" name="list[3].itemName" value="基本工资">
 					</td>
 					<td>
-						<input type="text" name="list[3].salary" value="0.0" class="INPUT_STYLE2"
-						onkeyup="if(/^\d+(\.)?(\d+)?$/.test(this.value)==false){alert('请输入数字！');this.value='';}">
+						<input type="text" name="list[3].salary" value="0.0" class="INPUT_STYLE2" id="salary4"
+						onkeyup="if(/^\d+(\.)?(\d+)?$/.test(this.value)==false){alert('请输入数字！');this.value='';}countMoney()">
 					</td>
 					<td colspan="3">
 						&nbsp;
@@ -212,8 +228,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<input type="hidden" name="list[4].itemName" value="年终奖">
 					</td>
 					<td>
-						<input type="text" name="list[4].salary" value="0.0" class="INPUT_STYLE2"
-						onkeyup="if(/^\d+(\.)?(\d+)?$/.test(this.value)==false){alert('请输入数字！');this.value='';}">
+						<input type="text" name="list[4].salary" value="0.0" class="INPUT_STYLE2" id="salary5"
+						onkeyup="if(/^\d+(\.)?(\d+)?$/.test(this.value)==false){alert('请输入数字！');this.value='';}countMoney()">
 					</td>
 					<td colspan="3">
 						&nbsp;
@@ -230,8 +246,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<input type="hidden" name="list[5].itemName" value="误餐补助">
 					</td>
 					<td>
-						<input type="text" name="list[5].salary" value="0.0" class="INPUT_STYLE2"
-						onkeyup="if(/^\d+(\.)?(\d+)?$/.test(this.value)==false){alert('请输入数字！');this.value='';}">
+						<input type="text" name="list[5].salary" value="0.0" class="INPUT_STYLE2" id="salary6"
+						onkeyup="if(/^\d+(\.)?(\d+)?$/.test(this.value)==false){alert('请输入数字！');this.value='';}countMoney()">
 					</td>
 					<td colspan="3">
 						&nbsp;
