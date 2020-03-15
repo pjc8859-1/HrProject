@@ -19,7 +19,11 @@
 	<!-- 配置找Controller的方式为注解(Mapping) -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
 	<!-- 配置找Controller中方法的方式为注解(Adapter) -->
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="webBindingInitializer">
+			<bean class="cn.storm.web.convert.TimeStampEditorIniter"/>
+		</property>
+	</bean>
 	
 	<!-- 配置解析的路径 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -531,99 +531,12 @@ a{ CURSOR: hand}
 				</td>
 			</tr>
 
-			<!-- 培训管理 -->
-			<tr>
-				<td class="td_style">
-					<a onClick="noneORblock(training)"><img src="images/plus22.gif"
-							onClick="plusORminus(training,training_pic)" id="training_pic">
-					</a>
-				</td>
-				<td class="td_style">
-					培训管理
-				</td>
-			</tr>
-			<tr>
-				<td width="2%"></td>
-				<td width="98%">
-					<span style="DISPLAY:none;" id="training">
-						<table width="100%" border="0">
-							<tr>
-								<td width="2%">
-									<img src="images/jt0.gif">
-								</td>
-								<td width="98%">
-									<a href="training.do?operate=list" target="mainFrame">培训登记</a>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<img src="images/jt0.gif">
-								</td>
-								<td>
-									培训登记复核
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<img src="images/jt0.gif">
-								</td>
-								<td>
-									培训查询
-								</td>
-							</tr>
-						</table> </span>
-				</td>
-			</tr>
-
-			<!-- 激励管理 -->
-			<tr>
-				<td>
-					<a onClick="noneORblock(bonus)"><img src="images/plus22.gif"
-							onClick="plusORminus(bonus,bonus_pic)" id="bonus_pic">
-					</a>
-				</td>
-				<td>
-					激励管理
-				</td>
-			</tr>
-			<tr>
-				<td width="2%"></td>
-				<td width="98%">
-					<span style="DISPLAY:none;" id="bonus">
-						<table width="100%" border="0">
-							<tr>
-								<td width="2%">
-									<img src="images/jt0.gif">
-								</td>
-								<td width="98%">
-									激励登记
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<img src="images/jt0.gif">
-								</td>
-								<td>
-									激励登记复核
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<img src="images/jt0.gif">
-								</td>
-								<td>
-									激励查询
-								</td>
-							</tr>
-						</table> </span>
-				</td>
-			</tr>
-
+			
 			<!-- 招聘管理 -->
 			<tr>
 				<td width="2%">
 					<a onClick="noneORblock(engage)"><img src="images/plus22.gif"
-							onClick="plusORminus(engage,engage_pic)" id="engage_pic">
+						onClick="plusORminus(engage,engage_pic)" id="engage_pic">
 					</a>
 				</td>
 				<td>
