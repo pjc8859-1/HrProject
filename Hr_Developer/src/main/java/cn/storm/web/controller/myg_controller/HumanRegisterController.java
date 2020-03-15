@@ -81,14 +81,14 @@ public class HumanRegisterController {
 		/**
 		 * 查询职位分类
 		 */
-		List<ConfigMajor> listconfigmajor = configms.queryAllConfigMajor();
-		JSONArray  zwfl = JSONArray.fromObject(listconfigmajor);
+		List<ConfigMajorKind> listmajorkind = configmks.queryAllConfigMajorKind();
+		JSONArray   zwfl = JSONArray.fromObject(listmajorkind);
 		
 		/**
 		 * 查询职位
 		 */
-		List<ConfigMajorKind> listmajorkind = configmks.queryAllConfigMajorKind();
-		JSONArray  zw = JSONArray.fromObject(listmajorkind);
+		List<ConfigMajor> listconfigmajor = configms.queryAllConfigMajor();
+		JSONArray  zw = JSONArray.fromObject(listconfigmajor);
 		
 		/**
 		 * 职称
@@ -164,8 +164,8 @@ public class HumanRegisterController {
 		modelview.addObject("listconfigfirstkind", first.toString());
 		modelview.addObject("listconfigsecondkind", second.toString());
 		modelview.addObject("listconfigthridkind", third.toString());
-		modelview.addObject("listconfigmajor", zwfl.toString());
-		modelview.addObject("listmajorkind", zw.toString());
+		modelview.addObject("listmajorkind", zwfl.toString());
+		modelview.addObject("listconfigmajor", zw.toString());
 		
 		modelview.setViewName("forward:/human_register.jsp");
 		

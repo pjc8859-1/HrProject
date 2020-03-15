@@ -42,4 +42,9 @@ private UsersMapper usersmapper=null;
 		return usersmapper.updateUsers(users);
 	}
 
+	@Override
+	public boolean queryUserByNameAndPass(String uname, String upass) {
+		return usersmapper.selectUserByNameAndPass(uname, upass);
+	}
+
 }

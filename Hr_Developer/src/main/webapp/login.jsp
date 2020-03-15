@@ -78,52 +78,22 @@ BR {
 	color: #006633;
 }
 </STYLE>
-		<script type="text/javascript">
+<script type="text/javascript">
+
  function login()
  {
- 	if(infchk())
- 	{
- 		//document.forms[0].action = document.forms[0].action + "?operate=doLogin";
-		document.forms[0].action = "index.jsp";
- 		document.forms[0].submit();
- 	}
- }
- function toEditPwd()
- {
- 	//document.forms[0].action = document.forms[0].action + "?operate=toEditPwd";
-	document.forms[0].action = "change_password.jsp";
- 	document.forms[0].submit();
- }
- function infchk()
-{
-	var name = document.forms[0].elements["item.UName"];
-	var pwd = document.forms[0].elements["item.UPassword"];
-	var num = document.forms[0].elements["validatorNum"];
-	if(name.value == "")
-	{
-		alert ("请填写用户名");
-		name.focus();
-		return false;
-	}
-	else if(pwd.value == "")
-	{
-		alert ("请填写密码");
-		pwd.focus();
-		return false;
-	}
-	else if(num.value == "")
-	{
-		alert ("请填写验证码");
-		num.focus();
-		return false;
-	}
-	else
+ 	var yesOrno = ${yesOrno};
+	
+	if (yesOrno == "true" ) {
+		alert("恭喜登录成功！")
 		return true;
-}
- function show(o){
- //重载验证码
- var timenow = new Date().getTime();
- o.src="random.jsp?d="+timenow;
+	}
+	if(yesOrno == "false")
+	{
+		alert("登录失败！")
+		return false;
+	}
+	
 }
 </script>
   </head>
@@ -156,46 +126,11 @@ BR {
 							<tr class="TR_STYLE1">
 								<td class="TD_STYLE3">
 									<p style="line-height: 200%">
-										<font color="#30358D"><b>Language:</b>
-										</font>
-								</td>
-								<td>
-									<select class="SELECT_STYLE1" name="language"
-										style="width:150px" onChange="send(this)">
-										<option value="中文">
-											中文
-										</option>
-										<option value="English">
-											English
-										</option>
-									</select>
-								</td>
-							</tr>
-							<tr class="TR_STYLE1">
-								<td class="TD_STYLE3">
-									<p style="line-height: 200%">
-										<font color="#30358D"><b>界面风格:</b>
-										</font>
-								</td>
-								<td>
-									<select class="SELECT_STYLE1" name="ui" style="width:150px">
-										<option value="0">
-											经典型
-										</option>
-										<option value="1" selected>
-											时尚型
-										</option>
-									</select>
-								</td>
-							</tr>
-							<tr class="TR_STYLE1">
-								<td class="TD_STYLE3">
-									<p style="line-height: 200%">
 										<font color="#30358D"><b>用户名:</b>
 										</font>
 								</td>
 								<td>
-									<input type="text" name="item.UName" value="" style="width:150px">
+									<input type="text" name="item.UName" id="myloginname" value="" style="width:150px">
 								</td>
 							</tr>
 							<tr class="TR_STYLE1">
@@ -205,33 +140,7 @@ BR {
 										</font>
 								</td>
 								<td>
-									<input type="password" name="item.UPassword" value="" style="width:150px">
-								</td>
-							</tr>
-							<tr class="TR_STYLE1">
-								<td class="TD_STYLE3">
-									<p style="line-height: 200%">
-										<font color="#30358D"><b>验证码:</b>
-										</font>
-								</td>
-								<td>
-									<input type="text" name="validatorNum" value="" style="width:70px">
-									<img src="random.jsp" id="random" hspace="5" align="middle">
-								</td>
-							</tr>
-							<tr class="TR_STYLE1">
-								<td class="TD_STYLE3">
-									<p style="line-height: 200%">
-										<font color="#30358D"><b>&nbsp;</b>
-										</font>
-								</td>
-								<td align="right">
-									<a href="javascript:show(document.getElementById('random'))">验证码看不清</a>
-								</td>
-							</tr>
-							<tr class="TR_STYLE1">
-								<td colspan="2" class="TD_STYLE3">
-									&nbsp;
+									<input type="password" name="item.UPassword" id="myloginpass" value="" style="width:150px">
 								</td>
 							</tr>
 							<tr class="TR_STYLE1">
@@ -261,7 +170,7 @@ BR {
 						<td height="10%" align="center">
 							<p class="testonline.style1">
 								<br>
-								<font color="#FFFFFF" size="2.5"><b>北京Better伯乐科技有限公司&nbsp;版权所有
+								<font color="#FFFFFF" size="2.5"><b>北京Better伯乐科技有限公司&nbsp;版权所有</b>
 						</td>
 					</tr>
 				</table>
