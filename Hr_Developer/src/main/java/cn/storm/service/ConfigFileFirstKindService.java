@@ -14,4 +14,6 @@ public interface ConfigFileFirstKindService {
 	public boolean removeConfigFileFirstKindByffkId(int ffkId);
 
 	public int modifyConfigFileFirstKind(ConfigFileFirstKind configFileFirstKind);
+	
+	public List<ConfigFileFirstKind> queryConfigFileFirstKindByName(String name);
 }
