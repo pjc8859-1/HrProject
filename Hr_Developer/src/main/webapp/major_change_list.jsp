@@ -7,6 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
+<!-- major_change_list.jsp -->
   <head>
     <base href="<%=basePath%>">
     <title>列出所有状态为“正常”的员工</title>

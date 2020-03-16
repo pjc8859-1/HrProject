@@ -7,6 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
+	<!-- major_change.jsp -->
   <head>
 	<base href="<%=basePath%>"> 
     
@@ -48,27 +49,69 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		savelist();
 		$("#select1").change(function(){
+			var  changetagouterhtml= getlastletter( $("#select1 option:selected").html());
+			var  changetaghtml= $($("#select1 option:selected")[0]).val();
+			//修改hidden输入框的值
+			$("#newFirstKindId").val(changetaghtml);
+			$("#newFirstKindName").val(changetagouterhtml);
+			changelocation(changetaghtml);
 			
-			changelocation($("#select1 option:selected").html());
+			
 			
 		});
 		$("#select2").change(function(){
-			
+			var changetagouterhtml =getlastletter(  $("#select2 option:selected").html());
+			var changetaghtml = $($("#select2 option:selected")[0]).val();
+			//修改hidden输入框的值
+			$("#newSecondKindId").val(changetaghtml);
+			$("#newSecondKindName").val(changetagouterhtml);
 			changelocation1($("#select2 option:selected").html());
 			
 		});
 		$("#select3").change(function(){
-					
+			var  changetagouterhtml= getlastletter( $("#select3 option:selected").html());
+			var changetaghtml = $($("#select3 option:selected")[0]).val();
+			//修改hidden输入框的值
+			
+			$("#newThirdKindId").val(changetaghtml);
+			$("#newThirdKindName").val(changetagouterhtml);
 					//changelocation2($("#select3 option:selected").html());
 					
 		});
 		$("#select4").change(function(){
+			var  changetagouterhtml=getlastletter( $("#select4 option:selected").html());
+			var changetaghtml = $($("#select4 option:selected")[0]).val();
+			//修改hidden输入框的值
 			
+			$("#newMajorKindId").val(changetaghtml);
+			$("#newMajorKindName").val(changetagouterhtml);
 			changelocation2($("#select4 option:selected").html());
 			
 		});
+		$("#select5").change(function(){
+			var  changetagouterhtml=getlastletter( $("#select5 option:selected").html());
+			var changetaghtml = $($("#select5 option:selected")[0]).val();
+			//修改hidden输入框的值
+			$("#newMajorId").val(changetaghtml);
+			$("#newMajorName").val(changetagouterhtml);
+					//changelocation2($("#select3 option:selected").html());
+					
+		});
+		$("#select6").change(function(){
+			var  changetagouterhtml=getlastletter( $("#select6 option:selected").html());
+			var changetaghtml = $($("#select6 option:selected")[0]).val();
+			//修改hidden输入框的值
+			$("#newSalaryStandardId").val(changetaghtml);
+			$("#newSalaryStandardName").val(changetagouterhtml);
+		});
+		
 		
 	})
+	function getlastletter(word){
+		var index = word .lastIndexOf("\/");  
+		word  = word .substring(index + 1, word .length);
+		return word;
+	}
 	function show(){
 		console.log(secondselect.children());
 	}
@@ -78,7 +121,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		thirdselect = document.getElementById("select3").outerHTML;
 		fourthselect = document.getElementById("select4").outerHTML;
 		fifthselect =document.getElementById("select5").outerHTML;
-		alert("savelist执行");
 		
 	}
 	function showfirst(firstneedshow)
@@ -127,7 +169,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	function showthird(thirdneedshow){
 		$("#select3").empty();//清空三级机构
-	//	$("#select3").append("<option value='' selected='true' >&nbsp;</option>");
+		$("#select3").append("<option value='' selected='true' >&nbsp;</option>");
 		
 		if(thirdneedshow == null || thirdneedshow =="")
 		{
@@ -154,6 +196,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	function showfourth(fourthneedshow){
 		$("#select4").empty();//清空职位分类
+		$("#select4").append("<option value='' selected='true' ></option>");
 			if(fourthneedshow == null || fourthneedshow =="")
 			{
 				for(var i=0; i< fourthlist.length ;i++)
@@ -172,6 +215,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	function showfifth(fifthneedshow){
 		$("#select5").empty();//清空职位分类
+		$("#select5").append("<option value='' selected='true' ></option>");
 		if(fifthneedshow == null || fifthneedshow =="")
 		{
 			for(var i=0; i< fifthlist.length ;i++)
@@ -221,8 +265,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 	else{
 		 			
 		 		//不是空就去比较第二个集合里面以选择的值开头的项展示出来
-		 		console.log("locid"+locid);
-		 		console.log( $(thirdselect).children());
 		 		var list =``;
 		 		for(var j =0 ;j < $(thirdselect).children().length; j++)
 		 			{	
@@ -240,7 +282,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 function changelocation2(locationid)
 	  {
 		 var locid=locationid;
-		 console.log("locid"+locid);
 		 	if(locid==""||locid==null){
 		 		
 		 		//如果选中first为空的值，则secondshow出全部值
@@ -250,7 +291,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 			
 		 		//不是空就去比较第二个集合里面以选择的值开头的项展示出来
 		 		var list =``;
-		 		console.log("length"+fifthselect);
 		 		for(var j =0 ;j < $(fifthselect).children().length; j++)
 		 			{	
 		 				if($($(fifthselect).children()).eq(j).html().startsWith(locid)){
@@ -263,11 +303,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 		}
 		 	
 	 }
+	 function dosubmit(){
+		 
+		 //提交之前处理时间格式
+		 
+		 
+		//var thisTime = $("#datetime").val();
+		//thisTime = thisTime.replace(/-/g, '/');
+		//var time = new Date(thisTime);
+		//time = time.getTime();
+		document.getElementById("mainform").submit(); 
+	 }
+	 function formatDate(date) {
+		  var date = new Date(date);
+		  var YY = date.getFullYear() + '-';
+		  var MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+		  var DD = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
+		  var hh = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+		  var mm = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+		  var ss = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+		  return YY + MM + DD;
+		}
 	</script>
   </head>
   
   <body>
-  	<form method="post" action="configfilefirstkind.do">
+  	<form method="post" action="majorchange/commitmajorchange.do" id="mainform">
 			<table width="100%">
 				<tr>
 					<td>
@@ -278,7 +339,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<td align="right">
 						<input type="button" value="提交" class="BUTTON_STYLE1"
-							onclick="window.location.href='first_kind_register.jsp'" />
+							onclick="dosubmit()" />
 						<input type="reset" value="清除" class="BUTTON_STYLE1">
 					</td>
 				</tr>
@@ -294,33 +355,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						档案编号
 					</td>
 					<td width="87.5%" class="TD_STYLE2" colspan="7">
+						<input type="hidden" name="humanId" value="${humanfile.humanId}"/>
 						${humanfile.humanId}
 					</td>
 				</tr>
-				
+				<input type="hidden" name="checkStatus" value="0"/>
 				<tr>
 					<td width="12.5%" class="TD_STYLE1">
 						原I级机构
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
+					<input type="hidden" name="firstKindId" value="${humanfile.firstKindId}"/>
+					<input type="hidden" name="firstKindName" value="${humanfile.firstKindName}"/>
 						${humanfile.firstKindName}
 					</td>
 					<td width="12.5%" class="TD_STYLE1">
 						原II级机构
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
+					<input type="hidden" name="secondKindId" value="${humanfile.secondKindId}"/>
+					<input type="hidden" name="secondKindName" value="${humanfile.secondKindName}"/>
 						${humanfile.secondKindName }
 					</td>
 					<td width="12.5%" class="TD_STYLE1">
 						原III级机构
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
+					<input type="hidden" name="thirdKindId" value="${humanfile.thirdKindId}"/>
+					<input type="hidden" name="thirdKindName" value="${humanfile.thirdKindName}"/>
 						${ humanfile.thirdKindName }
 					</td>
 					<td width="12.5%" class="TD_STYLE1">
+					
 						姓名
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
+					<input type="hidden" name="humanName" value="${humanfile.humanName}"/>
 						${humanfile.humanName}
 					</td>
 				</tr>
@@ -333,18 +403,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						原职位分类
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
+						<input type="hidden" name="majorKindId" value="${humanfile.humanMajorKindId}"/>
+						<input type="hidden" name="humanMajorKindName" value="${humanfile.humanMajorKindName}"/>
 						${humanfile.humanMajorKindName }
 					</td>
 					<td width="12.5%" class="TD_STYLE1">
 						原职位名称
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
+						<input type="hidden" name="humanMajorId" value="${humanfile.humanMajorId}"/>
+						<input type="hidden" name="humanMajorName" value="${humanfile.hunmaMajorName}"/>
 						${humanfile.hunmaMajorName }
 					</td>
 					<td width="12.5%" class="TD_STYLE1">
 						原薪酬标准
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
+						<input type="hidden" name="salaryStandardId" value="${humanfile.salaryStandardId}"/>
+						<input type="hidden" name="salaryStandardName" value="${humanfile.salaryStandardName}"/>
 						${humanfile.salaryStandardName}
 					</td>
 					<td width="12.5%" class="TD_STYLE1">
@@ -362,14 +438,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						新I级机构
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
-							<select class="select1" id="select1">
-						  
+							<input  id="newFirstKindId" type="hidden" name="newFirstKindId" value=""/>
+							<input id="newFirstKindName" type="hidden" name="newFirstKindName" value=""/>
+							<select class="select1" id="select1" >
+						  	
 						</select>
 					</td>
 					<td width="12.5%" class="TD_STYLE1">
 						新II级机构
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
+					<input  id="newSecondKindId" type="hidden" name="newSecondKindId" value=""/>
+					<input id="newSecondKindName" type="hidden" name="newSecondKindName" value=""/>
 							<select class="select1" id="select2">
 						  
 						</select>	
@@ -378,6 +458,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						新III级机构
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
+					<input  id="newThirdKindId" type="hidden" name="newThirdKindId" value=""/>
+					<input id="newThirdKindName" type="hidden" name="newThirdKindName" value=""/>
 							<select class="select1" id="select3">
 						  
 						</select>
@@ -389,13 +471,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 					</td>
 				</tr>
-				
+	<!-- ================================================================================ -->			
 				<!-- 4 -->
 				<tr>
 					<td width="12.5%" class="TD_STYLE1">
+					
 					新职位分类
 				</td>
 					<td width="12.5%" class="TD_STYLE2">
+					<input  id="newMajorKindId" type="hidden" name="newMajorKindId" value=""/>
+					<input id="newMajorKindName" type="hidden" name="newMajorKindName" value=""/>
 						<select class="select1" id="select4">
 						  
 						</select>
@@ -404,7 +489,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						新职位名称
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
-							<select class="select1" id="select5">
+					<input  id="newMajorId" type="hidden" name="newMajorId" value=""/>
+					<input  id="newMajorName" type="hidden" name="newMajorName" value=""/>
+						<select class="select1" id="select5">
 						  
 						</select>
 					</td>
@@ -412,8 +499,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						新薪酬标准
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
-						<select class="select1">
-						<option value ="volvo">Volvo</option>
+						<input  id="newSalaryStandardId" type="hidden" name="newSalaryStandardId" value=""/>
+						<input  id="newSalaryStandardName" type="hidden" name="newSalaryStandardName" value=""/>
+						<select class="select1" id="select6">
+						<option value="" ></option>
+						<c:forEach items="${ salarystandardlist}" var="ss">
+							<option value="${ss.standardId }">${ss.standardName }</option>
+						</c:forEach>
 						</select>	
 					</td>
 					<td width="12.5%" class="TD_STYLE1">
@@ -430,15 +522,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						登记人
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
-						<input class="select1" name="register"/>
+						<input class="select1" name="register" />
 					</td>
 					<td width="12.5%" class="TD_STYLE1">
 						登记时间
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
-						<div id="datetime">
+						<input id="datetime" type="text" class="select1" name="registTime" value="" readonly="readonly"/>
     					<script>
-        				setInterval("document.getElementById('datetime').innerHTML=new Date().toLocaleString();", 1000);
+        				setInterval("document.getElementById('datetime').value=formatDate(new Date().getTime());", 1000);
    						</script>
 					</td>
 					<td width="12.5%" class="TD_STYLE1">
@@ -462,7 +554,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</tr>
 				
 			</table>
-			<p>&nbsp;&nbsp;总数：1例 &nbsp;&nbsp;&nbsp;当前第 1 页  &nbsp;&nbsp;&nbsp;共 1 页  &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1> 页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18 border=0>
 		</form>
   	
   </body>
