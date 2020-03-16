@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'first_kind_delete.jsp' starting page</title>
+    <title>My JSP 'first_kind_change.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -25,20 +25,90 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <form method="post" action="configfilefirstkind.do">
+  	<form name="configfilefirstkindForm" method="post" action="fisrtkinddelectsuccess">
 <table width="100%" >
   <tr>
-    <td colspan="2"> 
+    <td> 
     <font color="#0000CC">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--I级机构设置 </font></td>
   </tr>
   <tr>
-    <td width="49%"> 您确认删除 
-    01 / 集团 这条记录吗? </td>
-    <td width="51%" align="right"><input type="button" value="删除" class="BUTTON_STYLE1" onclick="javascript:doDel('2')">
+    <td align="right"><input type="button" value="删除" class="BUTTON_STYLE1" onclick="toDelet()">
       <input type="button" value="返回" class="BUTTON_STYLE1" onclick="history.back();"></td>
   </tr>
   </table>
-
+  
+<table width="100%"  border="1" cellpadding=0 cellspacing=1 bordercolorlight=#848284 bordercolordark=#eeeeee class="TABLE_STYLE1">
+ <!--  
+  <tr>
+    <td width="19%" class="TD_STYLE1">I级机构编号</td>
+    <td width="81%" class="TD_STYLE2"><input type="text" name="item.firstKindId" value="01" readonly="readonly" class="INPUT_STYLE1"></td>
+  </tr>
+  <tr>
+    <td class="TD_STYLE1">I级机构名称</td>
+    <td class="TD_STYLE2"><input type="text" name="item.firstKindName" value="集团" readonly="readonly" class="INPUT_STYLE1"></td>
+  </tr>
+  <tr>
+    <td class="TD_STYLE1">薪酬发放责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）</td>
+    <td class="TD_STYLE2"><textarea name="item.firstKindSalaryId" rows="4" class="TEXTAREA_STYLE1">1</textarea></td>
+  </tr>
+  <tr>
+    <td class="TD_STYLE1">销售责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）</td>
+    <td class="TD_STYLE2"><textarea name="item.firstKindSaleId" rows="4" class="TEXTAREA_STYLE1">1</textarea></td>
+  </tr>
+  -->
+</table>
 </form>
   </body>
+  <% request.setAttribute("id", request.getParameter("id")); %>
 </html>
+<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
+<script type="text/javascript">
+
+
+var id=${id};
+console.log(id);
+$(
+    function(){
+    $.ajax({
+					type:"post",
+					url:"changefirstkind.do",
+				   	dataType:"json",
+					contentType:"application/html;charset=utf-8",
+					data:""+id,
+					success:function(result){
+					var str=`
+					               <tr>
+    <td width="19%" class="TD_STYLE1">I级机构编号</td>
+    <td width="81%" class="TD_STYLE2"><input type="text" name="item.firstKindId" value="\${result.firstKindId}" readonly="readonly" class="INPUT_STYLE1"></td>
+  </tr>
+  <tr>
+    <td class="TD_STYLE1">I级机构名称</td>
+    <td class="TD_STYLE2"><input type="text" name="item.firstKindName" value="\${result.firstKindName}" readonly="readonly" class="INPUT_STYLE1"></td>
+  </tr>
+  <tr>
+    <td class="TD_STYLE1">薪酬发放责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）</td>
+    <td class="TD_STYLE2"><textarea name="item.firstKindSalaryId" rows="4" readonly="readonly"  class="TEXTAREA_STYLE1">\${result.firstKindSalaryId}</textarea></td>
+  </tr>
+  <tr>
+    <td class="TD_STYLE1">销售责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）</td>
+    <td class="TD_STYLE2"><textarea name="item.firstKindSaleId" rows="4" readonly="readonly" class="TEXTAREA_STYLE1">\${result.firstKindSaleId}</textarea></td>
+  </tr>
+					`;
+					$(".TABLE_STYLE1").append(str);
+					
+					
+					}
+					
+				});
+    }
+    
+     
+)
+
+function toDelet(){
+console.log("aaaa");
+document.forms[0].action = document.forms[0].action+"/"+id+".do";
+document.forms[0].submit();
+}
+
+</script>

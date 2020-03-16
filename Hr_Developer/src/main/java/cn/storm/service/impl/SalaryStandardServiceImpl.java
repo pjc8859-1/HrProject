@@ -1,6 +1,7 @@
 package cn.storm.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,5 +47,10 @@ public class SalaryStandardServiceImpl implements SalaryStandardService {
 	@Override
 	public void updatesa(SalaryStandard sast) {
 		mapper.updatesa(sast);
+	}
+
+	@Override
+	public List<SalaryStandard> queryBySalary(Map map) {
+		return mapper.queryBySalary(map);
 	}
 }

@@ -35,9 +35,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <tr>
     <td width="49%"> 更改成功，请返回。</td>
     <td width="51%" align="right">
-    <input type="button" value="返回" class="BUTTON_STYLE1" onclick="javascript:reBack();"></td></tr>
+    <input type="button" value="返回" class="BUTTON_STYLE1" onclick="javascript:back();"></td></tr>
   </table>
 
 </form>
   </body>
 </html>
+<script type="text/javascript">
+function back(){
+console.log("aaaaa");
+window.location.href ="first_kind.jsp";
+
+}
+</script>

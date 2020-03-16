@@ -1,6 +1,7 @@
 package cn.storm.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
@@ -22,4 +23,6 @@ public interface SalaryStandardMapper {
 	@Update("update Salary_standard set standard_name=#{standardName},checker=#{checker},check_comment=#{checkComment},"
 			+ "check_status=1,check_time=#{checkTime},salary_sum=#{salarySum} where standard_id=#{standardId}")
 	public void updatesa(SalaryStandard sast);
+
+	public List<SalaryStandard> queryBySalary(Map map);
 }

@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<META content="Microsoft FrontPage 4.0" name=GENERATOR>
 		<link href="table.css" rel="stylesheet" />
 		<script type="text/javascript" src="javascript/comm/comm.js"></script>
-
+		<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 		<title>欢迎进入伯乐HR系统</title>
 
 		<STYLE>
@@ -78,53 +78,41 @@ BR {
 	color: #006633;
 }
 </STYLE>
-		<script type="text/javascript">
- function login()
- {
- 	if(infchk())
- 	{
- 		//document.forms[0].action = document.forms[0].action + "?operate=doLogin";
-		document.forms[0].action = "index.jsp";
- 		document.forms[0].submit();
- 	}
- }
- function toEditPwd()
- {
- 	//document.forms[0].action = document.forms[0].action + "?operate=toEditPwd";
-	document.forms[0].action = "change_password.jsp";
- 	document.forms[0].submit();
- }
- function infchk()
-{
-	var name = document.forms[0].elements["item.UName"];
-	var pwd = document.forms[0].elements["item.UPassword"];
-	var num = document.forms[0].elements["validatorNum"];
-	if(name.value == "")
+<script type="text/javascript">
+	$(function() {
+			$("#loginbutton").click(function(){
+				tologin();
+		});
+		$("html").die().live("keydown", function(event) {
+		if (event.keyCode == 13) {
+			tologin();
+		}
+	});
+	});
+	
+	function tologin()
 	{
-		alert ("请填写用户名");
-		name.focus();
-		return false;
-	}
-	else if(pwd.value == "")
-	{
-		alert ("请填写密码");
-		pwd.focus();
-		return false;
-	}
-	else if(num.value == "")
-	{
-		alert ("请填写验证码");
-		num.focus();
-		return false;
-	}
-	else
-		return true;
-}
- function show(o){
- //重载验证码
- var timenow = new Date().getTime();
- o.src="random.jsp?d="+timenow;
-}
+		var loginName = $("#myloginname").val();
+		var loginPass = $("#myloginpass").val();
+		
+		 $.ajax({
+					type:"post",
+					url:"users.do",
+					data:{"uname":loginName,"upass":loginPass},
+					success:function(result){
+					var json = JSON.parse(result);
+					if(json.flag==true)
+					{
+						alert("成功！");
+						window.location.href="/Hr_Developer/index.jsp";
+					}
+					else if(json.flag==false)
+					{
+						alert("失败！");
+					}
+				}
+   			 });
+   	}
 </script>
   </head>
   
@@ -142,7 +130,7 @@ BR {
 			</tr>
 		</table>
 
-		<form method="post" action="users.do" >
+		<form method="post" action="users.do" id="myformlogin" >
 			<table align="center" border="1">
 				<tr>
 					<td>
@@ -156,46 +144,11 @@ BR {
 							<tr class="TR_STYLE1">
 								<td class="TD_STYLE3">
 									<p style="line-height: 200%">
-										<font color="#30358D"><b>Language:</b>
-										</font>
-								</td>
-								<td>
-									<select class="SELECT_STYLE1" name="language"
-										style="width:150px" onChange="send(this)">
-										<option value="中文">
-											中文
-										</option>
-										<option value="English">
-											English
-										</option>
-									</select>
-								</td>
-							</tr>
-							<tr class="TR_STYLE1">
-								<td class="TD_STYLE3">
-									<p style="line-height: 200%">
-										<font color="#30358D"><b>界面风格:</b>
-										</font>
-								</td>
-								<td>
-									<select class="SELECT_STYLE1" name="ui" style="width:150px">
-										<option value="0">
-											经典型
-										</option>
-										<option value="1" selected>
-											时尚型
-										</option>
-									</select>
-								</td>
-							</tr>
-							<tr class="TR_STYLE1">
-								<td class="TD_STYLE3">
-									<p style="line-height: 200%">
 										<font color="#30358D"><b>用户名:</b>
 										</font>
 								</td>
 								<td>
-									<input type="text" name="item.UName" value="" style="width:150px">
+									<input type="text" name="item.UName" id="myloginname" style="width:150px">
 								</td>
 							</tr>
 							<tr class="TR_STYLE1">
@@ -205,39 +158,13 @@ BR {
 										</font>
 								</td>
 								<td>
-									<input type="password" name="item.UPassword" value="" style="width:150px">
-								</td>
-							</tr>
-							<tr class="TR_STYLE1">
-								<td class="TD_STYLE3">
-									<p style="line-height: 200%">
-										<font color="#30358D"><b>验证码:</b>
-										</font>
-								</td>
-								<td>
-									<input type="text" name="validatorNum" value="" style="width:70px">
-									<img src="random.jsp" id="random" hspace="5" align="middle">
-								</td>
-							</tr>
-							<tr class="TR_STYLE1">
-								<td class="TD_STYLE3">
-									<p style="line-height: 200%">
-										<font color="#30358D"><b>&nbsp;</b>
-										</font>
-								</td>
-								<td align="right">
-									<a href="javascript:show(document.getElementById('random'))">验证码看不清</a>
-								</td>
-							</tr>
-							<tr class="TR_STYLE1">
-								<td colspan="2" class="TD_STYLE3">
-									&nbsp;
+									<input type="password" name="item.UPassword" id="myloginpass" value="" style="width:150px">
 								</td>
 							</tr>
 							<tr class="TR_STYLE1">
 								<td colspan="2" class="TD_STYLE3" align="center">
 									<p style="line-height: 200%">
-										<input type="button" value="登录"  class="BUTTON_STYLE1" onclick="javascript:login();">
+										<input type="button" value="登录"  class="BUTTON_STYLE1" id="loginbutton">
 										<input type="button" class="BUTTON_STYLE1" value="注册"
 											onClick="window.location.href='register.jsp'">
 										<input type="button" class="BUTTON_STYLE1" value="修改密码"
@@ -261,7 +188,7 @@ BR {
 						<td height="10%" align="center">
 							<p class="testonline.style1">
 								<br>
-								<font color="#FFFFFF" size="2.5"><b>北京Better伯乐科技有限公司&nbsp;版权所有
+								<font color="#FFFFFF" size="2.5"><b>北京Better伯乐科技有限公司&nbsp;版权所有</b>
 						</td>
 					</tr>
 				</table>

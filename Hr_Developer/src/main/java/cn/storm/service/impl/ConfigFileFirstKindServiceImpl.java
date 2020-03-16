@@ -17,6 +17,12 @@ public class ConfigFileFirstKindServiceImpl implements ConfigFileFirstKindServic
 	
 	
 	@Override
+	public List<ConfigFileFirstKind> queryConfigFileFirstKindByName(String name) {
+		// TODO Auto-generated method stub
+		return mapper.selectConfigFileFirstKindByName(name);
+	}
+
+	@Override
 	public boolean addConfigFileFirstKind(ConfigFileFirstKind configFileFirstKind) {
 		// TODO Auto-generated method stub
 		return mapper.saveConfigFileFirstKind(configFileFirstKind);
