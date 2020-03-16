@@ -14,4 +14,6 @@ public interface ConfigPublicCharService {
 	public boolean removeConfigPublicCharBypbcId(int pbcId);
 
 	public int modifyConfigPublicChar(ConfigPublicChar configpublicchar);
+	
+	public List<ConfigPublicChar> queryConfigPublicCharByKey(String key);
 }

@@ -6,16 +6,19 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.storm.pojo.ConfigFileFirstKind;
-import cn.storm.service.ConfigFileFirstKindService;
+import cn.storm.pojo.ConfigPublicChar;
+import cn.storm.service.ConfigPublicCharService;
 
 public class Test {
 	public static void main(String[] args) {
 		
 		ApplicationContext ac = new ClassPathXmlApplicationContext("/applicationContext.xml");
-		ConfigFileFirstKindService ss = (ConfigFileFirstKindService)ac.getBean("configFileFirstKindServiceImpl");
-		List<ConfigFileFirstKind> list = ss.queryAllConfigFileFirstKind();
-		System.out.println(list.size());
+		ConfigPublicCharService ss = (ConfigPublicCharService)ac.getBean("configPublicCharServiceImpl");
+		List<ConfigPublicChar> list = ss.queryConfigPublicCharByKey("招聘类型");
+//		System.out.println(list.size());
+		for (ConfigPublicChar configPublicChar : list) {
+			System.out.println(configPublicChar);
+		}
 		 
 //		Student s = new Student();
 //		s.setSid(5);
