@@ -26,6 +26,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript">
 		function doEdit()
 		{
+			
+			if(document.getElementById("standardName").value==""){
+				alert("薪酬名称不能为空！");
+				return ;
+			}
+			if(document.getElementById("designer").value==""){
+				alert("制定人不能为空！");
+				return ;
+			}
+			for(var i=1;i<=6;i++){
+		 		var salary=document.getElementById("salary"+i).value;
+		 		if(/^\d+(\.)?(\d+)?$/.test(salary)==false){
+		 			alert("输入金额有误！");
+		 			return;
+		 		}
+		 		if(salary==""){
+		 			document.getElementById("salary"+i).value=0.0;
+		 		}
+			}
 			//document.forms[0].action = document.forms[0].action + "?operate=doEdit&method=check&id=" + id;
 			//document.forms[0].action ="salarystandard_check_success.jsp";
 			document.forms[0].submit();
@@ -35,6 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var sum=0;
 		 	for(var i=1;i<=6;i++){
 		 		var salary=document.getElementById("salary"+i).value;
+		 		
 		 		if(salary==""){
 		 		salary="0.00";
 		 		}
@@ -79,7 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						薪酬标准名称
 					</td>
 					<td width="11%" class="TD_STYLE2">
-						<input type="text" name="standardName" value="${sa.standardName }" class="INPUT_STYLE2">
+						<input type="text" name="standardName"  id="standardName" value="${sa.standardName }" class="INPUT_STYLE2">
 					</td>
 					<td width="11%" class="TD_STYLE1">
 						薪酬总额
@@ -99,7 +119,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						制定人
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="designer" value="" class="INPUT_STYLE2">
+						<input type="text" name="designer" id="designer" value="" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						复核人

@@ -1,6 +1,7 @@
 package cn.storm.service;
 
 import java.util.List;
+import java.util.Map;
 
 import cn.storm.pojo.SalaryStandard;
 
@@ -16,4 +17,6 @@ public interface SalaryStandardService {
 	public int modifySalaryStandard(SalaryStandard salaryStandard);
 
 	public void updatesa(SalaryStandard sast);
+
+	public List<SalaryStandard> queryBySalary(Map map);
 }
