@@ -23,9 +23,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="table.css" type="text/css">
 	<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 	<script type="text/javascript">
-		function edit(){
-			var mreId = $("#mreId").val();
-			location.href="recruitment/editrelease.do?mreId="+mreId;
+		function edit(ele){
+			var $eee = $(ele);
+			var reId =$eee.parent().siblings("input").val();
+			location.href="recruitment/editrelease.do?mreId="+reId;
 		
 		}
 	
@@ -109,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					${release.deadline }
 				</td>
 				<td width="14%" class="TD_STYLE2">
-					<a onclick="edit()">修改</a>
+					<a onclick="edit(this)">修改</a>
 				</td>
 				<td width="7%" class="TD_STYLE2">
 					<a onclick="delete(this)">删除</a>

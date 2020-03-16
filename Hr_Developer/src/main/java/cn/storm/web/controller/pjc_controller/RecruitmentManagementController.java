@@ -58,41 +58,11 @@ public class RecruitmentManagementController {
 	 */
 	@RequestMapping("showrecruitment.do")
 	public ModelAndView showrecruitment(){
-		//查询出所有一级机构分类
-		List<ConfigFileFirstKind> first_list = this.cffks.queryAllConfigFileFirstKind();
-		//查询出所有二级机构分类
-		List<ConfigFileSecondKind> second_list = this.cfsks.queryAllConfigFileSecondKind();
-		//查询出所有三级机构分类
-		List<ConfigFileThirdKind> third_list = this.cftks.queryAllConfigFileThirdKind();
-		//查询出所有请选择职位分类
-		List<ConfigMajorKind> fourth_list = this.cmks.queryAllConfigMajorKind();
-		//查询出所有请选择职位
-		List<ConfigMajor> fifth_list =this.cms.queryAllConfigMajor();
-		
-		//查询所有公共字段中是招聘类型的集合
-		List<ConfigPublicChar> char_list =  cpcs.queryConfigPublicCharByKey("招聘类型");
-		
-		
-		//存入到nav中
-		JSONArray  first = JSONArray.fromObject(first_list);
-		JSONArray  second = JSONArray.fromObject(second_list);
-		JSONArray  third = JSONArray.fromObject(third_list);
-		JSONArray  fourth = JSONArray.fromObject(fourth_list);
-		JSONArray  fifth = JSONArray.fromObject(fifth_list);
-		JSONArray  sixth = JSONArray.fromObject(char_list);
 		
 		ModelAndView mav = new ModelAndView();
-		
-		mav.addObject("firstlist", first.toString());
-		mav.addObject("secondlist", second.toString());
-		mav.addObject("thirdlist", third.toString());
-		mav.addObject("fourthlist", fourth.toString());
-		mav.addObject("fifthlist", fifth.toString());
-		mav.addObject("charlist", sixth);
+		mav = setMavBaseValue(mav);
 		
 		mav.setViewName("forward:/major_release_input.jsp");
-		
-		
 		return mav;
 	}
 	
@@ -140,24 +110,67 @@ public class RecruitmentManagementController {
 		System.out.println(list.get(0));
 		mav.setViewName("forward:/released_show_list.jsp");
 		return mav;
-				
+		
 	}
 	
 	@RequestMapping("editrelease.do")
 	public ModelAndView editrelease(@RequestParam int mreId){
+		
+		
+		System.out.println("输入的mreId:"+mreId);
 		//将mreId传入后台查询
 		EngageMajorRelease emr = emrs.queryEngageMajorReleaseBymreId(mreId);
+		System.out.println(emr);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("emr", emr);
 		mav.setViewName("forward:/major_release_change.jsp");
-		
-		
+		mav = setMavBaseValue(mav);
 		return mav;
+	}
+	
+	/**
+	 * 给传进来的mav 设基本的职位分类等等
+	 */
+	public ModelAndView setMavBaseValue(ModelAndView mav)
+	{
+		//查询出所有一级机构分类
+				List<ConfigFileFirstKind> first_list = this.cffks.queryAllConfigFileFirstKind();
+				//查询出所有二级机构分类
+				List<ConfigFileSecondKind> second_list = this.cfsks.queryAllConfigFileSecondKind();
+				//查询出所有三级机构分类
+				List<ConfigFileThirdKind> third_list = this.cftks.queryAllConfigFileThirdKind();
+				//查询出所有请选择职位分类
+				List<ConfigMajorKind> fourth_list = this.cmks.queryAllConfigMajorKind();
+				//查询出所有请选择职位
+				List<ConfigMajor> fifth_list =this.cms.queryAllConfigMajor();
+				
+				//查询所有公共字段中是招聘类型的集合
+				List<ConfigPublicChar> char_list =  cpcs.queryConfigPublicCharByKey("招聘类型");
+				
+				
+				//存入到nav中
+				JSONArray  first = JSONArray.fromObject(first_list);
+				JSONArray  second = JSONArray.fromObject(second_list);
+				JSONArray  third = JSONArray.fromObject(third_list);
+				JSONArray  fourth = JSONArray.fromObject(fourth_list);
+				JSONArray  fifth = JSONArray.fromObject(fifth_list);
+				JSONArray  sixth = JSONArray.fromObject(char_list);
+				
+				
+				mav.addObject("firstlist", first.toString());
+				mav.addObject("secondlist", second.toString());
+				mav.addObject("thirdlist", third.toString());
+				mav.addObject("fourthlist", fourth.toString());
+				mav.addObject("fifthlist", fifth.toString());
+				mav.addObject("charlist", sixth);
+				
+				
+				return mav;
 	}
 	
 	
 	
-	
+	@SuppressWarnings("deprecation")
 	public Timestamp converttime(String arg0,int type) {
 		System.out.println(arg0);
 		Date d = null;

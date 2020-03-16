@@ -143,7 +143,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	{		
 		//得到所有select标签;
 		$("#select1").empty();//清空一级机构
-		$("#select1").append("<option value=''  selected='true'></option>");//添加一个空的选项
+	//	$("#select1").append("<option value=''  selected='true'></option>");//添加一个空的选项
 		if(firstneedshow ==null || firstneedshow =="")
 		{
 			//如果没有传值,就显示全部
@@ -151,14 +151,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				{	
 					var id = firstlist[i].firstKindId;
 					var name = firstlist[i].firstKindName;
-					
+					//如果和域中的id相同选中
+					if(id == ${emr.firstKindId})
+					{
+						$("#select1").append("<option selected='selected' value="+id+">"+name+"</option>");
+					}else{
+						
 					$("#select1").append("<option value="+id+">"+name+"</option>");
+						
+					}
 				}
 		}
 	}
 	function showsecond(secondneedshow){
 		$("#select2").empty();//清空二级机构
-		$("#select2").append("<option value='' selected='true'"+"></option>");
+	//	$("#select2").append("<option value='' selected='true'"+"></option>");
 		if(secondneedshow == null || secondneedshow =="")
 			{
 				
@@ -168,8 +175,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var fname = secondlist[i].firstKindName;
 					var sid = secondlist[i].secondKindId;
 					var sname = secondlist[i].secondKindName;
-					
-					$("#select2").append("<option value="+sid+">"+fname+"/"+sname+"</option>");
+					//如果和域中的id相同选中
+					if(sid == ${emr.secondKindId})
+					{
+						$("#select2").append("<option selected='selected' value="+sid+">"+fname+"/"+sname+"</option>");
+					}else{
+						
+						
+						$("#select2").append("<option value="+sid+">"+fname+"/"+sname+"</option>");
+					}
 				}
 			}else
 				{
@@ -185,7 +199,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	function showthird(thirdneedshow){
 		$("#select3").empty();//清空三级机构
-		$("#select3").append("<option value='' selected='true' >&nbsp;</option>");
+	//	$("#select3").append("<option value='' selected='true' >&nbsp;</option>");
 		
 		if(thirdneedshow == null || thirdneedshow =="")
 		{
@@ -198,8 +212,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var sname = thirdlist[i].secondKindName;
 				var tid = thirdlist[i].thirdKindId;
 				var tname = thirdlist[i].thirdKindName;
-				
-				$("#select3").append("<option value="+tid+">"+fname+"/"+sname+"/"+tname+"</option>");
+				//如果和域中的id相同选中
+				if(tid == ${emr.thirdKindId})
+				{
+					$("#select3").append("<option selected='selected' value="+tid+">"+fname+"/"+sname+"/"+tname+"</option>");
+				}else{
+					$("#select3").append("<option value="+tid+">"+fname+"/"+sname+"/"+tname+"</option>");
+				}
 			}
 		}
 		else{
@@ -212,15 +231,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	function showfourth(fourthneedshow){
 		$("#select4").empty();//清空职位分类
-		$("#select4").append("<option value='' selected='true' ></option>");
+	//	$("#select4").append("<option value='' selected='true' ></option>");
 			if(fourthneedshow == null || fourthneedshow =="")
 			{
 				for(var i=0; i< fourthlist.length ;i++)
 				{	
 					var fid = fourthlist[i].majorKindId;
 					var fname = fourthlist[i].majorKindName;
+					//如果和域中的id相同选中
+					if(fid == ${emr.majorKindId})
+					{
+						$("#select4").append("<option selected='selected' value="+fid+">"+fname+"</option>");
+					}else{
+						$("#select4").append("<option value="+fid+">"+fname+"</option>");
+					}
 					
-					$("#select4").append("<option value="+fid+">"+fname+"</option>");
 				}
 			}
 			else{
@@ -231,7 +256,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	function showfifth(fifthneedshow){
 		$("#select5").empty();//清空职位分类
-		$("#select5").append("<option value='' selected='true' ></option>");
+	//	$("#select5").append("<option value='' selected='true' ></option>");
 		if(fifthneedshow == null || fifthneedshow =="")
 		{
 			for(var i=0; i< fifthlist.length ;i++)
@@ -240,7 +265,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var fname = fifthlist[i].majorKindName;
 				var sid = fifthlist[i].majorId;
 				var sname =fifthlist[i].majorName;
-				$("#select5").append("<option value="+sid+">"+fname+"/"+sname+"</option>");
+				//如果和域中的id相同选中
+				if(sid == ${emr.majorId})
+				{
+					$("#select5").append("<option selected='selected' value="+sid+">"+fname+"/"+sname+"</option>");
+				}else{
+					$("#select5").append("<option value="+sid+">"+fname+"/"+sname+"</option>");
+				}
+				
 			}
 		}
 		else{
@@ -404,9 +436,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
 						<select  class="select1"  name="engageType">
-							<option value=""></option>
-							<c:forEach items="${charlist}" var="cha" >
-								<option value="${cha.attributeName}">${cha.attributeName}</option>
+							<option value="${emr.engageType}" selected="selected">${emr.engageType}</option>
+							<c:forEach items="${charlist}" var="cha"  varStatus="i">
+								<c:if test="${cha.attributeName != emr.engageType }">
+								
+								<option value="${cha.attributeName} ">${cha.attributeName}</option>
+								
+								</c:if>
+								<!--<c:if test="${i.first }"> selected="selected"</c:if> -->
 							</c:forEach>
 						</select>
 					</td>
