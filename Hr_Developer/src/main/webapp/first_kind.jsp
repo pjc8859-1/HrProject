@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -113,7 +114,7 @@ $(
 					value=result;
 					no=Math.ceil(result.length/5);
 					
-						for(var i=0;i<(index==no?result.length-(index-1)*5:5);i++){
+						for(var i=0;i<(index==no?result.length:5);i++){
 						str="<tr data=\""+result[i].ffkId+"\"><td class=\"TD_STYLE2\">"+result[i].firstKindId+"</td><td class=\"TD_STYLE2\">"+result[i].firstKindName+"</td>"
 						+"<td class=\"TD_STYLE2\">"+result[i].firstKindSalaryId+"</td><td class=\"TD_STYLE2\">"+result[i].firstKindSaleId+"</td>"
 						+"<td class=\"TD_STYLE2\"><a href=\"first_kind_change.jsp?id="+result[i].ffkId+"\">变更</a>	</td><td class=\"TD_STYLE2\"><a href=\"first_kind_delete.jsp?id="+result[i].ffkId+"\">删除</a></td></tr>";
@@ -140,13 +141,14 @@ var r = /^\+?[1-9][0-9]*$/;//判断是否为正整数
   $("#show").siblings().each(function(){
     $(this).remove();
  });
+
  
-      for(var i=0;i<(index==no?value.length-(index-1)*5:5);i++){
+      for(var i=(index-1)*5;i<(index==no?value.length:5*index);i++){
       
-						str="<tr ><td class=\"TD_STYLE2\">"+value[i+(index-1)*5].firstKindId+"</td><td class=\"TD_STYLE2\">"+value[i+(index-1)*5].firstKindName+"</td>"
-						+"<td class=\"TD_STYLE2\">"+value[i+(index-1)*5].firstKindSalaryId+"</td><td class=\"TD_STYLE2\">"+value[i+(index-1)*5].firstKindSaleId+"</td>"
-						+"<td class=\"TD_STYLE2\"><a href=\"first_kind_change.jsp?id="+result[i].ffkId+")\">变更</a>	</td>"
-						+"<td class=\"TD_STYLE2\">	<a href=\"first_kind_delete.jsp\">删除</a></td></tr>";
+						str="<tr ><td class=\"TD_STYLE2\">"+value[i].firstKindId+"</td><td class=\"TD_STYLE2\">"+value[i].firstKindName+"</td>"
+						+"<td class=\"TD_STYLE2\">"+value[i].firstKindSalaryId+"</td><td class=\"TD_STYLE2\">"+value[i].firstKindSaleId+"</td>"
+						+"<td class=\"TD_STYLE2\"><a href=\"first_kind_change.jsp?id="+value[i].ffkId+"\">变更</a>	</td>"
+						+"<td class=\"TD_STYLE2\">	<a href=\"first_kind_delete.jsp?id="+value[i].ffkId+"\">删除</a></td></tr>";
 					     $(".TABLE_STYLE1").append($(str));
 						}
 					$("#np").html(index);	

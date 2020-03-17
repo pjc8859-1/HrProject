@@ -18,4 +18,5 @@ public interface ConfigFileThirdKindMapper {
 	public boolean deleteConfigFileThirdKindByftkId(int ftkId);
 
 	public int updateConfigFileThirdKind(ConfigFileThirdKind configfilethirdkind);
+	public int selectMaxId();
 }

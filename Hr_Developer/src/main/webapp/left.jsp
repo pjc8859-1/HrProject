@@ -108,7 +108,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="configfilesecondkind.do?operate=list"
+													<a href="showConfigFileSecondKind.do"
 														target="mainFrame">II级机构设置</a>
 												</td>
 											</tr>

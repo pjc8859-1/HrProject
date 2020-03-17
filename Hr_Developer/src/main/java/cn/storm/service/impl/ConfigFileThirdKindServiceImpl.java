@@ -40,5 +40,11 @@ public class ConfigFileThirdKindServiceImpl implements
 	public int modifyConfigFileThirdKind(ConfigFileThirdKind configfilethirdkind) {
 		return mapper.updateConfigFileThirdKind(configfilethirdkind);
 	}
+	
+	@Override
+	public int queryMaxId() {
+		// TODO Auto-generated method stub
+		return mapper.selectMaxId();
+	}
 
 }

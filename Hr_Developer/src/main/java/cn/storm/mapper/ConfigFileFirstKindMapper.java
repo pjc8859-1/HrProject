@@ -14,4 +14,5 @@ public interface ConfigFileFirstKindMapper {
 	public boolean deleteConfigFileFirstKindByffk_id(int sid);
 	public int updateConfigFileFirstKind(ConfigFileFirstKind configFileFirstKind);
 	public List<ConfigFileFirstKind> selectConfigFileFirstKindByName(String name);
+	public int selectMaxId();
 }
