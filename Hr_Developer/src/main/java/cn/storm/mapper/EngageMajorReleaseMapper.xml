@@ -5,33 +5,33 @@
   <mapper namespace="cn.storm.mapper.EngageMajorReleaseMapper">
   
   <resultMap type="EngageMajorRelease" id="myEngageMajorRelease">
-  	<result property="mre_id" column="mreId"/>
-<result property="first_kind_id" column="firstKindId"/>
-<result property="first_kind_name" column="firstKindName"/>
-<result property="second_kind_id" column="secondKindId"/>
-<result property="second_kind_name" column="secondKindName"/>
-<result property="third_kind_id" column="thirdKindId"/>
-<result property="third_kind_name" column="thirdKindName"/>
-<result property="major_kind_id" column="majorKindId"/>
-<result property="major_kind_name" column="majorKindName"/>
-<result property="major_id" column="majorId"/>
-<result property="major_name" column="majorName"/>
-<result property="human_amount" column="humanAmount"/>
-<result property="engage_type" column="engageType"/>
-<result property="deadline" column="deadline"/>
-<result property="register" column="register"/>
-<result property="changer" column="changer"/>
-<result property="regist_time" column="registTime"/>
-<result property="change_time" column="changeTime"/>
-<result property="major_describe" column="majorDescribe"/>
-<result property="engage_required" column="engageRequired"/>
-  	
+  	<result property="mreId" column="mre_id"/>
+	<result property="firstKindId" column="first_kind_id"/>
+	<result property="firstKindName" column="first_kind_name"/>
+	<result property="secondKindId" column="second_kind_id"/>
+	<result property="secondKindName" column="second_kind_name"/>
+	<result property="thirdKindId" column="third_kind_id"/>
+	<result property="thirdKindName" column="third_kind_name"/>
+	<result property="majorKindId" column="major_kind_id"/>
+	<result property="majorKindName" column="major_kind_name"/>
+	<result property="majorId" column="major_id"/>
+	<result property="majorName" column="major_name"/>
+	<result property="humanAmount" column="human_amount"/>
+	<result property="engageType" column="engage_type"/>
+	<result property="deadline" column="deadline"/>
+	<result property="register" column="register"/>
+	<result property="changer" column="changer"/>
+	<result property="registTime" column="regist_time"/>
+	<result property="changeTime" column="change_time"/>
+	<result property="majorDescribe" column="major_describe"/>
+	<result property="engageRequired" column="engage_required"/>
+	  	
   	
   </resultMap>
   
   		<insert id="saveEngageMajorRelease" parameterType="EngageMajorRelease">
-  			insert into engage_major_release(mre_id,first_kind_id,first_kind_name,second_kind_id,second_kind_name,third_kind_id,third_kind_name,major_kind_id,major_kind_name,major_id,major_name,human_amount,engage_type,deadline,register,changer,regist_time,change_time,major_describe,engage_required) 
-  			values (#{ mreId},#{ firstKindId},#{ firstKindName},#{ secondKindId},#{ secondKindName},#{ thirdKindId},#{ thirdKindName},#{ majorKindId},#{ majorKindName},#{ majorId},#{ majorName},#{ humanAmount},#{ engageType},#{ deadline},#{ register},#{ changer},#{ registTime},#{ changeTime},#{ majorDescribe},#{ engageRequired})
+  			insert into engage_major_release(first_kind_id,first_kind_name,second_kind_id,second_kind_name,third_kind_id,third_kind_name,major_kind_id,major_kind_name,major_id,major_name,human_amount,engage_type,deadline,register,changer,regist_time,change_time,major_describe,engage_required) 
+  			values (#{ firstKindId},#{ firstKindName},#{ secondKindId},#{ secondKindName},#{ thirdKindId},#{ thirdKindName},#{ majorKindId},#{ majorKindName},#{ majorId},#{ majorName},#{ humanAmount},#{ engageType},#{ deadline},#{ register},#{ changer},#{ registTime},#{ changeTime},#{ majorDescribe},#{ engageRequired})
   		</insert>
   		<select id="selectAllEngageMajorRelease" resultMap="myEngageMajorRelease">
   			select * from engage_major_release

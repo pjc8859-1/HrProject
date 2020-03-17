@@ -38,4 +38,10 @@ public class ConfigPublicCharServiceImpl implements ConfigPublicCharService {
 	public int modifyConfigPublicChar(ConfigPublicChar configpublicchar) {
 		return mapper.updateConfigPublicChar(configpublicchar);
 	}
+
+	@Override
+	public List<ConfigPublicChar> queryConfigPublicCharByKey(String key) {
+		
+		return mapper.selectConfigPublicCharByKey(key);
+	}
 }

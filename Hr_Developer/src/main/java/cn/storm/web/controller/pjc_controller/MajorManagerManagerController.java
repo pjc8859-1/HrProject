@@ -407,9 +407,6 @@ public class MajorManagerManagerController {
 				
 			}
 			
-			
-			
-			
 		return mav;
 		
 	}

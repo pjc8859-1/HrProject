@@ -144,4 +144,6 @@ public interface ConfigPublicCharMaoMapper{
 	@Select("select * from config_public_char where attribute_kind='薪酬标准'")
 	@ResultMap("PublicMapper")
 	public List<ConfigPublicChar> queryxcbz();
+	
+	
 }
