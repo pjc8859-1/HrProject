@@ -19,4 +19,6 @@ public interface SalaryStandardService {
 	public void updatesa(SalaryStandard sast);
 
 	public List<SalaryStandard> queryBySalary(Map map);
+
+	public void updatechange(SalaryStandard ss);
 }
