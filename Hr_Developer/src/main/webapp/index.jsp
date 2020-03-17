@@ -52,7 +52,7 @@ window.onunload=onClose
 		onunload="onClose()" >
 		<frame src="top.jsp" name="top" scrolling="no" marginwidth="1" marginheight="1" frameborder="0">
 		<frameset cols="200,*" frameborder="NO" border="0" framespacing="0" >
-			<frame src="left.jsp" name="left" scrolling="yes"
+			<frame src="left.jsp" name="left"  id="left" scrolling="yes"
 				noresize>
 			<frame src="main.jsp" name="mainFrame">
 		</frameset>

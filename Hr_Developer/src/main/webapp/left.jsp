@@ -581,7 +581,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="engagemajorrelease.do?operate=list"
+													<a href="recruitment/showreleasequerypage.do"
 														target="mainFrame">职位发布查询</a>
 												</td>
 											</tr>

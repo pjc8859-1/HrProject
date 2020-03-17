@@ -53,7 +53,6 @@ public class ConfigFileFirstKind {
 	}
 	
 	@RequestMapping(value="/changefirstkind.do")
-	@ResponseBody
 	public  cn.storm.pojo.ConfigFileFirstKind changefirstkind(@RequestBody String id) {
 	cn.storm.pojo.ConfigFileFirstKind con=service.queryConfigFileFirstKindByffkId(Integer.parseInt(id));
 	System.out.println(con);
