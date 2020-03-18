@@ -26,24 +26,24 @@ public class EngageResume implements java.io.Serializable {
 	private String humanHobby;
 	private String humanSpecility;
 	private String humanSex;
-	private String humanReligion;
-	private String humanParty;
-	private String humanNationality;
-	private String humanRace;
-	private Timestamp humanBirthday;
+	private String humanReligion;//宗教
+	private String humanParty;//政治面貌
+	private String humanNationality;//国籍
+	private String humanRace;//民族
+	private Timestamp humanBirthday;//生日
 	private Short humanAge;
 	private String humanEducatedDegree;
 	private Short humanEducatedYears;
 	private String humanEducatedMajor;
-	private String humanCollege;
-	private String humanIdcard;
+	private String humanCollege;//院校
+	private String humanIdcard;//身份证
 	private String humanBirthplace;
 	private Double demandSalaryStandard;
 	private String humanHistoryRecords;
-	private String remark;
-	private String recomandation;
-	private String humanPicture;
-	private String attachmentName;
+	private String remark;//备注
+	private String recomandation;//履历
+	private String humanPicture;//照片
+	private String attachmentName;//?????????
 	private Short checkStatus;
 	private String register;
 	private Timestamp registTime;

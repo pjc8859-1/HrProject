@@ -98,7 +98,7 @@ public class RecruitmentManagementController {
 	
 	@RequestMapping("submitmajorreleasechange.do")
 	public ModelAndView submitmajorreleasechange(EngageMajorRelease emr ,
-			@RequestParam String deadline1,
+			@RequestParam String deadline1,//2020-05-12
 			@RequestParam String registTime1,
 			@RequestParam String changeTime1
 			
@@ -258,13 +258,13 @@ public class RecruitmentManagementController {
 		Date d = null;
 		if(type == 1 )
 		{
-			d = new Date(arg0.replace("-", "/")+" 00:00:00");
+			d = new Date(arg0.replace("-", "/")+" 00:00:00");//    
 		}
 		else
 		{
-			d = new Date(arg0.replace("-", "/"));
+			d = new Date(arg0.replace("-", "/"));//2020-09-20 11:20:20
 		}
-		long time = d.getTime();//long
+		long time = d.getTime();//long 
 		return new Timestamp(time);
 	}
 	
