@@ -581,7 +581,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="engagemajorrelease.do?operate=list"
+													<a href="recruitment/showreleasequerypage.do"
 														target="mainFrame">职位发布查询</a>
 												</td>
 											</tr>
@@ -610,7 +610,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td width="98%">
-													<a href="engageresume.do?operate=toAdd" target="mainFrame">简历登记</a>
+													<a href="resumemanage/showresumepage.do" target="mainFrame">简历登记</a>
 												</td>
 											</tr>
 											<tr>

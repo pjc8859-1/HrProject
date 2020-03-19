@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%
 String path = request.getContextPath();
@@ -353,13 +354,76 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 }
 	 function dosubmit(){
 		 
-		 //提交之前处理时间格式
+		 //提交之前处理时间格式--------------------------------------------
+		 //检查是否为空
+		 var se1 = $("#select1 option:selected").html().trim();
+		 var se2 = $("#select2 option:selected").html().trim();
+		 var se3 = $("#select3 option:selected").html().trim();
+		 var se4 = $("#select4 option:selected").html().trim();
+		 var se5 = $("#select5 option:selected").html().trim();
+		 var se6 = $("#select6 option:selected").html().trim();
+		 var humanAmount = $("#humanAmount").val().trim();
+		 var deadline = $("#deadline").val().trim();
+		 var register = $("#register").val().trim();
+		 var registTime1 = $("#datetime").val().trim();
+		 var majorDescribe = $("#majorDescribe").html().trim();
+		 var engageRequired = $("#engageRequired").html().trim();
 		 
 		 
-		//var thisTime = $("#datetime").val();
-		//thisTime = thisTime.replace(/-/g, '/');
-		//var time = new Date(thisTime);
-		//time = time.getTime();
+		 if(se1 == null || se1 == "" )
+			 {
+			 	alert("I级机构不能为空值");
+			 	return ;
+			 }
+		 if(se2 == null || se2 == "" )
+		 {
+		 	alert("II级机构不能为空值");
+		 	return ;
+		 }
+		 if(se3 == null || se3 == "" )
+		 {
+		 	alert("III级机构不能为空值");
+		 	return ;
+		 }
+		 if(se4 == null || se4 == "" )
+		 {
+		 	alert("职位分类不能为空值");
+		 	return ;
+		 }
+		 if(se5 == null || se5 == "" )
+		 {
+		 	alert("职位不能为空值");
+		 	return ;
+		 }
+		 if(se6 == null || se6 == "" )
+		 {
+		 	alert("招聘类型不能为空值");
+		 	return ;
+		 }
+		 if(humanAmount == null || humanAmount == "" )
+		 {
+		 	alert("招聘人数不能为空值");
+		 	return ;
+		 }
+		 if(deadline == null || deadline == "" )
+		 {
+		 	alert("截止日期不能为空值");
+		 	return ;
+		 }
+		 if(register == null || register == "" )
+		 {
+		 	alert("登记人不能为空值");
+		 	return ;
+		 }
+		 if(registTime1 == null || registTime1 == "" )
+		 {
+		 	alert("登记时间不能为空值");
+		 	return ;
+		 }
+		 
+		 
+		 
+		 
 		document.getElementById("mainform").submit(); 
 	 }
  function formatDate(date) {
@@ -376,17 +440,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
  <body>
-  	<form method="post" action="recruitment/submitmajorrelease.do" id="mainform">
+  	<form method="post" action="recruitment/submitmajorreleasechange.do" id="mainform">
 			<table width="100%">
 				<tr>
 					<td>
-						<font color="#0000CC">您正在做的业务是：人力资源 -- 招聘管理 -- 职位发布管理 --职位发布登记
+						<font color="#0000CC">您正在做的业务是：人力资源 -- 招聘管理 -- 职位发布管理 --职位发布变更
 						</font>
 					</td>
 				</tr>
 				<tr>
 					<td align="right">
-						<input type="button" value="提交" class="BUTTON_STYLE1"
+						<input type="button" value="更改" class="BUTTON_STYLE1"
 							onclick="dosubmit()" />
 						<input type="reset" value="清除" class="BUTTON_STYLE1">
 					</td>
@@ -398,15 +462,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				bordercolorlight=#848284 bordercolordark=#eeeeee
 				class="TABLE_STYLE1">
 				
-				
+				<input type="hidden" name="mreId" value="${emr.mreId }"/>
 				<!-- 3 -->
 				<tr>
 					<td width="12.5%" class="TD_STYLE1">
 						I级机构
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
-							<input  id="newFirstKindId" type="hidden" name="firstKindId" value=""/>
-							<input id="newFirstKindName" type="hidden" name="firstKindName" value=""/>
+							<input  id="newFirstKindId" type="hidden" name="firstKindId" value="${emr.firstKindId }"/>
+							<input id="newFirstKindName" type="hidden" name="firstKindName" value="${emr.firstKindName }"/>
 							<select class="select1" id="select1" >
 						  	
 						</select>
@@ -415,8 +479,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						II级机构
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
-					<input  id="newSecondKindId" type="hidden" name="secondKindId" value=""/>
-					<input id="newSecondKindName" type="hidden" name="secondKindName" value=""/>
+					<input  id="newSecondKindId" type="hidden" name="secondKindId" value="${emr.secondKindId }"/>
+					<input id="newSecondKindName" type="hidden" name="secondKindName" value="${emr.secondKindName }"/>
 							<select class="select1" id="select2">
 						  
 						</select>	
@@ -425,8 +489,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						III级机构
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
-					<input  id="newThirdKindId" type="hidden" name="thirdKindId" value=""/>
-					<input id="newThirdKindName" type="hidden" name="thirdKindName" value=""/>
+					<input  id="newThirdKindId" type="hidden" name="thirdKindId" value="${emr.thirdKindId }"/>
+					<input id="newThirdKindName" type="hidden" name="thirdKindName" value="${emr.thirdKindName }"/>
 							<select class="select1" id="select3">
 						  
 						</select>
@@ -435,7 +499,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						招聘类型
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
-						<select  class="select1"  name="engageType">
+						<select  class="select1"  name="engageType" id="select6">
 							<option value="${emr.engageType}" selected="selected">${emr.engageType}</option>
 							<c:forEach items="${charlist}" var="cha"  varStatus="i">
 								<c:if test="${cha.attributeName != emr.engageType }">
@@ -456,8 +520,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					职位分类
 				</td>
 					<td width="12.5%" class="TD_STYLE2">
-					<input  id="newMajorKindId" type="hidden" name="majorKindId" value=""/>
-					<input id="newMajorKindName" type="hidden" name="majorKindName" value=""/>
+					<input  id="newMajorKindId" type="hidden" name="majorKindId" value="${emr.majorKindId }"/>
+					<input id="newMajorKindName" type="hidden" name="majorKindName" value="${emr.majorKindName }"/>
 						<select class="select1" id="select4">
 						  
 						</select>
@@ -466,8 +530,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						职位名称
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
-					<input  id="newMajorId" type="hidden" name="majorId" value=""/>
-					<input  id="newMajorName" type="hidden" name="majorName" value=""/>
+					<input  id="newMajorId" type="hidden" name="majorId" value="${emr.majorId }"/>
+					<input  id="newMajorName" type="hidden" name="majorName" value="${emr.majorName }"/>
 						<select class="select1" id="select5">
 						  
 						</select>
@@ -476,13 +540,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						招聘人数
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
-						<input type="number" name="humanAmount" class="select1"/>
+						<input type="number" name="humanAmount" class="select1" id="humanAmount" value="${emr.humanAmount }"/>
 					</td>
 					<td width="12.5%" class="TD_STYLE1">
 						截止日期
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
-						<input type="text" name="deadline1" value="" style="width:100% " class="INPUT_STYLE2 " id="deadline">
+						<input type="text" name="deadline1" value="${fn:substring(emr.deadline, 0, 10)}" style="width:100% " class="INPUT_STYLE2 " id="deadline" >
 					</td>
 				</tr>
 				
@@ -492,26 +556,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						登记人
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
-						<input class="select1" name="register" />
+						<input class="select1" name="register" readonly="readonly"  id="register" value="${emr.register }"/>
 					</td>
 					<td width="12.5%" class="TD_STYLE1">
 						登记时间
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
-						<input id="datetime" type="text" class="select1" name="registTime1" value="" readonly="readonly"/>
+						<input  type="text" class="select1" name="registTime1" value="${fn:substring(emr.registTime, 0, 19)} " readonly="readonly"/>
+					</td>
+					<td width="12.5%" class="TD_STYLE1">
+						修改时间
+					</td>
+					<td width="12.5%" class="TD_STYLE2">
+						<input id="datetime" type="text" class="select1" name="changeTime1" value="" readonly="readonly"/>
     					<script>
         				setInterval("document.getElementById('datetime').value=formatDate(new Date().getTime());", 1000);
    						</script>
 					</td>
 					<td width="12.5%" class="TD_STYLE1">
+						修改人
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
-					</td>
-					<td width="12.5%" class="TD_STYLE1">
-						
-					</td>
-					<td width="12.5%" class="TD_STYLE2">
-						
+						<input class="select1" name="changer"   id="register" value=""/>
 					</td>
 				</tr>
 				<tr>
@@ -519,7 +585,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						职位描述
 					</td>
 					<td width="87.5%"  height="100" class="TD_STYLE2" colspan="7">
-						<textarea  style="width:100%;height:100%;resize:none" name="majorDescribe" autoHeight="true"></textarea>
+						<textarea  style="width:100%;height:100%;resize:none" name="majorDescribe" autoHeight="true"  id="majorDescribe">${emr.majorDescribe }</textarea>
 					</td>
 				</tr>
 				<tr>
@@ -527,7 +593,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						招聘要求
 					</td>
 					<td width="87.5%"  height="100" class="TD_STYLE2" colspan="7">
-						<textarea  style="width:100%;height:100%;resize:none" name="engageRequired" autoHeight="true"></textarea>
+						<textarea  style="width:100%;height:100%;resize:none" name="engageRequired" id="engageRequired"autoHeight="true">${emr.engageRequired }</textarea>
 					</td>
 				</tr>
 				
