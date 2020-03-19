@@ -28,6 +28,12 @@
   			
   		</resultMap>
   
+  <resultMap id="SUMmap" type="java.util.Map">
+     <result property="humanall" column="humanall"/>
+     <result property="salaryall" column="salaryall"/>
+     <result property="salarypall" column="salarypall"/>
+   
+  </resultMap>
   		<insert id="saveSalaryGrant" parameterType="SalaryGrant" >
   		
   			insert into Salary_Grant(sgr_id,salary_grant_id,salary_standard_id,first_kind_id,first_kind_name,second_kind_id,second_kind_name,third_kind_id,third_kind_name,human_amount,salary_standard_sum,salary_paid_sum,register,regist_time,checker,check_time,check_status)
@@ -37,10 +43,10 @@
   		</insert>
   	
   		<select id="selectAllSalaryGrant" resultMap="mySalaryGrant">
-  			select * from Salary_Grant
+  			select * from Salary_Grant where check_status = 0
   		</select>
   		<select id="selectSalaryGrantBysgrid" parameterType="_int" resultMap="mySalaryGrant">
-  			select * from Salary_Grant where sgr_id = #{id}
+  			select * from Salary_Grant where salary_grant_id = #{id}
   		</select>
   		
   		<delete id="deleteSalaryGrantBysgrid" parameterType="_int">

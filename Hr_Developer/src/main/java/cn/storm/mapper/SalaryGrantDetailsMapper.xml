@@ -14,8 +14,18 @@
   <result property="salaryStandardSum" column="salary_standard_sum"/>
 <result property="salaryPaidSum" column="salary_paid_sum"/>
   </resultMap>
-
   
+  <resultMap id="SUMmap" type="java.util.Map">
+     <result property="humanall" column="humanall"/>
+     <result property="salaryall" column="salaryall"/>
+     <result property="salarypall" column="salarypall"/>
+   
+  </resultMap>
+
+  	
+	<select id="Bysalary_grant_id" parameterType="_int" resultMap="mySalaryGrantDetails">
+		SELECT * from salary_grant_details  where salary_grant_id=#{id}
+	</select>
   		<insert id="saveSalaryGrantDetails" parameterType="SalaryGrantDetails">
   			insert into salary_grant_details(grd_id,salary_grant_id,human_id,human_name,bouns_sum,sale_sum,deduct_sum,salary_standard_sum,salary_paid_sum) 
   			values (#{grdId},#{salaryGrantId},#{humanId},#{humanName},#{bounsSum},#{saleSum},#{deductSum},#{salaryStandardSum},#{salaryPaidSum})

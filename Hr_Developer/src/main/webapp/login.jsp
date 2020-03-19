@@ -191,7 +191,7 @@ BR {
 								<font color="#FFFFFF" size="2.5"><b>北京Better伯乐科技有限公司&nbsp;版权所有</b>
 						</td>
 					</tr>
-				</table>
+				</table> 
 			</center>
 		</form>
 	</body>

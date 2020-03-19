@@ -108,7 +108,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="configfilesecondkind.do?operate=list"
+													<a href="showConfigFileSecondKind.do"
 														target="mainFrame">II级机构设置</a>
 												</td>
 											</tr>
@@ -117,7 +117,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="configfilethirdkind.do?operate=list" target="mainFrame">III级机构设置</a>
+													<a href="showConfigFileThirdKind.do" target="mainFrame">III级机构设置</a>
 												</td>
 											</tr>
 											<tr>
@@ -453,7 +453,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td width="98%">
-									<a href="salarystandard_grant_register_catalog.jsp" target="mainFrame">薪酬发放登记</a>
+									<a href="queryBysalaryid.do" target="mainFrame">薪酬发放登记</a>
 								</td>
 							</tr>
 							<tr>

@@ -17,7 +17,7 @@ import cn.storm.service.ConfigFileFirstKindService;
 
 @Controller
 
-public class ConfigFileFirstKind {
+public class ConfigFileFirstKindController {
 	@Autowired
 	private ConfigFileFirstKindService service=null;
 	@ResponseBody
@@ -33,9 +33,10 @@ public class ConfigFileFirstKind {
 			,@RequestParam("item.firstKindSalaryId")String firstKindSalaryId
 			,@RequestParam("item.firstKindSaleId")String firstKindSaleId) {
 		cn.storm.pojo.ConfigFileFirstKind config=new cn.storm.pojo.ConfigFileFirstKind();
-		
+		int kindid=service.queryMaxId();
 		config.setFirstKindName(firstKindName);
-		config.setFirstKindId("01");
+		config.setFirstKindId(Integer.toString(kindid));
+		config.setFfkId((short) kindid);
 		config.setFirstKindSaleId(firstKindSaleId);
 		config.setFirstKindSalaryId(firstKindSalaryId);
 		service.addConfigFileFirstKind(config);
@@ -53,6 +54,7 @@ public class ConfigFileFirstKind {
 	}
 	
 	@RequestMapping(value="/changefirstkind.do")
+	@ResponseBody
 	public  cn.storm.pojo.ConfigFileFirstKind changefirstkind(@RequestBody String id) {
 	cn.storm.pojo.ConfigFileFirstKind con=service.queryConfigFileFirstKindByffkId(Integer.parseInt(id));
 	System.out.println(con);

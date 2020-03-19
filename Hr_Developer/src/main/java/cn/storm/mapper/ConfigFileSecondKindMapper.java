@@ -13,4 +13,5 @@ public interface ConfigFileSecondKindMapper {
 	public ConfigFileSecondKind selectConfigFileSecondKindByfsk_id(int sid);
 	public boolean deleteConfigFileSecondKindByfsk_id(int sid);
 	public int updateConfigFileSecondKind(ConfigFileSecondKind configFileSecondKind);
+	public int selectMaxId();
 }

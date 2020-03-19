@@ -25,4 +25,8 @@ public interface SalaryStandardMapper {
 	public void updatesa(SalaryStandard sast);
 
 	public List<SalaryStandard> queryBySalary(Map map);
+
+	@Update("update Salary_standard set standard_name=#{standardName},changer=#{changer},remark=#{remark},"
+			+ "check_status=0,change_time=#{changeTime},salary_sum=#{salarySum} where standard_id=#{standardId}")
+	public void updatechange(SalaryStandard ss);
 }
