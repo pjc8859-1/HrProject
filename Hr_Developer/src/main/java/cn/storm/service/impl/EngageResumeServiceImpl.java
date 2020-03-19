@@ -1,5 +1,6 @@
 package cn.storm.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,12 @@ public class EngageResumeServiceImpl implements EngageResumeService{
 	@Override
 	public int modifyEngageResume(EngageResume engageresume) {
 		return this.mapper.updateEngageResume(engageresume);
+	}
+
+	@Override
+	public List<EngageResume> queryByDiction(HashMap<String, Object> map) {
+		
+		return this.mapper.selectByDiction(map);
 	}
 
 }

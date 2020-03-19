@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<!-- released_query_list.jsp-->
     <base href="<%=basePath%>">
     
-    <title>展示需要已经提交了的职位发布项目</title>
+    <title>展示需要已经提交了的简历筛选结果</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,25 +23,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="table.css" type="text/css">
 	<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 	<script type="text/javascript">
-		function apply(ele){
+		function screen(ele){
 			var $eee = $(ele);
 			var reId =$eee.parent().siblings("input").val();
-			location.href="recruitment/applyrelease.do?mreId="+reId;
+			location.href="resumemanage/resumescreen.do?reId="+reId;
 			
 		
 		}
-		function detail(ele){
+		function edit(ele){
 			var $eee = $(ele);
 			var reId =$eee.parent().siblings("input").val();
-			location.href="recruitment/showreleasedetail.do?mreId="+reId;
-		}
-		function deleterelease(ele){
-			var $eee = $(ele);
-			var reId =$eee.parent().siblings("input").val();
-			
-
-			
-			//location.href="recruitment/.do?mreId="+reId;
+			location.href="resumemanage/resumeedit.do?reId="+reId;
 		}
 	</script>
   </head>
@@ -51,12 +43,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<table width="100%">
 			<tr>
 				<td>
-					<font color="#0000CC">您正在做的业务是：招聘管理 -- 职位发布管理--	职位发布查询</font>
+					<font color="#0000CC">您正在做的业务是：人力资源--招聘管理-- 简历管理 --简历筛选结果</font>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					符合条件的职位发布档案总数：${fn:length(realeases)}例
+					符合条件的简历总数：${fn:length(resumes)}例
 				</td>
 					<td align="right">
 						<input type="button" value="刷新"
@@ -71,54 +63,71 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<table width="100%" border="1" cellpadding=0 cellspacing=1
 			bordercolorlight=#848284 bordercolordark=#eeeeee class="TABLE_STYLE1">
 			<tr class="TR_STYLE1">
+			<!-- 主键 -->
+			<input type="hidden" value="${er.resId }" name="resId"/>
 				<td width="12%" class="TD_STYLE1">
-					职位名称
+					姓名
 				</td>
 				<td width="10%" class="TD_STYLE1">
-					机构名称
+					年龄
 				</td>
 				
 				<td width="10%" class="TD_STYLE1">
-					招聘人数
+					招聘职位类型
 				</td>
 				<td width="14%" class="TD_STYLE1">
-					发布时间
+					招聘职位
 				</td>
 				<td width="14%" class="TD_STYLE1">
-					截止时间
+					民族
 				</td>
 				<td width="10%" class="TD_STYLE1">
-					职位详情
+					修改
+				</td>
+				<td width="10%" class="TD_STYLE1">
+					筛选
 				</td>
 				<td width="14%" class="TD_STYLE1">
-					申请职位
+					同意状态
 				</td>
 			</tr>
-			<c:forEach items="${realeases}" var="release">
+			<c:forEach items="${resumes}" var="resume">
 				<tr class="TR_STYLE1">
-				<input type="hidden" name="mreId" value="${release.mreId }" id="mreId"/>
+				<input type="hidden" name="resId" value="${resume.resId }" id="resId"/>
 				<td width="16%" class="TD_STYLE2 humanid">
-					${release.majorName }
+					${resume.humanName }
 				</td>
 				<td width="10%" class="TD_STYLE2">
-					${release.secondKindName }
+					${resume.humanAge }
 				</td>
 				
 				<td width="10%" class="TD_STYLE2">
 					<!-- <input type="hidden" id="firstkindid" value="${human.firstKindId}"/> -->
-					${release.humanAmount }
+					${resume.humanMajorKindName }
 				</td>
 				<td width="10%" class="TD_STYLE2">
-					${fn:substring(release.registTime, 0, 19)}
+					${ resume.humanMajorName}
 				</td>
 				<td width="10%" class="TD_STYLE2">
-					${fn:substring(release.deadline, 0, 19)}
+					${ resume.humanRace}
 				</td>
 				<td width="14%" class="TD_STYLE2">
-					<a onclick="detail(this)">详情</a>
+					<a onclick="edit(this)">修改</a>
+				</td>
+				<td width="14%" class="TD_STYLE2">
+					<a onclick="screen(this)">筛选</a>
 				</td>
 				<td width="12%" class="TD_STYLE2">
-					<a onclick="apply(this)">申请该职位</a>
+					<c:if test="${resume.passCheckStatus == null}">
+						<div style="width:100%;height:100%;background:yellow" >未筛选</div>
+					</c:if>
+					<c:if test="${resume.passCheckStatus == 1}">
+						<div style="width:100%;height:100%;background:grren" >通过</div>
+					</c:if>
+					<c:if test="${resume.passCheckStatus == 2}">
+						<div style="width:100%;height:100%;background:red" >未通过</div>
+					</c:if>
+					
 				</td>
 			</tr>
 			</c:forEach>
