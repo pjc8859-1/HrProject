@@ -5,13 +5,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.storm.pojo.HumanFileDig;
-
 import cn.storm.pojo.SalaryGrant;
 import cn.storm.pojo.Student1;
 import cn.storm.pojo.Users;
-
+import cn.storm.service.ConfigFileFirstKindService;
 import cn.storm.service.HumanFileDigService;
-
 import cn.storm.service.HumanFileService;
 import cn.storm.service.SalaryGrantService;
 import cn.storm.service.StudentService;
@@ -23,7 +21,7 @@ public class Test {
 	public static void main(String[] args) {
 		
 		ApplicationContext ac = new ClassPathXmlApplicationContext("/applicationContext.xml");
-		SalaryGrantService service= (SalaryGrantService) ac.getBean("salaryGrantServiceImpl");
+		ConfigFileFirstKindService service=  (ConfigFileFirstKindService) ac.getBean("configFileFirstKindServiceImpl");
 		
 //		StudentService ss = (StudentService)ac.getBean("studentServiceImpl");
 //		
@@ -54,12 +52,12 @@ public class Test {
 //		user.setUPassword("45678945");
 //		user.setUTrueName("张英俊");
 
-		SalaryGrant sg=new SalaryGrant();
-		sg.setSgrId((short) 1);
-		sg.setChecker("aaaaaaaaaaaaa");
-		sg.setSalaryStandardId("a");
-		sg.setFirstKindName("ssssssssssssss");
-		System.out.println(service.modifySalaryGrant(sg));
+//		SalaryGrant sg=new SalaryGrant();
+//		sg.setSgrId((short) 1);
+//		sg.setChecker("aaaaaaaaaaaaa");
+//		sg.setSalaryStandardId("a");
+//		sg.setFirstKindName("ssssssssssssss");
+		System.out.println(service.queryMaxId());
 
 //		HumanFile human=new HumanFile();
 //		human.setAttachmentName("1");

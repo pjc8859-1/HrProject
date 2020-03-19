@@ -14,4 +14,6 @@ public interface ConfigFileThirdKindService {
 	public boolean removeConfigFileThirdKindByftkId(int ftkId);
 
 	public int modifyConfigFileThirdKind(ConfigFileThirdKind configfilethirdkind);
+	
+	public int queryMaxId();
 }

@@ -5,59 +5,58 @@
   <mapper namespace="cn.storm.mapper.EngageResumeMapper">
   
   <resultMap type="EngageResume" id="myEngageResumeMapper">
-		<result property="res_id" column="resId"/>
-		<result property="human_name" column="humanName"/>
-		<result property="engage_type" column="engageType"/>
-		<result property="human_address" column="humanAddress"/>
-		<result property="human_postcode" column="humanPostcode"/>
-		<result property="human_major_kind_id" column="humanMajorKindId"/>
-		<result property="human_major_kind_name" column="humanMajorKindName"/>
-		<result property="human_major_id" column="humanMajorId"/>
-		<result property="human_major_name" column="humanMajorName"/>
-		<result property="human_telephone" column="humanTelephone"/>
-		<result property="human_homephone" column="humanHomephone"/>
-		<result property="human_mobilephone" column="humanMobilephone"/>
-		<result property="human_email" column="humanEmail"/>
-		<result property="human_hobby" column="humanHobby"/>
-		<result property="human_specility" column="humanSpecility"/>
-		<result property="human_sex" column="humanSex"/>
-		<result property="human_religion" column="humanReligion"/>
-		<result property="human_party" column="humanParty"/>
-		<result property="human_nationality" column="humanNationality"/>
-		<result property="human_race" column="humanRace"/>
-		<result property="human_birthday" column="humanBirthday"/>
-		<result property="human_age" column="humanAge"/>
-		<result property="human_educated_degree" column="humanEducatedDegree"/>
-		<result property="human_educated_years" column="humanEducatedYears"/>
-		<result property="human_educated_major" column="humanEducatedMajor"/>
-		<result property="human_college" column="humanCollege"/>
-		<result property="human_idcard" column="humanIdcard"/>
-		<result property="human_birthplace" column="humanBirthplace"/>
-		<result property="demand_salary_standard" column="demandSalaryStandard"/>
-		<result property="human_history_records" column="humanHistoryRecords"/>
-		<result property="remark" column="remark"/>
-		<result property="recomandation" column="recomandation"/>
-		<result property="human_picture" column="humanPicture"/>
-		<result property="attachment_name" column="attachmentName"/>
-		<result property="check_status" column="checkStatus"/>
-		<result property="register" column="register"/>
-		<result property="regist_time" column="registTime"/>
-		<result property="checker" column="checker"/>
-		<result property="check_time" column="checkTime"/>
-		<result property="interview_status" column="interviewStatus"/>
-		<result property="total_points" column="totalPoints"/>
-		<result property="test_amount" column="testAmount"/>
-		<result property="test_checker" column="testChecker"/>
-		<result property="test_check_time" column="testCheckTime"/>
-		<result property="pass_register" column="passRegister"/>
-		<result property="pass_regist_time" column="passRegistTime"/>
-		<result property="pass_checker" column="passChecker"/>
-		<result property="pass_check_time" column="passCheckTime"/>
-		<result property="pass_check_status" column="passCheckStatus"/>
-		<result property="pass_checkComment" column="passCheckComment"/>
-		<result property="pass_passComment" column="passPassComment"/>
-
-
+		<result column="res_id" property="resId"/>
+		<result column="human_name" property="humanName"/>
+		<result column="engage_type" property="engageType"/>
+		<result column="human_address" property="humanAddress"/>
+		<result column="human_postcode" property="humanPostcode"/>
+		<result column="human_major_kind_id" property="humanMajorKindId"/>
+		<result column="human_major_kind_name" property="humanMajorKindName"/>
+		<result column="human_major_id" property="humanMajorId"/>
+		<result column="human_major_name" property="humanMajorName"/>
+		<result column="human_telephone" property="humanTelephone"/>
+		<result column="human_homephone" property="humanHomephone"/>
+		<result column="human_mobilephone" property="humanMobilephone"/>
+		<result column="human_email" property="humanEmail"/>
+		<result column="human_hobby" property="humanHobby"/>
+		<result column="human_specility" property="humanSpecility"/>
+		<result column="human_sex" property="humanSex"/>
+		<result column="human_religion" property="humanReligion"/>
+		<result column="human_party" property="humanParty"/>
+		<result column="human_nationality" property="humanNationality"/>
+		<result column="human_race" property="humanRace"/>
+		<result column="human_birthday" property="humanBirthday"/>
+		<result column="human_age" property="humanAge"/>
+		<result column="human_educated_degree" property="humanEducatedDegree"/>
+		<result column="human_educated_years" property="humanEducatedYears"/>
+		<result column="human_educated_major" property="humanEducatedMajor"/>
+		<result column="human_college" property="humanCollege"/>
+		<result column="human_idcard" property="humanIdcard"/>
+		<result column="human_birthplace" property="humanBirthplace"/>
+		<result column="demand_salary_standard" property="demandSalaryStandard"/>
+		<result column="human_history_records" property="humanHistoryRecords"/>
+		<result column="remark" property="remark"/>
+		<result column="recomandation" property="recomandation"/>
+		<result column="human_picture" property="humanPicture"/>
+		<result column="attachment_name" property="attachmentName"/>
+		<result column="check_status" property="checkStatus"/>
+		<result column="register" property="register"/>
+		<result column="regist_time" property="registTime"/>
+		<result column="checker" property="checker"/>
+		<result column="check_time" property="checkTime"/>
+		<result column="interview_status" property="interviewStatus"/>
+		<result column="total_points" property="totalPoints"/>
+		<result column="test_amount" property="testAmount"/>
+		<result column="test_checker" property="testChecker"/>
+		<result column="test_check_time" property="testCheckTime"/>
+		<result column="pass_register" property="passRegister"/>
+		<result column="pass_regist_time" property="passRegistTime"/>
+		<result column="pass_checker" property="passChecker"/>
+		<result column="pass_check_time" property="passCheckTime"/>
+		<result column="pass_check_status" property="passCheckStatus"/>
+		<result column="pass_checkComment" property="passCheckComment"/>
+		<result column="pass_passComment" property="passPassComment"/>
+		
   
   </resultMap>
   
@@ -130,4 +129,93 @@
    
   where res_id = #{resId}
   </update>
+  <!-- 多条件查询符合条件的人员档案MajorManagerManagerController -->
+  	<select id="selectByDiction" parameterType="Map" resultMap="myEngageResumeMapper">
+  			select * from engage_resume 
+  			<trim prefix="where" prefixOverrides="or|and">
+				
+			<if test="humanMajorKindName != null">
+				or human_major_kind_name = #{humanMajorKindName}
+			</if>
+			<if test="humanMajorName!= null">
+				or human_major_name = #{humanMajorName}
+			</if>
+			
+			
+			<if test="humanName  != null">
+				or human_name = #{humanName}
+			</if>
+			<if test="humanTelephone  != null">
+				or human_telephone = #{keywords}
+			</if>
+			<if test="humanHomephone  != null">
+				or human_homephone = #{keywords}
+			</if>
+			<if test="humanMobilephone  != null">
+				or human_mobilephone = #{keywords}
+			</if>
+			<if test="humanEmail  != null">
+				or human_email = #{keywords}
+			</if>
+			<if test="humanHobby  != null">
+				or human_hobby = #{keywords}
+			</if>
+			<if test="humanSpecility  != null">
+				or human_specility = #{keywords}
+			</if>
+			<if test="humanSex  != null">
+				or human_sex = #{keywords}
+			</if>
+			<if test="humanReligion  != null">
+				or human_religion = #{keywords}
+			</if>
+			<if test="humanParty  != null">
+				or human_party = #{keywords}
+			</if>
+			<if test="humanNationality  != null">
+				or human_nationality = #{keywords}
+			</if>
+			<if test="humanRace  != null">
+				or human_race = #{keywords}
+			</if>
+			<if test="humanBirthday  != null">
+				or human_birthday = #{keywords}
+			</if>
+			<if test="humanAge  != null">
+				or human_age = #{keywords}
+			</if>
+			<if test="humanEducatedDegree  != null">
+				or human_educated_degree = #{keywords}
+			</if>
+			<if test="humanEducatedYears  != null">
+				or human_educated_years = #{keywords}
+			</if>
+			<if test="humanEducatedMajor  != null">
+				or human_educated_major = #{keywords}
+			</if>
+			<if test="humanCollege  != null">
+				or human_college = #{keywords}
+			</if>
+			<if test="humanIdcard  != null">
+				or human_idcard = #{keywords}
+			</if>
+			<if test="demandSalaryStandard  != null">
+				and demand_salary_standard =#{keywords}
+			</if>
+			<if test="remark  != null">
+				or remark = #{keywords}
+			</if>
+			<if test="recomandation  != null">
+				or recomandation = #{keywords}
+			</if>
+			 <if test="starttime  !=  null">
+				and regist_time &gt; #{starttime}
+			</if>
+			<if test="endtime !=null">
+				and regist_time &lt; #{endtime}
+			</if>
+		</trim>
+  	</select>
+  
+  
   </mapper>

@@ -108,7 +108,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="configfilesecondkind.do?operate=list"
+													<a href="showConfigFileSecondKind.do"
 														target="mainFrame">II级机构设置</a>
 												</td>
 											</tr>
@@ -117,7 +117,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="configfilethirdkind.do?operate=list" target="mainFrame">III级机构设置</a>
+													<a href="showConfigFileThirdKind.do" target="mainFrame">III级机构设置</a>
 												</td>
 											</tr>
 											<tr>
@@ -618,7 +618,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="engageresume.do?operate=locate&method=check" target="mainFrame">简历筛选</a>
+													<a href="resumemanage/screenresume.do" target="mainFrame">简历筛选</a>
 												</td>
 											</tr>
 											<tr>

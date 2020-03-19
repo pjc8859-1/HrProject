@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -122,7 +124,204 @@ public class ResumeManageController {
 		return  mav;
 	}
 	
+	/**
+	 * 展示简历筛选页面
+	 */
+	@RequestMapping("screenresume.do")
+	public ModelAndView screenresume(){
+		ModelAndView mav = new ModelAndView();
+		//查询出所有请选择职位分类
+		List<ConfigMajorKind> fourth_list = this.cmks.queryAllConfigMajorKind();
+		//查询出所有请选择职位
+		List<ConfigMajor> fifth_list =this.cms.queryAllConfigMajor();
+		JSONArray  fourth = JSONArray.fromObject(fourth_list);
+		JSONArray  fifth = JSONArray.fromObject(fifth_list);
+		mav.addObject("fourthlist", fourth.toString());
+		mav.addObject("fifthlist", fifth.toString());
+		mav.setViewName("forward:/resume_screen.jsp");
+		return mav;
+	}
 	
+	/**
+	 * 处理从筛选界面传上来的查询条件
+	 */
+	@RequestMapping("submitresumescreen.do")
+	public ModelAndView submitresumescreen(
+			@RequestParam("MajorKindName") String majorkindname,
+			@RequestParam("MajorName") String majorname,
+			 String[] key,
+			@RequestParam String starttime,
+			@RequestParam String endtime,
+			String keywords
+			){
+		System.out.println(majorkindname);
+		System.out.println(majorname);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("keywords", keywords);
+		if(key != null && key.length >0){
+			
+			for (String string : key) {
+				System.out.println(string);
+				map.put(string, 1);
+				
+			}
+		}
+		if(majorkindname!= null && majorkindname.trim() != "")
+		{
+			map.put("humanMajorKindName", majorkindname);
+		}
+		if(majorname!= null && majorname.trim() != "")
+		{
+			map.put("humanMajorName", majorname);
+		}
+		if(starttime!= null && starttime.trim() != "")
+		{
+		map.put("starttime", converttime(starttime, 1));
+		}
+		if(endtime!= null && endtime.trim() != "")
+		{
+			map.put("endtime", converttime(endtime, 1));
+		}
+		
+		System.out.println("=====================两个时间");
+		System.out.println(map.get("starttime"));
+		System.out.println(map.get("endtime"));
+		
+		List<EngageResume> list = 	ers.queryByDiction(map);
+		for (EngageResume engageResume : list) {
+			System.out.println(engageResume);
+		}
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("resumes", list);
+		mav.setViewName("forward:/resume_screen_result_list.jsp");
+		return mav;
+		
+	}
+	/**
+	 * 这个方法是点击"审核按钮后跳到另外页面展示,不能修改"
+	 * @param reId
+	 * @return
+	 */
+	@RequestMapping("resumescreen.do")
+	public ModelAndView resumescreen(int reId)
+	{	
+		ModelAndView mav = new ModelAndView();
+		EngageResume er =  ers.queryEngageResumeByresid(reId);
+		mav.addObject("er", er);
+		mav.setViewName("");
+		return mav;
+	}
+	
+	/**
+	 * 这个方法是点击"修改"后转跳到其他页面,可以修改简历信息
+	 * @param reId
+	 * @return
+	 */
+	@RequestMapping("resumeedit.do")
+	public ModelAndView resumeedit(int reId)
+	{	
+		ModelAndView mav = new ModelAndView();
+		EngageResume er =  ers.queryEngageResumeByresid(reId);
+		mav.addObject("er", er);
+		mav = setMavBaseValue(mav);
+		mav.setViewName("forward:/resume_edit.jsp");
+		
+		return mav;
+	}
+	/**
+	 * 接受从修改页面传来的值进行update操作
+	 */
+	@RequestMapping("editsubmit.do")
+	public ModelAndView editsubmit(
+			 EngageResume er,
+			MultipartFile file,
+			@RequestParam String humanBirthday1,
+			@RequestParam String registTime1,
+			HttpServletRequest request
+			)
+	{	
+		EngageResume er2 = ers.queryEngageResumeByresid(er.getResId());
+		ModelAndView mav = new ModelAndView();
+		//处理文件
+		//获取项目运行的路径
+		String realPath = request.getSession().getServletContext().getRealPath("/upload");
+		//判断该路径是否存在
+		File realFile = new File(realPath);
+		if(!realFile.exists()){
+			realFile.mkdirs();
+		} 
+		System.out.println((er2.getHumanPicture() != null) +""+(er2.getHumanPicture() != ""));
+		System.out.println("file.getSize() <= 0"+(file.getSize() <= 0));
+		//得到真实路径下已经存在的文件并删除原来的文件
+		if(er2.getHumanPicture() != null && er2.getHumanPicture() != "" )
+		{	
+			String existfilepath =realPath+ er2.getHumanPicture();
+			System.out.println("existfilepath:"+existfilepath);
+			File existfile = new File(existfilepath);
+			if(existfile.exists()){
+				if(existfile.delete())
+				{
+					System.out.println("文件删除成功");
+				}
+			} 
+		}
+		
+		//2. 获取唯一的文件名称(包含扩展名)
+		String uuidName = UUID.randomUUID().toString().replace("-", "");
+		//获取扩展名: 获取文件名
+		
+		
+		
+		String extendName;
+		String originalFilename=null ;
+		if(file.getSize() <= 0)
+		{
+			
+			//截取字符串，获取文件的扩展名
+			extendName = er2.getHumanPicture().substring(er2.getHumanPicture().lastIndexOf("."));
+			
+		}else{
+			//获取真实的文件名
+			originalFilename = file.getOriginalFilename();
+			extendName = originalFilename.substring(originalFilename.lastIndexOf("."));
+		}
+		//唯一的文件名UUID.JPG
+		String fileName = uuidName + extendName;
+		//上传文件
+		if(!(file.getSize() <= 0) )
+		{
+			//文件没有上传
+			try {
+				file.transferTo(new File(realFile, fileName));
+				mav.addObject("resumeregistmessage","简历修改成功!!" );
+				System.out.println("文件进行了上传:路径为"+realFile+fileName);
+			} catch (IOException e) {
+			e.printStackTrace();
+			mav.addObject("resumeregistmessage","简历修改失败!!<文件上传>" );
+			} 
+		}else{
+			//文件已经存在
+			mav.addObject("resumeregistmessage","简历修改成功!!<" );
+			fileName=er2.getHumanPicture();
+			System.out.println("修改了fileName"+fileName);
+		}
+			mav.setViewName("forward:/resumeregistsuccess.jsp");
+			
+			//插入对象
+			er.setHumanPicture(fileName);
+			er.setHumanBirthday(converttime(humanBirthday1, 1));
+			er.setRegistTime(converttime(registTime1, 0));
+			System.out.println("update的对象:"+er);
+			
+			int result = ers.modifyEngageResume(er);
+			if(result <= 0)
+			{
+				mav.addObject("resumeregistmessage","简历修改失败!!<数据保存失败>" );
+			}
+		
+		
+		return  mav;
+	}
 	
 	
 	//帮助方法

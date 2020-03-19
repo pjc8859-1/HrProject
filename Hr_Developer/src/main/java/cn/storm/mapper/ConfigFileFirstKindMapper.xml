@@ -20,13 +20,13 @@
   		</resultMap>
   
   		<insert id="saveConfigFileFirstKind" parameterType="ConfigFileFirstKind" >
-  		       <selectKey keyColumn="ffk_id" keyProperty="ffkId" resultType="_short" order="BEFORE">
-  		      SELECT if(max(ffk_id) is null,1,max(ffk_id)+1) as newId FROM config_file_first_kind   
-  		       </selectKey>
   			insert into config_file_first_kind(ffk_id,first_kind_id,first_kind_name,
   			first_kind_salary_id,first_kind_sale_id)
   			values (#{ffkId},#{firstKindId},#{firstKindName},#{firstKindSalaryId},#{firstKindSaleId})
   		</insert>
+  		<select id="selectMaxId" resultType="_int">
+  		SELECT if(max(ffk_id) is null,1,max(ffk_id)+1) as newId FROM config_file_first_kind  
+  		</select>
   		<select id="selectAllConfigFileFirstKind" resultMap="myConfigFileFirstKind">
   			select * from config_file_first_kind
   		</select>
