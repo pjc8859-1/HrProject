@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -45,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<td>
 						符合条件的薪酬标准总数:
-						1
+						${count}
 						例
 					</td>
 				</tr>
@@ -74,30 +75,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 				</tr>
 				
+						<c:forEach items="${slist}" var="ss">
 					<tr class="TD_STYLE2">
-						<td>
-							<a href="salarystandard.do?operate=query&id=1">1000001</a>
-						</td>
-						<td>
-							
-						</td>
-						<td>
-							
-						</td>
-						<td>
-							2010-05-29 00:00:00.0
-						</td>
-						<td>
-							0.0
-						</td>
-						<td>
-							<a
-								href="salarystandard_change.jsp">变更</a>
-						</td>
+						<td>${ss.standardId}</a></td>
+						<td>${ss.standardName}</td>
+						<td>${ss.designer }</td>
+						<td>${ss.registTime}</td>
+						<td>&nbsp;${ss.salarySum}</td>
+					<td>
+						<a href="change.do?sstid=${ss.standardId}">变 更</a>
+					</td>
 					</tr>
-				
+				</c:forEach>
 			</table>
-			<p>&nbsp;&nbsp;总数：1例 &nbsp;&nbsp;&nbsp;当前第 1 页  &nbsp;&nbsp;&nbsp;共 1 页  &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1> 页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18 border=0>
+			<p>&nbsp;&nbsp;总数：${count}例 &nbsp;&nbsp;&nbsp;当前第 1 页  &nbsp;&nbsp;&nbsp;共 1 页  &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1> 页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18 border=0>
 		</form>
   </body>
 </html>

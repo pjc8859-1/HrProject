@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-  	<!-- major_change_show_check.jsp -->
+  	<!-- major_change_query_check.jsp -->
     <base href="<%=basePath%>">
     
     <title>展示需要已经提交了的职位发布项目</title>
@@ -23,53 +23,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="table.css" type="text/css">
 	<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 	<script type="text/javascript">
-		function edit(ele){
+		function apply(ele){
 			var $eee = $(ele);
 			var reId =$eee.parent().siblings("input").val();
-			location.href="recruitment/editrelease.do?mreId="+reId;
+			location.href="recruitment/applyrelease.do?mreId="+reId;
+			
 		
+		}
+		function detail(ele){
+			var $eee = $(ele);
+			var reId =$eee.parent().siblings("input").val();
+			location.href="recruitment/showreleasedetail.do?mreId="+reId;
 		}
 		function deleterelease(ele){
 			var $eee = $(ele);
 			var reId =$eee.parent().siblings("input").val();
-			var dat = reId;
-			$.ajax({
-			    type:"POST",   
-			    url:"recruitment/deleterelease.do",    
-			    dataType:"json",   //返回格式为json
-			    contentType:"application/json;charset=utf-8",
-			    data:dat,    //参数值
-			    beforeSend:function(){
-			        //请求前的处理'{"mreId":'+reId+'}'
-			    },
-			    success:function(req){
-			        if(req)
-			        	{
-			        		alert("删除成功");
-			        	}
-			        else{
-			        	alert("删除失败");
-			        }
-			        location.reload();
-			    },
-			    complete:function(){
-			        //请求完成的处理
-			    },
-			    error:function(){
-			        //请求出错处理
-			    }
-			});
+			
 
 			
 			//location.href="recruitment/.do?mreId="+reId;
-		}
-		function bookin(ele){
-			//拿到人员档案id传输
-			var mchId = $(ele).parent().siblings(".humanid").html().trim();
-			//http://localhost:8080/Hr_Developer/majorchange/formsubmit.do?item.firstKindId=01&item.secondKindId=01&item.thirdKindId=01&item.humanMajorKindName=01&item.hunmaMajorName=01&item.str_startTime=2020-03-01&item.str_endTime=2020-03-24
-					console.log(mchId);
-			location.href = "majorchange/majorchangecheck.do"+"?mchId="+mchId;		
-					
 		}
 	</script>
   </head>
@@ -79,12 +51,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<table width="100%">
 			<tr>
 				<td>
-					<font color="#0000CC">您正在做的业务是：调动管理 -- 调动登记 -- 合格档案展示</font>
+					<font color="#0000CC">您正在做的业务是：招聘管理 -- 职位发布管理--	职位发布查询</font>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					符合条件的职位发布档案总数：${fn:length(releases)}例
+					符合条件的职位发布档案总数：${fn:length(realeases)}例
 				</td>
 					<td align="right">
 						<input type="button" value="刷新"
@@ -99,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<table width="100%" border="1" cellpadding=0 cellspacing=1
 			bordercolorlight=#848284 bordercolordark=#eeeeee class="TABLE_STYLE1">
 			<tr class="TR_STYLE1">
-				<td width="16%" class="TD_STYLE1">
+				<td width="12%" class="TD_STYLE1">
 					职位名称
 				</td>
 				<td width="10%" class="TD_STYLE1">
@@ -109,20 +81,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td width="10%" class="TD_STYLE1">
 					招聘人数
 				</td>
-				<td width="10%" class="TD_STYLE1">
+				<td width="14%" class="TD_STYLE1">
 					发布时间
 				</td>
-				<td width="10%" class="TD_STYLE1">
+				<td width="14%" class="TD_STYLE1">
 					截止时间
 				</td>
-				<td width="14%" class="TD_STYLE1">
-					修改
+				<td width="10%" class="TD_STYLE1">
+					职位详情
 				</td>
-				<td width="7%" class="TD_STYLE1">
-					删除
+				<td width="14%" class="TD_STYLE1">
+					申请职位
 				</td>
 			</tr>
-			<c:forEach items="${releases}" var="release">
+			<c:forEach items="${realeases}" var="release">
 				<tr class="TR_STYLE1">
 				<input type="hidden" name="mreId" value="${release.mreId }" id="mreId"/>
 				<td width="16%" class="TD_STYLE2 humanid">
@@ -140,18 +112,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					${fn:substring(release.registTime, 0, 19)}
 				</td>
 				<td width="10%" class="TD_STYLE2">
-					${fn:substring(release.deadline, 0, 10)}
+					${fn:substring(release.deadline, 0, 19)}
 				</td>
 				<td width="14%" class="TD_STYLE2">
-					<a onclick="edit(this)">修改</a>
+					<a onclick="detail(this)">详情</a>
 				</td>
-				<td width="7%" class="TD_STYLE2">
-					<a onclick="deleterelease(this)">删除</a>
-					
+				<td width="12%" class="TD_STYLE2">
+					<a onclick="apply(this)">申请该职位</a>
 				</td>
 			</tr>
 			</c:forEach>
-			
 		</table>
 	</form>
   </body>

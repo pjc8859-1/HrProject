@@ -30,7 +30,14 @@
 		<property name="username" value="${pjcusername}"></property>
 		<property name="password" value="${pjcpassword}"></property>
 	</bean>
-	
+	<!-- 文件上传相关配置-->
+	<bean id="multipartResolver"
+      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+      <!--上传文件的最大大小，单位为字节 --> 
+      <property name="maxUploadSize" value="17367648787"></property>
+      <!-- 上传文件的编码 -->
+      <property name="defaultEncoding" value="UTF-8"></property>
+  </bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- 注入数据源 -->

@@ -31,8 +31,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				alert("薪酬名称不能为空！");
 				return ;
 			}
-			if(document.getElementById("designer").value==""){
-				alert("制定人不能为空！");
+			if(document.getElementById("checker").value==""){
+				alert("复核人不能为空！");
 				return ;
 			}
 			for(var i=1;i<=6;i++){
@@ -119,13 +119,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						制定人
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="designer" id="designer" value="" class="INPUT_STYLE2">
+						<input type="text" name="designer" id="designer" readonly="readonly" value="${sa.designer }" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						复核人
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="checker" value="better_wanghao" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="checker" id="checker" value=""  class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						复核时间

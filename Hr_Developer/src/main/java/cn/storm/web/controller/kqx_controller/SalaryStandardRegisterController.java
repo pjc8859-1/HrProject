@@ -21,6 +21,7 @@ public class SalaryStandardRegisterController {
 	@Autowired
 	private SalaryStandardDetailsService ssds = null;
 
+	// 薪酬标准登记提交执行的方法
 	@RequestMapping("/salarystandard.do")
 	public String RegisterPage(@RequestParam("item.standardId") String id,
 			@RequestParam("item.standardName") String name,

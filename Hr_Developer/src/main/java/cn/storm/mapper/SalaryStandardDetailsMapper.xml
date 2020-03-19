@@ -28,7 +28,7 @@
   		<select id="selectAllSalaryStandardDetails" resultMap="mySalaryStandardDetails">
   			select * from salary_standard_details
   		</select>
-  		<select id="selectSalaryStandardDetailsByStd" parameterType="_int" resultMap="mySalaryStandardDetails">
+  		<select id="selectSalaryStandardDetailsByStd" parameterType="_int" >
   			select * from salary_standard_details where sdt_id = #{id}
   		</select>
   		<delete id="deleteSalaryStandardDetailsByStd" parameterType="_int">

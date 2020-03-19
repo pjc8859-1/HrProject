@@ -1,147 +1,90 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-  <head>
-    <base href="<%=basePath%>">
-    
-    <title>My JSP 'salarystandard_check_list.jsp' starting page</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript"
+			src="../javascript/jquery-1.7.2.js">
+		</script>
 		<link rel="stylesheet" href="table.css" type="text/css" />
+		<script type="text/javascript" src="javascript/comm/comm.js"></script>
 		<title>无标题文档</title>
-		<style type="text/css">
-<!--
-.style3 {color: #0000CC}
--->
-</style>
-  </head>
-  
-  <body>
-  <form method="post" action="salarystandard.do">
+		<STYLE type="text/css">
+		td{text-align: center}
+		</STYLE>
+	</head>
+
+	<body>
+		 
 			<table width="100%">
 				<tr>
-					<td>
-						<font color="#0000CC">您正在做的业务是:人力资源管理--薪酬发放管理--薪酬发放登记</font>
+					<td colspan="2" style="text-align: left">
+						<font color="black">您正在做的业务是：人力资源--薪酬标准管理--薪酬发放登记(负责人控制)
+						</font>
+						 
 					</td>
 				</tr>
-				<tr>
-					<td>
-						&nbsp;
-					</td>
-				</tr>
-				<tr>
-					<td>
-						薪酬单编号:<br>
-						薪酬次数：3，总人数：，基本薪酬总额：，实发总额：
-						<td align="right">上次发薪时间：</td>
-					</td>
-				</tr>
+				 
 			</table>
+					<br> 
+					薪酬总数:${count }
+					总人数:${summap.humanall }，基本薪酬总额:${summap.salaryall }，实发总额:${summap.salarypall }
+					
 			<table width="100%" border="1" cellpadding=0 cellspacing=1
 				bordercolorlight=#848284 bordercolordark=#eeeeee
 				class="TABLE_STYLE1">
+				
 				<tr>
-					<td width="12%" class="TD_STYLE1">
+					<td width="10%" class="TD_STYLE1">
 						<span>序号</span>
+					</td>			
+					<td width="30%"  class="TD_STYLE1">
+					I级机构名称 
 					</td>
-					<td width="16%" class="TD_STYLE1">
-						<span>I级机构名称</span>
+					<td width="30%"  class="TD_STYLE1">
+					II级机构名称 
 					</td>
-					<td width="16%" class="TD_STYLE1">
-						<span>II级机构名称</span>
-					</td>
-					<td width="15%" class="TD_STYLE1">
+					<td width="10%" class="TD_STYLE1">
 						<span>人数</span>
 					</td>
-					<td width="33%" class="TD_STYLE1">
-						基本薪酬总额（元）
-					</td>
-					<td width="8%" class="TD_STYLE1">
+					<td width="10%" class="TD_STYLE1">
+						基本薪酬总额(元)
+					</td>					
+					<td width="10%" class="TD_STYLE1">
 						登记
 					</td>
 				</tr>
 				
-					<tr class="TD_STYLE2">
-						<td>
-							1000001
-						</td>
-						<td>
-							
-						</td>
-						<td>
-							
-						</td>
-						<td>
-							2010-05-29 00:00:00.0
-						</td>
-						<td>
-							0.0
-						</td>
-						<td>
-							<a
-								href="salarystandard_check.jsp">复核</a>
-						</td>
-					</tr>
+				<c:forEach items="${salist}" var="s">
 				
 					<tr class="TD_STYLE2">
 						<td>
-							1000001
+							${s.sgrId }
 						</td>
 						<td>
-							
+						${s.firstKindName }
 						</td>
 						<td>
-							
+						${s.secondKindName }
 						</td>
 						<td>
-							2010-05-29 00:00:00.0
+							${s.humanAmount } 
 						</td>
 						<td>
-							0.0
+							${s.salaryStandardSum} 
 						</td>
 						<td>
-							<a
-								href="salarystandard_check.jsp">复核</a>
+							<a href="toGrantModif.do?sid=${s.salaryGrantId }&standardid=${s.salaryStandardId}" >登 记</a>
 						</td>
 					</tr>
-				
-					<tr class="TD_STYLE2">
-						<td>
-							1000001
-						</td>
-						<td>
-							
-						</td>
-						<td>
-							
-						</td>
-						<td>
-							2010-05-29 00:00:00.0
-						</td>
-						<td>
-							0.0
-						</td>
-						<td>
-							<a
-								href="salarystandard.do?operate=toEdit&id=3&method=check">复核</a>
-						</td>
-					</tr>
-				
-			</table>
-			<p>&nbsp;&nbsp;总数：3例 &nbsp;&nbsp;&nbsp;当前第 1 页  &nbsp;&nbsp;&nbsp;共 1 页  &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1> 页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18 border=0>
-		</form>
-  </body>
+				</c:forEach>	
+				</table>
+			<p>
+			 
+				&nbsp;
+			</p>
+		 
+	</body>
 </html>

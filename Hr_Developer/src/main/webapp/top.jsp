@@ -21,15 +21,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 	<style type="text/css">
    body {
+   width:100%;
 	margin:0;
 	padding:0;
     background-image: url(images/bg.jpg);
+    background-size:cover;
     background-repeat:no-repeat;
 	
 }	
 /*- Menu Tabs F--------------------------- */
 
     #tabsF {
+    width:100%;
       float:left;
       font-size:85%;
 	  white-space:nowrap;
@@ -37,6 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	/*  border-bottom:1px solid #666;*/
       }
     #tabsF ul {
+    width:100%;
 	margin:0;
 	cursor:hand;
 	padding:0px 0px 0 0px;
@@ -55,7 +59,7 @@ width:9%;
       cursor:hand;
       float:left;
       background:url("images/tableftF.gif") repeat left top;
-	  width:100%;
+	  width:9%;
       margin:0;
       padding:0 0 0 1px;
       text-decoration:none;
@@ -64,7 +68,6 @@ width:9%;
     cursor:hand;
       float:left;
       display:block;
-      background:url("images/tabrightF.gif") repeat right top;
 	  width:100%;
       padding:5px 15px 4px 0px;
       color:#666;
@@ -162,25 +165,23 @@ SELECT {
   <tr>
     <td><p class="style3"><span class="style6">Better</span><span class="style7">伯乐</span><span class="style8">人力资源管理系统</span></p></td>
   </tr>
-  <tr><td height=11></td></tr>
+  <tr><td height=11 id="aaa"></td></tr>
 </table>
 <table border="0" cellspacing="0" width="100%" id="AutoNumber7" cellpadding="0" height="30">
 <tr>
 	<td height="100%" align="right" style="padding-left:100">&nbsp;</td>
 	 <div id="tabsF">
      <ul>
-   <li><a href="" target="a"><span><font color="#FFFFFF" size="2px"><b>&nbsp;系统首页</b></font></span></a></li>
+   <li><a onclick="window.parent.window.location.reload()" target="a"><span><font color="#FFFFFF" size="2px"><b>&nbsp;系统首页</b></font></span></a></li>
    <li><a href="" target="a"><span><font color="#FFFFFF" size="2px"><b>&nbsp;客户化设置</b></font></span></a></li>
    <li><a href="" target="a"><span><font color="#FFFFFF" size="2px"><b>&nbsp;人力资源档案管理</b></font></span></a></li>
    <li><a href="" target="a"><span><font color="#FFFFFF" size="2px"><b>&nbsp;&nbsp;薪酬标准管理</b></font></span></a></li>
    <li><a href="" target="a"><span><font color="#FFFFFF" size="2px"><b>&nbsp;&nbsp;薪酬发放管理</b></font></span></a></li>
-   <li><a href="" target="a"><span><font color="#FFFFFF" size="2px"><b>&nbsp;&nbsp;调动管理</b></font></span></a></li>
-   <li><a href="" target="a"><span><font color="#FFFFFF" size="2px"><b>&nbsp;&nbsp;培训管理</b></font></span></a></li>
-   <li><a href="" target="a"><span><font color="#FFFFFF" size="2px"><b>&nbsp;&nbsp;激励管理</b></font></span></a></li>
-   <li><a href="" target="a"><span><font color="#FFFFFF" size="2px"><b>&nbsp;&nbsp;招聘管理</b></font></span></a></li>
-   <li><a href="" target="a"><span><font color="#FFFFFF" size="2px"><b>&nbsp;标准数据报表</b></font></span></a></li>
-  </ul>
-</div>
+   <li><a onclick="this.href='majorchange/majorchange.do';window.parent.document.getElementById('left').contentWindow.document.getElementById('major_change_pic').click();" target="mainFrame"><span><font color="#FFFFFF" size="2px"><b>&nbsp;&nbsp;调动管理</b></font></span></a></li>
+   <li><a onclick="window.parent.document.getElementById('left').contentWindow.document.getElementById('engage_pic').click();" target="mainFrame"><span><font color="#FFFFFF" size="2px"><b>&nbsp;&nbsp;招聘管理</b></font></span></a></li>
+   <li><a onclick="window.parent.document.getElementById('left').contentWindow.document.getElementById('exports_pic').click();" target="a"><span><font color="#FFFFFF" size="2px" ><b>&nbsp;标准数据报表</b></font></span></a></li>
+  </ul>								
+</div>	
 </table>
   </body>
 </html>

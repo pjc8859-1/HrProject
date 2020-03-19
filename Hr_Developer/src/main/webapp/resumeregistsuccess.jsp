@@ -6,7 +6,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-	<!--submit_major_change_success.jsp  -->
+	<!--resumeregistsuccess.jsp  展示简历提交结果-->
   <head>
     <base href="<%=basePath%>">
     
@@ -27,6 +27,7 @@ function locate()
 {
 	document.forms[0].action = document.forms[0].action + "?operate=locate";
 	document.forms[0].submit();
+	
 }
 </script>
   </head>
@@ -36,16 +37,16 @@ function locate()
 <table width="100%" >
   <tr>
     <td colspan="2"> 
-    <font color="#0000CC">您正在做的业务是：人力资源 -- 招聘管理 -- 职位发布管理 --职位发布结果</font></td>
+    <font color="#0000CC">您正在做的业务是：人力资源 -- 调动管理 -- 提交成功</font></td>
   </tr>
   <tr>
-    <td width="49%"> ${checkresultmessage}</td>
+    <td width="49%"><h3> ${resumeregistmessage}</h3></td>
     <td width="51%" align="right">
     <input type="button" value="返回" class="BUTTON_STYLE1" onclick="history.go(-2)">
     </td>
   </tr>
   </table>
-		${releasemessage }
+
 </form>
   </body>
 </html>
