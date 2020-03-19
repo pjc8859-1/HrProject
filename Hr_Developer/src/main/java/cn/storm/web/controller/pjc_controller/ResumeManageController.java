@@ -1,8 +1,13 @@
 package cn.storm.web.controller.pjc_controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import net.sf.json.JSONArray;
 
@@ -13,9 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import cn.storm.pojo.ConfigFileFirstKind;
-import cn.storm.pojo.ConfigFileSecondKind;
-import cn.storm.pojo.ConfigFileThirdKind;
 import cn.storm.pojo.ConfigMajor;
 import cn.storm.pojo.ConfigMajorKind;
 import cn.storm.pojo.ConfigPublicChar;
@@ -69,14 +71,54 @@ public class ResumeManageController {
 	}
 	@RequestMapping("submitresumeregist.do")
 	public ModelAndView submitresumeregist(
-			@RequestParam EngageResume er,MultipartFile file,
+			 EngageResume er,
+			MultipartFile file,
 			@RequestParam String humanBirthday1,
-			@RequestParam String registTime1
+			@RequestParam String registTime1,
+			HttpServletRequest request
 			)
 	{	
 		ModelAndView mav = new ModelAndView();
-		mav = setMavBaseValue(mav);
-		mav.setViewName("forward:/resume_regist.jsp");
+		//处理文件
+		//获取项目运行的路径
+		String realPath = request.getSession().getServletContext().getRealPath("/upload");
+		//判断该路径是否存在
+		File realFile = new File(realPath);
+		if(!realFile.exists()){
+			realFile.mkdirs();
+		} 
+		//2. 获取唯一的文件名称(包含扩展名)
+		String uuidName = UUID.randomUUID().toString().replace("-", "");
+		//获取扩展名: 获取文件名
+		//获取真实的文件名
+		String originalFilename = file.getOriginalFilename();
+		//截取字符串，获取文件的扩展名
+		String extendName = originalFilename.substring(originalFilename.lastIndexOf("."));
+		System.out.println(extendName);
+		//唯一的文件名UUID.JPG
+		String fileName = uuidName + extendName;
+		//上传文件
+		try {
+				file.transferTo(new File(realFile, fileName));
+				mav.addObject("resumeregistmessage","简历提交成功!!" );
+			} catch (IOException e) {
+			e.printStackTrace();
+			mav.addObject("resumeregistmessage","简历提交失败!!<文件上传>" );
+			} 
+			
+			mav.setViewName("forward:/resumeregistsuccess.jsp");
+			
+			//插入对象
+			er.setHumanPicture(fileName);
+			er.setHumanBirthday(converttime(humanBirthday1, 1));
+			er.setRegistTime(converttime(registTime1, 0));
+			System.out.println(er);
+			
+			boolean result = ers.addEngageResume(er);
+			if(!result)
+			{
+				mav.addObject("resumeregistmessage","简历提交失败!!<数据保存失败>" );
+			}
 		return  mav;
 	}
 	
