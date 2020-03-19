@@ -54,4 +54,24 @@ public class SalaryGrantServiceImpl implements SalaryGrantService {
 	public void updateGrant(SalaryGrant sg) {
 		mapper.updateGrant(sg);
 	}
+
+	@Override
+	public List<SalaryGrant> queryAllRegisteredSalaryGrant() {
+		return mapper.queryAllRegisteredSalaryGrant();
+	}
+
+	@Override
+	public Map SalaryRegisteredSum() {
+		return mapper.SalaryRegisteredSum();
+	}
+
+	@Override
+	public void updateCheckGrant(SalaryGrant salarygrant) {
+		mapper.updateCheckGrant(salarygrant);
+	}
+
+	@Override
+	public List<SalaryGrant> queryAllCheckedSalaryGrantBycondition(Map map) {
+		return mapper.queryAllCheckedSalaryGrantBycondition(map);
+	}
 }

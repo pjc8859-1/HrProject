@@ -19,4 +19,12 @@ public interface SalaryGrantService {
 	public Map SalarySum();
 
 	public void updateGrant(SalaryGrant sg);
+
+	public void updateCheckGrant(SalaryGrant salarygrant);
+
+	public List<SalaryGrant> queryAllRegisteredSalaryGrant();
+
+	public List<SalaryGrant> queryAllCheckedSalaryGrantBycondition(Map map);
+
+	public Map SalaryRegisteredSum();
 }

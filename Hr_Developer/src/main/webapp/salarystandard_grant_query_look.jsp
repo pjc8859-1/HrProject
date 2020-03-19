@@ -46,10 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</tr>
 				<tr>
 					<td align="right">
-						<input type="button" value="提交" class="BUTTON_STYLE1"
-							onclick="submit()">
-						<input type="button" value="返回" class="BUTTON_STYLE1"
-							>
+						<input type="button" value="返回" class="BUTTON_STYLE1">
 					</td>
 				</tr>
 				
@@ -64,12 +61,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<input type="hidden" id="count" value="${sg.humanAmount }"/>
 						<span id="salarySum_sum">${summap.salarypall }</span>
 							</td>
-						<td align="right">复核人：<input type="text" name="checker" value="admin" style="width:80px;background-color:#D4F8D4;">复核时间：
-							<span id="datetime">
-    						<script>
-        					setInterval("document.getElementById('datetime').innerHTML=new Date().toLocaleString();", 1000);
-   							</script>
-							</span>
+						<td align="right">复核人：<input type="text" name="checker" readonly="readonly" value="${sg.checker }" style="width:80px;background-color:#D4F8D4;">
+										    登记人：<input type="text" name="checker" readonly="readonly" value="${sg.register }" style="width:80px;background-color:#D4F8D4;">
 						</td>
 				
 				</tr>
@@ -143,13 +136,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 										
 						<td>
-							<input type="text" name="bounsSum"  id="bounsSum${vs.count }"  onkeyup="onKeyPress('${vs.count}')" value="${s.bounsSum }" class="INPUT_STYLE2" />
+							<input type="text" name="bounsSum" readonly="readonly" id="bounsSum${vs.count }"   value="${s.bounsSum }" class="INPUT_STYLE2" />
 						</td>
 						<td>
-							<input type="text" name="saleSum"   id="saleSum${vs.count }"  onkeyup="onKeyPress('${vs.count }')" value="${s.saleSum }" class="INPUT_STYLE2"/>
+							<input type="text" name="saleSum" readonly="readonly"  id="saleSum${vs.count }"   value="${s.saleSum }" class="INPUT_STYLE2"/>
 						</td>
 						<td>
-							<input type="text" name="deductSum"   id="deductSum${vs.count }" onkeyup="onKeyPress('${vs.count }')" value="${s.deductSum }" class="INPUT_STYLE2"/>
+							<input type="text" name="deductSum"  readonly="readonly" id="deductSum${vs.count }"  value="${s.deductSum }" class="INPUT_STYLE2"/>
 						</td>
 						<td>
 							<input type="text" name="salaryPaidSum" readonly="readonly"  id="salaryPaidSum${vs.count }" value="${s.salaryPaidSum } "/>
@@ -159,38 +152,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 			</table>
 		</form>
-  <script type="text/javascript">
-function onKeyPress(i){
-		var count = document.getElementById("count"); 
-		var bounsSum=document.getElementById("bounsSum"+i);
-		var saleSum =document.getElementById("saleSum"+i);
-		var deductSum=document.getElementById("deductSum"+i);
-		var salaryPaidSum=document.getElementById("salaryPaidSum"+i);
-		if (isNaN(bounsSum.value) || bounsSum.value < 0) {
-			alert("金额填写错误!");
-		bounsSum.value="0.00";
-		return;
-	} 
-		if (isNaN(saleSum.value) || saleSum.value < 0) {
-			alert("金额填写错误!");
-		saleSum.value="0.00";
-		return;
-	} 
-		if (isNaN(deductSum.value) || deductSum.value < 0) {
-			alert("金额填写错误!");
-		deductSum.value="0.00";
-		return;
-	} 
-		salaryPaidSum.value=Number(bounsSum.value)+Number(saleSum.value)-
-		Number(deductSum.value)+Number(document.getElementById("salaryStandardSum"+i).value);
-		
-		var sum=0;
-		for(var j=1;j<=count.value;j++){
-			sum=Number(sum)+Number(document.getElementById("salaryPaidSum"+j).value);
-		}
-	 		 document.getElementById("salarySum_sum").innerHTML=sum;
-}
-		
-		</script>
   </body>
 </html>

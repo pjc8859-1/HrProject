@@ -72,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<table width="100%">
 				<tr>
 					<td>
-						<font color="#0000CC">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准登记复核</font>
+						<font color="#0000CC">您正在做的业务是:薪酬标准管理--薪酬标准登记复核</font>
 					</td>
 				</tr>
 				<tr>

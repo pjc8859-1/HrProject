@@ -14,11 +14,11 @@
 <table width="100%" >
   <tr>
     <td colspan="2"> 
-    <font color="black">您正在做的业务是：薪酬发放管理--薪酬发放登记 </font></td>
+    <font color="black">您正在做的业务是：薪酬发放管理--薪酬发放登记复核 </font></td>
   </tr>
   <tr>
    
-    <td width="49%"> 提交成功，需要复核！</td>
+    <td width="49%"> 复核成功！</td>
     <td width="51%" align="right">
 			<input type="button" 
 			class="BUTTON_STYLE1" 

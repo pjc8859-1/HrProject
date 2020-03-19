@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<table width="100%">
 				<tr>
 					<td>
-						<font color="#0000CC">您正在做的业务是:人力资源管理--薪酬发放管理--薪酬发放登记</font>
+						<font color="#0000CC">您正在做的业务是:薪酬发放管理--薪酬发放登记</font>
 					</td>
 				</tr>
 				<tr>
@@ -79,10 +79,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				class="TABLE_STYLE1">
 				<tr>
 					<td width="9%" class="TD_STYLE1">
-						<span>序号</span>
+						<span>薪酬发放细节编号</span>
 					</td>
 					<td width="9%" class="TD_STYLE1">
-						<span>档案编号</span>
+						<span>人物编号</span>
 					</td>
 					<td width="9%" class="TD_STYLE1">
 						<span>姓名</span>

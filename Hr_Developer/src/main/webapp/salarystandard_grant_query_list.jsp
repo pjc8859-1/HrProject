@@ -21,7 +21,7 @@
 			<table width="100%">
 				<tr>
 					<td colspan="2" style="text-align: left">
-						<font color="black">您正在做的业务是：薪酬标准管理--薪酬发放登记(负责人控制)
+						<font color="black">您正在做的业务是：薪酬发放管理--薪酬发放查询
 						</font>
 						 
 					</td>
@@ -29,9 +29,7 @@
 				 
 			</table>
 					<br> 
-					薪酬总数:${count }
-					总人数:${summap.humanall }，基本薪酬总额:${summap.salaryall }，实发总额:${summap.salarypall }
-					
+					符合条件的薪酬标准总数:${count}例
 			<table width="100%" border="1" cellpadding=0 cellspacing=1
 				bordercolorlight=#848284 bordercolordark=#eeeeee
 				class="TABLE_STYLE1">
@@ -40,10 +38,10 @@
 					<td width="10%" class="TD_STYLE1">
 						<span>薪酬发放编号</span>
 					</td>			
-					<td width="30%"  class="TD_STYLE1">
+					<td width="25%"  class="TD_STYLE1">
 					I级机构名称 
 					</td>
-					<td width="30%"  class="TD_STYLE1">
+					<td width="25%"  class="TD_STYLE1">
 					II级机构名称 
 					</td>
 					<td width="10%" class="TD_STYLE1">
@@ -51,13 +49,16 @@
 					</td>
 					<td width="10%" class="TD_STYLE1">
 						基本薪酬总额(元)
-					</td>					
+					</td>	
 					<td width="10%" class="TD_STYLE1">
-						登记
+						实发薪酬总额(元)
+					</td>				
+					<td width="10%" class="TD_STYLE1">
+						查看
 					</td>
 				</tr>
 				
-				<c:forEach items="${salist}" var="s">
+				<c:forEach items="${sglist}" var="s" varStatus="vs">
 				
 					<tr class="TD_STYLE2">
 						<td>
@@ -76,7 +77,10 @@
 							${s.salaryStandardSum} 
 						</td>
 						<td>
-							<a href="toGrantModif.do?sid=${s.salaryGrantId }&standardid=${s.salaryStandardId}" >登 记</a>
+							${s.salaryPaidSum} 
+						</td>
+						<td>
+							<a href="toGrantLook.do?sid=${s.salaryGrantId }&standardid=${s.salaryStandardId}" >查  看</a>
 						</td>
 					</tr>
 				</c:forEach>	

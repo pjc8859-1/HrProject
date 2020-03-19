@@ -40,10 +40,10 @@
 					<td width="10%" class="TD_STYLE1">
 						<span>薪酬发放编号</span>
 					</td>			
-					<td width="30%"  class="TD_STYLE1">
+					<td width="25%"  class="TD_STYLE1">
 					I级机构名称 
 					</td>
-					<td width="30%"  class="TD_STYLE1">
+					<td width="25%"  class="TD_STYLE1">
 					II级机构名称 
 					</td>
 					<td width="10%" class="TD_STYLE1">
@@ -51,13 +51,16 @@
 					</td>
 					<td width="10%" class="TD_STYLE1">
 						基本薪酬总额(元)
-					</td>					
+					</td>	
 					<td width="10%" class="TD_STYLE1">
-						登记
+						实发薪酬总额(元)
+					</td>				
+					<td width="10%" class="TD_STYLE1">
+						复核
 					</td>
 				</tr>
 				
-				<c:forEach items="${salist}" var="s">
+				<c:forEach items="${sglist}" var="s">
 				
 					<tr class="TD_STYLE2">
 						<td>
@@ -76,7 +79,10 @@
 							${s.salaryStandardSum} 
 						</td>
 						<td>
-							<a href="toGrantModif.do?sid=${s.salaryGrantId }&standardid=${s.salaryStandardId}" >登 记</a>
+							${s.salaryPaidSum} 
+						</td>
+						<td>
+							<a href="toGrantCheckModif.do?sid=${s.salaryGrantId }&standardid=${s.salaryStandardId}" >复  核</a>
 						</td>
 					</tr>
 				</c:forEach>	

@@ -461,7 +461,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td>
-									<a href="toqueryf.do" target="mainFrame">薪酬发放登记复核</a>
+									<a href="toSalarygrantAll.do" target="mainFrame">薪酬发放登记复核</a>
 								</td>
 							</tr>
 							<tr>
