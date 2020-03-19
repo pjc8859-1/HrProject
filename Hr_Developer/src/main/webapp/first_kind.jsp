@@ -89,13 +89,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 				
 			</table>
+			<!-- 
 			<p>&nbsp;&nbsp;总数：1例 &nbsp;&nbsp;&nbsp;当前第 1 页  &nbsp;&nbsp;&nbsp;共 1 页  &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1> 页&nbsp;&nbsp;<input type="button"  width=18 height=18 value="跳转"/>
+		 -->
 		</form>
   </body>
 </html>
 <script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 <script type="text/javascript" >
 var str;
+var value;
+var index=1;
+var no=1;
 $(
     function(){
     $.ajax({
@@ -104,39 +109,54 @@ $(
 					//contentType:"application/json;charset=utf-8",
 					dataType:"json",
 					success:function(result){
-						for(var i=0;i<result.length;i++){
-						str=`
-						<tr>
-						<td class="TD_STYLE2">
-							01
-						</td>
-						<td class="TD_STYLE2">
-							集团
-						</td>
-						<td class="TD_STYLE2">
-							1
-						</td>
-						<td class="TD_STYLE2">
-							1
-						</td>
-						<td class="TD_STYLE2">
-							<a href="first_kind_change.jsp">变更</a>
-						</td>
-						<td class="TD_STYLE2">
-							<a href="first_kind_delete.jsp">删除</a>
-						</td>
-					</tr>
-						`;
-						$(".TABLE_STYLE1").append($(str));
-						}
+					if(result.length>0){
+					value=result;
+					no=Math.ceil(result.length/5);
+					
+						for(var i=0;i<(index==no?result.length-(index-1)*5:5);i++){
+						str="<tr data=\""+result[i].ffkId+"\"><td class=\"TD_STYLE2\">"+result[i].firstKindId+"</td><td class=\"TD_STYLE2\">"+result[i].firstKindName+"</td>"
+						+"<td class=\"TD_STYLE2\">"+result[i].firstKindSalaryId+"</td><td class=\"TD_STYLE2\">"+result[i].firstKindSaleId+"</td>"
+						+"<td class=\"TD_STYLE2\"><a href=\"first_kind_change.jsp?id="+result[i].ffkId+"\">变更</a>	</td><td class=\"TD_STYLE2\"><a href=\"first_kind_delete.jsp?id="+result[i].ffkId+"\">删除</a></td></tr>";
+					
+					     $(".TABLE_STYLE1").append($(str));
+						}	
+						var str1="<p>&nbsp;&nbsp;总数："+result.length+"例 &nbsp;&nbsp;&nbsp;当前第<span id=\"np\"> "+index+"</span> 页  &nbsp;&nbsp;&nbsp;共 "+no+" 页  &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1> 页&nbsp;&nbsp;<input type=\"button\" width=18 height=18 value=\"跳转\" onclick=\"goPage(this)\"/>"
+					  $(".TABLE_STYLE1").after($(str1));
+					  }
+					
 					}
+					
 				});
     }
-)
+    
+     
+);
 
+function goPage(a){
+var page= $("input[name='page']").val() ;
+var r = /^\+?[1-9][0-9]*$/;//判断是否为正整数 
+  if( r.test(page)&&0<parseInt(page)&&parseInt(page)<=no){
+  index=parseInt(page);
+  $("#show").siblings().each(function(){
+    $(this).remove();
+ });
+ 
+      for(var i=0;i<(index==no?value.length-(index-1)*5:5);i++){
+      
+						str="<tr ><td class=\"TD_STYLE2\">"+value[i+(index-1)*5].firstKindId+"</td><td class=\"TD_STYLE2\">"+value[i+(index-1)*5].firstKindName+"</td>"
+						+"<td class=\"TD_STYLE2\">"+value[i+(index-1)*5].firstKindSalaryId+"</td><td class=\"TD_STYLE2\">"+value[i+(index-1)*5].firstKindSaleId+"</td>"
+						+"<td class=\"TD_STYLE2\"><a href=\"first_kind_change.jsp?id="+result[i].ffkId+")\">变更</a>	</td>"
+						+"<td class=\"TD_STYLE2\">	<a href=\"first_kind_delete.jsp\">删除</a></td></tr>";
+					     $(".TABLE_STYLE1").append($(str));
+						}
+					$("#np").html(index);	
+  }else{
+  alert("页数输入错误");
+  }
+   
 
-					
-)
+};
+
 
 </script>
 

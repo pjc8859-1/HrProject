@@ -27,6 +27,9 @@
   			update config_public_char set 
 	  			attribute_kind = #{attributeKind},
 	  			attribute_name = #{attributeName},
-  			where pbc_id = #{pbcId}
+  				where pbc_id = #{pbcId}
   		</update>
+  		<select id="selectConfigPublicCharByKey" parameterType="String" resultMap="MyConfigPublicChar" >
+  			select * from config_public_char where attribute_kind  =  #{id}
+  		</select>
   </mapper>

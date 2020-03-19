@@ -79,7 +79,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			thirdselect = document.getElementById("select3").outerHTML;
 			fourthselect = document.getElementById("select4").outerHTML;
 			fifthselect =document.getElementById("select5").outerHTML;
-			alert("savelist执行");
 			
 		}
 		function showfirst(firstneedshow)

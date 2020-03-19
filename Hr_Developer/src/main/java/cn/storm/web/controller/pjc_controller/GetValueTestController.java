@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/aa")
 public class GetValueTestController {
 
-	@RequestMapping("/bb.do")
-	public void getvalue(@RequestParam("item.firstKindName") String val){
-		System.out.println(val+"aaaaaaaaa");
+	@RequestMapping("bb.do")
+	public String getvalue(){
+		return "redirect:/index.jsp";
 	}
 	
 }

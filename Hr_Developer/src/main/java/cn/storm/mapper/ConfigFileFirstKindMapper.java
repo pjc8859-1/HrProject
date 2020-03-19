@@ -13,4 +13,5 @@ public interface ConfigFileFirstKindMapper {
 	public ConfigFileFirstKind selectConfigFileFirstKindByffk_id(int sid);
 	public boolean deleteConfigFileFirstKindByffk_id(int sid);
 	public int updateConfigFileFirstKind(ConfigFileFirstKind configFileFirstKind);
+	public List<ConfigFileFirstKind> selectConfigFileFirstKindByName(String name);
 }

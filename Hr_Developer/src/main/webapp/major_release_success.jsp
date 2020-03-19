@@ -6,10 +6,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
+	<!--submit_major_change_success.jsp  -->
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'first_kind_change_success.jsp' starting page</title>
+    <title>My JSP 'register_success.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -19,32 +20,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	<head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link rel="stylesheet" href="table.css" type="text/css">
-<script type="text/javascript" src="javascript/comm/comm.js"></script>
+<script type="text/javascript">
+function locate()
+{
+	document.forms[0].action = document.forms[0].action + "?operate=locate";
+	document.forms[0].submit();
+}
+</script>
   </head>
   
   <body>
-  	<form name="form1" method="post" action="">
+  <form method="post" action="configprimarykey.do">
 <table width="100%" >
   <tr>
     <td colspan="2"> 
-    <font color="#0000CC">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--I级机构设置 </font></td>
+    <font color="#0000CC">您正在做的业务是：人力资源 -- 招聘管理 -- 职位发布管理 --职位发布结果</font></td>
   </tr>
   <tr>
-    <td width="49%"> 更改成功，请返回。</td>
+    <td width="49%"> ${checkresultmessage}</td>
     <td width="51%" align="right">
-    <input type="button" value="返回" class="BUTTON_STYLE1" onclick="javascript:back();"></td></tr>
+    <input type="button" value="返回" class="BUTTON_STYLE1" onclick="history.go(-2)">
+    </td>
+  </tr>
   </table>
-
+		${releasemessage }
 </form>
   </body>
 </html>
-<script type="text/javascript">
-function back(){
-console.log("aaaaa");
-window.location.href ="first_kind.jsp";
-
-}
-</script>

@@ -24,14 +24,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <form name="configfilefirstkindForm" method="post" action="/hr/configfilefirstkind.do">
+  <form name="configfilefirstkindForm" method="post" action="firstkindregister.do">
 <table width="100%" >
   <tr>
     <td> 
     <font color="#0000CC">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--I级机构设置 </font></td>
   </tr>
   <tr>
-    <td align="right"><input type="button" value="提交" class="BUTTON_STYLE1" onclick="window.location.href='first_kind_register_success.jsp'">
+    <td align="right"><input type="submit" value="提交" class="BUTTON_STYLE1" >
       <input type="button" value="返回" class="BUTTON_STYLE1" onclick="history.back();">
     </td>
   </tr>
@@ -58,3 +58,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </form>
   </body>
 </html>
+<script type="text/javascript">
+
+</script>

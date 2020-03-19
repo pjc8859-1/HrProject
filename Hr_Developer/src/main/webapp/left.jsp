@@ -453,7 +453,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td width="98%">
-									<a href="salarystandard_grant_register_catalog.jsp" target="mainFrame">薪酬发放登记</a>
+									<a href="queryBysalaryid.do" target="mainFrame">薪酬发放登记</a>
 								</td>
 							</tr>
 							<tr>
@@ -563,7 +563,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td width="98%">
-													<a href="engagemajorrelease.do?operate=toAdd"
+													<a href="recruitment/showrecruitment.do"
 														target="mainFrame">职位发布登记</a>
 												</td>
 											</tr>
@@ -572,7 +572,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="engagemajorrelease.do?operate=toEdit"
+													<a href="recruitment/showreleasechangepage.do"
 														target="mainFrame">职位发布变更</a>
 												</td>
 											</tr>
