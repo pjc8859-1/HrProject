@@ -82,8 +82,7 @@ public String secondkinddelectsuccess(@PathVariable("id")Integer id){
 @ResponseBody
 public  ConfigFileSecondKind changesecondkind(@RequestBody String id) {
 ConfigFileSecondKind con=secondservice.queryConfigFileSecondKindByfskId(Integer.parseInt(id));
-System.out.println(con.getSecondSalaryId());
-System.out.println(con.getSecondSaleId());
+
 	return con;
 }
 

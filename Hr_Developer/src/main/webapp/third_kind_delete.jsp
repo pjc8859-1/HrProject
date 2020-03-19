@@ -25,14 +25,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<form name="configfilefirstkindForm" method="post" action="secondkinddelectsuccess">
+  	<form name="configfilefirstkindForm" method="post" action="thirdkinddelectsuccess">
 <table width="100%" >
   <tr>
     <td> 
-    <font color="#0000CC">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--II级机构设置 </font></td>
+    <font color="#0000CC">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--III级机构设置 </font></td>
   </tr>
   <tr>
-    <td align="right"><input type="button" value="删除" class="BUTTON_STYLE1" onclick="toDelet()">
+    <td align="right"><input type="button" value="删除" class="BUTTON_STYLE1" onclick="toChange()">
       <input type="button" value="返回" class="BUTTON_STYLE1" onclick="history.back();"></td>
   </tr>
   </table>
@@ -71,11 +71,12 @@ $(
     function(){
     $.ajax({
 					type:"post",
-					url:"changesecondkind.do",
+					url:"changethirdkind.do",
 				   	dataType:"json",
 					contentType:"application/html;charset=utf-8",
 					data:""+id,
 					success:function(result){
+					console.log(result);
 					var str=`
 					               <tr>
     <td width="19%" class="TD_STYLE1">I级机构编号</td>
@@ -94,15 +95,27 @@ $(
     <td class="TD_STYLE2"><input type="text" name="item.secondKindName" value="\${result.secondKindName}" readonly="readonly" class="INPUT_STYLE1"></td>
   </tr>
   <tr>
-    <td class="TD_STYLE1">薪酬发放责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）</td>
-    <td class="TD_STYLE2"><textarea name="item.secondKindSalaryId" rows="4" readonly="readonly"  class="TEXTAREA_STYLE1">\${result.secondSalaryId}</textarea></td>
+    <td class="TD_STYLE1">III级机构编号</td>
+    <td class="TD_STYLE2"><input type="text" name="item.thirdKindId" value="\${result.thirdKindId}" readonly="readonly" class="INPUT_STYLE1"></td>
+  </tr>
+  <tr>
+    <td class="TD_STYLE1">III级机构名称</td>
+    <td class="TD_STYLE2"><input type="text" name="item.thirdKindName" value="\${result.thirdKindName}" readonly="readonly" class="INPUT_STYLE1"></td>
   </tr>
   <tr>
     <td class="TD_STYLE1">销售责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）</td>
-    <td class="TD_STYLE2"><textarea name="item.secondKindSaleId" rows="4" readonly="readonly" class="TEXTAREA_STYLE1">\${result.secondSaleId}</textarea></td>
+    <td class="TD_STYLE2"><textarea name="item.thirdKindSaleId" rows="4"  class="TEXTAREA_STYLE1" readonly="readonly">\${result.thirdKindSaleId}</textarea></td>
+  </tr>
+  <tr>
+    <td class="TD_STYLE1">是否零售</td>
+    <td class="TD_STYLE2"><select name="item.thirdKindIsRetail" width="50px" id="thirdretail" disabled="disabled">
+     <option value="是">是</option>
+    <option value="否">否</option>
+    </select></td>
   </tr>
 					`;
 					$(".TABLE_STYLE1").append(str);
+					$("#thirdretail").val(result.thirdKindIsRetail);
 					
 					
 					}
@@ -113,8 +126,8 @@ $(
      
 )
 
-function toDelet(){
-console.log("aaaa");
+function toChange(){
+
 document.forms[0].action = document.forms[0].action+"/"+id+".do";
 document.forms[0].submit();
 }

@@ -30,14 +30,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<table width="100%">
 				<tr >
 					<td>
-						<font color="#0000CC">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--II级机构设置
+						<font color="#0000CC">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--III级机构设置
 						</font>
 					</td>
 				</tr>
 				<tr>
 					<td align="right">
 						<input type="button" value="添加" class="BUTTON_STYLE1"
-							onclick="window.location.href='registerConfigFileSecondKind.do'" />
+							onclick="window.location.href='registerConfigFileThirdKind.do'" />
 					</td>
 				</tr>
 			</table>
@@ -46,23 +46,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				class="TABLE_STYLE1">
 				
 				<tr id="show">
-					<td width="15%" class="TD_STYLE1">
+					<td width="11%" class="TD_STYLE1">
 						I级机构编号
 					</td>
-					<td width="15%" class="TD_STYLE1">
+					<td width="11%" class="TD_STYLE1">
 						I级机构名称
 					</td>
-					<td width="15%" class="TD_STYLE1">
+					<td width="11%" class="TD_STYLE1">
 						II级机构编号
 					</td>
-					<td width="15%" class="TD_STYLE1">
+					<td width="11%" class="TD_STYLE1">
 						II级机构名称
 					</td>
-					<td width="15%" class="TD_STYLE1">
-						薪酬发放责任人编号
+					<td width="11%" class="TD_STYLE1">
+						III级机构编号
+					</td>
+					<td width="11%" class="TD_STYLE1">
+						III级机构名称
 					</td>
 					<td width="15%" class="TD_STYLE1">
 						销售责任人编号
+					</td>
+					<td width="11%" class="TD_STYLE1">
+						是否零售
 					</td>
 					<td width="5%" class="TD_STYLE1">
 						变更
@@ -123,10 +129,11 @@ $(
 					no=Math.ceil(listlength/5);
 					
 						for(var i=0;i<(index==no?listlength:5);i++){
-						str="<tr data=\""+value[i].fskId+"\"><td class=\"TD_STYLE2\">"+value[i].firstKindId+"</td><td class=\"TD_STYLE2\">"+value[i].firstKindName+"</td>"
+						str="<tr data=\""+value[i].ftkId+"\"><td class=\"TD_STYLE2\">"+value[i].firstKindId+"</td><td class=\"TD_STYLE2\">"+value[i].firstKindName+"</td>"
 						+"<td class=\"TD_STYLE2\">"+value[i].secondKindId+"</td><td class=\"TD_STYLE2\">"+value[i].secondKindName+"</td>"
-						+"<td class=\"TD_STYLE2\">"+value[i].secondSalaryId+"</td><td class=\"TD_STYLE2\">"+value[i].secondSaleId+"</td>"
-						+"<td class=\"TD_STYLE2\"><a href=\"second_kind_change.jsp?id="+value[i].fskId+"\">变更</a>	</td><td class=\"TD_STYLE2\"><a href=\"second_kind_delete.jsp?id="+value[i].fskId+"\">删除</a></td></tr>";
+						+"<td class=\"TD_STYLE2\">"+value[i].thirdKindId+"</td><td class=\"TD_STYLE2\">"+value[i].thirdKindName+"</td>"
+						+"<td class=\"TD_STYLE2\">"+value[i].thirdKindSaleId+"</td><td class=\"TD_STYLE2\">"+value[i].thirdKindIsRetail+"</td>"
+						+"<td class=\"TD_STYLE2\"><a href=\"third_kind_change.jsp?id="+value[i].ftkId+"\">变更</a>	</td><td class=\"TD_STYLE2\"><a href=\"third_kind_delete.jsp?id="+value[i].ftkId+"\">删除</a></td></tr>";
 					
 					     $(".TABLE_STYLE1").append($(str));
 						}	
@@ -149,10 +156,11 @@ var r = /^\+?[1-9][0-9]*$/;//判断是否为正整数
  });
  
       for(var i=(index-1)*5;i<(index==no?listlength:5*index);i++){
-      str="<tr data=\""+value[i].fskId+"\"><td class=\"TD_STYLE2\">"+value[i].firstKindId+"</td><td class=\"TD_STYLE2\">"+value[i].firstKindName+"</td>"
+      str="<tr data=\""+value[i].ftkId+"\"><td class=\"TD_STYLE2\">"+value[i].firstKindId+"</td><td class=\"TD_STYLE2\">"+value[i].firstKindName+"</td>"
 						+"<td class=\"TD_STYLE2\">"+value[i].secondKindId+"</td><td class=\"TD_STYLE2\">"+value[i].secondKindName+"</td>"
-						+"<td class=\"TD_STYLE2\">"+value[i].secondSalaryId+"</td><td class=\"TD_STYLE2\">"+value[i].secondSaleId+"</td>"
-						+"<td class=\"TD_STYLE2\"><a href=\"second_kind_change.jsp?id="+value[i].fskId+"\">变更</a>	</td><td class=\"TD_STYLE2\"><a href=\"second_kind_delete.jsp?id="+value[i].fskId+"\">删除</a></td></tr>";
+						+"<td class=\"TD_STYLE2\">"+value[i].thirdKindId+"</td><td class=\"TD_STYLE2\">"+value[i].thirdKindName+"</td>"
+						+"<td class=\"TD_STYLE2\">"+value[i].thirdKindSaleId+"</td><td class=\"TD_STYLE2\">"+value[i].thirdKindIsRetail+"</td>"
+						+"<td class=\"TD_STYLE2\"><a href=\"third_kind_change.jsp?id="+value[i].ftkId+"\">变更</a>	</td><td class=\"TD_STYLE2\"><a href=\"third_kind_delete.jsp?id="+value[i].ftkId+"\">删除</a></td></tr>";
 					     $(".TABLE_STYLE1").append($(str));
 						}
 					$("#np").html(index);	
