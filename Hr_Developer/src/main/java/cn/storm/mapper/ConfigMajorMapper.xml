@@ -23,6 +23,11 @@
   		<select id="selectConfigMajorByffk_id" parameterType="_int" resultMap="myConfigMajor">
   			select * from config_major where mak_id = #{id}
   		</select>
+  		
+  		
+  		  <select id="selectIdByNames" resultType="java.lang.String">
+  			select major_name from config_major where major_kind_id=#{mkid} and major_id=#{majorid}
+  		</select>
   		<delete id="deleteConfigMajorByffk_id" parameterType="_int">
   			delete from config_major where  mak_id = #{id}
   		</delete>

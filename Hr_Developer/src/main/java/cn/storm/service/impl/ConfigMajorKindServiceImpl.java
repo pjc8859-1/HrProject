@@ -45,5 +45,12 @@ public class ConfigMajorKindServiceImpl implements ConfigMajorKindService {
 		// TODO Auto-generated method stub
 		return mapper.updateConfigMajorKind(configMajorKind);
 	}
+	
+	@Override
+	public String querryIdByNames(String names) {
+		// TODO Auto-generated method stub
+		return mapper.selectIdByNames(names);
+	}
+
 
 }

@@ -108,7 +108,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="configfilesecondkind.do?operate=list"
+													<a href="showConfigFileSecondKind.do"
 														target="mainFrame">II级机构设置</a>
 												</td>
 											</tr>
@@ -310,7 +310,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td>
-									<a href="check_list.jsp" target="mainFrame">人力资源档案登记复核</a>
+									<a href="hr/humanfilechecklist.do" target="mainFrame">人力资源档案登记复核</a>
 								</td>
 							</tr>
 							<tr>
@@ -618,7 +618,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="resumemanage/screenresume.do" target="mainFrame">简历筛选</a>
+													<a href="engageresume.do?operate=locate&method=check" target="mainFrame">简历筛选</a>
 												</td>
 											</tr>
 											<tr>
@@ -626,7 +626,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="resumemanage/effectsresumelist.do" target="mainFrame">有效简历查询</a>
+													<a href="engageresume.do?operate=locate&method=query" target="mainFrame">有效简历查询</a>
 												</td>
 											</tr>
 										</table> </span>

@@ -15,7 +15,9 @@
   		<result property="thirdKindIsRetail" column="third_kind_is_retail"/>
   		
   </resultMap>
-  
+        <select id="selectMaxId" resultType="_int">
+  		SELECT if(max(ftk_id) is null,1,max(ftk_id)+1) as newId FROM config_file_third_kind  
+  		</select>
   		<insert id="saveConfigFileThirdKind" parameterType="ConfigFileThirdKind"  >
   			insert into config_file_third_kind(ftk_id,first_kind_id,first_kind_name,second_kind_id,second_kind_name
   			,third_kind_id,third_kind_name,third_kind_sale_id,third_kind_is_retail)
@@ -29,6 +31,11 @@
   		<select id="selectConfigFileThirdKindByftkId" parameterType="_int"  resultMap="MyConfigFileThirdKind">
   			select * from config_file_third_kind where ftk_id = #{ftkId}
   		</select>
+  		
+  		<select id="selectNamesByIds" resultType="java.lang.String">
+  			select third_kind_name from config_file_third_kind where first_kind_id=#{fids} and second_kind_id=#{seids} and third_kind_id=#{thids}
+  		</select>
+  		
   		<delete id="deleteConfigFileThirdKindByftkId" parameterType="_int">
   			delete from config_file_third_kind where  ftk_id = #{ftkId}
   		</delete>

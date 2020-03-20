@@ -49,4 +49,16 @@ private HumanFileMapper mapper=null;
 		return this.mapper.selectByCondition(mmd);
 	}
 
+	@Override
+	public boolean addHumanFiles(HumanFile humanfile) {
+		// TODO Auto-generated method stub
+		return mapper.saveHumainFiles(humanfile);
+	}
+
+	@Override
+	public List<HumanFile> queryAllHumanFileBycheckstu() {
+		// TODO Auto-generated method stub
+		return mapper.selectAllHumanFileBycheckstu();
+	}
+
 }

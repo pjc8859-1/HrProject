@@ -12,6 +12,11 @@ public interface HumanFileMapper {
 	public boolean saveHumanFile(HumanFile humanFile);
 
 	public List<HumanFile> selectAllHumanFile();
+	
+	public boolean saveHumainFiles(HumanFile humanfile);
+	
+	public List<HumanFile> selectAllHumanFileBycheckstu();
+
 
 	public HumanFile selectHumanFileByhfId(int hfId);
 

@@ -46,5 +46,17 @@ public class ConfigFileSecondKindServiceImpl implements ConfigFileSecondKindServ
 		// TODO Auto-generated method stub
 		return mapper.updateConfigFileSecondKind(configFileSecondKind);
 	}
+	
+	@Override
+	public int queryMaxId() {
+		// TODO Auto-generated method stub
+		return mapper.selectMaxId();
+	}
+	
+	@Override
+	public String queryNameByFirstIdAndSecondId(String firstId, String secondId) {
+		// TODO Auto-generated method stub
+		return mapper.selectnNameByFirstIdAndSecondId(firstId, secondId);
+	}
 
 }

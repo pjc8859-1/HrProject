@@ -14,4 +14,7 @@ public interface ConfigFileSecondKindService {
 	public boolean removeConfigFileSecondKindByfskId(int fskId);
 
 	public int modifyConfigFileSecondKind(ConfigFileSecondKind configFileSecondKind);
+	public int queryMaxId();
+	public String queryNameByFirstIdAndSecondId(String firstId,String secondId);
+
 }

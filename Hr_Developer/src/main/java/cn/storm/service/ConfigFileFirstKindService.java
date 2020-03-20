@@ -16,4 +16,8 @@ public interface ConfigFileFirstKindService {
 	public int modifyConfigFileFirstKind(ConfigFileFirstKind configFileFirstKind);
 	
 	public List<ConfigFileFirstKind> queryConfigFileFirstKindByName(String name);
+	public int queryMaxId();
+	
+	public String selectIdByNames(String names);
+
 }

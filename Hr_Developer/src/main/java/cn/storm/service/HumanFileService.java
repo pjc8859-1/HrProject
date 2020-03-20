@@ -12,4 +12,6 @@ public interface HumanFileService {
 	public boolean removeHumanFileByhufid(int hufid);
 	public int modifyHumanFile(HumanFile humanFile);
 	public List<HumanFile> queryByCondition(MajorManagerDto mmd);
+	public List<HumanFile> queryAllHumanFileBycheckstu();
+	boolean addHumanFiles(HumanFile humanfile);
 }

@@ -3,7 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
- 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -31,7 +31,7 @@ function toCheck(id)
   </head>
   
   <body>
-    <form name="humanfileForm" method="post" action="/hr/humanfile.do">
+    <form name="humanfileForm" method="post" action="hr/humanfile_list.do">
 			<table width="100%">
 				<tr>
 					<td>
@@ -75,36 +75,38 @@ function toCheck(id)
 						复核
 					</td>
 				</tr>
-				
+				<c:forEach items="${humanlist}" var="human">
 					<tr>
 						<td class="TD_STYLE2">
-							bt0101010001
-						</td>
-						<td class="TD_STYLE2">
-							fantia
-						</td>
-						<td class="TD_STYLE2">
-							女
-						</td>
-						<td class="TD_STYLE2">
-							Better集团
-						</td>
-						<td class="TD_STYLE2">
-							Better软件公司
-						</td>
-						<td class="TD_STYLE2">
-							外包组
-						</td>
-						<td class="TD_STYLE2">
-							经理
-						</td>
-						<td class="TD_STYLE2">
-							<a href="human_check.jsp">复核</a>
-						</td>
+						${human.humanId}
+					</td>
+					<td class="TD_STYLE2">
+						${human.humanName }
+					</td>
+					<td class="TD_STYLE2">
+						${human.humanSex }
+					</td>
+					<td class="TD_STYLE2">
+						${human.firstKindName }
+					</td>
+					<td class="TD_STYLE2">
+						${human.secondKindName }
+					</td>
+					<td class="TD_STYLE2">
+						${human.thirdKindName }
+					</td>
+					<td class="TD_STYLE2">
+						${human.hunmaMajorName }
+					</td>
+					<td class="TD_STYLE2">
+						<a href="human_check.jsp?id=${human.humanId}">复核</a>
+					</td>
 					</tr>
+				</c:forEach>
 				
 			</table>
-			<p>&nbsp;&nbsp;总数：1例 &nbsp;&nbsp;&nbsp;当前第 1 页  &nbsp;&nbsp;&nbsp;共 1 页  &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1> 页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18 border=0>
+		<!-- 	   <p>&nbsp;&nbsp;总数：1例 &nbsp;&nbsp;&nbsp;当前第 1 页  &nbsp;&nbsp;&nbsp;共 1 页  &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 size=1> 页&nbsp;&nbsp;<input type=image src="images/go.bmp" width=18 height=18 border=0>
+		 -->
 		</form>
   </body>
 </html>
