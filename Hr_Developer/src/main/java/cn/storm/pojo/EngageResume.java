@@ -50,8 +50,8 @@ public class EngageResume implements java.io.Serializable {
 	private String checker;
 	private Timestamp checkTime;
 	private Short interviewStatus;
-	private Double totalPoints;
-	private Short testAmount;
+	private Double totalPoints;//总分
+	private Short testAmount;//面试次数
 	private String testChecker;
 	private Timestamp testCheckTime;
 	private String passRegister;
