@@ -120,6 +120,9 @@
   		<select id="selectAllHumanFileBycheckstu"  resultMap="MyHumanFile">
   			select * from human_file where check_status=1
   		</select>
+  		<select id="selectByhumanid"  resultMap="MyHumanFile">
+  			select * from human_file where human_id=#{humanId}
+  		</select>
   		<select id="selectHumanFileByhfId" parameterType="_int"  resultMap="MyHumanFile">
   			select * from human_file where huf_id = #{hufId}
   		</select>

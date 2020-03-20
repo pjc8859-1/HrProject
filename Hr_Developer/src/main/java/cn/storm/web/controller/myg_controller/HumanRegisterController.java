@@ -1,6 +1,7 @@
 package cn.storm.web.controller.myg_controller;
 
 import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,11 +15,13 @@ import javax.servlet.http.HttpSession;
 
 import sun.misc.BASE64Decoder;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.storm.pojo.ConfigFileFirstKind;
@@ -414,7 +417,43 @@ public class HumanRegisterController {
 		 return model;
 		
 	}
-
+	
+	
+	@RequestMapping("/humancheck.do")
+	public ModelAndView humanCheck(
+			Map map,
+			HttpServletRequest request,
+			HttpServletResponse response) throws Exception
+	{
+		
+		
+		String huid = request.getParameter("urlStr");
+		HumanFile humanf =  humanfs.queryByhumanid(huid);
+		System.out.println("========="+humanf);
+		if(humanf!=null)
+		{
+			String flgs = "{flag:"+"true"+"}";
+			JSONObject flg = JSONObject.fromObject(flgs);
+			PrintWriter out = response.getWriter();
+			out.print(flg.toString());
+			System.out.println("成功！");
+		}
+		else if(humanf==null)
+		{
+			String fl = "{flag:"+"false"+"}";
+			JSONObject fls = JSONObject.fromObject(fl);
+			PrintWriter out = response.getWriter();
+			out.print(fls.toString());
+			System.out.println("失败");
+		}
+		request.getSession().setAttribute("humanf", humanf);
+//		map.put("humanf", humanf);
+		ModelAndView model = new ModelAndView();
+//		model.addObject("humanf", humanf);
+		model.setViewName("forward:/human_check.jsp?"+huid);
+		return model;
+	}
+	
 	public Timestamp converttime(String arg0,int type) {
 		System.out.println(arg0);
 		Date d = null;

@@ -14,4 +14,6 @@ public interface HumanFileService {
 	public List<HumanFile> queryByCondition(MajorManagerDto mmd);
 	public List<HumanFile> queryAllHumanFileBycheckstu();
 	boolean addHumanFiles(HumanFile humanfile);
+	
+	public HumanFile queryByhumanid(String huid);
 }

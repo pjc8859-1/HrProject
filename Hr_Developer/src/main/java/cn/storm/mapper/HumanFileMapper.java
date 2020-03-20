@@ -25,4 +25,6 @@ public interface HumanFileMapper {
 	public int updateHumanFile(HumanFile humanFile);
 	
 	public List<HumanFile> selectByCondition(MajorManagerDto mmd);
+	
+	public HumanFile selectByhumanid(String huid);
 }

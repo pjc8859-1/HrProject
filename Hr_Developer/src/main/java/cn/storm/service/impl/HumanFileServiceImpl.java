@@ -61,4 +61,10 @@ private HumanFileMapper mapper=null;
 		return mapper.selectAllHumanFileBycheckstu();
 	}
 
+	@Override
+	public HumanFile queryByhumanid(String huid) {
+		// TODO Auto-generated method stub
+		return mapper.selectByhumanid(huid);
+	}
+
 }

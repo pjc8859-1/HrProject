@@ -3,6 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -26,10 +27,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="javascript/calendar/cal.js"></script>
 		<script type="text/javascript" src="javascript/comm/comm.js"></script>
 		<script language="javascript" src="javascript/winopen/winopenm.js"></script>
+		<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
+		<script type="text/javascript" src="javascript/userdetails.js"></script>
+		<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
   </head>
-  
+
   <body>
-<form name="humanfileForm" method="post" action="/hr/humanfile.do">
+<form name="humanfileForm" method="post" action="hr/humancheck.do">
 			<table width="100%">
 				<tr>
 					<td>
@@ -53,19 +57,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td class="TD_STYLE1" width="10%">
 						档案编号
 					</td>
-					<td colspan="6" class="TD_STYLE2">
-						bt0101010001
+					
+					<td colspan="6" class="TD_STYLE2" id="huid" name="item.huid">
 					</td>
-					<td rowspan="6" width="13%">
-						<img src="">
+					<td rowspan="6" width="1%">
+						<img src="${sessionScope.humanf.getHumanPicture()}" height="150px" id="img" onclick="picselect()" style="width: 200px; "/>
 					</td>
+						<input id="input_picture" name="item.picture" type="file" style="height: 30px;display: none;" onchange="show(this)"/>
 				</tr>
 				<tr>
 					<td class="TD_STYLE1" width="10%">
 						I级机构
 					</td>
 					<td width="13%" class="TD_STYLE2">
-						Better集团
+						${sessionScope.humanf.getFirstKindName()}
 					</td>
 					<td width="10%" class="TD_STYLE1">
 						II级机构
@@ -136,7 +141,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						电话
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.humanTelephone" value="" class="INPUT_STYLE2">
+						<input type="text" name="item.humanTelephone" value="${humanf.humanTelephone}" class="INPUT_STYLE2">
+						
 					</td>
 					<td class="TD_STYLE1">
 						QQ
@@ -348,6 +354,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</table>
 		</form>
 	</body>
+	  <script type="text/javascript">
+						  //地址栏
+						  var urlStr = window.location.search.substring(1);
+						  console.log(urlStr);
+						  document.getElementById("huid").innerHTML = urlStr;
+						  
+				 $.ajax(
+			{
+						type:"post",
+						url:"humancheck.do",
+						data:{"urlStr":urlStr},
+						success:function(result)
+					{
+						var json = JSON.parse(result);
+						if(json.flag==true)
+						{
+							alert(${humanf.humanTelephone});
+						}
+						else if(json.flag==false)
+						{
+							alert("抱歉数据紊乱，将返回主页！");
+							window.location.href="/Hr_Developer/index.jsp";
+						}
+					}
+   			 });
+	</script>
 <script type="text/javascript">
 Calendar.setup ({inputField : "date_start", ifFormat : "%Y-%m-%d", showsTime : false, button : "date_start", singleClick : true, step : 1});
 Calendar.setup ({inputField : "date_end", ifFormat : "%Y-%m-%d", showsTime : false, button : "date_end", singleClick : true, step : 1});

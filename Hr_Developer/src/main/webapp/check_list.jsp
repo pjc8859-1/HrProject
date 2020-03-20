@@ -99,7 +99,7 @@ function toCheck(id)
 						${human.hunmaMajorName }
 					</td>
 					<td class="TD_STYLE2">
-						<a href="human_check.jsp?id=${human.humanId}">复核</a>
+						<a href="human_check.jsp?${human.humanId}">复核</a>
 					</td>
 					</tr>
 				</c:forEach>
