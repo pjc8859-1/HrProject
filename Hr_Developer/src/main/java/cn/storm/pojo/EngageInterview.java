@@ -12,7 +12,7 @@ public class EngageInterview implements java.io.Serializable {
 
 	private Short einId;
 	private String humanName;
-	private Short interviewAmount;
+	private Short interviewAmount;//面试次数
 	private String humanMajorKindId;
 	private String humanMajorKindName;
 	private String humanMajorId;
@@ -30,10 +30,10 @@ public class EngageInterview implements java.io.Serializable {
 	private Timestamp checkTime;
 	private Short resumeId;
 	private String result;
-	private String interviewComment;
-	private String checkComment;
-	private Short interviewStatus;
-	private Short checkStatus;
+	private String interviewComment;//面试评价
+	private String checkComment;//审核评价
+	private Short interviewStatus;//简历状态
+	private Short checkStatus;//审核状态
 
 	
 	// Property accessors

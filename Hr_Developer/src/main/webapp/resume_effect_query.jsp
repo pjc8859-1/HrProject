@@ -23,10 +23,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 	<script type="text/javascript">
 		
-		function edit(ele){
+		function gointerview(ele){
 			var $eee = $(ele);
-			var reId =$eee.parent().siblings("input").val();
-			location.href="resumemanage/resumeedit.do?reId="+reId;
+			var resId =$eee.parent().siblings("input").val();
+			location.href="resumemanage/interviewregist.do?resId="+resId;
 		}
 	</script>
   </head>
@@ -56,8 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<table width="100%" border="1" cellpadding=0 cellspacing=1
 			bordercolorlight=#848284 bordercolordark=#eeeeee class="TABLE_STYLE1">
 			<tr class="TR_STYLE1">
-			<!-- 主键 -->
-			<input type="hidden" value="${er.resId }" name="resId"/>
+			
 				<td width="12%" class="TD_STYLE1">
 					姓名
 				</td>
@@ -75,11 +74,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					民族
 				</td>
 				<td width="10%" class="TD_STYLE1">
-					修改
+					去面试
 				</td>
-				<td width="10%" class="TD_STYLE1">
-					筛选
-				</td>
+				
 				<td width="14%" class="TD_STYLE1">
 					同意状态
 				</td>
@@ -105,10 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					${ resume.humanRace}
 				</td>
 				<td width="14%" class="TD_STYLE2">
-					<a onclick="edit(this)">修改</a>
-				</td>
-				<td width="14%" class="TD_STYLE2">
-					<a onclick="screen(this)">筛选</a>
+					<a onclick="gointerview(this)">开始面试</a>
 				</td>
 				<td width="12%" class="TD_STYLE2">
 					<c:if test="${resume.checkStatus == null}">

@@ -364,6 +364,29 @@ public class ResumeManageController {
 		mav.setViewName("forward:/resume_effect_query.jsp");
 		return mav;
 	}
+	/**
+	 * 开始,面试
+	 * @param resId
+	 * @return
+	 */
+	@RequestMapping("interviewregist.do")
+	public ModelAndView interviewregist(int resId)
+	{	
+		ModelAndView mav = new ModelAndView();
+		EngageResume er = ers.queryEngageResumeByresid(resId);
+		mav.addObject("er", er);
+		mav.setViewName("forward:/resume_interview.jsp");
+		return mav ;
+	}
+	
+	/**
+	 * 面试结果登记
+	 */
+	@RequestMapping("interviewresult.do")
+	public ModelAndView interviewresult(){
+		ModelAndView mav =new ModelAndView();
+		return mav;
+	}
 	
 	//帮助方法
 	/**
