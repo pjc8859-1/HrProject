@@ -44,5 +44,5 @@ public class EngageResumeServiceImpl implements EngageResumeService{
 		
 		return this.mapper.selectByDiction(map);
 	}
-
+ 
 }
