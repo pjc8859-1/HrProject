@@ -12,8 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<!-- released_query_list.jsp-->
     <base href="<%=basePath%>">
     
-    <title>展示需要已经提交了的简历筛选结果</title>
-    
+    <title>展示有效简历查询</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -23,13 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="table.css" type="text/css">
 	<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 	<script type="text/javascript">
-		function screen(ele){
-			var $eee = $(ele);
-			var reId =$eee.parent().siblings("input").val();
-			location.href="resumemanage/resumescreen.do?reId="+reId;
-			
 		
-		}
 		function edit(ele){
 			var $eee = $(ele);
 			var reId =$eee.parent().siblings("input").val();
@@ -43,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<table width="100%">
 			<tr>
 				<td>
-					<font color="#0000CC">您正在做的业务是：人力资源--招聘管理-- 简历管理 --简历筛选结果</font>
+					<font color="#0000CC">您正在做的业务是：人力资源--招聘管理-- 简历管理 --有效简历查询(可面试)</font>
 				</td>
 			</tr>
 			<tr>

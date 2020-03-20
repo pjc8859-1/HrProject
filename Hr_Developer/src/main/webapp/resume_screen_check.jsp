@@ -7,11 +7,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-	<!-- 简历登记页面 -->
+	<!-- 简历审核页面 -->
   <head>
     <base href="<%=basePath%>">
-    
-    <title>My JSP 'human_register.jsp' starting page</title>
+    <!-- resume_screen_check.jsp -->
+    <title>resume_screen_check.jsp</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -41,125 +41,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="javascript/ajaxfileupload.js"></script>
 		
 		<script type="text/javascript">
-		var fourthlist = ${fourthlist};//职业分类
-		var fifthlist = ${fifthlist};//职业
-		var fourthselect = null;
-		var fifthselect = null;
-		$(function(){
-			showfourth();
-			showfifth();
-			savelist();
-			$("#select4").change(function(){
-				var  changetagouterhtml=getlastletter( $("#select4 option:selected").html());
-				var changetaghtml = $($("#select4 option:selected")[0]).val();
-				//修改hidden输入框的值
-				
-				$("#newMajorKindId").val(changetaghtml);
-				$("#newMajorKindName").val(changetagouterhtml);
-				changelocation2($("#select4 option:selected").html());
-				
-			});
-			$("#select5").change(function(){
-				var  changetagouterhtml=getlastletter( $("#select5 option:selected").html());
-				var changetaghtml = $($("#select5 option:selected")[0]).val();
-				//修改hidden输入框的值
-				$("#newMajorId").val(changetaghtml);
-				$("#newMajorName").val(changetagouterhtml);
-						//changelocation2($("#select3 option:selected").html());
-						
-			});
-			$("#select6").change(function(){
-				var  changetagouterhtml=getlastletter( $("#select6 option:selected").html());
-				var changetaghtml = $($("#select6 option:selected")[0]).val();
-				//修改hidden输入框的值
-				$("#newSalaryStandardId").val(changetaghtml);
-				$("#newSalaryStandardName").val(changetagouterhtml);
-			});
-			
-		})
-		//------------------------------------------------------------
-		function getlastletter(word){
-		var index = word .lastIndexOf("\/");  
-		word  = word .substring(index + 1, word .length);
-		return word;
-	}
-	function show(){
-		console.log(secondselect.children());
-	}
-	function savelist(){
-		fourthselect = document.getElementById("select4").outerHTML;
-		fifthselect =document.getElementById("select5").outerHTML;
-		
-	}
-	
-	function showfourth(fourthneedshow){
-		$("#select4").empty();//清空职位分类
-		$("#select4").append("<option value='' selected='true' ></option>");
-			if(fourthneedshow == null || fourthneedshow =="")
-			{
-				for(var i=0; i< fourthlist.length ;i++)
-				{	
-					var fid = fourthlist[i].majorKindId;
-					var fname = fourthlist[i].majorKindName;
-					
-					$("#select4").append("<option value="+fid+">"+fname+"</option>");
-				}
-			}
-			else{
-				$("#select4").append(fourthneedshow);
-			}
-			
-	}
-	
-	function showfifth(fifthneedshow){
-		$("#select5").empty();//清空职位分类
-		$("#select5").append("<option value='' selected='true' ></option>");
-		if(fifthneedshow == null || fifthneedshow =="")
-		{
-			for(var i=0; i< fifthlist.length ;i++)
-			{	
-				var fid = fifthlist[i].majorKindId;
-				var fname = fifthlist[i].majorKindName;
-				var sid = fifthlist[i].majorId;
-				var sname =fifthlist[i].majorName;
-				$("#select5").append("<option value="+sid+">"+fname+"/"+sname+"</option>");
-			}
-		}
-		else{
-			$("#select5").append(fifthneedshow);
-		}
-		
-	}
-	 
-	 
-	 function changelocation2(locationid)
-	  {
-		 var locid=locationid;
-		 	if(locid==""||locid==null){
-		 		
-		 		//如果选中first为空的值，则secondshow出全部值
-		 		showfifth();
-		 	} 
-		 	else{
-		 			
-		 		//不是空就去比较第二个集合里面以选择的值开头的项展示出来
-		 		var list =``;
-		 		for(var j =0 ;j < $(fifthselect).children().length; j++)
-		 			{	
-		 				if($($(fifthselect).children()).eq(j).html().startsWith(locid)){
-		 					//var  txt = $(secondselect).children().eq(j).html();
-		 					var  txt = ($(fifthselect).children().eq(j))[0].outerHTML;
-		 					list+=txt;
-		 					}
-		 			}
-		 		showfifth(list);
-		 		}
-		 	
-	 }
-		
-		
-		
-		
 			
 			function formatDate(date) {
 			  var date = new Date(date);
@@ -171,60 +52,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  var ss = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
 			  return YY + MM + DD + " " + hh + mm+ss;
 			}
-			var content;
-			function showphoto(){
-				var obj = document.getElementById("photo");
-					var fr = new FileReader();
-					var f = obj.files[0];
-					fr.readAsDataURL(f);
-					fr.onload = function(e){
-						content = e.target.result;
-						var filemin = 0;
-						var filemax = 1024*10;//限定为10m
-						var filesize  = f.size/1024;
-						document.getElementById("img").src=content;
-						if(filesize > filemax )
-							{
-								alert("文件过大<0-10M>");
-								$("#submit").attr("disabled","disabled");
-							}
-					}
-				}
-			function isornotnull(obj)
-			{
-			}
 			function checknullorempty(){
-				if($("#newMajorKindName").val() == "" ||$("#newMajorKindName").val()==null)
+				if($("#checker").val() == "" ||$("#checker").val()==null)
 					{
-						alert("职位分类不能为空");
+						alert("推荐人不能为空");
 						return false;
 					}
-				if($("#newMajorName").val() == "" ||$("#newMajorName").val()==null)
+				if($("#suggestion").val() == "" ||$("#suggestion").val()==null)
 				{
-					alert("职位不能为空");
+					alert("推荐意见不能为空");
 					return false;
 				}
 			
-				if($("#engageType").val() == "" ||$("#engageType").val()==null)
-				{
-					alert("招聘类型不能为空");
-					return false;
-				}
-				if($("#humanNames").val() == "" ||$("#humanNames").val()==null)
-				{
-					alert("姓名不能为空");
-					return false;
-				}
-				if($("#humanSex").val() == "" ||$("#humanSex").val()==null)
-				{
-					alert("性别不能为空");
-					return false;
-				}
-				if($("#humanEmail").val() == "" ||$("#humanEmail").val()==null)
-				{
-					alert("Email不能为空");
-					return false;
-				}
 				return true;
 			}
 			//提交按钮
@@ -241,7 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
  <body>
- <form id="myform"  method="post"  enctype="multipart/form-data" action="resumemanage/submitresumeregist.do">
+ <form id="myform"  method="post"  enctype="multipart/form-data" action="resumemanage/checkresume.do">
 			<table width="100%">
 				<tr>
 					<td>
@@ -250,50 +89,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</tr>
 				<tr>
 					<td align="right">
-						<input type="button" value="提交" class="BUTTON_STYLE1" onclick="mysubmit()">
-						<input type="reset" value="清除" class="BUTTON_STYLE1">
+						<label><input type="radio" name="suggest" value="0" checked="checked"/>建议面试</label>
+						<label><input type="radio" name="suggest" value="1" />建议笔试</label>
+						<label><input type="radio" name="suggest" value="2" />建议录用</label>
+						<label><input type="radio" name="suggest" value="3" />删除简历</label>
+						
+						<input type="button" value="确认" class="BUTTON_STYLE1" onclick="mysubmit()">
+						<input type="button" value="返回" class="BUTTON_STYLE1" onclick="history.go(-1);">
 					</td>
 				</tr>
 			</table>
 			<table width="100%" border="1" cellpadding=0 cellspacing=1
 				bordercolorlight=#848284 bordercolordark=#eeeeee
 				class="TABLE_STYLE1">
+				<!-- 主键 -->
+				<input type="hidden" name="resId" value="${er.resId }"/>
 				<tr>
 					<td class="TD_STYLE1" width="14%">
 						职位分类
 					</td>
 					<td width="14%" class="TD_STYLE2">
-					<input  id="newMajorKindId" type="hidden" name="humanMajorKindId" value=""/>
-					<input id="newMajorKindName" type="hidden" name="humanMajorKindName" value=""/>
-						<select  class="SELECT_STYLE1" id="select4">
-							
-						</select>    
+						${er.humanMajorKindName }    
 					</td>
 					<td width="14%" class="TD_STYLE1">
 						职位名称
 					</td>
 					<td width="14%" class="TD_STYLE2">
-					<input  id="newMajorId" type="hidden" name="humanMajorId" value=""/>
-					<input  id="newMajorName" type="hidden" name="humanMajorName" value=""/>
-						<select class="SELECT_STYLE1" id="select5">
-						  
-						</select>
+					${er.humanMajorName } 
 					</td>
 					<td width="14%" class="TD_STYLE1">
 						招聘类型
 					</td>
 					<td class="TD_STYLE2" colspan="2" width="14%">
-						<select  class="SELECT_STYLE1"  name="engageType" id="engageType">
-							<option value=""></option>
-							<c:forEach items="${charlist}" var="cha" >
-								<option value="${cha.attributeName}">${cha.attributeName}</option>
-							</c:forEach>
-						</select>
+						${er.engageType } 
 					</td>
 					<td rowspan="6" width="14%">
 							<!-- 图片 -->
-							<input  type="file" id="photo" name= "file" style="display:none;"  onchange="showphoto()"/>
-    						<img id="img"style="width: 130px;height: 150px" alt="点击上传图片" onclick="document.getElementById('photo').click()" />
+    						<img id="img" src="upload/${er.humanPicture }"style="width: 130px;height: 150px" alt="未上传图片"  />
 					</td>
 				</tr>
 				<tr>
@@ -301,24 +133,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						姓名
 					</td>
 					<td class="TD_STYLE2">
-						<input class="INPUT_STYLE2" name="humanName" id="humanNames"/>
+						${er.humanName }
 					</td>
 					<td class="TD_STYLE1">
 						性别
 					</td>
 					<td class="TD_STYLE2">
-						<select  class="SELECT_STYLE1"  name="humanSex" id="humanSex">
-							<option value=""></option>
-							<c:forEach items="${sexlist}" var="sex" >
-								<option value="${sex.attributeName}">${sex.attributeName}</option>
-							</c:forEach>
-						</select>
+						${er.humanSex }
 					</td>
 					<td class="TD_STYLE1">
 						Email
 					</td>
 					<td colspan="2" class="TD_STYLE2">
-						<input class="INPUT_STYLE2" name="humanEmail" id="humanEmail"/>
+						${er.humanEmail }
 					</td>
 				</tr>
 				<tr>
@@ -326,19 +153,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						电话
 					</td>
 					<td class="TD_STYLE2">
-						<input class="INPUT_STYLE2" name="humanTelephone" />
+						${er.humanTelephone }
 					</td>
 					<td class="TD_STYLE1">
 						家庭电话
 					</td>
 					<td class="TD_STYLE2">
-					<input class="INPUT_STYLE2" name="humanHomephone" />
+						${er.humanHomephone }
 					</td>
 					<td class="TD_STYLE1">
 						手机
 					</td>
 					<td colspan="2" class="TD_STYLE2">
-						<input class="INPUT_STYLE2" name="humanMobilephone" />
+						${er.humanMobilephone }
 					</td>
 				</tr>
 				<tr>
@@ -346,13 +173,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						住址
 					</td>
 					<td colspan="3" class="TD_STYLE2">
-						<input class="INPUT_STYLE2" name="humanAddress" />
+						${er.humanAddress }
 					</td>
 					<td class="TD_STYLE1">
 						邮编
 					</td>
 					<td colspan="2" class="TD_STYLE2">
-						<input class="INPUT_STYLE2" name="humanPostcode" />
+						${er.humanPostcode }
 					</td>
 				</tr>
 				<tr>
@@ -360,23 +187,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						国籍
 					</td>
 					<td class="TD_STYLE2">
-						<select name="humanNationality" class="SELECT_STYLE1">
-						<c:forEach items="${countrylist }" var="country">
-							<option value="${country.attributeName}">${country.attributeName}</option>
-						</c:forEach>
-						</select>
+					${er.humanNationality }
+						
 					</td>
 					<td class="TD_STYLE1">
 						出生地
 					</td>
 					<td class="TD_STYLE2">
-						<input class="INPUT_STYLE2" name="humanBirthplace" />
+					${er.humanBirthplace }
 					</td>
 					<td class="TD_STYLE1">
 						生日
 					</td>
 					<td class="TD_STYLE2" colspan="2">
-						<input class="INPUT_STYLE2" id="birthday" name="humanBirthday1"/>
+						${er.humanBirthday }
 					</td>
 					
 				</tr>
@@ -385,31 +209,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						民族
 					</td>
 					<td class="TD_STYLE2">
-						<select name="humanRace" class="SELECT_STYLE1">
-						<c:forEach items="${nationlist }" var="race">
-							<option value="${race.attributeName}">${race.attributeName}</option>
-						</c:forEach>
-						</select>
+						${er.humanRace }
 					</td>
 					<td class="TD_STYLE1">
 						宗教信仰
 					</td>
 					<td class="TD_STYLE2">
-						<select name="humanReligion" class="SELECT_STYLE1">
-						<c:forEach items="${religiouslist }" var="religious">
-							<option value="${religious.attributeName}">${religious.attributeName}</option>
-						</c:forEach>
-						</select>
+						${er.humanReligion }
 					</td>
 					<td class="TD_STYLE1">
 						政治面貌
 					</td>
 					<td class="TD_STYLE2" colspan="2">
-						<select name="humanParty" class="SELECT_STYLE1">
-						<c:forEach items="${politicallist }" var="political">
-							<option value="${political.attributeName}">${political.attributeName}</option>
-						</c:forEach>
-						</select>
+						${er.humanParty }
 					</td>
 				</tr>
 				<tr>
@@ -417,30 +229,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						身份证号码
 					</td>
 					<td class="TD_STYLE2">
-						<input class="INPUT_STYLE2" name="humanIdcard"/>
+						${er.humanIdcard }
 					</td>
 					<td class="TD_STYLE1">
 						年龄
 					</td>
 					<td class="TD_STYLE2">
-						<input class="INPUT_STYLE2" type="number"  name="humanAge"/>
+						${er.humanAge }
 					</td>
 					<td class="TD_STYLE1">
 						毕业院校
 					</td>
 					<td class="TD_STYLE2" colspan="1" width="100px">
-						<input class="INPUT_STYLE2"  name="humanCollege"/>
+						${er.humanCollege }
 						
 					</td>
 					<td class="TD_STYLE1" width="100px">
 						学历
-						</td>
+					</td>
 					<td class="TD_STYLE2">
-						<select name="humanEducatedDegree" class="SELECT_STYLE1">
-						<c:forEach items="${educationlist }" var="education">
-							<option value="${education.attributeName}">${education.attributeName}</option>
-						</c:forEach>
-						</select>
+						${er.humanEducatedDegree }
 					</td>
 				</tr>
 				<tr>
@@ -448,36 +256,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						教育年限
 					</td>
 					<td class="TD_STYLE2">
-						<select name="humanEducatedYears" class="SELECT_STYLE1">
-							<c:forEach items="${educationyearslist }" var="educationyears">
-								<option value="${educationyears.attributeName}">${educationyears.attributeName}</option>
-							</c:forEach>
-						</select>
+						${er.humanEducatedYears }
 					</td>
 					<td class="TD_STYLE1">
 						学历专业
 					</td>
 					<td class="TD_STYLE2">
-						<select name="humanEducatedMajor" class="SELECT_STYLE1">
-							<c:forEach items="${majorlist }" var="major">
-								<option value="${major.attributeName}">${major.attributeName}</option>
-							</c:forEach>
-						</select>
+						${er.humanEducatedMajor }
 					</td>
 					<td class="TD_STYLE1">
 						薪酬要求
 					</td>
 					<td class="TD_STYLE2">
-						<input class="INPUT_STYLE2"  name="demandSalaryStandard"/>
+						${er.demandSalaryStandard }
 					</td>
 					<td class="TD_STYLE1">
 						登记时间
 					</td>
 					<td class="TD_STYLE2">
-						<input class="INPUT_STYLE2" id="datetime" name="registTime1" readonly="readonly" value=""/>
-						<script type="text/javascript">
-						setInterval("document.getElementById('datetime').value=formatDate(new Date().getTime());", 1000);
-						</script>
+						${er.registTime }
 					</td>
 				</tr>
 				<tr>
@@ -485,30 +282,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						特长
 					</td>
 					<td class="TD_STYLE2">
-						<select name="humanSpecility" class="SELECT_STYLE1">
-							<c:forEach items="${specialitylist }" var="speciality">
-								<option value="${speciality.attributeName}">${speciality.attributeName}</option>
-							</c:forEach>
-						</select>
+						${er.humanSpecility }
 					</td>
 					<td class="TD_STYLE1">
 						爱好
 					</td>
 					<td class="TD_STYLE2">
-						<select name="humanHobby" class="SELECT_STYLE1">
-							<c:forEach items="${hobbylist }" var="hobby">
-								<option value="${hobby.attributeName}">${hobby.attributeName}</option>
-							</c:forEach>
-						</select>
+						${er.humanHobby }
 					</td>
-					
+					<td class="TD_STYLE1">
+						推荐人
+					</td>
+					<td class="TD_STYLE2">
+						<input type="text" name="checker" id="checker"class="INPUT_STYLE2" />
+					</td>
+					<td class="TD_STYLE1">
+						推荐时间
+					</td>
+					<td class="TD_STYLE2">
+						<input class="INPUT_STYLE2" id="datetime" name="checkTime" readonly="readonly" value=""/>
+						<script type="text/javascript">
+						setInterval("document.getElementById('datetime').value=formatDate(new Date().getTime());", 1000);
+						</script>
+					</td>
 				</tr>
 				<tr>
 					<td class="TD_STYLE1">
 						个人履历
 					</td>
 					<td colspan="7" class="TD_STYLE2">
-						<textarea style="resize:none"	 id="myhistoryrecords" name="recomandation" rows="4" class="TEXTAREA_STYLE1"></textarea>
+						<textarea style="resize:none"	 id="myhistoryrecords"  rows="4" class="TEXTAREA_STYLE1">${er.recomandation }</textarea>
 					</td>
 				</tr>
 				<tr>
@@ -516,7 +319,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						备注
 					</td>
 					<td colspan="7" class="TD_STYLE2">
-						<textarea id="myremark" name="remark" rows="4" class="TEXTAREA_STYLE1" style="resize:none" ></textarea>
+						<textarea id="myremark"  rows="4" class="TEXTAREA_STYLE1" style="resize:none" >${er.remark }</textarea>
+					</td>
+				</tr>
+				<tr>
+					<td class="TD_STYLE1">
+						筛选推荐意见
+					</td>
+					<td colspan="7" class="TD_STYLE2">
+						<textarea id="suggestion" name="suggestion" rows="4" class="TEXTAREA_STYLE1" style="resize:none" >${er.humanHistoryRecords }</textarea>
 					</td>
 				</tr>
 			</table>

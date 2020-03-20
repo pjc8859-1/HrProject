@@ -626,7 +626,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="engageresume.do?operate=locate&method=query" target="mainFrame">有效简历查询</a>
+													<a href="resumemanage/effectsresumelist.do" target="mainFrame">有效简历查询</a>
 												</td>
 											</tr>
 										</table> </span>

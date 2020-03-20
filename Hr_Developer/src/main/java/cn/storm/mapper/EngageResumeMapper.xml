@@ -214,6 +214,9 @@
 			<if test="endtime !=null">
 				and regist_time &lt; #{endtime}
 			</if>
+			<if test="checkStatus !=null">
+				and check_status = #{checkStatus}
+			</if>
 		</trim>
   	</select>
   

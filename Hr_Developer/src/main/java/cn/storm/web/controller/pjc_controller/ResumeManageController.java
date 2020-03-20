@@ -208,7 +208,7 @@ public class ResumeManageController {
 		ModelAndView mav = new ModelAndView();
 		EngageResume er =  ers.queryEngageResumeByresid(reId);
 		mav.addObject("er", er);
-		mav.setViewName("");
+		mav.setViewName("forward:/resume_screen_check.jsp");
 		return mav;
 	}
 	
@@ -323,6 +323,47 @@ public class ResumeManageController {
 		return  mav;
 	}
 	
+	
+	
+	@RequestMapping("checkresume.do")
+	public ModelAndView checkresume(
+			short suggest,
+			int resId,
+			String checker,
+			String checkTime,
+			String suggestion
+			){
+		ModelAndView mav = new ModelAndView();
+		//查出id的简历
+		EngageResume er = ers.queryEngageResumeByresid(resId);
+		er.setCheckStatus(suggest);
+		er.setChecker(checker);
+		er.setCheckTime(converttime(checkTime, 0));
+		er.setHumanHistoryRecords(suggestion);
+		 int result = ers.modifyEngageResume(er);
+		if(result > 0)
+		{
+			mav.addObject("resumeregistmessage", "审核成功!!!");
+		}else{
+			mav.addObject("resumeregistmessage", "审核失败!!!");
+		}
+		mav.setViewName("forward:/resumeregistsuccess.jsp");
+		return mav;
+	}
+	
+	/**
+	 * 查询出有效简历,就是可以面试的
+	 */
+	@RequestMapping("effectsresumelist.do")
+	public ModelAndView effectsresumelist(){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("checkStatus", 0);
+		List<EngageResume> list = ers.queryByDiction(map);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("resumes", list);
+		mav.setViewName("forward:/resume_effect_query.jsp");
+		return mav;
+	}
 	
 	//帮助方法
 	/**
