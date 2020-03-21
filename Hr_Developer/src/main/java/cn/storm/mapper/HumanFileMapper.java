@@ -27,4 +27,6 @@ public interface HumanFileMapper {
 	public List<HumanFile> selectByCondition(MajorManagerDto mmd);
 	
 	public HumanFile selectByhumanid(String huid);
+	
+	public boolean upDateHumanFiles(HumanFile humanfile);
 }

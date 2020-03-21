@@ -147,6 +147,19 @@
   			changer=#{changer},regist_time=#{registTime},check_time=#{checkTime},change_time=#{changeTime},lastly_change_time=#{lastlyChangeTime},delete_time=#{deleteTime},recovery_time=#{recoveryTime},human_file_status=#{humanFileStatus}
   			where huf_id= #{hufId}
   		</update>
+  		<update id="upDateHumanFiles"  parameterType="HumanFile" >
+  			update human_file set
+  			human_pro_designation=#{humanProDesignation},human_name=#{humanName},human_sex=#{humanSex},
+  			human_email=#{humanEmail},human_telephone=#{humanTelephone},human_qq=#{humanBank},human_mobilephone=#{humanMobilephone},
+  			human_postcode=#{humanPostcode},human_address=#{humanAddress},human_nationality=#{humanNationality},
+  			human_birthday=#{humanBirthday},human_birthplace=#{humanBirthplace},human_race=#{humanRace},
+  			human_religion=#{humanReligion},human_party=#{humanParty},human_society_security_id=#{humanSocietySecurityId},
+  			human_id_card=#{humanIdCard},human_age=#{humanAge},human_educated_degree=#{humanEducatedDegree},human_educated_years=#{humanEducatedYears},
+  			human_educated_major=#{humanEducatedMajor},human_bank=#{humanBank},human_account=#{humanAccount},check_time=#{checkTime},
+  			human_hobby=#{humanHobby},human_speciality=#{humanSpeciality},human_histroy_records=#{humanHistroyRecords},
+  			human_family_membership=#{humanFamilyMembership},remark=#{remark},check_status=#{checkStatus}
+  			where human_id=#{humanId}
+  		</update>
   		
   		<parameterMap type="cn.storm.dto.MajorManagerDto" id="mypm">
   			<parameter property="firstkindid"/>

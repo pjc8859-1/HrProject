@@ -16,4 +16,8 @@ public interface HumanFileService {
 	boolean addHumanFiles(HumanFile humanfile);
 	
 	public HumanFile queryByhumanid(String huid);
+	/**
+	 * 通过档案更新humanfile
+	 */
+	public boolean modifysHumanFile(HumanFile humanfile);
 }
