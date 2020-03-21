@@ -21,18 +21,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link rel="stylesheet" href="table.css" type="text/css">
-<script type="text/javascript">
-	function doStart()
-	{
-		//document.forms[0].action = document.forms[0].action + "?operate=doSearch&method=query&delete_status=1";
-		document.forms[0].action ="query_list.jsp";
-		document.forms[0].submit();
-	}
-</script>
   </head>
   
   <body>
-	<form action="humanfile.do" method="post">
+	<form action="hr/humannamesearch.do" name="serachkeywords" method="post">
 <table width="100%" >
   <tr>
     <td> 
@@ -40,16 +32,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </tr>
   <tr>
     <td align="right">
-	<input type="button" value="开始" class="BUTTON_STYLE1" onclick="javascript:doStart();">
+	<input type="button" value="开始" class="BUTTON_STYLE1" onclick="mysubmit()">
       <input type="button" value="返回" class="BUTTON_STYLE1" onclick="history.back();"></td>
   </tr>
 </table>
   <table width="100%" border="1" cellpadding=0 cellspacing=1 bordercolorlight=#848284 bordercolordark=#eeeeee class="TABLE_STYLE1">
   <tr class="TR_STYLE1">
-    <td width="16%" class="TD_STYLE1"> 请输入关键字</td>
-    <td width="84%" class="TD_STYLE2"><input type="text" name="keywords" value="" class="INPUT_STYLE1"></td>
+    <td width="16%" class="TD_STYLE1"> 请输入员工姓名</td>
+    <td width="84%" class="TD_STYLE2"><input type="text" name="keywords" class="INPUT_STYLE1"></td>
   </tr>
 </table>
 </form>
   </body>
+  <script type="text/javascript">
+	function mysubmit()
+	{
+		document.serachkeywords.submit();
+	}
+</script>
 </html>

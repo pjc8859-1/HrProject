@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-   <form action="humanfile.do" method="post">
+   <form action="hr/query_list.do" method="post">
 		<table width="100%">
 			<tr>
 				<td>

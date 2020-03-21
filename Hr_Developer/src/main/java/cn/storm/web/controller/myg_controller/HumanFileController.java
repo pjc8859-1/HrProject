@@ -717,6 +717,24 @@ public class HumanFileController {
 		return model;
 	}
 	
+	/**
+	 * 通过关键字查找员工人力资源的档案
+	 * @return
+	 */
+	@RequestMapping("/humannamesearch.do")
+	public ModelAndView toHumanFileKeyWordsSearch(@RequestParam("keywords") String keywords)
+	{
+		HumanFile humanfile = humanfs.querryHumanFileByNames(keywords);
+		ModelAndView model = new ModelAndView();
+		model.addObject("humanfilebykey", humanfile);
+		model.setViewName("forward:/query_list_bykeywords.jsp");
+		return model;
+	}
+	
+	
+	
+	
+	
 	public Timestamp converttime(String arg0) {
 		Date d = new Date(arg0.replace("-", "/")+" 00:00:00");
 		long time = d.getTime();//long

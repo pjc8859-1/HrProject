@@ -279,8 +279,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td align="right">
 						<input type="button" value="查询"
 							class="BUTTON_STYLE1" onclick="lista()">
-						<input type="button" value="搜索"
-							class="BUTTON_STYLE1" onclick="javascript:search();">
+						<input type="button" value="搜索" class="BUTTON_STYLE1" onclick="mysearch()">
 					</td>
 				</tr>
 			</table>
@@ -352,6 +351,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript">
 	Calendar.setup ({inputField : "date_start", ifFormat : "%Y-%m-%d", showsTime : false, button : "date_start", singleClick : true, step : 1});
 	Calendar.setup ({inputField : "date_end", ifFormat : "%Y-%m-%d", showsTime : false, button : "date_end", singleClick : true, step : 1});
+	</script>
+	<script type="text/javascript">
+		function mysearch(){
+			location.href="query_keywords.jsp?id=keywordssearch";
+		}
 	</script>
 </html>
 

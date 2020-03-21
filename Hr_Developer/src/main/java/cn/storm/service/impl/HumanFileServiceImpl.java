@@ -80,4 +80,10 @@ private HumanFileMapper mapper=null;
 		return mapper.selectByHumanFileDto(mmd);
 	}
 
+	@Override
+	public HumanFile querryHumanFileByNames(String names) {
+		// TODO Auto-generated method stub
+		return mapper.selectHumanFileByNames(names);
+	}
+
 }

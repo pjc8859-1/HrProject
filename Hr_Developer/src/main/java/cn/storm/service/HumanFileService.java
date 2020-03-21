@@ -23,4 +23,6 @@ public interface HumanFileService {
 	public boolean modifysHumanFile(HumanFile humanfile);
 	
 	public List<HumanFile> querryByHumanFileDto(HumanFileQuerryDto mmd);
+	
+	public HumanFile querryHumanFileByNames(String names);
 }

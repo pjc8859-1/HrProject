@@ -120,6 +120,10 @@
   		<select id="selectAllHumanFileBycheckstu"  resultMap="MyHumanFile">
   			select * from human_file where check_status=1
   		</select>
+  		<!-- 通过姓名查找这个人力资源档案 -->
+  		<select id="selectHumanFileByNames"  resultMap="MyHumanFile">
+  			select * from human_file where human_name=#{names}
+  		</select>
   		<select id="selectByhumanid"  resultMap="MyHumanFile">
   			select * from human_file where human_id=#{humanId}
   		</select>
