@@ -74,4 +74,78 @@
 	  			interview_status = #{interviewStatus},check_status = #{checkStatus}
   			where ein_id = #{einId}
   		</update>
+  		<select id="selectByDiction" parameterType="Map"  resultMap="MyEngageInterview">
+  			select * from engage_interview 
+  			<trim prefix="where" prefixOverrides="or|and">
+  				<if test="humanMajorKindName != null">
+					and human_major_kind_name = #{humanMajorKindName}
+				</if>
+				<if test="humanMajorName != null">
+					and human_major_name = #{humanMajorName}
+				</if>
+	  			<if test="starttime  !=  null">
+					and regist_time &gt; #{starttime}
+				</if>
+				<if test="endtime !=null">
+					and regist_time &lt; #{endtime}
+				</if>
+				<if test="checkStatus !=null">
+					and check_status = #{checkStatus}
+				</if>	
+		  				
+	  				
+	  				
+  				<if test="humanName != null">
+  					<bind name="humanname" value="'%' + keywords + '%'"/>
+					or human_name like #{humanname}
+				</if>
+  				<if test="interviewAmount != null">
+  					<bind name="interviewamount" value="'%' + keywords + '%'"/>
+					or interview_amount like #{interviewamount}
+				</if>
+  				<if test="imageDegree != null">
+  					<bind name="imagedegree" value="'%' + keywords + '%'"/>
+					or image_degree like #{imagedegree}
+				</if>
+  				<if test="nativeLanguageDegree != null">
+  					<bind name="nativelanguagedegree" value="'%' + keywords + '%'"/>
+					or native_language_degree like #{nativelanguagedegree}
+				</if>
+  				<if test="foreignLanguageDegree != null">
+	  				<bind name="foreignlanguagedegree" value="'%' + keywords + '%'"/>
+					or foreign_language_degree like #{foreignlanguagedegree}
+				</if>
+  				<if test="responseSpeedDegree != null">
+  					<bind name="responsespeeddegree" value="'%' + keywords + '%'"/>
+					or response_speed_degree like #{responsespeeddegree}
+				</if>
+  				<if test="eqDegree != null">
+  					<bind name="EQdegree" value="'%' + keywords + '%'"/>
+					or EQ_degree like #{EQdegree}
+				</if>
+  				<if test="iqDegree != null">
+  					<bind name="IQdegree" value="'%' + keywords + '%'"/>
+					or IQ_degree like #{IQdegree}
+				</if>
+  				<if test="multiQualityDegree != null">
+  					<bind name="multiqualitydegree" value="'%' + keywords + '%'"/>
+					or multi_quality_degree like #{multiqualitydegree}
+				</if>
+  				<if test="register != null">
+  					<bind name="register" value="'%' + keywords + '%'"/>
+					or register like #{register}
+				</if>
+  				<if test="checker != null">
+  					<bind name="checker" value="'%' + keywords + '%'"/>
+					or checker like #{checker}
+				</if>
+  				
+  				
+  				
+  			</trim>
+  			
+  			
+  		</select>
+  		
+  		
   </mapper>

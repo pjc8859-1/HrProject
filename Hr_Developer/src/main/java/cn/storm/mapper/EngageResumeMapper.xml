@@ -133,7 +133,7 @@
   	<select id="selectByDiction" parameterType="Map" resultMap="myEngageResumeMapper">
   			select * from engage_resume 
   			<trim prefix="where" prefixOverrides="or|and">
-				<if test="humanMajorKindName != null">
+			<if test="humanMajorKindName != null">
 				and human_major_kind_name = #{humanMajorKindName}
 			</if>
 			<if test="humanMajorName!= null">

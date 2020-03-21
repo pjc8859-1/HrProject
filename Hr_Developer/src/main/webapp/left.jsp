@@ -654,7 +654,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td width="98%">
-													<a href="engageresume.do?operate=locate&method=interview" target="mainFrame">面试结果登记</a>
+													<a href="interview/showinterviewregister.do" target="mainFrame">面试结果登记</a>
 												</td>
 											</tr>
 											<tr>
