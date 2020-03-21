@@ -38,4 +38,9 @@ public class EngageInterviewServiceImpl implements EngageInterviewService {
 	public int modifyEngageInterview(EngageInterview engageinterview) {
 		return mapper.updateEngageInterview(engageinterview);
 	}
+
+	@Override
+	public EngageInterview queryEngageInterviewByeinResumeId(int resumeId) {
+		return this.mapper.selectEngageInterviewByeinResumeId(resumeId);
+	}
 }

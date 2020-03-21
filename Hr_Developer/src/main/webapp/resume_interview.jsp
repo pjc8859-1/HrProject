@@ -51,16 +51,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  return YY + MM + DD + " " + hh + mm+ss;
 			}
 			function checknullorempty(){
-				if($("#checker").val() == "" ||$("#checker").val()==null)
-					{
-						alert("推荐人不能为空");
-						return false;
-					}
-				if($("#suggestion").val() == "" ||$("#suggestion").val()==null)
-				{
-					alert("推荐意见不能为空");
-					return false;
-				}
 			
 				return true;
 			}
@@ -68,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			function mysubmit(){
 				if(checknullorempty())
 					{
-						document.getElementById("myform").submit();
+						document.getElementById("myform1").submit();
 					}else{
 						return;
 					}
@@ -78,16 +68,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
  <body>
- <form id="myform"  method="post"  enctype="multipart/form-data" action="resumemanage/checkresume.do">
+ <form id="myform1"  method="post"   action="resumemanage/interviewsubmit.do">
 			<table width="100%">
 				<tr>
 					<td>
-						<font color="#0000CC">您正在做的业务是：人力资源--招聘管理-- 简历管理 --简历登记 </font>
+						<font color="#0000CC">您正在做的业务是：人力资源--招聘管理-- 面试管理 --面试登记 </font>
 					</td>
 				</tr>
 				<tr>
 					<td align="right">
-						<label><input type="radio" name="suggest" value="0" checked="checked"/>建议面试</label>
+						<label><input type="radio" name="suggest" value="0" checked="checked"/>下一轮面试</label>
 						<label><input type="radio" name="suggest" value="1" />建议笔试</label>
 						<label><input type="radio" name="suggest" value="2" />建议录用</label>
 						<label><input type="radio" name="suggest" value="3" />删除简历</label>
@@ -100,9 +90,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<table width="100%" border="1" cellpadding=0 cellspacing=1
 				bordercolorlight=#848284 bordercolordark=#eeeeee
 				class="TABLE_STYLE1">
-				<!-- 主键 -->
+				<!-- 简历主键 -->
 				<input type="hidden" name="resId" value="${er.resId }"/>
-				<tr>
+				<!-- 面试主键 -->
+				<input type="hidden" name="einId" value="${ei.einId }"/>
+				<tr> 
 					<td class="TD_STYLE1" width="13%">
 						职位分类
 					</td>
@@ -325,7 +317,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<textarea id="suggestion"  readonly="readonly" name="suggestion" rows="4" class="TEXTAREA_STYLE1" style="resize:none" >${er.humanHistoryRecords }</textarea>
 					</td>
 				</tr>
-				<form id="myform"  method="post"   action="resumemanage/checkresume.do">
+				
+				
+				
+				
+			</table>
+			
+		
+		
+		
 					<table width="100%" border="1" cellpadding=0 cellspacing=1
 				bordercolorlight=#848284 bordercolordark=#eeeeee
 				class="TABLE_STYLE1">
@@ -334,13 +334,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							面试次数
 							</td>
 							<td class="TD_STYLE2">
-							第 1次面试
+							<!-- 要保存的面试次数 -->
+							<input type="hidden" name="interviewAmount" value="${ei.interviewAmount+1 }"/>
+							第${ei.interviewAmount}次面试
 							</td>
 							<td class="TD_STYLE1">
 							形象评价
 							</td>
 							<td class="TD_STYLE2">
-								<select name="" class="SELECT_STYLE1">
+								<select  class="SELECT_STYLE1" name="imageDegree">
 									<option value="A">A</option>
 									<option value="B">B</option>
 									<option value="C">C</option>
@@ -350,7 +352,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							口才评价
 							</td>
 							<td class="TD_STYLE2">
-								<select name="" class="SELECT_STYLE1">
+								<select  class="SELECT_STYLE1" name="nativeLanguageDegree">
 									<option value="A">A</option>
 									<option value="B">B</option>
 									<option value="C">C</option>
@@ -360,7 +362,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							外语口语能力
 							</td>
 							<td class="TD_STYLE2">
-								<select name="" class="SELECT_STYLE1">
+								<select  class="SELECT_STYLE1" name="foreignLanguageDegree">
 									<option value="A">A</option>
 									<option value="B">B</option>
 									<option value="C">C</option>
@@ -372,7 +374,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						应变能力
 						</td>
 						<td class="TD_STYLE2">
-							<select name="" class="SELECT_STYLE1">
+							<select class="SELECT_STYLE1" name="responseSpeedDegree">
 								<option value="A">A</option>
 								<option value="B">B</option>
 								<option value="C">C</option>
@@ -382,7 +384,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						EQ
 						</td>
 						<td class="TD_STYLE2">
-							<select name="" class="SELECT_STYLE1">
+							<select  class="SELECT_STYLE1" name="eqDegree">
 								<option value="A">A</option>
 								<option value="B">B</option>
 								<option value="C">C</option>
@@ -392,7 +394,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						IQ
 						</td>
 						<td class="TD_STYLE2">
-							<select name="" class="SELECT_STYLE1">
+							<select  class="SELECT_STYLE1" name="iqDegree">
 								<option value="A">A</option>
 								<option value="B">B</option>
 								<option value="C">C</option>
@@ -402,7 +404,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						综合素质
 						</td>
 						<td class="TD_STYLE2">
-							<select name="" class="SELECT_STYLE1">
+							<select  class="SELECT_STYLE1" name="multiQualityDegree">
 								<option value="A">A</option>
 								<option value="B">B</option>
 								<option value="C">C</option>
@@ -414,13 +416,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						面试人
 						</td>
 						<td class="TD_STYLE2" width="12.5%">
-							<input name="" class="INPUT_STYLE2"/>
+							<input class="INPUT_STYLE2" name="register"/>
 						</td>
 						<td class="TD_STYLE1" width="12.5%">
 						面试时间
 						</td>
 						<td class="TD_STYLE2" width="12.5%">
-							<input class="INPUT_STYLE2" id="datetime" name="registTime1" readonly="readonly" value=""/>
+							<input class="INPUT_STYLE2" id="datetime" name="registeTime" readonly="readonly" value=""/>
 							<script type="text/javascript">
 							setInterval("document.getElementById('datetime').value=formatDate(new Date().getTime());", 1000);
 							</script>
@@ -443,7 +445,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						面试评价
 					</td>
 					<td colspan="7" class="TD_STYLE2">
-						<textarea id="myremark"  rows="3" class="TEXTAREA_STYLE1" style="resize:none" ></textarea>
+						<textarea id="myremark"  rows="3" class="TEXTAREA_STYLE1" style="resize:none"  name="interviewComment"></textarea>
 					</td>
 					</tr>
 					
@@ -452,12 +454,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</table>
 				
 				</form>
-				
-				
-				
-			</table>
-			
-		</form>
 	</body>
 	
 	

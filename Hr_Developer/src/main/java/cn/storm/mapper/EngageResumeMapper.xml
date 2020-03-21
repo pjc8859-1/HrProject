@@ -133,80 +133,11 @@
   	<select id="selectByDiction" parameterType="Map" resultMap="myEngageResumeMapper">
   			select * from engage_resume 
   			<trim prefix="where" prefixOverrides="or|and">
-				
-			<if test="humanMajorKindName != null">
-				or human_major_kind_name = #{humanMajorKindName}
+				<if test="humanMajorKindName != null">
+				and human_major_kind_name = #{humanMajorKindName}
 			</if>
 			<if test="humanMajorName!= null">
-				or human_major_name = #{humanMajorName}
-			</if>
-			
-			
-			<if test="humanName  != null">
-				or human_name = #{humanName}
-			</if>
-			<if test="humanTelephone  != null">
-				or human_telephone = #{keywords}
-			</if>
-			<if test="humanHomephone  != null">
-				or human_homephone = #{keywords}
-			</if>
-			<if test="humanMobilephone  != null">
-				or human_mobilephone = #{keywords}
-			</if>
-			<if test="humanEmail  != null">
-				or human_email = #{keywords}
-			</if>
-			<if test="humanHobby  != null">
-				or human_hobby = #{keywords}
-			</if>
-			<if test="humanSpecility  != null">
-				or human_specility = #{keywords}
-			</if>
-			<if test="humanSex  != null">
-				or human_sex = #{keywords}
-			</if>
-			<if test="humanReligion  != null">
-				or human_religion = #{keywords}
-			</if>
-			<if test="humanParty  != null">
-				or human_party = #{keywords}
-			</if>
-			<if test="humanNationality  != null">
-				or human_nationality = #{keywords}
-			</if>
-			<if test="humanRace  != null">
-				or human_race = #{keywords}
-			</if>
-			<if test="humanBirthday  != null">
-				or human_birthday = #{keywords}
-			</if>
-			<if test="humanAge  != null">
-				or human_age = #{keywords}
-			</if>
-			<if test="humanEducatedDegree  != null">
-				or human_educated_degree = #{keywords}
-			</if>
-			<if test="humanEducatedYears  != null">
-				or human_educated_years = #{keywords}
-			</if>
-			<if test="humanEducatedMajor  != null">
-				or human_educated_major = #{keywords}
-			</if>
-			<if test="humanCollege  != null">
-				or human_college = #{keywords}
-			</if>
-			<if test="humanIdcard  != null">
-				or human_idcard = #{keywords}
-			</if>
-			<if test="demandSalaryStandard  != null">
-				and demand_salary_standard =#{keywords}
-			</if>
-			<if test="remark  != null">
-				or remark = #{keywords}
-			</if>
-			<if test="recomandation  != null">
-				or recomandation = #{keywords}
+				and human_major_name = #{humanMajorName}
 			</if>
 			 <if test="starttime  !=  null">
 				and regist_time &gt; #{starttime}
@@ -217,6 +148,101 @@
 			<if test="checkStatus !=null">
 				and check_status = #{checkStatus}
 			</if>
+			
+			
+			
+			<if test="humanName  != null">
+			<bind name="humanname" value="'%' + keywords + '%'"/>
+				or human_name like #{humanname}
+			</if>
+			<if test="humanTelephone  != null">
+			<bind name="human_telephone" value="'%' + keywords + '%'"/>
+				or human_telephone like #{human_telephone}
+			</if>
+			<if test="humanHomephone  != null">
+			<bind name="human_homephone" value="'%' + keywords + '%'"/>
+				or human_homephone like #{human_homephone}
+			</if>
+			<if test="humanMobilephone  != null">
+			<bind name="human_mobilephone" value="'%' + keywords + '%'"/>
+				or human_mobilephone like #{human_mobilephone}
+			</if>
+			<if test="humanEmail  != null">
+			<bind name="human_email" value="'%' + keywords + '%'"/>
+				or human_email like #{human_email}
+			</if>
+			<if test="humanHobby  != null">
+			<bind name="human_hobby" value="'%' + keywords + '%'"/>
+				or human_hobby like #{human_hobby}
+			</if>
+			<if test="humanSpecility  != null">
+			<bind name="human_specility" value="'%' + keywords + '%'"/>
+				or human_specility like #{human_specility}
+			</if>
+			<if test="humanSex  != null">
+			<bind name="human_sex" value="'%' + keywords + '%'"/>
+				or human_sex like #{human_sex}
+			</if>
+			<if test="humanReligion  != null">
+			<bind name="human_religion" value="'%' + keywords + '%'"/>
+				or human_religion like #{human_religion}
+			</if>
+			<if test="humanParty  != null">
+			<bind name="human_party" value="'%' + keywords + '%'"/>
+				or human_party like #{human_party}
+			</if>
+			<if test="humanNationality  != null">
+			<bind name="human_nationality" value="'%' + keywords + '%'"/>
+				or human_nationality like #{human_nationality}
+			</if>
+			<if test="humanRace  != null">
+			<bind name="human_race" value="'%' + keywords + '%'"/>
+				or human_race like #{human_race}
+			</if>
+			<if test="humanBirthday  != null">
+			<bind name="human_birthday" value="'%' + keywords + '%'"/>
+				or human_birthday like #{human_birthday}
+			</if>
+			<if test="humanAge  != null">
+			<bind name="human_age" value="'%' + keywords + '%'"/>
+				or human_age like #{human_age}
+			</if>
+			<if test="humanEducatedDegree  != null">
+			<bind name="human_educated_degree" value="'%' + keywords + '%'"/>
+				or human_educated_degree like #{human_educated_degree}
+			</if>
+			<if test="humanEducatedYears  != null">
+			<bind name="human_educated_years" value="'%' + keywords + '%'"/>
+				or human_educated_years like #{human_educated_years}
+			</if>
+			<if test="humanEducatedMajor  != null">
+			<bind name="human_educated_major" value="'%' + keywords + '%'"/>
+				or human_educated_major like #{human_educated_major}
+			</if>
+			<if test="humanCollege  != null">
+			<bind name="human_college" value="'%' + keywords + '%'"/>
+				or human_college like #{human_college}
+			</if>
+			<if test="humanIdcard  != null">
+			<bind name="human_idcard" value="'%' + keywords + '%'"/>
+				or human_idcard like #{human_idcard}
+			</if>
+			<if test="demandSalaryStandard  != null">
+			<bind name="demand_salary_standard" value="'%' + keywords + '%'"/>
+				and demand_salary_standard like#{demand_salary_standard}
+			</if>
+			<if test="remark  != null">
+			<bind name="remark" value="'%' + keywords + '%'"/>
+				or remark like #{remark}
+			</if>
+			<if test="recomandation  != null">
+			<bind name="recomandation" value="'%' + keywords + '%'"/>
+				or recomandation like #{recomandation}
+			</if>
+			
+			
+			
+			
 		</trim>
   	</select>
   

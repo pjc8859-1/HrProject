@@ -17,4 +17,6 @@ public interface EngageInterviewMapper {
 	public boolean deleteEngageInterviewByeinId(int einId);
 
 	public int updateEngageInterview(EngageInterview engageinterview);
+	
+	public EngageInterview selectEngageInterviewByeinResumeId(int resumeId);
 }

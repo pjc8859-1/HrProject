@@ -14,4 +14,6 @@ public interface EngageInterviewService {
 	public boolean removeEngageInterviewByeinId(int einId);
 
 	public int modifyEngageInterview(EngageInterview engageinterview);
+	
+	public EngageInterview queryEngageInterviewByeinResumeId(int resumeId);
 }
