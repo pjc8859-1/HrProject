@@ -9,10 +9,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-  	<!-- released_query_list.jsp-->
+  	<!-- interview_query_result_list.jsp-->
     <base href="<%=basePath%>">
     
-    <title>展示需要已经提交了的简历筛选结果</title>
+    <title>展示面试结果登记前的搜索结果</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,17 +23,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="table.css" type="text/css">
 	<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 	<script type="text/javascript">
-		function screen(ele){
+		function dointerview(ele){
 			var $eee = $(ele);
-			var reId =$eee.parent().siblings("input").val();
-			location.href="resumemanage/resumescreen.do?reId="+reId;
+			var resId =$eee.parent().siblings("input").val();
+			location.href="resumemanage/interviewregist.do?resId="+resId;
 			
 		
 		}
 		function edit(ele){
 			var $eee = $(ele);
 			var reId =$eee.parent().siblings("input").val();
-			location.href="resumemanage/resumeedit.do?reId="+reId;
+			location.href="resumemanage/interviewregist.do?reId="+reId;
 		}
 	</script>
   </head>
@@ -43,12 +43,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<table width="100%">
 			<tr>
 				<td>
-					<font color="#0000CC">您正在做的业务是：人力资源--招聘管理-- 简历管理 --简历筛选结果</font>
+					<font color="#0000CC">您正在做的业务是：人力资源 -- 招聘管理 -- 面试管理 -- 面试查询结果展示</font>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					符合条件的简历总数：${fn:length(resumes)}例
+					符合条件的面试总数：${fn:length(interviews)}例
 				</td>
 					<td align="right">
 						<input type="button" value="刷新"
@@ -67,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					姓名
 				</td>
 				<td width="10%" class="TD_STYLE1">
-					年龄
+					面试次数
 				</td>
 				
 				<td width="10%" class="TD_STYLE1">
@@ -77,62 +77,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					招聘职位
 				</td>
 				<td width="14%" class="TD_STYLE1">
-					民族
+					综合素质
 				</td>
+				
 				<td width="10%" class="TD_STYLE1">
-					修改
-				</td>
-				<td width="10%" class="TD_STYLE1">
-					筛选
-				</td>
-				<td width="14%" class="TD_STYLE1">
-					同意状态
+					开始面试
 				</td>
 			</tr>
-			<c:forEach items="${resumes}" var="resume">
+			<c:forEach items="${interviews}" var="interview">
 				<tr class="TR_STYLE1">
-				<input type="hidden" name="resId" value="${resume.resId }" id="resId"/>
+				<input type="hidden" name="resumeId" value="${interview.resumeId }" id="resumeId"/>
 				<td width="16%" class="TD_STYLE2 humanid">
-					${resume.humanName }
+					${interview.humanName }
 				</td>
 				<td width="10%" class="TD_STYLE2">
-					${resume.humanAge }
+					${interview.interviewAmount }
 				</td>
 				
 				<td width="10%" class="TD_STYLE2">
 					<!-- <input type="hidden" id="firstkindid" value="${human.firstKindId}"/> -->
-					${resume.humanMajorKindName }
+					${interview.humanMajorKindName }
 				</td>
 				<td width="10%" class="TD_STYLE2">
-					${ resume.humanMajorName}
+					${ interview.humanMajorName}
 				</td>
 				<td width="10%" class="TD_STYLE2">
-					${ resume.humanRace}
+					${ interview.multiQualityDegree}
 				</td>
+				
 				<td width="14%" class="TD_STYLE2">
-					<a onclick="edit(this)">修改</a>
+					<a onclick="dointerview(this)">面试</a>
 				</td>
-				<td width="14%" class="TD_STYLE2">
-					<a onclick="screen(this)">筛选</a>
-				</td>
-				<td width="12%" class="TD_STYLE2">
-					<c:if test="${resume.checkStatus == null}">
-						<div style="width:100%;height:100%;background:whilte" >未筛选</div>
-					</c:if>
-					<c:if test="${resume.checkStatus == 0}">
-						<div style="width:100%;height:100%;background:yellow;" >建议面试</div>
-					</c:if>
-					<c:if test="${resume.checkStatus == 1}">
-						<div style="width:100%;height:100%;background:skyblue;" >建议笔试</div>
-					</c:if>
-					<c:if test="${resume.checkStatus == 2}">
-						<div style="width:100%;height:100%;background:green;" >建议录用</div>
-					</c:if>
-					<c:if test="${resume.checkStatus == 3}">
-						<div style="width:100%;height:100%;background:gray;" >被删除</div>
-					</c:if>
-					
-				</td>
+				
 			</tr>
 			</c:forEach>
 		</table>

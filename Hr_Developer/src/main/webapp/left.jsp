@@ -108,7 +108,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="showConfigFileSecondKind.do"
+													<a href="configfilesecondkind.do?operate=list"
 														target="mainFrame">II级机构设置</a>
 												</td>
 											</tr>
@@ -618,7 +618,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="engageresume.do?operate=locate&method=check" target="mainFrame">简历筛选</a>
+													<a href="resumemanage/screenresume.do" target="mainFrame">简历筛选</a>
 												</td>
 											</tr>
 											<tr>
@@ -626,7 +626,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="engageresume.do?operate=locate&method=query" target="mainFrame">有效简历查询</a>
+													<a href="resumemanage/effectsresumelist.do" target="mainFrame">有效简历查询</a>
 												</td>
 											</tr>
 										</table> </span>
@@ -654,7 +654,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td width="98%">
-													<a href="engageresume.do?operate=locate&method=interview" target="mainFrame">面试结果登记</a>
+													<a href="interview/showinterviewregister.do" target="mainFrame">面试结果登记</a>
 												</td>
 											</tr>
 											<tr>
