@@ -1,10 +1,10 @@
 package cn.storm.mapper;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import cn.storm.dto.HumanFileQuerryDto;
 import cn.storm.dto.MajorManagerDto;
 import cn.storm.pojo.HumanFile;
 @Repository
@@ -29,4 +29,6 @@ public interface HumanFileMapper {
 	public HumanFile selectByhumanid(String huid);
 	
 	public boolean upDateHumanFiles(HumanFile humanfile);
+
+	public List<HumanFile> selectByHumanFileDto(HumanFileQuerryDto mmd);
 }

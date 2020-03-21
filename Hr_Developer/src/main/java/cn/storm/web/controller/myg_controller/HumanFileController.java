@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
 
+import cn.storm.dto.HumanFileQuerryDto;
 import cn.storm.pojo.ConfigFileFirstKind;
 import cn.storm.pojo.ConfigFileSecondKind;
 import cn.storm.pojo.ConfigFileThirdKind;
@@ -43,7 +44,7 @@ import cn.storm.util.myg.service.MygConfigPublicCharService;
 
 @Controller
 @RequestMapping("/hr")
-public class HumanRegisterController {
+public class HumanFileController {
 
 	@Autowired
 	private ConfigFileFirstKindService configfkfs=null;
@@ -640,6 +641,88 @@ public class HumanRegisterController {
 		}
 		return model;
 	}
+	
+	@RequestMapping("/humanfilequerry.do")
+	/**
+	 * 展示查询可变更职位的职员的controller
+	 * 首先需要查询系统中状态为"正常"的员工。查询条件包括：员工所在机构和建档时间。
+	 * @return
+	 */
+	public ModelAndView showChangePage(){
+		ModelAndView modelview = new ModelAndView();
+		/**
+		查询一级机构
+	 */
+	List<ConfigFileFirstKind> listconfigfirstkind = configfkfs.queryAllConfigFileFirstKind();
+	JSONArray  first = JSONArray.fromObject(listconfigfirstkind);
+	
+	/**
+	 * 查询二级机构
+	 */
+	List<ConfigFileSecondKind> listconfigsecondkind = configfsks.queryAllConfigFileSecondKind();
+	JSONArray  second = JSONArray.fromObject(listconfigsecondkind);
+	
+	/**
+	 * 查询三级机构
+	 */
+	List<ConfigFileThirdKind> listconfigthridkind = configftks.queryAllConfigFileThirdKind();
+	JSONArray  third = JSONArray.fromObject(listconfigthridkind);
+	
+	/**
+	 * 查询职位分类
+	 */
+	List<ConfigMajor> listconfigmajor = configms.queryAllConfigMajor();
+	JSONArray  zwfl = JSONArray.fromObject(listconfigmajor);
+	
+	/**
+	 * 查询职位
+	 */
+	List<ConfigMajorKind> listmajorkind = configmks.queryAllConfigMajorKind();
+	JSONArray  zw = JSONArray.fromObject(listmajorkind);
+		modelview.addObject("listconfigfirstkind", first.toString());
+		modelview.addObject("listconfigsecondkind", second.toString());
+		modelview.addObject("listconfigthridkind", third.toString());
+		modelview.addObject("listconfigmajor", zwfl.toString());
+		modelview.addObject("listmajorkind", zw.toString());
+		modelview.setViewName("forward:/query_locate.jsp");
+		return modelview;
+	}
+	
+	
+	
+	@RequestMapping("formquerry.do")
+	public ModelAndView toShowQuerry(@RequestParam("item.firstKindId") String firstKindId,
+			@RequestParam("item.secondKindId") String secondKindId,
+			@RequestParam("item.thirdKindId") String thirdKindId,
+			@RequestParam("item.humanMajorKindName") String humanMajorKindId,
+			@RequestParam("item.hunmaMajorName") String hunmaMajorId,
+			@RequestParam("item.str_startTime") String begintime,
+			@RequestParam("item.str_endTime") String endtime)
+	{
+		HumanFileQuerryDto hfqd = new HumanFileQuerryDto();
+		hfqd.setFirstkindid(firstKindId);
+		hfqd.setSecondkindid(secondKindId);
+		hfqd.setThirdkindid(thirdKindId);
+		hfqd.setMajorkindid(humanMajorKindId);
+		hfqd.setMajorid(hunmaMajorId);
+		hfqd.setBegintime(converttime(begintime));
+		hfqd.setEndtime(converttime(endtime));
+		
+		List<HumanFile> humanfileqd = humanfs.querryByHumanFileDto(hfqd);
+		System.out.println("查出符合条件的为："+humanfileqd);
+		ModelAndView model = new ModelAndView();
+		model.addObject("humanfileqd", humanfileqd);
+		model.setViewName("forward:/query_list.jsp");
+
+		return model;
+	}
+	
+	public Timestamp converttime(String arg0) {
+		Date d = new Date(arg0.replace("-", "/")+" 00:00:00");
+		long time = d.getTime();//long
+		return new Timestamp(time);
+	}
+	
 	
 	public Timestamp converttime(String arg0,int type) {
 		System.out.println(arg0);
