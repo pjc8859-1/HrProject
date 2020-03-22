@@ -22,6 +22,13 @@ public interface HumanFileService {
 	 */
 	public boolean modifysHumanFile(HumanFile humanfile);
 	
+	/**
+	 * 人力资源档案变更
+	 * @param mmd
+	 * @return
+	 */
+	public boolean modifyHumanFileChange(HumanFile humanfile);
+	
 	public List<HumanFile> querryByHumanFileDto(HumanFileQuerryDto mmd);
 	
 	public HumanFile querryHumanFileByNames(String names);
