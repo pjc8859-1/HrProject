@@ -47,7 +47,7 @@ public class UserController {
 	 */
 	@RequestMapping("/users.do")
 	public void login(HttpSession session,HttpServletRequest request,HttpServletResponse response) throws Exception
-	{
+	{    
 		String uname = request.getParameter("uname");
 		String upass = request.getParameter("upass");
 		boolean flag=user.queryUserByNameAndPass(uname, upass);
