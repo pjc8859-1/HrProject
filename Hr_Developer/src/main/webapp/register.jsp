@@ -3,6 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -31,78 +32,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 }
 -->
 </style>
+
+		<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
+		<script type="text/javascript" src="javascript/userdetails.js"></script>
+		<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 <script type="text/javascript">
-function prochk()
-{
-	if (document.forms[0].elements["item.UName"].value == "")
-	{	
-		alert ("请填写用户名");
-		document.forms[0].elements["item.UName"].focus();
-	}
-	else{
-			
-			var name = document.forms[0].elements["item.UName"].value;
-			window.open("users.do?operate=isExist&profix=" + document.register.profix.value+"&uname=" + document.forms[0].elements["item.UName"].value); 
-	}
-}
-function namechk()
-{
-	var name = document.forms[0].elements["item.UName"];
-	var tname = document.forms[0].elements["item.UTrueName"];
-	if(name.value == "")
-	{
-		alert ("请填写用户名");
-		name.focus();
-		return false;
-	}
-	else if(tname.value == "")
-	{
-		alert ("请填写真实姓名");
-		tname.focus();
-		return false;
-	}
-	else
-		return true;
-}
-function pwdchk()
-{
-	var pwd = document.forms[0].elements["item.UPassword"];
-	var spwd = document.register.surPwd;
-	if (pwd.value == "")
-	{	
-		alert("请填写密码");
-		pwd.focus();
-		return false;
-	}
-	else if(spwd.value == "")
-	{
-		alert("请填写确认密码");
-		spwd.focus();
-		return false;
-	}
-	else if(pwd.value != spwd.value)
-	{
-		alert ("密码和确认密码不相同");
-		pwd.value = "";
-		spwd.value = "";	
-		return false;
-	}
-	else
-		return true;
-}
-function doAdd()
-{
-	if(namechk()&&pwdchk())
-	{
-		document.forms[0].action = document.forms[0].action + "?operate=doAdd&profix=" + document.register.profix.value;
-		document.forms[0].submit();
-	}
-}
+
 </script>
   </head>
   
  <body bgcolor="#E9F8F3">
-<form method="post" action="users.do" name="register">
+<form method="post" action="userregister.do" name="register">
 <table width="100%">
   <tr>
     <td height="169" colspan="3" align="center">
@@ -117,23 +57,23 @@ function doAdd()
   <table width="95%" border="1" cellpadding=0 cellspacing=1 bordercolorlight=#848284 bordercolordark=#eeeeee class="TABLE_STYLE1">
   <tr>
     <td width="20%" class="TD_STYLE1">使用单位简称</td>
-    <td width="80%" class="TD_STYLE2"><input name="profix" type="text" class="INPUT_STYLE1" value="better" readonly="readonly"></td>
+    <td width="80%" class="TD_STYLE2" style="width: 551px; height: 51px"><input name="profix" type="text" class="INPUT_STYLE1" value="Better" readonly="readonly" style="width: 438px; height: 35px"></td>
   </tr>
   <tr>
     <td width="20%" class="TD_STYLE1">用户名</td>
-    <td width="80%" class="TD_STYLE2"><input type="text" name="item.UName" value="better_wanghao" class="INPUT_STYLE1">&nbsp;<a href="javascript:prochk();">用户名是否可用</a></td>
+    <td width="80%" class="TD_STYLE2" style="height: 55px; "><input type="text" name="item.UName" id="username" value="" class="INPUT_STYLE1" style="width: 436px; "></td>
   </tr>
   <tr>
     <td class="TD_STYLE1">真实姓名</td>
-    <td class="TD_STYLE2"><input type="text" name="item.UTrueName" value="" class="INPUT_STYLE1"></td>
+    <td class="TD_STYLE2" style="height: 46px; "><input type="text" name="item.UTrueName" value="" id="truename" class="INPUT_STYLE1" style="width: 436px; "></td>
   </tr>
   <tr>
     <td class="TD_STYLE1">密码</td>
-    <td class="TD_STYLE2"><input type="password" name="item.UPassword" value="" style="background-color: #DEEBF7" class="INPUT_STYLE1"></td>
+    <td class="TD_STYLE2" style="height: 52px; "><input type="password" name="item.UPassword" id="firstpass" value="" style="background-color: #DEEBF7; width: 438px; height: 33px" class="INPUT_STYLE1"></td>
   </tr>
   <tr>
     <td class="TD_STYLE1">确认密码</td>
-    <td class="TD_STYLE2"><input name="surPwd" type="password" class="INPUT_STYLE1" style="background-color: #DEEBF7"></td>
+    <td class="TD_STYLE2" style="height: 50px; "><input name="surPwd" type="password" class="INPUT_STYLE1" id="checkpass" style="background-color: #DEEBF7; width: 435px"></td>
   </tr>
   </table>
   </td>
@@ -141,11 +81,42 @@ function doAdd()
   </tr>
   <tr>
     <td></td>
-    <td align="center"><input type="button" value="注册" class="BUTTON_STYLE1" onclick="javascript:doAdd();"> &nbsp;
-      <input type="button" value="返回" onclick="history.back();" class="BUTTON_STYLE1"></td>
+    <td align="center"><input type="button" value="注册" class="BUTTON_STYLE1" id="registeruser" style="width: 126px; "> &nbsp;
 	  <td></td>
   </tr>
 </table>
 </form>      
 </body>
+<script type="text/javascript">
+				var isok="${exist}";
+			 if(isok=="exist")
+			 {
+			 	alert("注册失败！用户名已存在！请重新输入用户名！");
+			 	$("#username").focus();
+			 	$("#username").val("${users.UName}");
+			 	$("#truename").val("${users.UTrueName}");
+			 	$("#firstpass").val("${users.UPassword}");
+			 	$("#checkpass").val("${users.UPassword}");
+			 }
+			 if(isok=="error")
+			 {
+			 	alert("系统错误，清稍后重试！");
+			 }
+			 
+		$(function() {
+			$("#registeruser").click(function(){
+				tosubmint();
+		});
+		$("html").die().live("keydown", function(event) {
+		if (event.keyCode == 13) {
+			tosubmint();
+		}
+	});
+	});
+	
+	function tosubmint()
+	{
+				document.register.submit();
+	}
+</script>
 </html>
