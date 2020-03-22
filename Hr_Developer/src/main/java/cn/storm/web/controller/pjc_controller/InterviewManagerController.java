@@ -103,6 +103,15 @@ public class InterviewManagerController {
 		
 	}
 	
+	/**
+	 * 面试筛选主页面
+	 */
+	@RequestMapping("interviewscreen.do")
+	public ModelAndView interviewscreen(){
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}
+	
 	
 	//帮助方法===============
 	//帮助方法
