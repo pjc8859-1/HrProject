@@ -31,7 +31,7 @@ function toCheck(id)
   </head>
   
   <body>
-    <form name="humanfileForm" method="post" action="hr/humanfile_list.do">
+    <form name="humanfileForm" method="post" action="hr/humanfilechecklist.do">
 			<table width="100%">
 				<tr>
 					<td>
@@ -99,7 +99,7 @@ function toCheck(id)
 						${human.hunmaMajorName }
 					</td>
 					<td class="TD_STYLE2">
-						<a href="human_check.jsp?id=${human.humanId}">复核</a>
+						<a href="hr/humanfilequery.do?huid=${human.humanId}">复核</a>
 					</td>
 					</tr>
 				</c:forEach>

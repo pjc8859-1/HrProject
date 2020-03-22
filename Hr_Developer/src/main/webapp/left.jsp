@@ -310,7 +310,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td>
-									<a href="check_list.jsp" target="mainFrame">人力资源档案登记复核</a>
+									<a href="hr/humanfilecheckshow.do" target="mainFrame">人力资源档案登记复核</a>
 								</td>
 							</tr>
 							<tr>
@@ -318,7 +318,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td>
-									<a href="query_locate.jsp" target="mainFrame">人力资源档案查询</a>
+									<a href="hr/humanfilequerry.do" target="mainFrame">人力资源档案查询</a>
 								</td>
 							</tr>
 							<tr>
