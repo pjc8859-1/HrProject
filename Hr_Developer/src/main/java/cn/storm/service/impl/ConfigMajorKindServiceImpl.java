@@ -51,6 +51,12 @@ public class ConfigMajorKindServiceImpl implements ConfigMajorKindService {
 		// TODO Auto-generated method stub
 		return mapper.selectIdByNames(names);
 	}
+	
+	@Override
+	public int queryMaxId() {
+		// TODO Auto-generated method stub
+		return mapper.selectMaxId();
+	}
 
 
 }

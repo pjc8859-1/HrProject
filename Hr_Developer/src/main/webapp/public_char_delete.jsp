@@ -25,11 +25,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<form name="configfilefirstkindForm" method="post" action="majorkinddelectsuccess">
+  	<form name="configfilefirstkindForm" method="post" action="publicchardelectsuccess">
 <table width="100%" >
   <tr>
     <td> 
-    <font color="#0000CC">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--职位分类设置 </font></td>
+    <font color="#0000CC">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--公共属性设置 </font></td>
   </tr>
   <tr>
     <td align="right"><input type="button" value="删除" class="BUTTON_STYLE1" onclick="toDelet()">
@@ -71,19 +71,19 @@ $(
     function(){
     $.ajax({
 					type:"post",
-					url:"changemajorkind.do",
+					url:"changepublicchar.do",
 				   	dataType:"json",
 					contentType:"application/html;charset=utf-8",
 					data:""+id,
 					success:function(result){
 					var str=`
 					               <tr>
-    <td width="19%" class="TD_STYLE1">职位分类编号</td>
-    <td width="81%" class="TD_STYLE2"><input type="text" name="item.majorKindId" value="\${result.majorKindId}" readonly="readonly" class="INPUT_STYLE1"></td>
+    <td width="19%" class="TD_STYLE1">属性种类</td>
+    <td width="81%" class="TD_STYLE2"><input type="text" name="item.attributeKind" value="\${result.attributeKind}" readonly="readonly" class="INPUT_STYLE1"></td>
   </tr>
   <tr>
-    <td class="TD_STYLE1">职位分类名称</td>
-    <td class="TD_STYLE2"><input type="text" name="item.majorKindName" value="\${result.majorKindName}" readonly="readonly" class="INPUT_STYLE1"></td>
+    <td class="TD_STYLE1">属性名称</td>
+    <td class="TD_STYLE2"><input type="text" name="item.attributeName" value="\${result.attributeName}" readonly="readonly" class="INPUT_STYLE1"></td>
   </tr>
   
 					`;

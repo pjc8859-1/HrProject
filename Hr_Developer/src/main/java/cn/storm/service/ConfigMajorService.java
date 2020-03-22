@@ -16,6 +16,6 @@ public interface ConfigMajorService {
 	
 	public int updateConfigMajor(ConfigMajor configMajor);
 	public String queryNamesByIds(String mkid,String mid);
-
+	public int queryMaxId();
 }
 

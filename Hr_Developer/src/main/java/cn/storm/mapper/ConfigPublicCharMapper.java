@@ -19,4 +19,5 @@ public interface ConfigPublicCharMapper {
 	public int updateConfigPublicChar(ConfigPublicChar configpublicchar);
 	
 	public List<ConfigPublicChar> selectConfigPublicCharByKey(String key);
+	public int selectMaxId();
 }
