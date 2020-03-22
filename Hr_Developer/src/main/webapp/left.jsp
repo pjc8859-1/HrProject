@@ -326,7 +326,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td>
-									<a href="change_locate.jsp" target="mainFrame">人力资源档案变更</a>
+									<a href="hr/humanfilechange.do" target="mainFrame">人力资源档案变更</a>
 								</td>
 							</tr>
 							<tr>

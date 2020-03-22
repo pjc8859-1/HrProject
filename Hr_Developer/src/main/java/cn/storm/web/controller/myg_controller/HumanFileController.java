@@ -19,6 +19,7 @@ import net.sf.json.JSONObject;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -731,9 +732,241 @@ public class HumanFileController {
 		return model;
 	}
 	
+	@RequestMapping("/humanfilechange.do")
+	public ModelAndView humanfileChange()
+	{
+		ModelAndView model = new ModelAndView();
+		List<HumanFile> humanlists = humanfs.queryAllHumanFile();
+		model.addObject("humanlists", humanlists);
+		model.setViewName("forward:/change_locate.jsp");
+		return model;
+	}
 	
+	/**
+	 * 档案变更
+	 * @param huid
+	 * @return
+	 */
+	@RequestMapping("/humanfilechangeing.do")
+	public ModelAndView showHumanFileChange(String huid,HttpSession session , Map map ,HttpServletRequest request)
+	{
+		ModelAndView model =new ModelAndView();
+		System.out.println("我的档案编号："+huid+"========");
+		String path = session.getServletContext().getRealPath("/upload");
+		System.out.println("图片保存的路径："+path);
+		System.out.println("我的档案编号："+huid);
+		if(huid!=null)
+		{
+			HumanFile humanf =  humanfs.queryByhumanid(huid);
+			String pic = humanf.getHumanPicture();
+			pic =  session.getServletContext().getRealPath("/upload/")+pic;
+			request.getSession().setAttribute("pic", pic);
+			
+			map.put("humanf", humanf);
+			
+			/**
+			 * 职称
+			 */
+			List<ConfigPublicChar> listzc = mygconfigpcs.queryzc();
+			map.put("listzc", listzc);
+			
+			/**
+			 * 国籍
+			 */
+			List<ConfigPublicChar> listgj = mygconfigpcs.querygj();
+			map.put("listgj", listgj);
+			
+			/**
+			 * 民族
+			 */
+			List<ConfigPublicChar> listmz = mygconfigpcs.querymz();
+			map.put("listmz", listmz);
+
+			/**
+			 * 宗教信仰
+			 */
+			List<ConfigPublicChar> listzjxy = mygconfigpcs.queryzjxy();
+			map.put("listzjxy", listzjxy);
+
+			/**
+			 * 政治面貌
+			 */
+			List<ConfigPublicChar> listzzmm = mygconfigpcs.queryzzmm();
+			map.put("listzzmm", listzzmm);
+
+			
+			/**
+			 * 学历
+			 */
+			List<ConfigPublicChar> listxl = mygconfigpcs.queryxl();
+			map.put("listxl", listxl);
+
+			/**
+			 * 教育年限
+			 */
+			List<ConfigPublicChar> listjynx = mygconfigpcs.queryjynx();
+			map.put("listjynx", listjynx);
+			
+			/**
+			 * 专业
+			 */
+			List<ConfigPublicChar> listzy = mygconfigpcs.queryzy();
+			map.put("listzy", listzy);
+
+			/**
+			 * 薪酬标准
+			 */
+			List<ConfigPublicChar> listxcbz = mygconfigpcs.queryxcbz();
+			map.put("listzzmm", listzzmm);
+			
+			/**
+			 * 特长
+			 */
+			List<ConfigPublicChar> listtc = mygconfigpcs.querytc();
+			map.put("listtc", listtc);
+
+			/**
+			 * 爱好
+			 */
+			List<ConfigPublicChar> listah = mygconfigpcs.queryah();
+			map.put("listah", listah);
+			model.setViewName("forward:/change_list_information.jsp");
+		}
+		else
+		{
+			model.setViewName("forward:/commomerror.jsp");
+		}
+		return model;
+	}
 	
-	
+	@RequestMapping("/humanfilechangesave.do")
+	public ModelAndView humanFileChangeSave(
+			@RequestParam("item.humanProDesignation") String humanProDesignation,
+			@RequestParam("item.humanName") String humanName,
+			@RequestParam("item.humanSex") String humanSex,
+			@RequestParam("item.humanEmail") String humanEmail,
+			@RequestParam("item.humanTelephone") String humanTelephone,
+			@RequestParam("item.humanQq") String humanQq,
+			@RequestParam("item.humanMobilephone") String humanMobilephone,
+			@RequestParam("item.humanPostcode") String humanPostcode,
+			@RequestParam("item.humanAddress") String humanAddress,
+			@RequestParam("item.humanNationality") String humanNationality,
+			@RequestParam("item.humanBirthplace") String humanBirthplace,
+			@RequestParam("item.humanBirthday") String humanBirthday,
+			@RequestParam("item.humanRace") String humanRace,
+			@RequestParam("item.humanReligion") String humanReligion,
+			@RequestParam("item.humanParty") String humanParty,
+			@RequestParam("item.humanIdCard") String humanIdCard,
+			@RequestParam("item.humanSocietySecurityId") String humanSocietySecurityId,
+			@RequestParam("item.humanAge") String humanAge,
+			@RequestParam("item.humanEducatedDegree") String humanEducatedDegree,
+			@RequestParam("item.humanEducatedYears") String humanEducatedYears,
+			@RequestParam("item.humanEducatedMajor") String humanEducatedMajor,
+			@RequestParam("item.humanBank") String humanBank,
+			@RequestParam("item.humanAccount") String humanAccount,
+			@RequestParam("item.checkTime") String checkTime,
+			@RequestParam("item.humanSpeciality") String humanSpeciality,
+			@RequestParam("item.humanHobby") String humanHobby,
+			@RequestParam("item.humanHistroyRecords") String humanHistroyRecords,
+			@RequestParam("item.humanFamilyMembership") String humanFamilyMembership,
+			@RequestParam("item.remark") String remark,
+			@RequestParam("item.huid") String huids
+			)
+	{
+		HumanFile newHumanfiles = new HumanFile();
+		//档案编号
+		newHumanfiles.setHumanId(huids);
+		System.out.println("我的档案编号：====="+huids);
+		//职称
+		newHumanfiles.setHumanProDesignation(humanProDesignation);
+		System.out.println("我的职称：======="+humanProDesignation);
+		//姓名
+		newHumanfiles.setHumanName(humanName);
+		System.out.println("我的职称：======="+humanName);
+		//性别
+		newHumanfiles.setHumanSex(humanSex);
+		System.out.println("我的职称：======="+humanSex);
+		//邮箱
+		newHumanfiles.setHumanEmail(humanEmail);
+		System.out.println("我的职称：======="+humanEmail);
+		//电话
+		newHumanfiles.setHumanTelephone(humanTelephone);
+		System.out.println("我的职称：======="+humanTelephone);
+		//QQ
+		newHumanfiles.setHumanQq(humanQq);
+		System.out.println("我的职称：======="+humanQq);
+		//手机号码
+		newHumanfiles.setHumanMobilephone(humanMobilephone);
+		System.out.println("我的职称：======="+humanMobilephone);
+		//邮编
+		newHumanfiles.setHumanPostcode(humanPostcode);
+		System.out.println("我的职称：======="+humanPostcode);
+		//地址
+		newHumanfiles.setHumanAddress(humanAddress);
+		System.out.println("我的职称：======="+humanAddress);
+		//国籍
+		newHumanfiles.setHumanNationality(humanNationality);
+		System.out.println("我的职称：======="+humanNationality);
+		//出生地址
+		newHumanfiles.setHumanBirthplace(humanBirthplace);
+		System.out.println("我的职称：======="+humanBirthplace);
+		//生日
+		String mybirthday = (String) humanBirthday.subSequence(0, humanBirthday.indexOf(" "));
+		newHumanfiles.setHumanBirthday(converttime(mybirthday,1));
+		System.out.println("我的生日："+mybirthday+"================"+converttime(mybirthday, 1));
+		//民族
+		newHumanfiles.setHumanRace(humanRace);
+		System.out.println("我的职称：======="+humanRace);
+		//宗教信仰
+		newHumanfiles.setHumanReligion(humanReligion);
+		//政治面貌
+		newHumanfiles.setHumanParty(humanParty);
+		//身份证
+		newHumanfiles.setHumanIdCard(humanIdCard);
+		//设保证
+		newHumanfiles.setHumanSocietySecurityId(humanSocietySecurityId);
+		//年龄
+		System.out.println("我的年龄：=========="+humanAge);
+		newHumanfiles.setHumanAge(Short.parseShort(humanAge));
+		//学历
+		newHumanfiles.setHumanEducatedDegree(humanEducatedDegree);
+		//教育年限
+		newHumanfiles.setHumanEducatedYears(Short.parseShort(humanEducatedYears));
+		//学历专业
+		newHumanfiles.setHumanEducatedMajor(humanEducatedMajor);
+		//开户行
+		newHumanfiles.setHumanBank(humanBank);
+		//账号
+		newHumanfiles.setHumanAccount(humanAccount);
+		//复合时间
+		newHumanfiles.setCheckTime(converttime(checkTime, 2));
+		System.out.println("我的复核时间："+checkTime+"======================"+converttime(checkTime, 2));
+		//特长
+		newHumanfiles.setHumanSpeciality(humanSpeciality);
+		//爱好
+		newHumanfiles.setHumanHobby(humanHobby);
+		//个人履历
+		newHumanfiles.setHumanHistroyRecords(humanHistroyRecords);
+		//家庭关系
+		newHumanfiles.setHumanFamilyMembership(humanFamilyMembership);
+		//备注
+		newHumanfiles.setRemark(remark);
+		//设置审核时间
+		newHumanfiles.setCheckStatus(Short.parseShort("2"));
+		boolean flags =	humanfs.modifyHumanFileChange(newHumanfiles);
+		ModelAndView model = new ModelAndView();
+		if(flags==true)
+		{
+			model.setViewName("forward:/humanfileregistersuccess.jsp");
+			System.out.println("档案更新完成"+"=======================");
+		}
+		else
+		{
+			model.setViewName("forward:/commomerror.jsp");
+			System.out.println("档案更新失败！数据紊乱！"+"==================");
+		}
+		return model;
+	}
 	
 	public Timestamp converttime(String arg0) {
 		Date d = new Date(arg0.replace("-", "/")+" 00:00:00");
