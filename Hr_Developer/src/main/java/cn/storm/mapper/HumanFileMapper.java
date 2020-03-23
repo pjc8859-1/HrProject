@@ -32,6 +32,9 @@ public interface HumanFileMapper {
 	public HumanFile selectByhumanid(String huid);
 	
 	public boolean upDateHumanFiles(HumanFile humanfile);
+	
+	public boolean upDateHumanFileChange(HumanFile humanfile);
+	
 
 	public List<HumanFile> selectByHumanFileDto(HumanFileQuerryDto mmd);
 }

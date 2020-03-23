@@ -86,4 +86,10 @@ private HumanFileMapper mapper=null;
 		return mapper.selectHumanFileByNames(names);
 	}
 
+	@Override
+	public boolean modifyHumanFileChange(HumanFile humanfile) {
+		// TODO Auto-generated method stub
+		return mapper.upDateHumanFileChange(humanfile);
+	}
+
 }
