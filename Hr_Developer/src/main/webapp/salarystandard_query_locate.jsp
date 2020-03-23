@@ -64,10 +64,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</tr>
 				<tr>
 					<td class="TD_STYLE1">
+						请选择关键字
+					</td>
+					<td class="TD_STYLE2">
+						<div style="width:30%;">
+							<label>&#9;<input  type="checkbox" name="key" value="standardName">薪酬标准名称</input></label>
+							<label>&#9;<input  type="checkbox" name="key" value="designer">制定人</input></label>
+							<label>&#9;<input  type="checkbox" name="key" value="checker">复核人</input></label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="TD_STYLE1">
 						请输入关键字
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="sdesigner" value="${sdesigner}" class="INPUT_STYLE1">
+						<input type="text" name="keyWords"  class="INPUT_STYLE1">
 					</td>
 				</tr>
 				<tr>

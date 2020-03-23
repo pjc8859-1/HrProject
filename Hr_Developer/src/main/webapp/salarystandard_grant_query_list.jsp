@@ -38,11 +38,17 @@
 					<td width="10%" class="TD_STYLE1">
 						<span>薪酬发放编号</span>
 					</td>			
-					<td width="25%"  class="TD_STYLE1">
+					<td width="15%"  class="TD_STYLE1">
 					I级机构名称 
 					</td>
-					<td width="25%"  class="TD_STYLE1">
+					<td width="15%"  class="TD_STYLE1">
 					II级机构名称 
+					</td>
+					<td width="10%"  class="TD_STYLE1">
+					制定人 
+					</td>
+					<td width="10%"  class="TD_STYLE1">
+					复核人
 					</td>
 					<td width="10%" class="TD_STYLE1">
 						<span>人数</span>
@@ -62,13 +68,19 @@
 				
 					<tr class="TD_STYLE2">
 						<td>
-							${s.sgrId }
+							${s.salaryGrantId }
 						</td>
 						<td>
 						${s.firstKindName }
 						</td>
 						<td>
 						${s.secondKindName }
+						</td>
+						<td>
+						${s.register }
+						</td>
+						<td>
+						${s.checker }
 						</td>
 						<td>
 							${s.humanAmount } 

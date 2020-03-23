@@ -187,7 +187,13 @@ public class SalaryGrantController {
 
 	// 点击薪酬发放查询应执行的方法
 	@RequestMapping("queryGrant.do")
-	public String queryGrant(@RequestParam Map params, Map map) {
+	public String queryGrant(@RequestParam Map params, Map map, String[] key) {
+		if (key != null && key.length > 0) {
+			for (String string : key) {
+				System.out.println(string);
+				params.put(string, 1);
+			}
+		}
 		List<SalaryGrant> sglist = SalarygrantService
 				.queryAllCheckedSalaryGrantBycondition(params);
 		map.put("sglist", sglist);

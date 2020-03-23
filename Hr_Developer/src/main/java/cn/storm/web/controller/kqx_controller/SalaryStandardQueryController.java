@@ -19,26 +19,30 @@ public class SalaryStandardQueryController {
 
 	// 在薪酬标准查询中点击查询执行的方法
 	@RequestMapping("queryBySalary.do")
-	public String queryBySalary(@RequestParam Map params, Map map) {
+	public String queryBySalary(@RequestParam Map params, Map map, String[] key) {
+		if (key != null && key.length > 0) {
+			for (String string : key) {
+				System.out.println(string);
+				params.put(string, 1);
+			}
+		}
 		slist = salaryService.queryBySalary(params);
 		map.put("slist", slist);
-		map.put("stdid", params.get("stdid"));
-		map.put("sdesigner", params.get("sdesigner"));
-		map.put("srtime1", params.get("srtime1"));
-		map.put("srtime2", params.get("srtime2"));
 		map.put("count", slist.size());
 		return "salarystandard_query_list";
 	}
 
 	// 在薪酬标准变更中点击查询执行的方法
 	@RequestMapping("salarychange2.do")
-	public String querybzbg(@RequestParam Map params, Map map) {
+	public String querybzbg(@RequestParam Map params, Map map, String[] key) {
+		if (key != null && key.length > 0) {
+			for (String string : key) {
+				System.out.println(string);
+				params.put(string, 1);
+			}
+		}
 		slist = salaryService.queryBySalary(params);
 		map.put("slist", slist);
-		map.put("stdid", params.get("stdid"));
-		map.put("sdesigner", params.get("sdesigner"));
-		map.put("srtime1", params.get("srtime1"));
-		map.put("srtime2", params.get("srtime2"));
 		map.put("count", slist.size());
 		return "salarystandard_change_list";
 	}

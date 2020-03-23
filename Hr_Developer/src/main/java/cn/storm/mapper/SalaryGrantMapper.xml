@@ -37,11 +37,13 @@
   
   		 <!--多条件查询-->
   <select id="queryAllCheckedSalaryGrantBycondition" resultMap="mySalaryGrant" parameterType="map">
-    select * from salary_grant
+    select * from (select * from salary_grant where check_status=2) as MySalary_standard
     <where>
-           and check_status=2
        <if test="sstid!=null and sstid!=''">and salary_grant_id like '%${sstid}%'</if>
-       <if test="sdesigner!=null and sdesigner!=''">and register like '%${sdesigner}%' or checker like '%${sdesigner}%'</if>
+       <if test="first_kind_name!=null">or first_kind_name like '%${keyWords}%'</if>
+       <if test="second_kind_name!=null">or second_kind_name like '%${keyWords}%'</if>
+       <if test="register!=null">or register like '%${keyWords}%'</if>
+       <if test="checker!=null">or checker like '%${keyWords}%'</if>
        <if test="srtime1 != null and srtime1 != ''">
 				and regist_time >= str_to_date(#{srtime1},'%Y-%m-%d') 
 			</if>
