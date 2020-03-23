@@ -47,4 +47,31 @@
 
   			where sub_id= #{subId}
   		</update>
+  		
+  		<select id="selectEngageSubjectsByCondition" parameterType="Map" resultMap="myEngageSubjects">
+  			select * from engage_subjects 
+  			<trim prefix="where" prefixOverrides="or|and">
+  			
+  				
+				<if test="keyword != null">
+  				<bind name="a" value="'%' + keyword + '%'"/>
+					or content like #{a} 
+					or register like #{a} 
+					or derivation like #{a} 
+					
+				</if>
+				<if test="secondKindName != null">
+  				<bind name="b" value="'%' + secondKindName + '%'"/>
+					and second_kind_name like #{b}
+				</if>
+				<if test="starttime != null">
+					and regist_time &gt;= #{starttime}
+				</if>
+				<if test="endtime != null">
+					and regist_time &lt;= #{endtime}
+				</if>
+  			</trim>
+  			
+  		</select>
+  		
   </mapper>

@@ -81,7 +81,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		if($("#content").val() == null || $("#content").val().trim() == "" )
 			{
 			alert("题干不能为空");
+			
 			return;
+			
 		}
 		if($("#register").val() == null || $("#register").val().trim() =="" )
 			{

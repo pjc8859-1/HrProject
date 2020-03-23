@@ -698,7 +698,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td width="98%">
-													<a href="engagesubjects.do?operate=locate&param=query" target="mainFrame">试题查询</a>
+													<a href="subject/subjectquery.do" target="mainFrame">试题查询</a>
 												</td>
 											</tr>
 											<tr>
