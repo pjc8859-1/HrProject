@@ -690,7 +690,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td width="98%">
-													<a href="engagesubjects.do?operate=toAdd" target="mainFrame">试题登记</a>
+													<a href="subject/showsubjectregistpage.do" target="mainFrame">试题登记</a>
 												</td>
 											</tr>
 											<tr>

@@ -26,8 +26,8 @@
   </resultMap>
   
   		<insert id="saveEngageSubjects" parameterType="EngageSubjects">
-  			insert into engage_subjects(sub_id,first_kind_id,first_kind_name,second_kind_id,second_kind_name,register,regist_time,derivation,content,key_a,key_b,key_c,key_d,key_e,correct_key,changer,change_time) 
-  			values (#{subId},#{firstKindId},#{firstKindName},#{secondKindId},#{secondKindName},#{register},#{registTime},#{derivation},#{content},#{keyA},#{keyB},#{keyC},#{keyD},#{keyE},#{correctKey},#{changer},#{changeTime})
+  			insert into engage_subjects(first_kind_id,first_kind_name,second_kind_id,second_kind_name,register,regist_time,derivation,content,key_a,key_b,key_c,key_d,key_e,correct_key,changer,change_time) 
+  			values (#{firstKindId},#{firstKindName},#{secondKindId},#{secondKindName},#{register},#{registTime},#{derivation},#{content},#{keyA},#{keyB},#{keyC},#{keyD},#{keyE},#{correctKey},#{changer},#{changeTime})
   		</insert>
   		<select id="selectAllEngageSubjects" resultMap="myEngageSubjects">
   			select * from engage_subjects

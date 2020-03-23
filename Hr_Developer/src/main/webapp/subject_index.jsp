@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -25,23 +26,123 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 	<script type="text/javascript" src="javascript/comm/list.js"></script>
 	<script type="text/javascript">
-	
+		$(function(){
+			$("#select1").change(function(){
+				var  changetagouterhtml=getlastletter( $("#select1 option:selected").html());
+				var changetaghtml = $($("#select1 option:selected")[0]).val();
+				//修改hidden输入框的值
+				console.log(changetagouterhtml);
+				console.log(changetaghtml);
+				$("#firstKindId").val(changetaghtml);
+				$("#firstKindName").val(changetagouterhtml);
+				//changelocation2($("#select4 option:selected").html());
+				
+			});
+			$("#select2").change(function(){
+				var  changetagouterhtml=getlastletter( $("#select2 option:selected").html());
+				var changetaghtml = $($("#select2 option:selected")[0]).val();
+				//修改hidden输入框的值
+				$("#secondKindId").val(changetaghtml);
+				$("#secondKindName").val(changetagouterhtml);
+				//changelocation2($("#select4 option:selected").html());
+				
+			});
+		})
 		
+	function getlastletter(word){
+		var index = word .lastIndexOf("\/");  
+		word  = word .substring(index + 1, word .length);
+		return word;	
+	}
+	
+	function formatDate(date) {
+		  var date = new Date(date);
+		  var YY = date.getFullYear() + '-';
+		  var MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+		  var DD = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
+		  var hh = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+		  var mm = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+		  var ss = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+		  return YY + MM + DD + " " + hh + mm+ss;
+		}
+	
+	function submitsubject(){
+		//判断为空情况
+		if($("#firstKindId").val() == null || $("#firstKindId").val().trim() == "")
+			{
+				alert("试卷I级分类不能为空");
+				return;
+			}
+		if($("#secondKindId").val() == null || $("#secondKindId").val().trim() == "")
+		{
+			alert("试卷II级分类不能为空");
+			return;
+		}
+		if($("#content").val() == null || $("#content").val().trim() == "" )
+			{
+			alert("题干不能为空");
+			return;
+		}
+		if($("#register").val() == null || $("#register").val().trim() =="" )
+			{
+			alert("登记人不能为空");
+			return;
+		}
+		
+		//判断答案数量
+		var count = 0;
+		if($("#keyA").val() != null && $("#keyA").val().trim() !="")
+			{
+				count++;
+			}
+		if($("#keyB").val() != null && $("#keyB").val().trim() !="")
+			{
+				count++;
+			}
+		if($("#keyC").val() != null && $("#keyC").val().trim() !="")
+			{
+				count++;
+			}
+		if($("#keyD").val() != null && $("#keyD").val().trim() !="")
+			{
+				count++;
+			}
+		if($("#keyE").val() != null && $("#keyE").val().trim() !="")
+			{
+				count++;
+			}
+		
+		if(count < 2)
+			{
+				alert("请注意最少两个答案选项");
+				return;
+			}
+		
+		if($("#correctKey").val() == null || $("#correctKey").val().trim() == "")
+			{
+			alert("正确答案不能为空");
+			return;
+			}
+		
+		document.getElementById("myform").submit();
+			
+		
+	}
 	</script>
   </head>
   
   <body>
-	   <form action="humanfile.do" method="post">
+	   <form action="subject/submitsubject.do" method="post" id="myform">
 		<table width="100%">
 			<tr>
 				<td>
-					<font color="#0000CC">您正在做的业务是：人力资源--招聘管理-- 简历管理 --简历筛选结果</font>
+					<font color="#0000CC">您正在做的业务是：人力资源--招聘管理-- 招聘考试题库管理 --试题登记</font>
 				</td>
 			</tr>
 			<tr>
 					<td align="right">
-						<input type="button" value="刷新"
-							class="BUTTON_STYLE1" onclick="window.location.reload();">
+						<input type="button" value="提交"
+							class="BUTTON_STYLE1" onclick="submitsubject()">
 					</td>
 				<td align="right">
 						<input type="button" value="返回"
@@ -56,29 +157,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					试题I级分类
 				</td>
 				<td width="13.5%" class="TD_STYLE2">
-					<select  class="SELECT_STYLE1" id="select1" >
-							<option value=""></option>
+					<input type="hidden" id="firstKindId" name="firstKindId" value="" />
+					<input type="hidden" id="firstKindName" name="firstKindName" value="" />
+					<select  class="SELECT_STYLE1" id="select1"  >
+					<option value=""></option>
+						<c:forEach items="${firstlist }" var="first" varStatus="i">
+							<option value="${first.firstKindId}">${first.firstKindName}</option>
+						</c:forEach>
 					</select> 
 				</td>
 				<td width="11.5%" class="TD_STYLE1">
 					试题II级分类
 				</td>
 				<td width="13.5%" class="TD_STYLE2">
-					<select  class="SELECT_STYLE1" id="select1" >
-							<option value=""></option>
-					</select> 
+				<input type="hidden" name="secondKindId" id="secondKindId" value="" />
+				<input type="hidden" name="secondKindName" id="secondKindName" value="" />
+					<select  class="SELECT_STYLE1" id="select2"  >
+						<option value=""></option>
+						<c:forEach items="${secondlist }" var="second" varStatus="i">
+							<option value="${second.secondKindId}">${second.secondKindName}</option>
+						 </c:forEach>
+					</select>
 				</td>
 				<td width="10%" class="TD_STYLE1">
 					登记人
 				</td>
 				<td width="15%" class="TD_STYLE2">
-					<input class="INPUT_STYLE2"  name=""/>
+					<input class="INPUT_STYLE2"  name="register" id="register"/>
 				</td>
 				<td width="10%" class="TD_STYLE1">
 					登记时间
 				</td>
 				<td width="15%" class="TD_STYLE2">
-					<input class="INPUT_STYLE2" id="datetime" name="" readonly="readonly" value=""/>
+					<input class="INPUT_STYLE2" id="datetime" name="registTime1" readonly="readonly" value=""/>
 					<script type="text/javascript">
 					setInterval("document.getElementById('datetime').value=formatDate(new Date().getTime());", 1000);
 					</script>
@@ -89,7 +200,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						题干
 				</td>
 				<td colspan="7" class="TD_STYLE2">
-					<textarea id="myremark"  rows="5" class="TEXTAREA_STYLE1" style="resize:none"  name="content"></textarea>
+					<textarea id="content"  rows="5" class="TEXTAREA_STYLE1" style="resize:none"  name="content"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -97,7 +208,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						答案a
 				</td>
 				<td colspan="7" class="TD_STYLE2">
-					<textarea id="myremark"  rows="3" class="TEXTAREA_STYLE1" style="resize:none"  name="keyA"></textarea>
+					<textarea id="keyA"  rows="3" class="TEXTAREA_STYLE1" style="resize:none"  name="keyA"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -105,7 +216,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						答案b
 				</td>
 				<td colspan="7" class="TD_STYLE2">
-					<textarea id="myremark"  rows="3" class="TEXTAREA_STYLE1" style="resize:none"  name="keyB"></textarea>
+					<textarea id="keyB"  rows="3" class="TEXTAREA_STYLE1" style="resize:none"  name="keyB"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -113,7 +224,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						答案c
 				</td>
 				<td colspan="7" class="TD_STYLE2">
-					<textarea id="myremark"  rows="3" class="TEXTAREA_STYLE1" style="resize:none"  name="keyC"></textarea>
+					<textarea id="keyC"  rows="3" class="TEXTAREA_STYLE1" style="resize:none"  name="keyC"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -121,7 +232,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						答案d
 				</td>
 				<td colspan="7" class="TD_STYLE2">
-					<textarea id="myremark"  rows="3" class="TEXTAREA_STYLE1" style="resize:none"  name="keyD"></textarea>
+					<textarea id="keyD"  rows="3" class="TEXTAREA_STYLE1" style="resize:none"  name="keyD"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -129,7 +240,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						答案e
 				</td>
 				<td colspan="7" class="TD_STYLE2">
-					<textarea id="myremark"  rows="3" class="TEXTAREA_STYLE1" style="resize:none"  name="keyE"></textarea>
+					<textarea id="keyE"  rows="3" class="TEXTAREA_STYLE1" style="resize:none"  name="keyE"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -137,13 +248,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 正确答案
 				</td>
 				<td width="12.5%" class="TD_STYLE2">
-					<input class="INPUT_STYLE2"  name=""/>
+					<input class="INPUT_STYLE2"  name="correctKey" id="correctKey"/>
 				</td>
 				<td width="12.5%" class="TD_STYLE1">
 					 试题出处
 				</td>
 				<td width="12.5%" class="TD_STYLE2" >
-					<input class="INPUT_STYLE2"  name=""/>
+					<input class="INPUT_STYLE2"  name="derivation"/>
 				</td>
 				<td width="12.5%" class="TD_STYLE1" colspan="4">
 				
@@ -157,16 +268,3 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   </body>
 </html>
-<script type="text/javascript">
-function formatDate(date) {
-	  var date = new Date(date);
-	  var YY = date.getFullYear() + '-';
-	  var MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-	  var DD = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
-	  var hh = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
-	  var mm = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
-	  var ss = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
-	  return YY + MM + DD + " " + hh + mm+ss;
-	}
-
-</script>
