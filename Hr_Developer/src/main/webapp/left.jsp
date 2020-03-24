@@ -232,7 +232,8 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td width="98%">
-													试题I级分类设置
+													<a href="showQuestionFirstKind.do"
+														target="mainFrame">试题I级分类设置</a>
 												</td>
 											</tr>
 											<tr>
@@ -240,7 +241,9 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													试题II级分类设置
+												<a href="showQuestionSecondkind.do"
+														target="mainFrame">试题II级分类设置</a>
+													
 												</td>
 											</tr>
 										</table> </span>

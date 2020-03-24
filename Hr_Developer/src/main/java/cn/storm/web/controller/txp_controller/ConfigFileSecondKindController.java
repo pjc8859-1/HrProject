@@ -36,7 +36,7 @@ public class ConfigFileSecondKindController {
 	public ModelAndView showConfigFileSecondKind(ModelAndView view){
 	    JSONArray array=JSONArray.fromObject(secondservice.queryAllConfigFileSecondKind());
 		view.addObject("configlist",array);
-		view.setViewName("major_kind");
+		view.setViewName("second_kind");
 		return view;
 	}
 @RequestMapping("/registerSuccess/{id}/{name}.do")	

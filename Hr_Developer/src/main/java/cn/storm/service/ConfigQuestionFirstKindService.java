@@ -16,4 +16,5 @@ public interface ConfigQuestionFirstKindService {
 
 	public int modifyConfigQuestionFirstKind(
 			ConfigQuestionFirstKind configquestionfirstkind);
+	public int queryMaxId();
 }
