@@ -41,8 +41,8 @@ public class EngageResumeServiceImpl implements EngageResumeService{
 
 	@Override
 	public List<EngageResume> queryByDiction(HashMap<String, Object> map) {
-		
+		 
 		return this.mapper.selectByDiction(map);
 	}
-
+ 
 }

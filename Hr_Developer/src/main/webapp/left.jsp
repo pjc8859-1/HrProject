@@ -9,17 +9,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'left.jsp' starting page</title>
+    <title>侧边栏</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-			<title>无标题文档</title>
+		<title>无标题文档</title>
 		<link rel="stylesheet" href="table.css" type="text/css">
 		<style>
 a{ CURSOR: hand}
@@ -133,7 +130,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="major_kind.jsp"
+													<a href="showMajorKind.do"
 														target="mainFrame">职位分类设置</a>
 												</td>
 											</tr>
@@ -142,7 +139,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="major.jsp"
+													<a href="showMajor.do"
 														target="mainFrame">职位设置</a>
 												</td>
 											</tr>
@@ -151,7 +148,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="public_char.jsp"
+													<a href="showPublicChar.do"
 														target="mainFrame">公共属性设置</a>
 												</td>
 											</tr>
@@ -232,7 +229,8 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td width="98%">
-													试题I级分类设置
+													<a href="showQuestionFirstKind.do"
+														target="mainFrame">试题I级分类设置</a>
 												</td>
 											</tr>
 											<tr>
@@ -240,7 +238,9 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													试题II级分类设置
+												<a href="showQuestionSecondkind.do"
+														target="mainFrame">试题II级分类设置</a>
+													
 												</td>
 											</tr>
 										</table> </span>
@@ -310,7 +310,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td>
-									<a href="check_list.jsp" target="mainFrame">人力资源档案登记复核</a>
+									<a href="hr/humanfilecheckshow.do" target="mainFrame">人力资源档案登记复核</a>
 								</td>
 							</tr>
 							<tr>
@@ -318,7 +318,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td>
-									<a href="query_locate.jsp" target="mainFrame">人力资源档案查询</a>
+									<a href="hr/humanfilequerry.do" target="mainFrame">人力资源档案查询</a>
 								</td>
 							</tr>
 							<tr>
@@ -326,7 +326,7 @@ a{ CURSOR: hand}
 									<img src="images/jt0.gif">
 								</td>
 								<td>
-									<a href="change_locate.jsp" target="mainFrame">人力资源档案变更</a>
+									<a href="hr/humanfilechange.do" target="mainFrame">人力资源档案变更</a>
 								</td>
 							</tr>
 							<tr>
@@ -626,7 +626,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="engageresume.do?operate=locate&method=query" target="mainFrame">有效简历查询</a>
+													<a href="resumemanage/effectsresumelist.do" target="mainFrame">有效简历查询</a>
 												</td>
 											</tr>
 										</table> </span>
@@ -654,7 +654,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td width="98%">
-													<a href="engageresume.do?operate=locate&method=interview" target="mainFrame">面试结果登记</a>
+													<a href="interview/showinterviewregister.do" target="mainFrame">面试结果登记</a>
 												</td>
 											</tr>
 											<tr>
@@ -662,7 +662,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="engageinterview.do?operate=list" target="mainFrame">面试筛选</a>
+													<a href="interview/interviewscreen.do" target="mainFrame">面试筛选</a>
 												</td>
 											</tr>
 										</table> </span>
@@ -690,7 +690,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td width="98%">
-													<a href="engagesubjects.do?operate=toAdd" target="mainFrame">试题登记</a>
+													<a href="subject/showsubjectregistpage.do" target="mainFrame">试题登记</a>
 												</td>
 											</tr>
 											<tr>
@@ -698,7 +698,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td width="98%">
-													<a href="engagesubjects.do?operate=locate&param=query" target="mainFrame">试题查询</a>
+													<a href="subject/subjectquery.do" target="mainFrame">试题查询</a>
 												</td>
 											</tr>
 											<tr>

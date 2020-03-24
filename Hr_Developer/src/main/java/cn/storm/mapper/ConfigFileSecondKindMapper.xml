@@ -26,6 +26,13 @@
   		<select id="selectConfigFileSecondKindByfsk_id" parameterType="_int" resultMap="myConfigFileSecondKind">
   			select * from config_file_second_kind where fsk_id = #{id}
   		</select>
+
+  		
+  		
+  		<select id="selectnNameByFirstIdAndSecondId" resultType="java.lang.String">
+  			select second_kind_name from config_file_second_kind where first_kind_id=#{firstids} and second_kind_id=#{secondids} 
+  		</select>
+  		
   		<delete id="deleteConfigFileSecondKindByfsk_id" parameterType="_int">
   			delete from config_file_second_kind where  fsk_id = #{id}
   		</delete>

@@ -20,10 +20,15 @@
   		<select id="selectAllConfigMajor" resultMap="myConfigMajor">
   			select * from config_major
   		</select>
-  		<select id="selectConfigMajorByffk_id" parameterType="_int" resultMap="myConfigMajor">
+  		<select id="selectConfigMajorByfsk_id" parameterType="_int" resultMap="myConfigMajor">
   			select * from config_major where mak_id = #{id}
   		</select>
-  		<delete id="deleteConfigMajorByffk_id" parameterType="_int">
+  		
+  		
+  		  <select id="selectIdByNames" resultType="java.lang.String">
+  			select major_name from config_major where major_kind_id=#{mkid} and major_id=#{majorid}
+  		</select>
+  		<delete id="deleteConfigMajorByfsk_id" parameterType="_int">
   			delete from config_major where  mak_id = #{id}
   		</delete>
   		<update id="updateConfigMajor" parameterType="ConfigMajor">
@@ -32,4 +37,8 @@
 	  			major_name=#{majorName},test_amount=#{testAmount}
   				where mak_id = #{makId}
   		</update>
+  		
+  		<select id="selectMaxId" resultType="_int">
+  		SELECT if(max(mak_id) is null,1,max(mak_id)+1) as newId FROM config_major
+  		</select>
   </mapper>

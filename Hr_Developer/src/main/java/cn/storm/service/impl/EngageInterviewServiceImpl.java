@@ -1,5 +1,6 @@
 package cn.storm.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,16 @@ public class EngageInterviewServiceImpl implements EngageInterviewService {
 	@Override
 	public int modifyEngageInterview(EngageInterview engageinterview) {
 		return mapper.updateEngageInterview(engageinterview);
+	}
+
+	@Override
+	public EngageInterview queryEngageInterviewByeinResumeId(int resumeId) {
+		return this.mapper.selectEngageInterviewByeinResumeId(resumeId);
+	}
+
+	@Override
+	public List<EngageInterview> queryByDiction(HashMap<String, Object> map) {
+		
+		return this.mapper.selectByDiction(map);
 	}
 }

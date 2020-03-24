@@ -2,6 +2,7 @@ package cn.storm.service;
 
 import java.util.List;
 
+import cn.storm.dto.HumanFileQuerryDto;
 import cn.storm.dto.MajorManagerDto;
 import cn.storm.pojo.HumanFile;
 
@@ -12,4 +13,23 @@ public interface HumanFileService {
 	public boolean removeHumanFileByhufid(int hufid);
 	public int modifyHumanFile(HumanFile humanFile);
 	public List<HumanFile> queryByCondition(MajorManagerDto mmd);
+	public List<HumanFile> queryAllHumanFileBycheckstu();
+	boolean addHumanFiles(HumanFile humanfile);
+	
+	public HumanFile queryByhumanid(String huid);
+	/**
+	 * 通过档案更新humanfile
+	 */
+	public boolean modifysHumanFile(HumanFile humanfile);
+	
+	/**
+	 * 人力资源档案变更
+	 * @param mmd
+	 * @return
+	 */
+	public boolean modifyHumanFileChange(HumanFile humanfile);
+	
+	public List<HumanFile> querryByHumanFileDto(HumanFileQuerryDto mmd);
+	
+	public HumanFile querryHumanFileByNames(String names);
 }

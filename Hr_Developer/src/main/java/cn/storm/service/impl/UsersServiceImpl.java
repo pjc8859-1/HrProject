@@ -47,4 +47,10 @@ private UsersMapper usersmapper=null;
 		return usersmapper.selectUserByNameAndPass(uname, upass);
 	}
 
+	@Override
+	public Users querryUsersByUname(String Uname) {
+		// TODO Auto-generated method stub
+		return usersmapper.selectUsersByUname(Uname);
+	}
+
 }

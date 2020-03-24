@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.storm.dto.HumanFileQuerryDto;
 import cn.storm.dto.MajorManagerDto;
 import cn.storm.mapper.HumanFileMapper;
 import cn.storm.pojo.HumanFile;
@@ -47,6 +48,48 @@ private HumanFileMapper mapper=null;
 	public List<HumanFile> queryByCondition(MajorManagerDto mmd) {
 		
 		return this.mapper.selectByCondition(mmd);
+	}
+
+	@Override
+	public boolean addHumanFiles(HumanFile humanfile) {
+		// TODO Auto-generated method stub
+		return mapper.saveHumainFiles(humanfile);
+	}
+
+	@Override
+	public List<HumanFile> queryAllHumanFileBycheckstu() {
+		// TODO Auto-generated method stub
+		return mapper.selectAllHumanFileBycheckstu();
+	}
+
+	@Override
+	public HumanFile queryByhumanid(String huid) {
+		// TODO Auto-generated method stub
+		return mapper.selectByhumanid(huid);
+	}
+
+	@Override
+	public boolean modifysHumanFile(HumanFile humanfile) {
+		// TODO Auto-generated method stub
+		return mapper.upDateHumanFiles(humanfile);
+	}
+
+	@Override
+	public List<HumanFile> querryByHumanFileDto(HumanFileQuerryDto mmd) {
+		// TODO Auto-generated method stub
+		return mapper.selectByHumanFileDto(mmd);
+	}
+
+	@Override
+	public HumanFile querryHumanFileByNames(String names) {
+		// TODO Auto-generated method stub
+		return mapper.selectHumanFileByNames(names);
+	}
+
+	@Override
+	public boolean modifyHumanFileChange(HumanFile humanfile) {
+		// TODO Auto-generated method stub
+		return mapper.upDateHumanFileChange(humanfile);
 	}
 
 }

@@ -1,3 +1,4 @@
+
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
@@ -63,8 +64,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<table width="100%" border="1" cellpadding=0 cellspacing=1
 			bordercolorlight=#848284 bordercolordark=#eeeeee class="TABLE_STYLE1">
 			<tr class="TR_STYLE1">
-			<!-- 主键 -->
-			<input type="hidden" value="${er.resId }" name="resId"/>
 				<td width="12%" class="TD_STYLE1">
 					姓名
 				</td>
@@ -118,14 +117,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a onclick="screen(this)">筛选</a>
 				</td>
 				<td width="12%" class="TD_STYLE2">
-					<c:if test="${resume.passCheckStatus == null}">
-						<div style="width:100%;height:100%;background:yellow" >未筛选</div>
+					<c:if test="${resume.checkStatus == null}">
+						<div style="width:100%;height:100%;background:whilte" >未筛选</div>
 					</c:if>
-					<c:if test="${resume.passCheckStatus == 1}">
-						<div style="width:100%;height:100%;background:grren" >通过</div>
+					<c:if test="${resume.checkStatus == 0}">
+						<div style="width:100%;height:100%;background:yellow;" >建议面试</div>
 					</c:if>
-					<c:if test="${resume.passCheckStatus == 2}">
-						<div style="width:100%;height:100%;background:red" >未通过</div>
+					<c:if test="${resume.checkStatus == 1}">
+						<div style="width:100%;height:100%;background:skyblue;" >建议笔试</div>
+					</c:if>
+					<c:if test="${resume.checkStatus == 2}">
+						<div style="width:100%;height:100%;background:green;" >建议录用</div>
+					</c:if>
+					<c:if test="${resume.checkStatus == 3}">
+						<div style="width:100%;height:100%;background:gray;" >被删除</div>
 					</c:if>
 					
 				</td>

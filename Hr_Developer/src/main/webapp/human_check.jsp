@@ -3,6 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -26,10 +27,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="javascript/calendar/cal.js"></script>
 		<script type="text/javascript" src="javascript/comm/comm.js"></script>
 		<script language="javascript" src="javascript/winopen/winopenm.js"></script>
+		<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
+		<script type="text/javascript" src="javascript/userdetails.js"></script>
+		<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
   </head>
-  
+
   <body>
-<form name="humanfileForm" method="post" action="/hr/humanfile.do">
+<form name="humanfileForm" method="post" action="hr/humancheckfile.do" id="myform">
 			<table width="100%">
 				<tr>
 					<td>
@@ -38,8 +42,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</tr>
 				<tr>
 					<td align="right">
-						<input type="button" value="复核通过" class="BUTTON_STYLE1" onclick="toUpLoadPhoto2('check');">
-						<input type="reset" value="清除" class="BUTTON_STYLE1">
+						<input type="button" value="复核通过" class="BUTTON_STYLE1" onclick="mysubmit()">
+						<input type="reset" value="清除" class="BUTTON_STYLE1" >
 						<input type="button" value="返回" class="BUTTON_STYLE1"
 							onclick="history.back()">
 					</td>
@@ -53,31 +57,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td class="TD_STYLE1" width="10%">
 						档案编号
 					</td>
+					
 					<td colspan="6" class="TD_STYLE2">
-						bt0101010001
+						<input type="text" id="huid" name="item.huid" value="${humanf.humanId}" readonly="readonly" class="INPUT_STYLE2">
 					</td>
-					<td rowspan="6" width="13%">
-						<img src="">
+					<td rowspan="6" width="1%">
+						<img src="${pic}" height="150px" id="img" onclick="picselect()" style="width: 200px; "/>
 					</td>
+						<input id="input_picture" name="item.picture" type="file" style="height: 30px;display: none;" onchange="show(this)"/>
 				</tr>
 				<tr>
 					<td class="TD_STYLE1" width="10%">
 						I级机构
 					</td>
 					<td width="13%" class="TD_STYLE2">
-						Better集团
+						${humanf.firstKindName}
 					</td>
 					<td width="10%" class="TD_STYLE1">
 						II级机构
 					</td>
 					<td width="13%" class="TD_STYLE2">
-						Better软件公司
+						${humanf.secondKindName}
 					</td>
 					<td width="10%" class="TD_STYLE1">
 						III级机构
 					</td>
 					<td class="TD_STYLE2" colspan="2" width="2%" >
-						外包组
+						${humanf.thirdKindName}
 					</td>
 				</tr>
 				<tr>
@@ -85,50 +91,59 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						职位分类
 					</td>
 					<td class="TD_STYLE2">
-						软件开发
+						${humanf.humanMajorKindName}
 					</td>
 					<td class="TD_STYLE1">
 						职位名称
 					</td>
 					<td class="TD_STYLE2">
-						项目经理
+						${humanf.hunmaMajorName}
 					</td>
 					<td class="TD_STYLE1">
 						职称
 					</td>
 					<td colspan="2" class="TD_STYLE2">
-						<select name="item.humanProDesignation" class="SELECT_STYLE1"><option value="工程师">工程师</option>
-							
-								<option value="经理" selected="selected">经理</option>
-							
-								<option value="助理">助理</option>
-							
-								<option value="教授">教授</option>
-							
-								<option value="讲师">讲师</option>
-							
-								<option value="技术支持">技术支持</option></select>
+						<select name="item.humanProDesignation" id="myzc" class="SELECT_STYLE1" id="hpro">
+							<c:forEach items="${listzc}" var="zc">
+								<c:if test="${zc.attributeName == humanf.humanProDesignation }">
+									<option value="${zc.attributeName}" selected="selected">${zc.attributeName}</option>
+								</c:if>
+								<c:if test="${zc.attributeName != humanf.humanProDesignation}">
+									<option value="${zc.attributeName }" >
+											${zc.attributeName}
+									</option>
+								</c:if>
+							</c:forEach>
+						</select>
 					</td>
 				</tr>
+				<!-- <option>${zc.attributeName}</option> -->
 				<tr>
 					<td class="TD_STYLE1">
 						姓名
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.humanName" value="fantia" class="INPUT_STYLE2">
+						<input type="text" name="item.humanName" value="${humanf.humanName }" class="INPUT_STYLE2">
+						
 					</td>
 					<td class="TD_STYLE1">
 						性别
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanSex" class="SELECT_STYLE1"><option value="男">男</option>
-							<option value="女" selected="selected">女</option></select>
+						<select name="item.humanSex" class="SELECT_STYLE1">
+						<c:if test="${humanf.humanSex == '男'}">
+							<option value="男"selected="selected">男</option>  
+						</c:if>
+						<c:if test="${humanf.humanSex == '女'}">
+							<option value="男"selected="selected">女</option>  
+						</c:if>
+						</select>
 					</td>
 					<td class="TD_STYLE1">
 						EMAIL
 					</td>
 					<td colspan="2" class="TD_STYLE2">
-						<input type="text" name="item.humanEmail" value="26284795@qq.com" class="INPUT_STYLE2">
+						<input type="text" name="item.humanEmail" value="${humanf.humanEmail}" class="INPUT_STYLE2">
 					</td>
 				</tr>
 				<tr>
@@ -136,19 +151,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						电话
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.humanTelephone" value="" class="INPUT_STYLE2">
+						<input type="text" name="item.humanTelephone" value="${humanf.humanTelephone}" class="INPUT_STYLE2">
+						
 					</td>
 					<td class="TD_STYLE1">
 						QQ
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.humanQq" value="26284795" class="INPUT_STYLE2">
+						<input type="text" name="item.humanQq" value="${humanf.humanQq }" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						手机
 					</td>
 					<td colspan="2" class="TD_STYLE2">
-						<input type="text" name="item.humanMobilephone" value="13699175041" class="INPUT_STYLE2">
+						<input type="text" name="item.humanMobilephone" value="${humanf.humanTelephone}" class="INPUT_STYLE2">
 					</td>
 				</tr>
 				<tr>
@@ -156,13 +172,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						住址
 					</td>
 					<td colspan="3" class="TD_STYLE2">
-						<input type="text" name="item.humanAddress" value="北京海淀" class="INPUT_STYLE2">
+						<input type="text" name="item.humanAddress" value="${humanf.humanAddress }" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						邮编
 					</td>
 					<td colspan="2" class="TD_STYLE2">
-						<input type="text" name="item.humanPostcode" value="100091" class="INPUT_STYLE2">
+						<input type="text" name="item.humanPostcode" value="${humanf.humanPostcode }" class="INPUT_STYLE2">
 					</td>
 				</tr>
 				<tr>
@@ -170,29 +186,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						国籍
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanNationality" class="SELECT_STYLE1"><option value="中国" selected="selected">中国</option>
-							
-								<option value="美国">美国</option></select>
+						<select name="item.humanNationality" class="SELECT_STYLE1">
+						<c:forEach items="${listgj}" var="gj">
+							<c:if test="${gj.attributeName == humanf.humanNationality }">
+								<option value="${gj.attributeName}" selected="selected">
+									${gj.attributeName}
+								</option>
+							</c:if>
+							<c:if test="${gj.attributeName != humanf.humanNationality }">
+								<option value="${gj.attributeName}">
+									${gj.attributeName}
+								</option>
+							</c:if>
+						</c:forEach>
+						</select>
 					</td>
 					<td class="TD_STYLE1">
 						出生地
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.humanBirthplace" value="太原" class="INPUT_STYLE2">
+						<input type="text" name="item.humanBirthplace" value="${humanf.humanBirthplace}" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						生日
 					</td>
 					<td width="13%" class="TD_STYLE2">
-						<input type="text" name="item.str_humanBirthday" value="1983-07-01 12:00:00" class="INPUT_STYLE2" id="date_start">
+						<input type="text" name="item.humanBirthday" value="${humanf.humanBirthday }" class="INPUT_STYLE2" id="date_start">
 					</td>
 					<td width="10%" class="TD_STYLE1">
 						民族
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanRace" class="SELECT_STYLE1"><option value="汉族" selected="selected">汉族</option>
-							
-								<option value="回族">回族</option></select>
+						<select name="item.humanRace" class="SELECT_STYLE1">
+						<c:forEach items="${listmz}" var="mz">
+							<c:if test="${mz.attributeName == humanf.humanRace }">
+								<option value="${mz.attributeName}" selected="selected">${mz.attributeName}</option>
+							</c:if>
+							<c:if test="${mz.attributeName != humanf.humanRace }">
+								<option value="${mz.attributeName}" >${mz.attributeName}</option>
+							</c:if>
+						</c:forEach>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -200,29 +234,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						宗教信仰
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanReligion" class="SELECT_STYLE1"><option value="无" selected="selected">无</option>
-							
-								<option value="佛教">佛教</option></select>
+						<select name="item.humanReligion" class="SELECT_STYLE1">
+						<c:forEach items="${listzjxy }" var="zjxy">
+							<c:if test="${zjxy.attributeName == humanf.humanReligion}">
+								<option value="${zjxy.attributeName}" selected="selected">${zjxy.attributeName}</option>
+							</c:if>
+							<c:if test="${zjxy.attributeName != humanf.humanReligion}">
+								<option value="${zjxy.attributeName}">${zjxy.attributeName}</option>
+							</c:if>
+						</c:forEach>
+						</select>
 					</td>
 					<td class="TD_STYLE1">
 						政治面貌
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanParty" class="SELECT_STYLE1"><option value="党员" selected="selected">党员</option>
-							
-								<option value="群众">群众</option></select>
+						<select name="item.humanParty" class="SELECT_STYLE1">
+							<c:forEach items="${listzzmm}" var="zzmm">
+							<c:if test="${zzmm.attributeName == humanf.humanParty }">
+								<option value="${zzmm.attributeName}" selected="selected">${zzmm.attributeName}</option>
+							</c:if>
+							<c:if test="${zzmm.attributeName != humanf.humanParty }">
+								<option value="${zzmm.attributeName}" >${zzmm.attributeName}</option>
+							</c:if>
+						</c:forEach>
+						</select>
 					</td>
 					<td class="TD_STYLE1">
 						身份证号码
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.humanIdCard" value="140105198307010065" class="INPUT_STYLE2">
+						<input type="text" name="item.humanIdCard" value="${humanf.humanIdCard }" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						社会保障号码
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.humanSocietySecurityId" value="" class="INPUT_STYLE2">
+						<input type="text" name="item.humanSocietySecurityId" value="${humanf.humanSocietySecurityId}" class="INPUT_STYLE2">
 					</td>
 				</tr>
 				<tr>
@@ -230,31 +278,53 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						年龄
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.humanAge" value="24" class="INPUT_STYLE2">
+						<input type="text" name="item.humanAge" value="${humanf.humanAge }" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						学历
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanEducatedDegree" class="SELECT_STYLE1"><option value="本科" selected="selected">本科</option>
-							
-								<option value="大专">大专</option></select>
+						<select name="item.humanEducatedDegree" class="SELECT_STYLE1">
+						<c:forEach items="${listxl}" var="xl">
+							<c:if test="${xl.attributeName == humanf.humanEducatedDegree }">
+								<option value="${xl.attributeName}" selected="selected">${xl.attributeName}</option>
+							</c:if>
+							<c:if test="${xl.attributeName != humanf.humanEducatedDegree }">
+								<option value="${xl.attributeName}" >${xl.attributeName}</option>
+							</c:if>
+						</c:forEach>
+						
+						</select>
 					</td>
 					<td class="TD_STYLE1">
 						教育年限
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanEducatedYears" class="SELECT_STYLE1"><option value="12">12</option>
-							
-								<option value="16" selected="selected">16</option></select>
+						<select name="item.humanEducatedYears" class="SELECT_STYLE1">
+						<c:forEach items="${listjynx}" var="jynx">
+							<c:if test="${jynx.attributeName == humanf.humanEducatedYears }">
+								<option value="${jynx.attributeName}"  selected="selected">${jynx.attributeName}</option>
+							</c:if>
+							<c:if test="${jynx.attributeName != humanf.humanEducatedYears }">
+								<option value="${jynx.attributeName}" >${jynx.attributeName}</option>
+							</c:if>
+						</c:forEach>
+						</select>
 					</td>
 					<td class="TD_STYLE1">
 						学历专业
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanEducatedMajor" class="SELECT_STYLE1"><option value="生物工程" selected="selected">生物工程</option>
-							
-								<option value="计算机">计算机</option></select>
+						<select name="item.humanEducatedMajor" class="SELECT_STYLE1">
+							<c:forEach items="${listzy}" var="zy">
+							<c:if test="${zy.attributeName == humanf.humanEducatedMajor }">
+								<option value="${zy.attributeName}" selected="selected">${zy.attributeName}</option>
+							</c:if>
+							<c:if test="${zy.attributeName != humanf.humanEducatedMajor }">
+								<option value="${zy.attributeName}" >${zy.attributeName}</option>
+							</c:if>
+						</c:forEach>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -268,13 +338,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						开户行
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.humanBank" value="建设银行" class="INPUT_STYLE2">
+						<input type="text" name="item.humanBank" value="${humanf.humanBank }" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						帐号
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.humanAccount" value="123456879586584" class="INPUT_STYLE2">
+						<input type="text" name="item.humanAccount" value="${humanf.humanAccount }" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						复核人
@@ -288,23 +358,56 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						复核时间
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.str_checkTime" value="2010-05-29 02:24:36" readonly="readonly" class="INPUT_STYLE2">
+						<input type="text" name="item.checkTime" id="humanchecktime"  readonly="readonly" class="INPUT_STYLE2">
+				<script type="text/javascript">
+					 function nowtime()
+							 {
+								console.log("进到时间函数");
+							 	var time = new Date();
+							 	alert(time);
+							 	var Y = time.getFullYear();
+							 	var Mt = time.getMonth()+1;
+							 	var D = time.getDate();
+							 	var H = time.getHours();
+							 	var min = time.getMinutes();
+							 	var se = time.getSeconds();
+							 	return Y+"-"+Mt+"-"+D+" "+H+":"+min+":"+se;
+							 }
+							
+							document.getElementById("humanchecktime").value = nowtime();
+						</script>
 					</td>
 					<td class="TD_STYLE1">
 						特长
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanSpeciality" class="SELECT_STYLE1"><option value="数据库">数据库</option>
+						<select name="item.humanSpeciality" class="SELECT_STYLE1">
+							<c:forEach items="${listtc}" var="tc">
+							<c:if test="${tc.attributeName == humanf.humanSpeciality}">
+								<option value="${tc.attributeName}" selected="selected">${tc.attributeName} </option>
+							</c:if>
+							<c:if test="${tc.attributeName != humanf.humanSpeciality}">
+								<option value="${tc.attributeName}"  >${tc.attributeName} </option>
+							</c:if>
+						</c:forEach>
 							
-								<option value="java" selected="selected">java</option></select>
+						</select>
 					</td>
 					<td class="TD_STYLE1">
 						爱好
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanHobby" class="SELECT_STYLE1"><option value="篮球">篮球</option>
-							
-								<option value="舞蹈" selected="selected">舞蹈</option></select>
+						<select name="item.humanHobby" class="SELECT_STYLE1">
+							<c:forEach items="${listah}" var="ah">
+							<c:if test="${ah.attributeName == humanf.humanHobby}">
+								<option value="${ah.attributeName}" selected="selected">${ah.attributeName}</option>
+							</c:if>
+							<c:if test="${ah.attributeName != humanf.humanHobby}">
+								<option value="${ah.attributeName}" >${ah.attributeName}</option>
+							</c:if>
+						</c:forEach>
+						
+						</select>
 					</td>
 					<td class="TD_STYLE1">
 						&nbsp;
@@ -326,15 +429,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						个人履历
 					</td>
 					<td colspan="7" class="TD_STYLE2">
-						<textarea name="item.humanHistroyRecords" rows="4" class="TEXTAREA_STYLE1"></textarea>
+						<textarea name="item.humanHistroyRecords" rows="4" value="" class="TEXTAREA_STYLE1">${humanf.humanHistroyRecords}</textarea>
 					</td>
+					
 				</tr>
 				<tr>
 					<td class="TD_STYLE1">
 						家庭关系信息
 					</td>
 					<td colspan="7" class="TD_STYLE2">
-						<textarea name="item.humanFamilyMembership" rows="4" class="TEXTAREA_STYLE1"></textarea>
+						<textarea name="item.humanFamilyMembership" rows="4" value="" class="TEXTAREA_STYLE1">${humanf.humanFamilyMembership }</textarea>
 					</td>
 				</tr>
 				<tr>
@@ -342,12 +446,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						备注
 					</td>
 					<td colspan="7" class="TD_STYLE2">
-						<textarea name="item.remark" rows="4" class="TEXTAREA_STYLE1"></textarea>
+						<textarea name="item.remark" rows="4" class="TEXTAREA_STYLE1" value="">${humanf.remark }</textarea>
 					</td>
 				</tr>
 			</table>
 		</form>
 	</body>
+	  <script type="text/javascript">
+	  	function mysubmit()
+	  	{
+	  				console.log($("#huid").val());
+	  				alert($("#myzc").val());
+	  				document.humanfileForm.submit();
+	  	}
+	</script>
 <script type="text/javascript">
 Calendar.setup ({inputField : "date_start", ifFormat : "%Y-%m-%d", showsTime : false, button : "date_start", singleClick : true, step : 1});
 Calendar.setup ({inputField : "date_end", ifFormat : "%Y-%m-%d", showsTime : false, button : "date_end", singleClick : true, step : 1});

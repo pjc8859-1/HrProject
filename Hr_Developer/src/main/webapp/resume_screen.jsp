@@ -1,3 +1,4 @@
+
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
@@ -7,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-<!-- major_change_list.jsp -->
+<!-- resume_screen.jsp -->
   <head>
     <base href="<%=basePath%>">
     <title>resume_screen.jsp 简历筛选主页</title>
@@ -276,4 +277,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	Calendar.setup ({inputField : "date_end", ifFormat : "%Y-%m-%d", showsTime : false, button : "date_end", singleClick : true, step : 1});
 	</script>
 </html>
+
 

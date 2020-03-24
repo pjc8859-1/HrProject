@@ -17,4 +17,5 @@ public interface ConfigQuestionSecondKindService {
 
 	public int modifyConfigQuestionSecondKind(
 			ConfigQuestionSecondKind configquestionsecondkind);
+	public int queryMaxId();
 }

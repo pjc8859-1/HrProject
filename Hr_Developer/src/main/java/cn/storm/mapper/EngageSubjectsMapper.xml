@@ -26,8 +26,8 @@
   </resultMap>
   
   		<insert id="saveEngageSubjects" parameterType="EngageSubjects">
-  			insert into engage_subjects(sub_id,first_kind_id,first_kind_name,second_kind_id,second_kind_name,register,regist_time,derivation,content,key_a,key_b,key_c,key_d,key_e,correct_key,changer,change_time) 
-  			values (#{subId},#{firstKindId},#{firstKindName},#{secondKindId},#{secondKindName},#{register},#{registTime},#{derivation},#{content},#{keyA},#{keyB},#{keyC},#{keyD},#{keyE},#{correctKey},#{changer},#{changeTime})
+  			insert into engage_subjects(first_kind_id,first_kind_name,second_kind_id,second_kind_name,register,regist_time,derivation,content,key_a,key_b,key_c,key_d,key_e,correct_key,changer,change_time) 
+  			values (#{firstKindId},#{firstKindName},#{secondKindId},#{secondKindName},#{register},#{registTime},#{derivation},#{content},#{keyA},#{keyB},#{keyC},#{keyD},#{keyE},#{correctKey},#{changer},#{changeTime})
   		</insert>
   		<select id="selectAllEngageSubjects" resultMap="myEngageSubjects">
   			select * from engage_subjects
@@ -47,4 +47,31 @@
 
   			where sub_id= #{subId}
   		</update>
+  		
+  		<select id="selectEngageSubjectsByCondition" parameterType="Map" resultMap="myEngageSubjects">
+  			select * from engage_subjects 
+  			<trim prefix="where" prefixOverrides="or|and">
+  			
+  				
+				<if test="keyword != null">
+  				<bind name="a" value="'%' + keyword + '%'"/>
+					or content like #{a} 
+					or register like #{a} 
+					or derivation like #{a} 
+					
+				</if>
+				<if test="secondKindName != null">
+  				<bind name="b" value="'%' + secondKindName + '%'"/>
+					and second_kind_name like #{b}
+				</if>
+				<if test="starttime != null">
+					and regist_time &gt;= #{starttime}
+				</if>
+				<if test="endtime != null">
+					and regist_time &lt;= #{endtime}
+				</if>
+  			</trim>
+  			
+  		</select>
+  		
   </mapper>

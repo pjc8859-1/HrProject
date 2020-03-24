@@ -32,4 +32,8 @@
   		<select id="selectConfigPublicCharByKey" parameterType="String" resultMap="MyConfigPublicChar" >
   			select * from config_public_char where attribute_kind  =  #{id}
   		</select>
+  		<select id="selectMaxId" resultType="_int">
+  		SELECT if(max(pbc_id) is null,1,max(pbc_id)+1) as newId FROM config_public_char
+  		</select>
+  		
   </mapper>

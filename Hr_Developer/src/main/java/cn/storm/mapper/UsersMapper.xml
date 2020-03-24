@@ -13,14 +13,17 @@
   </resultMap>
   
   		<insert id="saveUsers" parameterType="Users">
-  			insert into users(u_id,u_name,u_true_name,u_password,u_position) 
-  			values (#{UId},#{UName},#{UTrueName},#{UPassword},#{UPosition})
+  			insert into users(u_name,u_true_name,u_password,u_position) 
+  			values (#{UName},#{UTrueName},#{UPassword},#{UPosition})
   		</insert>
   		<select id="selectAllUsers" resultMap="myUsers">
   			select * from users
   		</select>
   		<select id="selectUserByNameAndPass" resultType="java.lang.Boolean">
   			select * from users where u_name=#{UName} and u_password=#{UPassword}
+  		</select>
+  		<select id="selectUsersByUname" resultMap="myUsers">
+  			select * from users where u_name=#{UName}
   		</select>
   		<select id="selectUsersByUid" parameterType="_int" resultMap="myUsers">
   			select * from users where u_id = #{id}

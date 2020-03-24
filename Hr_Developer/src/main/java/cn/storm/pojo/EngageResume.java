@@ -23,8 +23,8 @@ public class EngageResume implements java.io.Serializable {
 	private String humanHomephone;
 	private String humanMobilephone;
 	private String humanEmail;
-	private String humanHobby;
-	private String humanSpecility;
+	private String humanHobby;//爱好
+	private String humanSpecility;//特长
 	private String humanSex;
 	private String humanReligion;//宗教
 	private String humanParty;//政治面貌
@@ -32,9 +32,9 @@ public class EngageResume implements java.io.Serializable {
 	private String humanRace;//民族
 	private Timestamp humanBirthday;//生日
 	private Short humanAge;
-	private String humanEducatedDegree;
+	private String humanEducatedDegree;//学历
 	private Short humanEducatedYears;
-	private String humanEducatedMajor;
+	private String humanEducatedMajor;//专业
 	private String humanCollege;//院校
 	private String humanIdcard;//身份证
 	private String humanBirthplace;
@@ -50,8 +50,8 @@ public class EngageResume implements java.io.Serializable {
 	private String checker;
 	private Timestamp checkTime;
 	private Short interviewStatus;
-	private Double totalPoints;
-	private Short testAmount;
+	private Double totalPoints;//总分
+	private Short testAmount;//面试次数
 	private String testChecker;
 	private Timestamp testCheckTime;
 	private String passRegister;

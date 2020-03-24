@@ -46,6 +46,18 @@ public class ConfigMajorServiceImpl implements ConfigMajorService {
 		// TODO Auto-generated method stub
 		return mapper.updateConfigMajor(configMajor);
 	}
+	
+	@Override
+	public String queryNamesByIds(String mkid,String mid){
+		// TODO Auto-generated method stub
+		return mapper.selectIdByNames(mkid, mid);
+	}
+	
+	@Override
+	public int queryMaxId() {
+		// TODO Auto-generated method stub
+		return mapper.selectMaxId();
+	}
 
 }
 

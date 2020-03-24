@@ -22,11 +22,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 		<link rel="stylesheet" href="table.css" type="text/css">
-		<link rel="stylesheet" type="text/css" media="all"
-			href="javascript/calendar/calendar-win2k-cold-1.css">
+		<link rel="stylesheet" type="text/css" media="all" href="javascript/calendar/calendar-win2k-cold-1.css">
 		<script type="text/javascript" src="javascript/calendar/cal.js"></script>
 		<script type="text/javascript" src="javascript/comm/comm.js"></script>
 		<script type="text/javascript" src="javascript/comm/select.js"></script>
+		<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
+		<script type="text/javascript" src="javascript/userdetails.js"></script>
 		<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
 		<script type="text/javascript">
 			var listconfigfirstkind = ${listconfigfirstkind};//一级机构json数组
@@ -70,9 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});
 			
 		})
-		function show(){
-			console.log(secondkindselect.children());
-		}
+		
 		function savelist(){
 			firstkindselect = document.getElementById("selectfirst").outerHTML;
 			secondkindselect = document.getElementById("selectsecond").outerHTML;
@@ -265,7 +264,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
  <body>
- <form name="humanfileForm" method="post" action="hr/humanfile.do">
+ <form name="humanfileForm" method="post" action="hr/humanfilregister.do">
 			<table width="100%">
 				<tr>
 					<td>
@@ -287,39 +286,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						I级机构
 					</td>
 					<td width="14%" class="TD_STYLE2">
-						<select name="item.firstKindName" class="SELECT_STYLE1" id="selectfirst">
+						<select name="item.firstKindId" class="SELECT_STYLE1" id="selectfirst">
 						</select>    
 					</td>
 					<td width="11%" class="TD_STYLE1">
 						II级机构
 					</td>
 					<td width="14%" class="TD_STYLE2">
-						<select name="item.secondKindName" class="SELECT_STYLE1" id="selectsecond">
+						<select name="item.secondKindId" class="SELECT_STYLE1" id="selectsecond">
 						</select>
 					</td>
 					<td width="11%" class="TD_STYLE1">
 						III级机构
 					</td>
 					<td class="TD_STYLE2" colspan="2">
-						<select name="item.thirdKindName" class="SELECT_STYLE1" id="selectthrid"></select>
+						<select name="item.thirdKindId" class="SELECT_STYLE1" id="selectthrid"></select>
 					</td>
 					<td rowspan="5">
-						&nbsp;
+						<img src="" height="150px" id="img" onclick="picselect()" style="width: 200px; "/>
 					</td>
+						<input id="input_picture" name="item.picture" type="file" style="height: 30px;display: none;" onchange="show(this)"/>
 				</tr>
 				<tr>
 					<td class="TD_STYLE1">
 						职位分类
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.humanMajorKindName"   class="SELECT_STYLE1" id="selectmajorkind"> 
+						<select name="item.humanMajorKindId"   class="SELECT_STYLE1" id="selectmajorkind"> 
 						</select>
 					</td>
 					<td class="TD_STYLE1">
 						职位名称
 					</td>
 					<td class="TD_STYLE2">
-						<select name="item.hunmaMajorName" class="SELECT_STYLE1" id="selectmajor">
+						<select name="item.hunmaMajorId" class="SELECT_STYLE1" id="selectmajor">
 						</select>
 					</td>
 					<td class="TD_STYLE1">
@@ -409,7 +409,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						生日
 					</td>
 					<td width="13%" class="TD_STYLE2">
-						<input type="text" name="item.str_humanBirthday" id="mybirthday" value="" class="INPUT_STYLE2" id="date_start">
+						<input type="text" name="item.str_humanBirthday" id="mybirthday" value="" class="INPUT_STYLE2">
 					</td>
 					<td width="11%" class="TD_STYLE1">
 						民族
@@ -603,13 +603,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</table>
 		</form>
 	</body>
-	
-	
-	
-
-	
-	
-	
 	<script type="text/javascript">
 	function mysubmit()
 	{
@@ -625,33 +618,101 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var myBirthday = $("#mybirthday");//生日
 		var myIdcard = $("#myidcard");//身份证
 		var mySocietysrcurityid = $("#mysocietysrcurityid");//社会保障号
-		var myAge = $("#myage");//年龄
+	 	var myAge = $("#myage");//年龄
 		var myBank = $("#mybank");//开户行
 		var myAccount = $("#myaccount");//账户
 		var myHistoryrecords = $("#myhistoryrecords");//个人履历
 		var myMembersgip = $("#mymembersgip");//家庭关系
 		var myRemark = $("#myremark");//备注
-			
 		var reg1 = /^\s+/;
 		var reg2 = /\s+$/;
 		var reg3 = /^\w+@(qq|163)\.com$/;//邮箱
 		var reg4 = /^\d{17}[0-9X]$/;
+		var reg7 = /^[1-9][0-9]{4,}$/;//qq
+		var reg8 = /^[1-9]{2}\d{9}$/;//电话
+		if(!reg4.test($("#myidcard").val()) || $("#myidcard").val()=="")
+		{
+			alert("身份证格式不对！");
+			return $("#myidcard").focus();
+		}
 		if(reg1.test(myName.val()) || reg2.test(myName.val()) || myName.val() == "" )
 		{
 			alert("姓名不能为空且不能以空格开头结尾！");
 			return $("#myname").focus();
 		}
-		if(!reg3.test(myEmail.val()) || $("#myemail"))
+		if(!reg3.test(myEmail.val()) || $("#myemail")=="")
 		{
 			alert("邮箱格式不正确且不能为空");
 			return $("#myemail").focus();
 		}
+		if(!reg7.test(myQQ.val()) || myQQ.val()=="")
+		{
+			alert("请填写正确的QQ号！");
+			return $("#myqq").focus();
+		}
+		if(!reg8.test(myMobilephone.val())||myMobilephone.val()=="")
+		{
+			alert("请填写正确的手机号！");
+			return $("#mymobilephone").focus();
+		}
+		if(myAddress.val()=="")
+		{
+			alert("请输入正确的地址信息");
+			return $("#myaddress").foucus;
+		}
+		if(myPostcard.val()=="")
+		{
+			alert("请填写邮编");
+			return $("#mypostcard").focus();
+	 	}
+		if(myBirthadd.val()=="")
+		{
+			alert("请填写出生地");
+			return $("#mybirthadd").focus();
+	 	}
+		if(mySocietysrcurityid.val()=="")
+		{
+			alert("请填写社会保障号码");
+			return $("#mysocietysrcurityid").focus();
+	 	}
+		if(myAge.val()=="")
+		{
+			alert("请填写您的年龄！");
+			return $("#myage").focus();
+		}
+	 	if(myBank.val()=="")
+	 	{
+			alert("请填写开户银行");
+			return $("#mybank").focus();
+	 	}
+	 	if(myAccount.val()=="")
+	 	{
+			alert("请填写银行账户");
+			return $("#myaccount").focus();
+	 	}
+	 	if(myHistoryrecords.val()=="")
+	 	{
+	 		alert("请填写您的个人履历");
+	 		return $("#myhistoryrecords").focus();
+	 	}
+	 	if(myMembersgip.val()=="")
+	 	{
+	 		alert("请填写家庭关系！");
+	 		return $("#mymembersgip").focus();
+	 	}
+	 	if(myRemark.val()=="")
+	 	{
+	 		alert("请完善备注！");
+	 		return $("#myremark").focus();
+	 	}
+		
+		document.humanfileForm.submit();
 	}
 	
 	
 	</script>
 <script type="text/javascript">
-Calendar.setup ({inputField : "date_start", ifFormat : "%Y-%m-%d", showsTime : false, button : "date_start", singleClick : true, step : 1});
+Calendar.setup ({inputField : "mybirthday", ifFormat : "%Y-%m-%d", showsTime : false, button : "mybirthday", singleClick : true, step : 1});
 Calendar.setup ({inputField : "date_end", ifFormat : "%Y-%m-%d", showsTime : false, button : "date_end", singleClick : true, step : 1});
 </script>
 </html>

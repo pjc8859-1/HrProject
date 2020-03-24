@@ -12,28 +12,28 @@ public class EngageInterview implements java.io.Serializable {
 
 	private Short einId;
 	private String humanName;
-	private Short interviewAmount;
+	private Short interviewAmount;//面试次数
 	private String humanMajorKindId;
 	private String humanMajorKindName;
 	private String humanMajorId;
 	private String humanMajorName;
-	private String imageDegree;
-	private String nativeLanguageDegree;
-	private String foreignLanguageDegree;
-	private String responseSpeedDegree;
-	private String eqDegree;
-	private String iqDegree;
-	private String multiQualityDegree;
-	private String register;
+	private String imageDegree;//形象评价
+	private String nativeLanguageDegree;//口才评价
+	private String foreignLanguageDegree;//外语口语能力
+	private String responseSpeedDegree;//应变能力
+	private String eqDegree;//EQ
+	private String iqDegree;//IQ
+	private String multiQualityDegree;//综合素质
+	private String register;//面试人
 	private String checker;
-	private Timestamp registeTime;
+	private Timestamp registeTime;//面试时间
 	private Timestamp checkTime;
 	private Short resumeId;
 	private String result;
-	private String interviewComment;
-	private String checkComment;
-	private Short interviewStatus;
-	private Short checkStatus;
+	private String interviewComment;//面试评价
+	private String checkComment;//审核评价
+	private Short interviewStatus;//面试状态
+	private Short checkStatus;//审核状态
 
 	
 	// Property accessors

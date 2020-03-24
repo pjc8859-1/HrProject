@@ -12,4 +12,7 @@ public interface ConfigMajorKindMapper {
 	public ConfigMajorKind selectConfigMajorKindByfsk_id(int sid);
 	public boolean deleteConfigMajorKindByfsk_id(int sid);
 	public int updateConfigMajorKind(ConfigMajorKind configMajorKind);
+	public int selectMaxId();
+	public String selectIdByNames(String id);
+
 }

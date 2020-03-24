@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import cn.storm.pojo.ConfigMajor;
 import cn.storm.pojo.ConfigMajorKind;
 import cn.storm.pojo.ConfigPublicChar;
+import cn.storm.pojo.EngageInterview;
 import cn.storm.pojo.EngageResume;
 import cn.storm.service.ConfigFileFirstKindService;
 import cn.storm.service.ConfigFileSecondKindService;
@@ -29,6 +30,7 @@ import cn.storm.service.ConfigFileThirdKindService;
 import cn.storm.service.ConfigMajorKindService;
 import cn.storm.service.ConfigMajorService;
 import cn.storm.service.ConfigPublicCharService;
+import cn.storm.service.EngageInterviewService;
 import cn.storm.service.EngageMajorReleaseService;
 import cn.storm.service.EngageResumeService;
 
@@ -58,6 +60,8 @@ public class ResumeManageController {
 	private EngageMajorReleaseService emrs = null;
 	@Autowired
 	private EngageResumeService ers = null;
+	@Autowired
+	private EngageInterviewService eis = null;
 
 	/**
 	 * 展示简历登记页面
@@ -197,7 +201,7 @@ public class ResumeManageController {
 		ModelAndView mav = new ModelAndView();
 		EngageResume er = ers.queryEngageResumeByresid(reId);
 		mav.addObject("er", er);
-		mav.setViewName("");
+		mav.setViewName("forward:/resume_screen_check.jsp");
 		return mav;
 	}
 
@@ -301,6 +305,122 @@ public class ResumeManageController {
 			mav.addObject("resumeregistmessage", "简历修改失败!!<数据保存失败>");
 		}
 
+		return mav;
+	}
+
+	@RequestMapping("checkresume.do")
+	public ModelAndView checkresume(short suggest, int resId, String checker,
+			String checkTime, String suggestion) {
+		ModelAndView mav = new ModelAndView();
+		// 查出id的简历
+		EngageResume er = ers.queryEngageResumeByresid(resId);
+		er.setCheckStatus(suggest);
+		er.setChecker(checker);
+		er.setCheckTime(converttime(checkTime, 0));
+		er.setHumanHistoryRecords(suggestion);
+		int result = ers.modifyEngageResume(er);
+		if (result > 0) {
+			mav.addObject("resumeregistmessage", "审核成功!!!");
+		} else {
+			mav.addObject("resumeregistmessage", "审核失败!!!");
+		}
+		mav.setViewName("forward:/resumeregistsuccess.jsp");
+		return mav;
+	}
+
+	/**
+	 * 查询出有效简历,就是可以面试的
+	 */
+	@RequestMapping("effectsresumelist.do")
+	public ModelAndView effectsresumelist() {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("checkStatus", 0);
+		List<EngageResume> list = ers.queryByDiction(map);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("resumes", list);
+		mav.setViewName("forward:/resume_effect_query.jsp");
+		return mav;
+	}
+
+	/**
+	 * 开始,面试
+	 * 
+	 * @param resId
+	 * @return
+	 */
+	@RequestMapping("interviewregist.do")
+	public ModelAndView interviewregist(int resId) {
+		ModelAndView mav = new ModelAndView();
+		EngageResume er = ers.queryEngageResumeByresid(resId);
+		// 首先查询有没有这一个人的面试记录
+		short amount = 1;
+		EngageInterview ei = eis.queryEngageInterviewByeinResumeId(resId);
+		System.out.println(ei);
+		if (ei == null) {
+			System.out.println("进入了插入" + (ei == null));
+			// 说明没有这个人的面试信息
+			ei = new EngageInterview();
+			ei.setHumanName(er.getHumanName());
+			ei.setHumanMajorKindId(er.getHumanMajorKindId());
+			ei.setHumanMajorKindName(er.getHumanMajorKindName());
+			ei.setHumanMajorId(er.getHumanMajorId());
+			ei.setHumanMajorName(er.getHumanMajorName());
+			ei.setResumeId(er.getResId());
+			ei.setInterviewAmount(amount);
+			boolean result = eis.addEngageInterview(ei);
+
+		}
+
+		mav.addObject("er", er);
+		mav.addObject("ei", ei);
+		mav.setViewName("forward:/resume_interview.jsp");
+		return mav;
+	}
+
+	/**
+	 * 处理来自面试页面的结果
+	 */
+	@RequestMapping("interviewsubmit.do")
+	public ModelAndView interviewsubmit(int interviewAmount,
+			String imageDegree, String nativeLanguageDegree,
+			String foreignLanguageDegree, String responseSpeedDegree,
+			String eqDegree, String iqDegree, String multiQualityDegree,
+			String register, String registeTime, String interviewComment,
+			int suggest, int resId, int einId) {
+
+		ModelAndView mav = new ModelAndView();
+		EngageResume er = ers.queryEngageResumeByresid(resId);
+		er.setCheckStatus((short) suggest);
+		ers.modifyEngageResume(er);
+		EngageInterview ei = eis.queryEngageInterviewByeinId(einId);
+		ei.setInterviewAmount((short) interviewAmount);
+		ei.setImageDegree(imageDegree);
+		ei.setNativeLanguageDegree(nativeLanguageDegree);
+		ei.setForeignLanguageDegree(foreignLanguageDegree);
+		ei.setResponseSpeedDegree(responseSpeedDegree);
+		ei.setEqDegree(eqDegree);
+		ei.setIqDegree(iqDegree);
+		ei.setMultiQualityDegree(multiQualityDegree);
+		ei.setRegister(register);
+		ei.setRegisteTime(converttime(registeTime, 2));
+		ei.setInterviewComment(interviewComment);
+		ei.setInterviewStatus((short) 1);// 0:未面试,1:已面试
+		int result = eis.modifyEngageInterview(ei);
+		if (result > 0) {
+			mav.addObject("interviewmessage", "登记成功");
+		} else {
+			mav.addObject("interviewmessage", "登记失败");
+		}
+		mav.setViewName("forward:/interview_regist_success.jsp");
+		return mav;
+	}
+
+	/**
+	 * 面试结果登记
+	 */
+	@RequestMapping("interviewresult.do")
+	public ModelAndView interviewresult() {
+		ModelAndView mav = new ModelAndView();
 		return mav;
 	}
 

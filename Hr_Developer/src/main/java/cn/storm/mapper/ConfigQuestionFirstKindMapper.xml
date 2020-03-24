@@ -16,10 +16,10 @@
   		<select id="selectAllConfigQuestionFirstKind"  resultMap="MyConfigQuestionFirstKind">
   			select * from config_question_first_kind
   		</select>
-  		<select id="selectConfigQuestionFirstKindBypbcId" parameterType="_int"  resultMap="MyConfigQuestionFirstKind">
+  		<select id="selectConfigQuestionFirstKindByqfkId" parameterType="_int"  resultMap="MyConfigQuestionFirstKind">
   			select * from config_question_first_kind where qfk_id = #{qfkId}
   		</select>
-  		<delete id="deleteConfigQuestionFirstKindBypbcId" parameterType="_int">
+  		<delete id="deleteConfigQuestionFirstKindByqfkId" parameterType="_int">
   			delete from config_question_first_kind where  qfk_id = #{qfkId}
   		</delete>
   		<update id="updateConfigQuestionFirstKind" parameterType="ConfigQuestionFirstKind">
@@ -28,4 +28,7 @@
 	  			first_kind_name = #{firstKindName},
   			where qfk_id = #{qfkId}
   		</update>
+  		<select id="selectMaxId" resultType="_int">
+  		SELECT if(max(qfk_id) is null,1,max(qfk_id)+1) as newId FROM config_question_first_kind
+  		</select>
   </mapper>

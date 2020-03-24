@@ -1,6 +1,7 @@
 package cn.storm.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -16,4 +17,6 @@ public interface EngageSubjectsMapper {
 	public boolean deleteEngageSubjectsBysubId(int subid);
 
 	public int updateEngageSubjects(EngageSubjects engagesubjects);
+	
+	public List<EngageSubjects> selectEngageSubjectsByCondition(Map<String, Object> map);
 }

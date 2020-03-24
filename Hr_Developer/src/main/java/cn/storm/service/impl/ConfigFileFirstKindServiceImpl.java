@@ -10,12 +10,12 @@ import cn.storm.pojo.ConfigFileFirstKind;
 import cn.storm.service.ConfigFileFirstKindService;
 
 @Service
-public class ConfigFileFirstKindServiceImpl implements ConfigFileFirstKindService {
-	
+public class ConfigFileFirstKindServiceImpl implements
+		ConfigFileFirstKindService {
+
 	@Autowired
-	private ConfigFileFirstKindMapper mapper=null;
-	
-	
+	private ConfigFileFirstKindMapper mapper = null;
+
 	@Override
 	public List<ConfigFileFirstKind> queryConfigFileFirstKindByName(String name) {
 		// TODO Auto-generated method stub
@@ -23,7 +23,8 @@ public class ConfigFileFirstKindServiceImpl implements ConfigFileFirstKindServic
 	}
 
 	@Override
-	public boolean addConfigFileFirstKind(ConfigFileFirstKind configFileFirstKind) {
+	public boolean addConfigFileFirstKind(
+			ConfigFileFirstKind configFileFirstKind) {
 		// TODO Auto-generated method stub
 		return mapper.saveConfigFileFirstKind(configFileFirstKind);
 	}
@@ -56,6 +57,12 @@ public class ConfigFileFirstKindServiceImpl implements ConfigFileFirstKindServic
 	public int queryMaxId() {
 		// TODO Auto-generated method stub
 		return mapper.selectMaxId();
+	}
+
+	@Override
+	public String selectIdByNames(String names) {
+		// TODO Auto-generated method stub
+		return mapper.selectIdByNanmes(names);
 	}
 
 }

@@ -31,6 +31,11 @@
   		<select id="selectConfigFileThirdKindByftkId" parameterType="_int"  resultMap="MyConfigFileThirdKind">
   			select * from config_file_third_kind where ftk_id = #{ftkId}
   		</select>
+  		
+  		<select id="selectNamesByIds" resultType="java.lang.String">
+  			select third_kind_name from config_file_third_kind where first_kind_id=#{fids} and second_kind_id=#{seids} and third_kind_id=#{thids}
+  		</select>
+  		
   		<delete id="deleteConfigFileThirdKindByftkId" parameterType="_int">
   			delete from config_file_third_kind where  ftk_id = #{ftkId}
   		</delete>

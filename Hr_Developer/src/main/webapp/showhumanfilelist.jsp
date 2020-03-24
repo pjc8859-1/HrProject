@@ -56,6 +56,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<table width="100%" border="1" cellpadding=0 cellspacing=1
 			bordercolorlight=#848284 bordercolordark=#eeeeee class="TABLE_STYLE1">
 			<tr class="TR_STYLE1">
+				<td width="5%" class="TD_STYLE1">
+					huf_id
+				</td>
 				<td width="16%" class="TD_STYLE1">
 					档案编号
 				</td>
@@ -86,7 +89,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</tr>
 			<c:forEach items="${humanlist }" var="human">
 				<tr class="TR_STYLE1">
-				<td width="16%" class="TD_STYLE2 humanid">
+				<td width="16%" class="TD_STYLE2 humanid">${human.hufId }</td>
+				<td width="16%" class="TD_STYLE2">
 					${human.humanId }
 				</td>
 				<td width="10%" class="TD_STYLE2">
