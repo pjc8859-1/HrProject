@@ -15,4 +15,8 @@ public interface UsersMapper {
 	public Users selectUsersByUid(int uid);
 	public boolean deleteUsersByUid(int uid);
 	public int updateUsers(Users users); 
+	/**
+	 * 检查注册账号是否已经存在注册
+	 */
+	public Users selectUsersByUname(String Uname);
 }

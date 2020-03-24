@@ -11,5 +11,11 @@ public interface UsersService {
 	public Users queryUsersByUid(int uid);
 	public boolean removeUsersByUid(int uid);
 	public int modifyUsers(Users users);
+	
+	/**
+	 * 通过查询用户名判断用户是否存在
+	 */
+	public Users querryUsersByUname(String Uname);
+
 
 }

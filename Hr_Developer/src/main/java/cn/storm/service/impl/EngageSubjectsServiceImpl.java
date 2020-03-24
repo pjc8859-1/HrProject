@@ -1,6 +1,7 @@
 package cn.storm.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,12 @@ public class EngageSubjectsServiceImpl implements EngageSubjectsService {
 	public int modifyEngageSubjects(EngageSubjects engagesubjects) {
 		// TODO Auto-generated method stub
 		return this.mapper.updateEngageSubjects(engagesubjects);
+	}
+
+	@Override
+	public List<EngageSubjects> queryEngageSubjectsByCondition(
+			Map<String, Object> map) {
+		return this.mapper.selectEngageSubjectsByCondition(map);
 	}
 
 }
