@@ -9,17 +9,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'left.jsp' starting page</title>
+    <title>侧边栏</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-			<title>无标题文档</title>
+		<title>无标题文档</title>
 		<link rel="stylesheet" href="table.css" type="text/css">
 		<style>
 a{ CURSOR: hand}
@@ -662,7 +659,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="engageinterview.do?operate=list" target="mainFrame">面试筛选</a>
+													<a href="interview/interviewscreen.do" target="mainFrame">面试筛选</a>
 												</td>
 											</tr>
 										</table> </span>

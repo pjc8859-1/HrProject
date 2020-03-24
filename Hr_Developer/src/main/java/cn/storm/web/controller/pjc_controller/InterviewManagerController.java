@@ -62,7 +62,6 @@ public class InterviewManagerController {
 			@RequestParam String starttime,
 			@RequestParam String endtime,
 			String keywords
-				
 			){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -109,6 +108,10 @@ public class InterviewManagerController {
 	@RequestMapping("interviewscreen.do")
 	public ModelAndView interviewscreen(){
 		ModelAndView mav = new ModelAndView();
+		//查询出所有简历信息
+		List<EngageInterview> list = eis.queryAllEngageInterview();
+		mav.addObject("interviews", list);
+		mav.setViewName("forward:/interview_screen.jsp");
 		return mav;
 	}
 	
