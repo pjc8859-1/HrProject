@@ -108,6 +108,9 @@ public class InterviewManagerController {
 	 */
 	@RequestMapping("interviewscreen.do")
 	public ModelAndView interviewscreen(){
+		
+		
+		
 		ModelAndView mav = new ModelAndView();
 		return mav;
 	}

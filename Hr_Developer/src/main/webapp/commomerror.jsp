@@ -1,49 +1,47 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%response.setStatus(HttpServletResponse.SC_OK);%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
+    <base href="<%=basePath%>">
     
-    <title>哦吼,页面找不到啦</title>
-		<script type="text/javascript" src="javascript/calendar/cal.js"></script>
-		<script type="text/javascript" src="javascript/comm/comm.js"></script>
-		<script type="text/javascript" src="javascript/comm/select.js"></script>
-		<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
-		<script type="text/javascript" src="javascript/userdetails.js"></script>
-		<script type="text/javascript" src="javascript/jquery-1.6.1.min.js"></script>
+    <title>My JSP 'register_success.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="table.css" type="text/css">
+<script type="text/javascript">
+function locate()
+{
+	window.location.href='index.jsp';
+}
+</script>
   </head>
-  <script type="text/javascript">
-  	var errortime=0;
-  	var aaa =new Array();
-  	aaa[0]="五";
-  	aaa[1]="四";
-  	aaa[2]="三";
-  	aaa[3]="二";
-  	aaa[4]="一";
-  	function getUrlVal(property){
-  	  var urlStr = window.location.search.substring(1);
-  	  var re = new RegExp('(^|&)'+ property +'=([^&]*)(&|$)');
-  	  var result = urlStr.match(re);
-  	  if(result == null){return null};
-  	  return result[2];
-  	};
-  	$(function() {
-  	var timer = setInterval(function() {
-  		$("#time").html(aaa[++errortime]);
-  		if (errortime==4) {
-			clearInterval(timer);
-			location.href="/Hr_Developer/index.jsp?";
-		}
-	},1000);
-	});
-  </script>
-  <body style="background:#d8765d;">
-  <center>
-  <div style="margin-top: 100px">
-  		<h1 style="color: white;">页面错误，<span id="time">五</span>秒之后回主页</h1>
-  		<h3 style="color: white;"></h3>
- 		</div>
-     	<img alt="" src="/Hr_Developer/images/error.gif" style="margin-top: 200px;border:#d8765d;">
-  </center>
+  
+  <body>
+  <form method="post" action="configprimarykey.do">
+<table width="100%" >
+  <tr>
+    <td colspan="2"> 
+    <font color="#0000CC">页面错误</font></td>
+  </tr>
+  <tr>
+    <td width="49%"> 页面错误！请返回</td>
+    <td width="51%" align="right">
+    <input type="button" value="返回" class="BUTTON_STYLE1" onclick="javascript:locate();"></td></tr>
+  </table>
+
+</form>
   </body>
 </html>
