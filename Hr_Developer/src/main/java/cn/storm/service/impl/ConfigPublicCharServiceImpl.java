@@ -44,4 +44,10 @@ public class ConfigPublicCharServiceImpl implements ConfigPublicCharService {
 		
 		return mapper.selectConfigPublicCharByKey(key);
 	}
+	
+	@Override
+	public int queryMaxId() {
+		// TODO Auto-generated method stub
+		return mapper.selectMaxId();
+	}
 }

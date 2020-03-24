@@ -107,6 +107,9 @@ public class InterviewManagerController {
 	 */
 	@RequestMapping("interviewscreen.do")
 	public ModelAndView interviewscreen(){
+		
+		
+		
 		ModelAndView mav = new ModelAndView();
 		//查询出所有简历信息
 		List<EngageInterview> list = eis.queryAllEngageInterview();

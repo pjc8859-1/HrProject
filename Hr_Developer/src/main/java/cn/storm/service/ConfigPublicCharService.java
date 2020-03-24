@@ -16,4 +16,5 @@ public interface ConfigPublicCharService {
 	public int modifyConfigPublicChar(ConfigPublicChar configpublicchar);
 	
 	public List<ConfigPublicChar> queryConfigPublicCharByKey(String key);
+	public int queryMaxId();
 }

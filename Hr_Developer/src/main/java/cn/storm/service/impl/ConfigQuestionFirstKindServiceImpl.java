@@ -41,5 +41,10 @@ public class ConfigQuestionFirstKindServiceImpl implements
 			ConfigQuestionFirstKind configquestionfirstkind) {
 		return mapper.updateConfigQuestionFirstKind(configquestionfirstkind);
 	}
+	@Override
+	public int queryMaxId() {
+		// TODO Auto-generated method stub
+		return mapper.selectMaxId();
+	}
 
 }

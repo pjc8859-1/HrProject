@@ -14,7 +14,7 @@ public interface ConfigMajorMapper {
 	public ConfigMajor selectConfigMajorByfsk_id(int sid);
 	public boolean deleteConfigMajorByfsk_id(int sid);
 	public int updateConfigMajor(ConfigMajor configMajor);
-	
+	public int selectMaxId();
 	
 	public String selectIdByNames(@Param("mkid") String kid, @Param("majorid") String mid);
 

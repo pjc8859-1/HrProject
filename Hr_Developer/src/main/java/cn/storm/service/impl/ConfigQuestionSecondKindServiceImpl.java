@@ -43,5 +43,11 @@ public class ConfigQuestionSecondKindServiceImpl implements
 			ConfigQuestionSecondKind configquestionsecondkind) {
 		return mapper.updateConfigQuestionSecondKind(configquestionsecondkind);
 	}
+	
+	@Override
+	public int queryMaxId() {
+		// TODO Auto-generated method stub
+		return mapper.selectMaxId();
+	}
 
 }

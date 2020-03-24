@@ -105,7 +105,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="configfilesecondkind.do?operate=list"
+													<a href="showConfigFileSecondKind.do"
 														target="mainFrame">II级机构设置</a>
 												</td>
 											</tr>
@@ -114,7 +114,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="configfilethirdkind.do?operate=list" target="mainFrame">III级机构设置</a>
+													<a href="showConfigFileThirdKind.do" target="mainFrame">III级机构设置</a>
 												</td>
 											</tr>
 											<tr>
@@ -130,7 +130,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="major_kind.jsp"
+													<a href="showMajorKind.do"
 														target="mainFrame">职位分类设置</a>
 												</td>
 											</tr>
@@ -139,7 +139,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="major.jsp"
+													<a href="showMajor.do"
 														target="mainFrame">职位设置</a>
 												</td>
 											</tr>
@@ -148,7 +148,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													<a href="public_char.jsp"
+													<a href="showPublicChar.do"
 														target="mainFrame">公共属性设置</a>
 												</td>
 											</tr>
@@ -229,7 +229,8 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td width="98%">
-													试题I级分类设置
+													<a href="showQuestionFirstKind.do"
+														target="mainFrame">试题I级分类设置</a>
 												</td>
 											</tr>
 											<tr>
@@ -237,7 +238,9 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td>
-													试题II级分类设置
+												<a href="showQuestionSecondkind.do"
+														target="mainFrame">试题II级分类设置</a>
+													
 												</td>
 											</tr>
 										</table> </span>

@@ -20,4 +20,5 @@ public interface ConfigQuestionFirstKindMapper {
 
 	public int updateConfigQuestionFirstKind(
 			ConfigQuestionFirstKind configquestionfirstkind);
+	public int selectMaxId();
 }

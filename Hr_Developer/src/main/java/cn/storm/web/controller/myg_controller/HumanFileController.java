@@ -632,7 +632,7 @@ public class HumanFileController {
 		ModelAndView model = new ModelAndView();
 		if(flags==true)
 		{
-			model.setViewName("forward:/humanfileregistersuccess.jsp");
+			model.setViewName("forward:/humanfilechecksuccess.jsp");
 			System.out.println("档案更新完成"+"=======================");
 		}
 		else
@@ -957,7 +957,7 @@ public class HumanFileController {
 		ModelAndView model = new ModelAndView();
 		if(flags==true)
 		{
-			model.setViewName("forward:/humanfileregistersuccess.jsp");
+			model.setViewName("forward:/humanfilechangesuccess.jsp");
 			System.out.println("档案更新完成"+"=======================");
 		}
 		else

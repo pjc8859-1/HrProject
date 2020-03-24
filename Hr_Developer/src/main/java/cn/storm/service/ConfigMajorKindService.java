@@ -15,5 +15,6 @@ public boolean addConfigMajorKind(ConfigMajorKind configMajorKind);
 	
 	public int updateConfigMajorKind(ConfigMajorKind configMajorKind);
 	public String querryIdByNames(String names);
+	public int queryMaxId();
 
 }
