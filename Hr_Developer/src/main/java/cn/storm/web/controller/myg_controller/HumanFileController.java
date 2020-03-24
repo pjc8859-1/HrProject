@@ -1,8 +1,8 @@
 package cn.storm.web.controller.myg_controller;
 
 import java.io.FileOutputStream;
-import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -13,19 +13,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import sun.misc.BASE64Decoder;
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.request.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
 
+import sun.misc.BASE64Decoder;
 import cn.storm.dto.HumanFileQuerryDto;
 import cn.storm.pojo.ConfigFileFirstKind;
 import cn.storm.pojo.ConfigFileSecondKind;
@@ -390,6 +386,8 @@ public class HumanFileController {
 		humanfile.setDeleteTime(null);
 		//recoveryTime
 		humanfile.setRecoveryTime(null);
+		//删除状态,1是未进行操作的状态
+		humanfile.setHumanFileStatus((short)1);
 		System.out.println("打印humanfile："+humanfile);
 		ModelAndView model = new ModelAndView();
 		boolean flag = humanfs.addHumanFiles(humanfile);
@@ -968,13 +966,148 @@ public class HumanFileController {
 		return model;
 	}
 	
+	//人力资源档案删除,查询可删除的档案
+	@RequestMapping("/humanfiledeletelist.do")
+	public ModelAndView selectHumanFileByDeletestaus()
+	{
+		ModelAndView model =new ModelAndView();
+		short a=1;
+		List<HumanFile> humanlist = humanfs.queryAllHumanFileByDeletestu(a);
+		System.out.println("======="+humanlist);
+		model.addObject("humanlist", humanlist);
+		model.setViewName("forward:/delete_locate.jsp");
+		return model;
+	}
+	
+	@RequestMapping("/humanfiledelete.do")
+	/**
+	 * 删除档案，并更新删除档案的状态
+	 * @param arg0
+	 * @return
+	 */
+	public ModelAndView deleteHumanFile(String huid)
+	{
+		HumanFile humanfile = humanfs.queryByhumanid(huid);
+		//设置状态为2，状态为2表示可以恢复，状态为1表示从未删除
+		humanfile.setHumanFileStatus((short)2);
+		//设置删除时间
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		String nowtime = df.format(new Date());
+		humanfile.setDeleteTime(converttime(nowtime, 2));
+		boolean flag = humanfs.modifyHumanFilesWithDeleteStatus(humanfile);
+		ModelAndView model = new ModelAndView();
+		if(flag==true)
+		{
+			model.setViewName("forward:/deletesuccess.jsp");
+			return model;
+		}
+		if(flag==false)
+		{
+			model.setViewName("forward:/commomerror.jsp");
+		}
+		return model;
+	}
+	
+	
+	
+	
+	/**
+	 * 档案删除恢复
+	 * @param arg0
+	 * @param type
+	 * @return
+	 */
+	@RequestMapping("/recoverhumanfiles.do")
+	public ModelAndView recoverHumanFile()
+	{
+		ModelAndView model =new ModelAndView();
+		short a=2;
+		List<HumanFile> humanlist = humanfs.queryAllHumanFileByDeletestu(a);
+		System.out.println("======="+humanlist);
+		model.addObject("humanlist", humanlist);
+		model.setViewName("forward:/recovery_locate.jsp");
+		return model;
+	}
+	
+	/**
+	 * 恢复
+	 * @param arg0
+	 * @return
+	 */
+	@RequestMapping("/humanfilerecovery.do")
+	public ModelAndView recoverHumanFile(String huid)
+	{
+		HumanFile humanfile = humanfs.queryByhumanid(huid);
+		//设置状态为2，状态为2表示可以恢复，状态为1表示从未删除
+		humanfile.setHumanFileStatus((short)1);
+		//设置删除时间
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		String nowtime = df.format(new Date());
+		humanfile.setRecoveryTime(converttime(nowtime, 2));
+		boolean flag = humanfs.modifyHumanFileRecovery(humanfile);
+		ModelAndView model = new ModelAndView();
+		if(flag==true)
+		{
+			model.setViewName("forward:/humanfilerecoverysuccess.jsp");
+			return model;
+		}
+		if(flag==false)
+		{
+			model.setViewName("forward:/commomerror.jsp");
+		}
+		return model;
+	}
+	
+	/**
+	 * 人力资源永久删除显示
+	 * @param arg0
+	 * @return
+	 */
+	@RequestMapping("/deleteforver.do")
+	public ModelAndView showDeleteHumanFileForver()
+	{
+		ModelAndView model =new ModelAndView();
+		List<HumanFile> humanlist = humanfs.queryAllHumanFile();
+		System.out.println("======="+humanlist);
+		model.addObject("humanlist", humanlist);
+		model.setViewName("forward:/delete_forever_list.jsp");
+		return model;
+	}
+	
+	/**
+	 * 永久删除
+	 * @param arg0
+	 * @return
+	 */
+	@RequestMapping("/deletefilesforvery.do")
+	public ModelAndView deleteForver(String huid)
+	{
+		boolean flag = humanfs.removeHumanFileByhuid(huid);
+		ModelAndView model = new ModelAndView();
+		if(flag==true)
+		{
+			model.setViewName("forward:/deleteforverysuccess.jsp");
+			return model;
+		}
+		if(flag==false)
+		{
+			model.setViewName("forward:/commomerror.jsp");
+			return model;
+		}
+		return model;
+	}
+	
+	
+	
+	
+	
+	
+	
 	public Timestamp converttime(String arg0) {
 		Date d = new Date(arg0.replace("-", "/")+" 00:00:00");
 		long time = d.getTime();//long
 		return new Timestamp(time);
 	}
-	
-	
 	public Timestamp converttime(String arg0,int type) {
 		System.out.println(arg0);
 		Date d = null;
@@ -989,4 +1122,10 @@ public class HumanFileController {
 		long time = d.getTime();//long
 		return new Timestamp(time);
 	}
+//	public static void main(String[] args) {
+//		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+//		String nowtime = df.format(new Date());
+//		System.out.println(converttime(nowtime,2));
+//	}
+
 }

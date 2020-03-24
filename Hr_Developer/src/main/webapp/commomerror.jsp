@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 function locate()
 {
-	window.location.href='index.jsp';
+	window.location.href='main.jsp';
 }
 </script>
   </head>
