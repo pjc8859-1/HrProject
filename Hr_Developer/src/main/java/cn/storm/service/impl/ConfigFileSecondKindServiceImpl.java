@@ -1,4 +1,3 @@
-
 package cn.storm.service.impl;
 
 import java.util.List;
@@ -9,12 +8,14 @@ import org.springframework.stereotype.Service;
 import cn.storm.mapper.ConfigFileSecondKindMapper;
 import cn.storm.pojo.ConfigFileSecondKind;
 import cn.storm.service.ConfigFileSecondKindService;
+
 @Service
-public class ConfigFileSecondKindServiceImpl implements ConfigFileSecondKindService {
- 
+public class ConfigFileSecondKindServiceImpl implements
+		ConfigFileSecondKindService {
+
 	@Autowired
 	ConfigFileSecondKindMapper mapper = null;
-	
+
 	@Override
 	public boolean addConfigFileSecondKind(
 			ConfigFileSecondKind configFileSecondKind) {
@@ -46,13 +47,13 @@ public class ConfigFileSecondKindServiceImpl implements ConfigFileSecondKindServ
 		// TODO Auto-generated method stub
 		return mapper.updateConfigFileSecondKind(configFileSecondKind);
 	}
-	
+
 	@Override
 	public int queryMaxId() {
 		// TODO Auto-generated method stub
 		return mapper.selectMaxId();
 	}
-	
+
 	@Override
 	public String queryNameByFirstIdAndSecondId(String firstId, String secondId) {
 		// TODO Auto-generated method stub

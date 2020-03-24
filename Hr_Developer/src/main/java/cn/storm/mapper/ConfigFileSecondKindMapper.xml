@@ -26,6 +26,7 @@
   		<select id="selectConfigFileSecondKindByfsk_id" parameterType="_int" resultMap="myConfigFileSecondKind">
   			select * from config_file_second_kind where fsk_id = #{id}
   		</select>
+
   		
   		
   		<select id="selectnNameByFirstIdAndSecondId" resultType="java.lang.String">

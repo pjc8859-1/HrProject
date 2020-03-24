@@ -26,17 +26,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="javascript/calendar/cal.js"></script>
 		<title>无标题文档</title>
 		<script type="text/javascript">
-	function list()
+	function query()
 	{
 		//document.forms[0].action = document.forms[0].action + "?operate=list&status=1&method=change";
-		document.forms[0].action = "salarystandard_change_list.jsp";
+		//document.forms[0].action = "salarystandard_change_list.jsp";
 		document.forms[0].submit();
 	}
 </script>
   </head>
   
   <body>
-  <form method="post" action="salarystandard.do">
+  <form method="post" action="salarychange2.do">
 			<table width="100%">
 				<tr>
 					<td>
@@ -45,8 +45,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</tr>
 				<tr>
 					<td align="right">
-						<input type="button" value="开始" class="BUTTON_STYLE1"
-							onclick="list();">
+						<input type="button" value="查询" class="BUTTON_STYLE1"
+							onclick="query();">
 					</td>
 				</tr>
 			</table>
@@ -58,7 +58,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						请输入薪酬标准编号
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.standardId" value="" class="INPUT_STYLE1">
+						<input type="text" name="sstid" value="" class="INPUT_STYLE1">
+					</td>
+				</tr>
+				<tr>
+					<td class="TD_STYLE1">
+						请选择关键字
+					</td>
+					<td class="TD_STYLE2">
+						<div style="width:30%;">
+							<label>&#9;<input  type="checkbox" name="key" value="standardName">薪酬标准名称</input></label>
+							<label>&#9;<input  type="checkbox" name="key" value="designer">制定人</input></label>
+							<label>&#9;<input  type="checkbox" name="key" value="checker">复核人</input></label>
+						</div>
 					</td>
 				</tr>
 				<tr>
@@ -66,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						请输入关键字
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="textfield2" class="INPUT_STYLE1">
+						<input type="text" name="keyWords" class="INPUT_STYLE1">
 					</td>
 				</tr>
 				<tr>
@@ -74,9 +86,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						请输入登记时间
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.str_startTime" value="" class="INPUT_STYLE1" id="date_start">
+						<input type="text" name="srtime1" value="" class="INPUT_STYLE1" id="date_start">
 						至
-						<input type="text" name="item.str_endTime" value="" class="INPUT_STYLE1" id="date_end">
+						<input type="text" name="srtime2" value="" class="INPUT_STYLE1" id="date_end">
 						(YYYY-MM-DD)
 					</td>
 				</tr>

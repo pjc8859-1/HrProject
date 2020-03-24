@@ -24,11 +24,12 @@
   
   <!--多条件查询-->
   <select id="queryBySalary" resultMap="mySalaryStandard" parameterType="map">
-    select * from Salary_standard
+    select * from (select * from Salary_standard where check_status=1) as MySalary_standard
     <where>
-           and check_status=1
        <if test="sstid!=null and sstid!=''">and standard_id like '%${sstid}%'</if>
-       <if test="sdesigner!=null and sdesigner!=''">and designer like '%${sdesigner}%'</if>
+       <if test="standardName!=null" >or standard_name like '%${keyWords}%'</if>
+       <if test="designer!=null" >or designer like '%${keyWords}%'</if>
+       <if test="checker!=null" >or checker like '%${keyWords}%'</if>
        <if test="srtime1 != null and srtime1 != ''">
 				and regist_time >= str_to_date(#{srtime1},'%Y-%m-%d')
 			</if>

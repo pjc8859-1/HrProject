@@ -19,8 +19,10 @@ public interface ConfigFileThirdKindMapper {
 	public boolean deleteConfigFileThirdKindByftkId(int ftkId);
 
 	public int updateConfigFileThirdKind(ConfigFileThirdKind configfilethirdkind);
+
 	public int selectMaxId();
-	
-	public String selectNamesByIds(@Param("fids") String fid,@Param("seids") String sid,@Param("thids") String tid);
+
+	public String selectNamesByIds(@Param("fids") String fid,
+			@Param("seids") String sid, @Param("thids") String tid);
 
 }

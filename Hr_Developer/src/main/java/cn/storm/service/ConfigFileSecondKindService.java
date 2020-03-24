@@ -5,7 +5,8 @@ import java.util.List;
 import cn.storm.pojo.ConfigFileSecondKind;
 
 public interface ConfigFileSecondKindService {
-	public boolean addConfigFileSecondKind(ConfigFileSecondKind configFileSecondKind);
+	public boolean addConfigFileSecondKind(
+			ConfigFileSecondKind configFileSecondKind);
 
 	public List<ConfigFileSecondKind> queryAllConfigFileSecondKind();
 
@@ -13,8 +14,11 @@ public interface ConfigFileSecondKindService {
 
 	public boolean removeConfigFileSecondKindByfskId(int fskId);
 
-	public int modifyConfigFileSecondKind(ConfigFileSecondKind configFileSecondKind);
+	public int modifyConfigFileSecondKind(
+			ConfigFileSecondKind configFileSecondKind);
+
 	public int queryMaxId();
-	public String queryNameByFirstIdAndSecondId(String firstId,String secondId);
+
+	public String queryNameByFirstIdAndSecondId(String firstId, String secondId);
 
 }

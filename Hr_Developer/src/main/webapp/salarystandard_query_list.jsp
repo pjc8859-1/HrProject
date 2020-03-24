@@ -64,7 +64,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td width="15%" class="TD_STYLE1">
 						<span>制定人</span>
 					</td>
-					<td width="30%" class="TD_STYLE1">
+					<td width="15%" class="TD_STYLE1">
+						<span>复核人</span>
+					</td>
+					<td width="15%" class="TD_STYLE1">
 						<span>登记时间</span>
 					</td>
 					<td class="TD_STYLE1" width="15%">
@@ -77,6 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<td>${s.standardId }</td>
 						<td>${s.standardName }</td>
 						<td>${s.designer }</td>
+						<td>${s.checker }</td>
 						<td>${s.registTime }</td>
 						<td>&nbsp;${s.salarySum}</td>
 					</tr>

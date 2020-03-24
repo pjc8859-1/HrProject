@@ -53,4 +53,9 @@ public class SalaryStandardServiceImpl implements SalaryStandardService {
 	public List<SalaryStandard> queryBySalary(Map map) {
 		return mapper.queryBySalary(map);
 	}
+
+	@Override
+	public void updatechange(SalaryStandard ss) {
+		mapper.updatechange(ss);
+	}
 }

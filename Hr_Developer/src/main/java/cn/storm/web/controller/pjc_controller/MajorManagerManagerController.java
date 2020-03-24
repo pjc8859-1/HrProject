@@ -234,6 +234,7 @@ public class MajorManagerManagerController {
 //				newThirdKindName+"=="+newMajorKindId+"=="+newMajorKindName+"=="+newMajorId+
 //				"=="+newMajorName+"=="+register+"=="+register+"=="+registTime+"=="+reason);
 		MajorChange mc = new MajorChange();
+		System.out.println("humanId:"+humanId);
 		mc.setHumanId(humanId);
 		mc.setFirstKindId(firstKindId);
 		mc.setFirstKindName(firstKindName);
