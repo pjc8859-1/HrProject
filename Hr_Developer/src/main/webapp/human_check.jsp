@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
 
   <body>
-<form name="humanfileForm" method="post" action="hr/humancheckfile.do" id="myform">
+<form name="humanfileForm" method="post" enctype="multipart/form-data" action="hr/humancheckfile.do" id="myform">
 			<table width="100%">
 				<tr>
 					<td>

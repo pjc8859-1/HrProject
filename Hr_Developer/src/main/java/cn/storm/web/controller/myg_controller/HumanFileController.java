@@ -620,7 +620,9 @@ public class HumanFileController {
 			@RequestParam("item.remark") String remark,
 			@RequestParam("item.huid") String huids,
 			@RequestParam("item.picture") MultipartFile file,
-			HttpServletRequest request
+			HttpServletRequest request,
+			HttpSession session,
+			HttpServletResponse response
 			) throws IllegalStateException, IOException
 	{
 		
@@ -647,6 +649,9 @@ public class HumanFileController {
 				file.transferTo(new File(realFile, fname));
 		
 		
+				
+		System.out.println("我修改的图片为："+fname);		
+				
 		HumanFile newHumanfiles = new HumanFile();
 		//换头像了
 		newHumanfiles.setHumanPicture(fname);
@@ -729,18 +734,18 @@ public class HumanFileController {
 		newHumanfiles.setRemark(remark);
 		//设置审核时间
 		newHumanfiles.setCheckStatus(Short.parseShort("2"));
-		boolean flags =	humanfs.modifysHumanFile(newHumanfiles);
+//		boolean flags =	humanfs.modifysHumanFile(newHumanfiles);
 		ModelAndView model = new ModelAndView();
-		if(flags==true)
-		{
-			model.setViewName("forward:/humanfilechecksuccess.jsp");
-			System.out.println("档案更新完成"+"=======================");
-		}
-		else
-		{
-			model.setViewName("forward:/commomerror.jsp");
-			System.out.println("档案更新失败！数据紊乱！"+"==================");
-		}
+//		if(flags==true)
+//		{
+//			model.setViewName("forward:/humanfilechecksuccess.jsp");
+//			System.out.println("档案更新完成"+"=======================");
+//		}
+//		else
+//		{
+//			model.setViewName("forward:/commomerror.jsp");
+//			System.out.println("档案更新失败！数据紊乱！"+"==================");
+//		}
 		return model;
 	}
 	
