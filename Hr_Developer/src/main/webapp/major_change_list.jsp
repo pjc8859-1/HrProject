@@ -122,6 +122,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 		}
 		function lista(){
+			//判断空
+			if($("#select1").find("option:selected").val() == null || $("#select1").find("option:selected").val() == "")
+				{
+					alert("I级机构不能为空");
+					return ;
+				}
+			if($("#select2").find("option:selected").val() == null || $("#select2").find("option:selected").val() == "")
+				{
+					alert("II级机构不能为空");
+					return ;
+				}
+			if($("#select3").find("option:selected").val() == null || $("#select3").find("option:selected").val() == "")
+				{
+					alert("III级机构不能为空");
+					return ;
+				}
+			if($("#select4").find("option:selected").val() == null || $("#select4").find("option:selected").val() == "")
+				{
+					alert("职位分类不能为空");
+					return ;
+				}
+			if($("#select5").find("option:selected").val() == null || $("#select5").find("option:selected").val() == "")
+				{
+					alert("职位名称不能为空");
+					return ;
+				}
+			if($("#date_start").val() == null || $("#date_start").val() == "")
+				{
+					alert("开始时间不能为空");
+					return ;
+				}
+			if($("#date_end").val() == null || $("#date_end").val() == "")
+				{
+					alert("结束时间不能为空");
+					return ;
+				}
 			var myform = document.getElementById("myform");
 			myform.submit();
 		}

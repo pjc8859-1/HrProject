@@ -328,6 +328,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		//thisTime = thisTime.replace(/-/g, '/');
 		//var time = new Date(thisTime);
 		//time = time.getTime();
+		//前端验证
+		if($("#newFirstKindId").val() == null || $("#newFirstKindId").val() == "")
+			{
+				alert("I级机构不能为空");
+				return;
+			}
+		if($("#newSecondKindId").val() == null || $("#newSecondKindId").val() == "")
+		{
+			alert("II级机构不能为空");
+			return;
+		}
+		
+		if($("#newThirdKindId").val() == null || $("#newThirdKindId").val() == "")
+		{
+			alert("III级机构不能为空");
+			return;
+		}
+		
+		if($("#engageType").find("option:selected").val() == null || $("#engageType").find("option:selected").val() == "")
+		{
+			alert("招聘类型不能为空");
+			return;
+		}
+		if($("#newMajorId").val() == null || $("#newMajorId").val() == "")
+		{
+			alert("职位名称不能为空");
+			return;
+		}
+		
+		if($("#humanAmount").val() == null || $("#humanAmount").val() == "")
+		{
+			alert("招聘人数不能为空");
+			return;
+		}
+		if($("#register").val() == null || $("#register").val() == "")
+		{
+			alert("登记人不能为空");
+			return;
+		}
+		if($("#majorDescribe").val() == null || $("#majorDescribe").val() == "")
+		{
+			alert("职位描述不能为空");
+			return;
+		}
+		if($("#majorDescribe").val() == null || $("#majorDescribe").val() == "")
+		{
+			alert("职位描述不能为空");
+			return;
+		}
+		if($("#engageRequired").val() == null || $("#engageRequired").val() == "")
+		{
+			alert("招聘要求不能为空");
+			return;
+		}
 		document.getElementById("mainform").submit(); 
 	 }
  function formatDate(date) {
@@ -403,7 +457,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						招聘类型
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
-						<select  class="select1"  name="engageType">
+						<select  class="select1"  name="engageType" id="engageType">
 							<option value=""></option>
 							<c:forEach items="${charlist}" var="cha" >
 								<option value="${cha.attributeName}">${cha.attributeName}</option>
@@ -432,14 +486,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input  id="newMajorId" type="hidden" name="majorId" value=""/>
 					<input  id="newMajorName" type="hidden" name="majorName" value=""/>
 						<select class="select1" id="select5">
-						  
+						  	
 						</select>
 					</td>
 					<td width="12.5%" class="TD_STYLE1">
 						招聘人数
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
-						<input type="number" name="humanAmount" class="select1"/>
+						<input type="number" id="humanAmount" name="humanAmount" class="select1"/>
 					</td>
 					<td width="12.5%" class="TD_STYLE1">
 						截止日期
@@ -455,7 +509,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						登记人
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
-						<input class="select1" name="register" />
+						<input class="select1" id="register" name="register" />
 					</td>
 					<td width="12.5%" class="TD_STYLE1">
 						登记时间
@@ -482,7 +536,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						职位描述
 					</td>
 					<td width="87.5%"  height="100" class="TD_STYLE2" colspan="7">
-						<textarea  style="width:100%;height:100%;resize:none" name="majorDescribe" autoHeight="true"></textarea>
+						<textarea  style="width:100%;height:100%;resize:none" name="majorDescribe" id="majorDescribe" autoHeight="true"></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -490,7 +544,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						招聘要求
 					</td>
 					<td width="87.5%"  height="100" class="TD_STYLE2" colspan="7">
-						<textarea  style="width:100%;height:100%;resize:none" name="engageRequired" autoHeight="true"></textarea>
+						<textarea  style="width:100%;height:100%;resize:none" name="engageRequired" id="engageRequired" autoHeight="true"></textarea>
 					</td>
 				</tr>
 				

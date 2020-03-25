@@ -395,7 +395,7 @@ public class MajorManagerManagerController {
 			}else
 			{
 				//查出humanid所代表的人
-				HumanFile old_hf = hfs.queryHumanFileByHufid(Integer.parseInt(mg.getHumanId()));
+				HumanFile old_hf = hfs.queryByhumanid(mg.getHumanId());
 				old_hf.setCheckStatus(mg.getCheckStatus());
 				System.out.println(old_hf.getCheckStatus());
 				//更新

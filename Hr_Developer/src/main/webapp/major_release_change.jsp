@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-	<!-- major_release_input.jsp -->
+	<!-- major_release_change.jsp -->
 	<!-- 职位发布信息的输入,填写表单 -->
   <head>
    <base href="<%=basePath%>">
@@ -421,7 +421,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 	alert("登记时间不能为空值");
 		 	return ;
 		 }
-		 
+		 if($("#changer").val() == null ||$("#changer").val() == "")
+			 {
+			 alert("修改人不能为空");
+			 return;
+			 }
 		
 		 
 		 
@@ -578,7 +582,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						修改人
 					</td>
 					<td width="12.5%" class="TD_STYLE2">
-						<input class="select1" name="changer"   id="register" value=""/>
+						<input class="select1" name="changer"   id="changer" value=""/>
 					</td>
 				</tr>
 				<tr>
