@@ -264,7 +264,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
  <body>
- <form name="humanfileForm" method="post" action="hr/humanfilregister.do">
+ <form name="humanfileForm" method="post"   enctype="multipart/form-data"   action="hr/humanfilregister.do">
 			<table width="100%">
 				<tr>
 					<td>
@@ -532,7 +532,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							 {
 								console.log("进到时间函数");
 							 	var time = new Date();
-							 	alert(time);
 							 	var Y = time.getFullYear();
 							 	var Mt = time.getMonth()+1;
 							 	var D = time.getDate();
@@ -604,6 +603,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</form>
 	</body>
 	<script type="text/javascript">
+	
+	var isok="${exist}";
+	if(isok=="exist")
+	{
+		alert("注册失败！用户名已存在！请重新输入用户名！");
+	}
+	
+	
+	
+	
 	function mysubmit()
 	{
 		var myName = $("#myname");//姓名
@@ -704,6 +713,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 	{
 	 		alert("请完善备注！");
 	 		return $("#myremark").focus();
+	 	}
+	 	if($("#mybirthday").val()=="")
+	 	{
+	 		alert("请输入您的生日！");
+	 		return $("#mybirthday").focus();
+	 	}
+	 	if($("#myphone").val()=="")
+	 	{
+	 		alert("请输入您的电话号码");
+	 		return $("#myphone").focus();
+	 	}
+	 	if($("#input_picture").val()=="")
+	 	{
+	 		alert("请选择您的照片！");
+	 		return ;
 	 	}
 		
 		document.humanfileForm.submit();

@@ -30,6 +30,10 @@ public interface HumanFileMapper {
 	public List<HumanFile> selectByCondition(MajorManagerDto mmd);
 	
 	public HumanFile selectByhumanid(String huid);
+	/**
+	 * 永久删除
+	 */
+	public boolean deleteHumanFileByhuid(@Param("huids") String huid);
 	
 	public boolean upDateHumanFiles(HumanFile humanfile);
 	
@@ -48,9 +52,5 @@ public interface HumanFileMapper {
 	 * 通过查找删除状态来恢复档案
 	 */
 	public boolean updateHumanFileRecovery(HumanFile humanfile);
-	/**
-	 * 永久删除
-	 */
-	public boolean deleteHumanFileByhuid(@Param("huids") String huid);
 
 }

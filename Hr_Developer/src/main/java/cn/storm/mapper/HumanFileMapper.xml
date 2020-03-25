@@ -163,7 +163,7 @@
   			human_id_card=#{humanIdCard},human_age=#{humanAge},human_educated_degree=#{humanEducatedDegree},human_educated_years=#{humanEducatedYears},
   			human_educated_major=#{humanEducatedMajor},human_bank=#{humanBank},human_account=#{humanAccount},check_time=#{checkTime},
   			human_hobby=#{humanHobby},human_speciality=#{humanSpeciality},human_histroy_records=#{humanHistroyRecords},
-  			human_family_membership=#{humanFamilyMembership},remark=#{remark},check_status=#{checkStatus}
+  			human_family_membership=#{humanFamilyMembership},remark=#{remark},check_status=#{checkStatus},human_picture=#{humanPicture}
   			where human_id=#{humanId}
   		</update>
   		
@@ -177,7 +177,7 @@
   			human_id_card=#{humanIdCard},human_age=#{humanAge},human_educated_degree=#{humanEducatedDegree},human_educated_years=#{humanEducatedYears},
   			human_educated_major=#{humanEducatedMajor},human_bank=#{humanBank},human_account=#{humanAccount},check_time=#{checkTime},
   			human_hobby=#{humanHobby},human_speciality=#{humanSpeciality},human_histroy_records=#{humanHistroyRecords},
-  			human_family_membership=#{humanFamilyMembership},remark=#{remark}
+  			human_family_membership=#{humanFamilyMembership},remark=#{remark},human_picture=#{humanPicture}
   			where human_id=#{humanId}
   		</update>
   		<update id="updateHumanFileDeleteStues"  parameterType="HumanFile" >

@@ -1,6 +1,8 @@
 package cn.storm.web.controller.myg_controller;
 
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import sun.misc.BASE64Decoder;
@@ -197,6 +200,10 @@ public class HumanFileController {
 		return modelview;
 	}
 	
+	/**
+	 * 进行登记
+	 * @throws Exception
+	 */
 	@RequestMapping("/humanfilregister.do")
 	public ModelAndView add(
 			HumanFile humanfile,
@@ -236,34 +243,35 @@ public class HumanFileController {
 			@RequestParam("item.humanHistroyRecords") String humanHistroyRecordss,
 			@RequestParam("item.humanFamilyMembership") String humanFamilyMemberships,
 			@RequestParam("item.remark") String remarks,
-			@RequestParam("item.picture") String picture,
+			@RequestParam("item.picture") MultipartFile file,
 			HttpServletRequest request,
 			HttpSession session,
-			HttpServletResponse response	)throws Exception
+			HttpServletResponse response
+			)throws Exception
 	{
 		
-//		System.out.println("三级机构："+thirdKindId);
-//		System.out.println("职位分类："+humanMajorKindId);
-//		System.out.println("职位："+hunmaMajorId);
-//		
-		if(picture!=null && picture.equals(""))
+		//获取图片路径
+		String realPath = request.getSession().getServletContext().getRealPath("/upload/");
+		System.out.println(realPath+"-========图片路径=======-");
+		// 判断该路径是否存在
+		File realFile = new File(realPath);
+		if (!realFile.exists())
 		{
-			//解码图片并上传	
-			int index = picture.indexOf(",");
-			picture = picture.substring(index+1);
-			System.out.println("我的图片："+picture);
-			String path = session.getServletContext().getRealPath("/upload");
-			System.out.println("我的图片保存路径："+path);
-			BASE64Decoder decoder = new BASE64Decoder();
-			byte [] b = decoder.decodeBuffer(picture);
-			String uuid = UUID.randomUUID().toString();
-			FileOutputStream fos = new FileOutputStream(path+uuid+".jpg");
-			fos.write(b);
-			fos.flush();
-			fos.close();
-			System.out.println("上传完毕！");
-			
+			realFile.mkdirs();
 		}
+		//给图片重新赋予名字
+		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+		//获取页面上的真实图片
+		String truepic = file.getOriginalFilename();
+		//获取文件的后缀名字
+		String hz = truepic.substring(truepic.lastIndexOf("."));
+		//给文件重新赋名字
+		String fname = uuid+hz;
+		System.out.println(fname+"-=============-============-");
+		System.out.println(realFile+"-==================");
+		//开始上传图片
+		file.transferTo(new File(realFile, fname));
+		
 		/**
 		 * 一级机构的ID
 		 */
@@ -370,7 +378,7 @@ public class HumanFileController {
 		//备注
 		humanfile.setRemark(remarks);
 		//照片
-		humanfile.setHumanPicture(picture);
+		humanfile.setHumanPicture(fname);
 		//humanid
 		String humanid = UUID.randomUUID().toString();
 		humanfile.setHumanId(humanid);	
@@ -390,22 +398,42 @@ public class HumanFileController {
 		humanfile.setHumanFileStatus((short)1);
 		System.out.println("打印humanfile："+humanfile);
 		ModelAndView model = new ModelAndView();
-		boolean flag = humanfs.addHumanFiles(humanfile);
-		if(flag=true)
+		//通过姓名查找档案
+		HumanFile hufile = humanfs.querryHumanFileByNames(humanNames);
+		if(hufile==null)
 		{
-			System.out.println("插入成功");
-			model.setViewName("forward:/humanfileregistersuccess.jsp");
+			boolean flag = humanfs.addHumanFiles(humanfile);
+			if(flag=true)
+			{
+				System.out.println("插入成功");
+				model.setViewName("forward:/humanfileregistersuccess.jsp");
+				return model;
+			}
+			if(flag==false)
+			{
+				System.out.println("插入失败");
+				model.setViewName("forward:/commomerror.jsp");
+				return model;
+			}
 			return model;
 		}
-		if(flag==false)
+		if(hufile!=null)
 		{
-			System.out.println("插入失败");
-			model.setViewName("forward:/commomerror.jsp");
+			String exist="exist";
+			model.addObject("humanfile", humanfile);
+			model.addObject("exist", exist);
+			model.setViewName("forward:humanfile.do?"+exist);
 			return model;
 		}
 		return model;
 	}
 	
+	
+	/**
+	 * 查询出待复核的档案
+	 * @param m
+	 * @return
+	 */
 	@RequestMapping("/humanfilecheckshow.do")
 	public ModelAndView humanFileCheck(Map m)
 	{
@@ -420,6 +448,14 @@ public class HumanFileController {
 	}
 	
 	
+	/**
+	 * 查询档案，当点击复核时显示出来
+	 * @param map
+	 * @param huid
+	 * @param request
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/humanfilequery.do")
 	public ModelAndView humanHileQuery(Map map ,String huid,HttpServletRequest request,HttpSession session)
 	{
@@ -431,7 +467,8 @@ public class HumanFileController {
 		{
 			HumanFile humanf =  humanfs.queryByhumanid(huid);
 			String pic = humanf.getHumanPicture();
-			pic =  session.getServletContext().getRealPath("/upload/")+pic;
+			pic = request.getContextPath()+"/upload/"+pic;
+			System.out.println("我获取到的图片是："+pic);
 			request.getSession().setAttribute("pic", pic);
 			
 			map.put("humanf", humanf);
@@ -512,6 +549,44 @@ public class HumanFileController {
 		return model;
 	}
 	
+	/**
+	 * 点击复核时候上传
+	 * @param humanProDesignation
+	 * @param humanName
+	 * @param humanSex
+	 * @param humanEmail
+	 * @param humanTelephone
+	 * @param humanQq
+	 * @param humanMobilephone
+	 * @param humanPostcode
+	 * @param humanAddress
+	 * @param humanNationality
+	 * @param humanBirthplace
+	 * @param humanBirthday
+	 * @param humanRace
+	 * @param humanReligion
+	 * @param humanParty
+	 * @param humanIdCard
+	 * @param humanSocietySecurityId
+	 * @param humanAge
+	 * @param humanEducatedDegree
+	 * @param humanEducatedYears
+	 * @param humanEducatedMajor
+	 * @param humanBank
+	 * @param humanAccount
+	 * @param checkTime
+	 * @param humanSpeciality
+	 * @param humanHobby
+	 * @param humanHistroyRecords
+	 * @param humanFamilyMembership
+	 * @param remark
+	 * @param huids
+	 * @param file
+	 * @param request
+	 * @return
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
 	@RequestMapping("/humancheckfile.do")
 	public ModelAndView humanFileCheckOkOrNo(
 			@RequestParam("item.humanProDesignation") String humanProDesignation,
@@ -543,10 +618,38 @@ public class HumanFileController {
 			@RequestParam("item.humanHistroyRecords") String humanHistroyRecords,
 			@RequestParam("item.humanFamilyMembership") String humanFamilyMembership,
 			@RequestParam("item.remark") String remark,
-			@RequestParam("item.huid") String huids
-			)
+			@RequestParam("item.huid") String huids,
+			@RequestParam("item.picture") MultipartFile file,
+			HttpServletRequest request
+			) throws IllegalStateException, IOException
 	{
+		
+		//获取图片路径
+				String realPath = request.getSession().getServletContext().getRealPath("/upload/");
+				System.out.println(realPath+"-========图片路径=======-");
+				// 判断该路径是否存在
+				File realFile = new File(realPath);
+				if (!realFile.exists())
+				{
+					realFile.mkdirs();
+				}
+				//给图片重新赋予名字
+				String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+				//获取页面上的真实图片
+				String truepic = file.getOriginalFilename();
+				//获取文件的后缀名字
+				String hz = truepic.substring(truepic.lastIndexOf("."));
+				//给文件重新赋名字
+				String fname = uuid+hz;
+				System.out.println(fname+"-=============-============-");
+				System.out.println(realFile+"-==================");
+				//开始上传图片
+				file.transferTo(new File(realFile, fname));
+		
+		
 		HumanFile newHumanfiles = new HumanFile();
+		//换头像了
+		newHumanfiles.setHumanPicture(fname);
 		//档案编号
 		newHumanfiles.setHumanId(huids);
 		System.out.println("我的档案编号：====="+huids);
@@ -741,7 +844,7 @@ public class HumanFileController {
 	}
 	
 	/**
-	 * 档案变更
+	 * 档案变更显示
 	 * @param huid
 	 * @return
 	 */
@@ -757,7 +860,7 @@ public class HumanFileController {
 		{
 			HumanFile humanf =  humanfs.queryByhumanid(huid);
 			String pic = humanf.getHumanPicture();
-			pic =  session.getServletContext().getRealPath("/upload/")+pic;
+			pic =  request.getContextPath()+"/upload/"+pic;
 			request.getSession().setAttribute("pic", pic);
 			
 			map.put("humanf", humanf);
@@ -868,10 +971,41 @@ public class HumanFileController {
 			@RequestParam("item.humanHistroyRecords") String humanHistroyRecords,
 			@RequestParam("item.humanFamilyMembership") String humanFamilyMembership,
 			@RequestParam("item.remark") String remark,
-			@RequestParam("item.huid") String huids
-			)
+			@RequestParam("item.huid") String huids,
+			@RequestParam("item.picture") MultipartFile file,
+			HttpServletRequest request
+			) throws IllegalStateException, IOException
 	{
+		
+		
+		//获取图片路径
+				String realPath = request.getSession().getServletContext().getRealPath("/upload/");
+				System.out.println(realPath+"-========图片路径=======-");
+				// 判断该路径是否存在
+				File realFile = new File(realPath);
+				if (!realFile.exists())
+				{
+					realFile.mkdirs();
+				}
+				//给图片重新赋予名字
+				String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+				//获取页面上的真实图片
+				String truepic = file.getOriginalFilename();
+				//获取文件的后缀名字
+				String hz = truepic.substring(truepic.lastIndexOf("."));
+				//给文件重新赋名字
+				String fname = uuid+hz;
+				System.out.println(fname+"-=============-============-");
+				System.out.println(realFile+"-==================");
+				//开始上传图片
+				file.transferTo(new File(realFile, fname));
+		
+		
+		
+		
 		HumanFile newHumanfiles = new HumanFile();
+		//上传图片
+		newHumanfiles.setHumanPicture(fname);
 		//档案编号
 		newHumanfiles.setHumanId(huids);
 		System.out.println("我的档案编号：====="+huids);

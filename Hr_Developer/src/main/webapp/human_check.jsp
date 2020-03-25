@@ -123,7 +123,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						姓名
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.humanName" value="${humanf.humanName }" class="INPUT_STYLE2">
+						<input type="text" name="item.humanName" id="myname" value="${humanf.humanName }" class="INPUT_STYLE2">
 						
 					</td>
 					<td class="TD_STYLE1">
@@ -143,7 +143,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						EMAIL
 					</td>
 					<td colspan="2" class="TD_STYLE2">
-						<input type="text" name="item.humanEmail" value="${humanf.humanEmail}" class="INPUT_STYLE2">
+						<input type="text"  id="myemail"   name="item.humanEmail" value="${humanf.humanEmail}" class="INPUT_STYLE2">
 					</td>
 				</tr>
 				<tr>
@@ -151,20 +151,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						电话
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.humanTelephone" value="${humanf.humanTelephone}" class="INPUT_STYLE2">
+						<input type="text"   id="myphone" name="item.humanTelephone" value="${humanf.humanTelephone}" class="INPUT_STYLE2">
 						
 					</td>
 					<td class="TD_STYLE1">
 						QQ
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.humanQq" value="${humanf.humanQq }" class="INPUT_STYLE2">
+						<input type="text" name="item.humanQq"  id="myqq"  value="${humanf.humanQq }" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						手机
 					</td>
 					<td colspan="2" class="TD_STYLE2">
-						<input type="text" name="item.humanMobilephone" value="${humanf.humanTelephone}" class="INPUT_STYLE2">
+						<input type="text" id="mymobilephone" name="item.humanMobilephone" value="${humanf.humanTelephone}" class="INPUT_STYLE2">
 					</td>
 				</tr>
 				<tr>
@@ -172,13 +172,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						住址
 					</td>
 					<td colspan="3" class="TD_STYLE2">
-						<input type="text" name="item.humanAddress" value="${humanf.humanAddress }" class="INPUT_STYLE2">
+						<input type="text"   id="myaddress" name="item.humanAddress" value="${humanf.humanAddress }" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						邮编
 					</td>
 					<td colspan="2" class="TD_STYLE2">
-						<input type="text" name="item.humanPostcode" value="${humanf.humanPostcode }" class="INPUT_STYLE2">
+						<input type="text"  id="mypostcard"   name="item.humanPostcode" value="${humanf.humanPostcode }" class="INPUT_STYLE2">
 					</td>
 				</tr>
 				<tr>
@@ -205,13 +205,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						出生地
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.humanBirthplace" value="${humanf.humanBirthplace}" class="INPUT_STYLE2">
+						<input type="text"   id="mybirthadd" name="item.humanBirthplace" value="${humanf.humanBirthplace}" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						生日
 					</td>
 					<td width="13%" class="TD_STYLE2">
-						<input type="text" name="item.humanBirthday" value="${humanf.humanBirthday }" class="INPUT_STYLE2" id="date_start">
+						<input type="text" name="item.humanBirthday" id="mybirthday"   value="${humanf.humanBirthday }" class="INPUT_STYLE2" id="date_start">
 					</td>
 					<td width="10%" class="TD_STYLE1">
 						民族
@@ -264,13 +264,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						身份证号码
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.humanIdCard" value="${humanf.humanIdCard }" class="INPUT_STYLE2">
+						<input type="text"  id="myidcard"  name="item.humanIdCard" value="${humanf.humanIdCard }" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						社会保障号码
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.humanSocietySecurityId" value="${humanf.humanSocietySecurityId}" class="INPUT_STYLE2">
+						<input type="text"   id="mysocietysrcurityid" name="item.humanSocietySecurityId" value="${humanf.humanSocietySecurityId}" class="INPUT_STYLE2">
 					</td>
 				</tr>
 				<tr>
@@ -278,7 +278,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						年龄
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.humanAge" value="${humanf.humanAge }" class="INPUT_STYLE2">
+						<input type="text" id="myage" name="item.humanAge" value="${humanf.humanAge }" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						学历
@@ -338,13 +338,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						开户行
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.humanBank" value="${humanf.humanBank }" class="INPUT_STYLE2">
+						<input type="text" name="item.humanBank"   id="mybank" value="${humanf.humanBank }" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						帐号
 					</td>
 					<td class="TD_STYLE2">
-						<input type="text" name="item.humanAccount" value="${humanf.humanAccount }" class="INPUT_STYLE2">
+						<input type="text" name="item.humanAccount"  id="myaccount" value="${humanf.humanAccount }" class="INPUT_STYLE2">
 					</td>
 					<td class="TD_STYLE1">
 						复核人
@@ -418,18 +418,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</tr>
 				<tr>
 					<td class="TD_STYLE1">
-						档案附件
-					</td>
-					<td colspan="7" class="TD_STYLE2">
-						<a href="javascript:winopenm('query.jsp?filename=')"></a>
-					</td>
-				</tr>
-				<tr>
-					<td class="TD_STYLE1">
 						个人履历
 					</td>
 					<td colspan="7" class="TD_STYLE2">
-						<textarea name="item.humanHistroyRecords" rows="4" value="" class="TEXTAREA_STYLE1">${humanf.humanHistroyRecords}</textarea>
+						<textarea    id="myhistoryrecords"  name="item.humanHistroyRecords" rows="4" value="" class="TEXTAREA_STYLE1">${humanf.humanHistroyRecords}</textarea>
 					</td>
 					
 				</tr>
@@ -438,7 +430,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						家庭关系信息
 					</td>
 					<td colspan="7" class="TD_STYLE2">
-						<textarea name="item.humanFamilyMembership" rows="4" value="" class="TEXTAREA_STYLE1">${humanf.humanFamilyMembership }</textarea>
+						<textarea   id="mymembersgip" name="item.humanFamilyMembership" rows="4" value="" class="TEXTAREA_STYLE1">${humanf.humanFamilyMembership }</textarea>
 					</td>
 				</tr>
 				<tr>
@@ -446,7 +438,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						备注
 					</td>
 					<td colspan="7" class="TD_STYLE2">
-						<textarea name="item.remark" rows="4" class="TEXTAREA_STYLE1" value="">${humanf.remark }</textarea>
+						<textarea   id="myremark" name="item.remark" rows="4" class="TEXTAREA_STYLE1" value="">${humanf.remark }</textarea>
 					</td>
 				</tr>
 			</table>
@@ -455,8 +447,121 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  <script type="text/javascript">
 	  	function mysubmit()
 	  	{
+	  				var myName = $("#myname");//姓名
+		var mySex = $("#mysex");//性别
+		var myEmail = $("#myemail");//邮箱
+		var myphone = $("#myphone");//电话
+		var myQQ = $("#myqq");//qq
+		var myMobilephone=$("#mymobilephone");//手机
+		var myAddress = $("#myaddress");//地址
+		var myPostcard = $("#mypostcard");//邮编
+		var myBirthadd = $("#mybirthadd");//出生地
+		var myBirthday = $("#mybirthday");//生日
+		var myIdcard = $("#myidcard");//身份证
+		var mySocietysrcurityid = $("#mysocietysrcurityid");//社会保障号
+	 	var myAge = $("#myage");//年龄
+		var myBank = $("#mybank");//开户行
+		var myAccount = $("#myaccount");//账户
+		var myHistoryrecords = $("#myhistoryrecords");//个人履历
+		var myMembersgip = $("#mymembersgip");//家庭关系
+		var myRemark = $("#myremark");//备注
+		var reg1 = /^\s+/;
+		var reg2 = /\s+$/;
+		var reg3 = /^\w+@(qq|163)\.com$/;//邮箱
+		var reg4 = /^\d{17}[0-9X]$/;
+		var reg7 = /^[1-9][0-9]{4,}$/;//qq
+		var reg8 = /^[1-9]{2}\d{9}$/;//电话
+		if(!reg4.test($("#myidcard").val()) || $("#myidcard").val()=="")
+		{
+			alert("身份证格式不对！");
+			return $("#myidcard").focus();
+		}
+		if(reg1.test(myName.val()) || reg2.test(myName.val()) || myName.val() == "" )
+		{
+			alert("姓名不能为空且不能以空格开头结尾！");
+			return $("#myname").focus();
+		}
+		if(!reg3.test(myEmail.val()) || $("#myemail")=="")
+		{
+			alert("邮箱格式不正确且不能为空");
+			return $("#myemail").focus();
+		}
+		if(!reg7.test(myQQ.val()) || myQQ.val()=="")
+		{
+			alert("请填写正确的QQ号！");
+			return $("#myqq").focus();
+		}
+		if(!reg8.test(myMobilephone.val())||myMobilephone.val()=="")
+		{
+			alert("请填写正确的手机号！");
+			return $("#mymobilephone").focus();
+		}
+		if(myAddress.val()=="")
+		{
+			alert("请输入正确的地址信息");
+			return $("#myaddress").foucus;
+		}
+		if(myPostcard.val()=="")
+		{
+			alert("请填写邮编");
+			return $("#mypostcard").focus();
+	 	}
+		if(myBirthadd.val()=="")
+		{
+			alert("请填写出生地");
+			return $("#mybirthadd").focus();
+	 	}
+		if(mySocietysrcurityid.val()=="")
+		{
+			alert("请填写社会保障号码");
+			return $("#mysocietysrcurityid").focus();
+	 	}
+		if(myAge.val()=="")
+		{
+			alert("请填写您的年龄！");
+			return $("#myage").focus();
+		}
+	 	if(myBank.val()=="")
+	 	{
+			alert("请填写开户银行");
+			return $("#mybank").focus();
+	 	}
+	 	if(myAccount.val()=="")
+	 	{
+			alert("请填写银行账户");
+			return $("#myaccount").focus();
+	 	}
+	 	if(myHistoryrecords.val()=="")
+	 	{
+	 		alert("请填写您的个人履历");
+	 		return $("#myhistoryrecords").focus();
+	 	}
+	 	if(myMembersgip.val()=="")
+	 	{
+	 		alert("请填写家庭关系！");
+	 		return $("#mymembersgip").focus();
+	 	}
+	 	if(myRemark.val()=="")
+	 	{
+	 		alert("请完善备注！");
+	 		return $("#myremark").focus();
+	 	}
+	 	if($("#mybirthday").val()=="")
+	 	{
+	 		alert("请输入您的生日！");
+	 		return $("#mybirthday").focus();
+	 	}
+	 	if($("#myphone").val()=="")
+	 	{
+	 		alert("请输入您的电话号码");
+	 		return $("#myphone").focus();
+	 	}
+	 	if($("#input_picture").val()=="")
+	 	{
+	 		alert("请选择您的照片！");
+	 		return ;
+	 	}
 	  				console.log($("#huid").val());
-	  				alert($("#myzc").val());
 	  				document.humanfileForm.submit();
 	  	}
 	</script>
