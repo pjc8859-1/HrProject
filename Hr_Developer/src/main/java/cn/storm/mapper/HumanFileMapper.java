@@ -37,4 +37,20 @@ public interface HumanFileMapper {
 	
 
 	public List<HumanFile> selectByHumanFileDto(HumanFileQuerryDto mmd);
+	
+	/**
+	 * 通过查询删除状态来删除档案
+	 */
+	public List<HumanFile> selectAllHumanFileByDeletestu(@Param("status") short status);
+	public boolean updateHumanFileDeleteStues(HumanFile humanfile);
+	
+	/**
+	 * 通过查找删除状态来恢复档案
+	 */
+	public boolean updateHumanFileRecovery(HumanFile humanfile);
+	/**
+	 * 永久删除
+	 */
+	public boolean deleteHumanFileByhuid(@Param("huids") String huid);
+
 }

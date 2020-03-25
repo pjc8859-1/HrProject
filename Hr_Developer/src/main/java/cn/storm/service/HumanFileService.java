@@ -32,4 +32,20 @@ public interface HumanFileService {
 	public List<HumanFile> querryByHumanFileDto(HumanFileQuerryDto mmd);
 	
 	public HumanFile querryHumanFileByNames(String names);
+	/**
+	 * 人力资源档案删除，查询可删除的档案以及查询可恢复的档案
+	 */
+	public List<HumanFile> queryAllHumanFileByDeletestu(short a);
+	/**
+	 * 通过huid来删除档案
+	 */
+	public boolean modifyHumanFilesWithDeleteStatus(HumanFile humanfile);
+	/**
+	 * 通过huid来恢复档案
+	 */
+	public boolean modifyHumanFileRecovery(HumanFile humanfile);
+	/**
+	 * 永久删除
+	 */
+	public boolean removeHumanFileByhuid(String huid);
 }

@@ -351,7 +351,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td width="98%">
-													<a href="delete_locate.jsp" target="mainFrame">人力资源档案删除</a>
+													<a href="hr/humanfiledeletelist.do" target="mainFrame">人力资源档案删除</a>
 												</td>
 											</tr>
 											<tr>
@@ -359,7 +359,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td width="98%">
-													<a href="recovery_locate.jsp" target="mainFrame">档案删除恢复</a>
+													<a href="hr/recoverhumanfiles.do" target="mainFrame">档案删除恢复</a>
 												</td>
 											</tr>
 											<tr>
@@ -367,7 +367,7 @@ a{ CURSOR: hand}
 													<img src="images/jt0.gif">
 												</td>
 												<td width="98%">
-													<a href="delete_forever_list.jsp" target="mainFrame">人力资源档案永久删除</a>
+													<a href="hr/deleteforver.do" target="mainFrame">人力资源档案永久删除</a>
 												</td>
 											</tr>
 										</table> </span>

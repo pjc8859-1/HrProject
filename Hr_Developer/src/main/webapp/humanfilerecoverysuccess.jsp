@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 function locate()
 {
-	window.location.href='main.jsp';
+	window.location.href='hr/recoverhumanfiles.do';
 }
 </script>
   </head>
@@ -34,10 +34,10 @@ function locate()
 <table width="100%" >
   <tr>
     <td colspan="2"> 
-    <font color="#0000CC">页面错误</font></td>
+    <font color="#0000CC">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案删除</font></td>
   </tr>
   <tr>
-    <td width="49%"> 页面错误！请返回</td>
+    <td width="49%"> 人力资源档案删除成功，请返回！</td>
     <td width="51%" align="right">
     <input type="button" value="返回" class="BUTTON_STYLE1" onclick="javascript:locate();"></td></tr>
   </table>

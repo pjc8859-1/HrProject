@@ -92,4 +92,28 @@ private HumanFileMapper mapper=null;
 		return mapper.upDateHumanFileChange(humanfile);
 	}
 
+	@Override
+	public List<HumanFile> queryAllHumanFileByDeletestu(short a) {
+		// TODO Auto-generated method stub
+		return mapper.selectAllHumanFileByDeletestu(a);
+	}
+
+	@Override
+	public boolean modifyHumanFilesWithDeleteStatus(HumanFile humanfile) {
+		// TODO Auto-generated method stub
+		return mapper.updateHumanFileDeleteStues(humanfile);
+	}
+
+	@Override
+	public boolean modifyHumanFileRecovery(HumanFile humanfile) {
+		// TODO Auto-generated method stub
+		return mapper.updateHumanFileRecovery(humanfile);
+	}
+
+	@Override
+	public boolean removeHumanFileByhuid(String huid) {
+		// TODO Auto-generated method stub
+		return mapper.deleteHumanFileByhuid(huid);
+	}
+
 }
